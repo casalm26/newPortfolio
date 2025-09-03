@@ -1,0 +1,191 @@
+{
+  "timeline": [
+    {
+      "id": "work-current",
+      "type": "work",
+      "title": "Senior Full-Stack Developer",
+      "company": "Tech Innovations Inc.",
+      "location": "Remote",
+      "startDate": "2023-01-15",
+      "endDate": null,
+      "current": true,
+      "description": "Leading development of scalable web applications using modern technologies",
+      "responsibilities": [
+        "Architected and developed full-stack applications serving 100K+ users",
+        "Led team of 4 developers using Agile methodologies",
+        "Implemented CI/CD pipelines reducing deployment time by 70%",
+        "Mentored junior developers and conducted code reviews"
+      ],
+      "skills": ["React", "Node.js", "TypeScript", "AWS", "Docker", "PostgreSQL"],
+      "achievements": [
+        "Reduced application load time by 60% through optimization",
+        "Implemented microservices architecture for better scalability",
+        "Led migration from monolith to microservices"
+      ]
+    },
+    {
+      "id": "work-previous",
+      "type": "work", 
+      "title": "Full-Stack Developer",
+      "company": "Digital Solutions Co.",
+      "location": "Stockholm, Sweden",
+      "startDate": "2021-03-01",
+      "endDate": "2023-01-10",
+      "current": false,
+      "description": "Developed and maintained various web applications and mobile solutions",
+      "responsibilities": [
+        "Built responsive web applications using React and Vue.js",
+        "Developed RESTful APIs with Node.js and Express",
+        "Collaborated with UX/UI designers on user interface implementation",
+        "Maintained legacy systems and performed bug fixes"
+      ],
+      "skills": ["React", "Vue.js", "Node.js", "MongoDB", "MySQL", "Git"],
+      "achievements": [
+        "Delivered 8 major projects on time and under budget",
+        "Improved code test coverage from 40% to 85%",
+        "Implemented automated testing pipelines"
+      ]
+    },
+    {
+      "id": "education-masters",
+      "type": "education",
+      "title": "Master of Science in Computer Science",
+      "institution": "Royal Institute of Technology (KTH)",
+      "location": "Stockholm, Sweden",
+      "startDate": "2019-09-01",
+      "endDate": "2021-06-15",
+      "current": false,
+      "description": "Specialized in Software Engineering and System Architecture",
+      "details": [
+        "Thesis: 'Scalable Microservices Architecture for E-commerce Platforms'",
+        "GPA: 4.2/5.0",
+        "Relevant coursework: Advanced Algorithms, System Design, Database Systems"
+      ],
+      "skills": ["System Architecture", "Algorithms", "Database Design", "Research"]
+    },
+    {
+      "id": "skill-react",
+      "type": "skill",
+      "title": "React.js Mastery",
+      "category": "Frontend Development",
+      "startDate": "2020-06-01",
+      "endDate": null,
+      "current": true,
+      "description": "Advanced proficiency in React ecosystem",
+      "details": [
+        "Built 15+ production React applications",
+        "Expert in hooks, context, and performance optimization",
+        "Experience with Next.js, Gatsby, and React Native"
+      ],
+      "level": "Expert",
+      "yearsOfExperience": 4
+    },
+    {
+      "id": "personal-travel",
+      "type": "personal",
+      "title": "Backpacking Across Southeast Asia",
+      "location": "Thailand, Vietnam, Cambodia",
+      "startDate": "2020-12-01",
+      "endDate": "2021-02-28",
+      "current": false,
+      "description": "3-month solo travel adventure exploring cultures and gaining perspective",
+      "details": [
+        "Visited 12 cities across 3 countries",
+        "Learned basic Thai and Vietnamese phrases",
+        "Volunteered at local community centers",
+        "Documented journey through photography and blogging"
+      ],
+      "impact": "Enhanced cultural awareness and adaptability skills",
+      "skills": ["Cultural Adaptability", "Problem Solving", "Independence"]
+    },
+    {
+      "id": "personal-marathon",
+      "type": "personal",
+      "title": "Stockholm Marathon Completion",
+      "location": "Stockholm, Sweden",
+      "startDate": "2022-05-28",
+      "endDate": "2022-05-28",
+      "current": false,
+      "description": "Completed first marathon in 4:15:32",
+      "details": [
+        "6 months of dedicated training",
+        "Raised 15,000 SEK for local charity",
+        "Part of company running team"
+      ],
+      "impact": "Demonstrated commitment, perseverance, and goal achievement",
+      "skills": ["Discipline", "Goal Setting", "Endurance"]
+    },
+    {
+      "id": "certification-aws",
+      "type": "certification",
+      "title": "AWS Solutions Architect Associate",
+      "issuer": "Amazon Web Services",
+      "issueDate": "2022-08-15",
+      "expiryDate": "2025-08-15",
+      "credentialId": "AWS-SAA-123456789",
+      "description": "Validated expertise in designing distributed systems on AWS",
+      "skills": ["AWS", "Cloud Architecture", "Scalability", "Security"]
+    },
+    {
+      "id": "project-open-source",
+      "type": "project",
+      "title": "React Component Library",
+      "startDate": "2021-01-01",
+      "endDate": "2021-06-30",
+      "current": false,
+      "description": "Open source React component library with 500+ GitHub stars",
+      "details": [
+        "Built comprehensive component library with TypeScript",
+        "Implemented comprehensive testing suite",
+        "Created detailed documentation and examples",
+        "Active community with 20+ contributors"
+      ],
+      "links": {
+        "github": "https://github.com/username/react-components",
+        "npm": "https://npmjs.com/package/react-components",
+        "docs": "https://react-components.dev"
+      },
+      "skills": ["React", "TypeScript", "Open Source", "Community Building"],
+      "impact": "1000+ weekly downloads, adopted by 50+ projects"
+    }
+  ],
+  "categories": {
+    "work": {
+      "label": "Work Experience",
+      "color": "#f97316",
+      "icon": "briefcase"
+    },
+    "education": {
+      "label": "Education",
+      "color": "#3b82f6", 
+      "icon": "academic-cap"
+    },
+    "skill": {
+      "label": "Skills",
+      "color": "#f59e0b",
+      "icon": "code"
+    },
+    "personal": {
+      "label": "Personal",
+      "color": "#10b981",
+      "icon": "heart"
+    },
+    "certification": {
+      "label": "Certifications",
+      "color": "#8b5cf6",
+      "icon": "badge-check"
+    },
+    "project": {
+      "label": "Projects",
+      "color": "#06b6d4",
+      "icon": "folder-open"
+    }
+  },
+  "settings": {
+    "showPersonalByDefault": false,
+    "timelineOrientation": "horizontal",
+    "enableZoom": true,
+    "enableFiltering": true,
+    "animationsEnabled": true
+  }
+}

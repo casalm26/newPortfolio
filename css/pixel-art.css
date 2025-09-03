@@ -1,0 +1,204 @@
+/* Pixel Art Design System */
+
+/* Disable font smoothing for pixel fonts */
+.font-pixel {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+}
+
+/* Pixel perfect utilities */
+.pixel-perfect {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Custom pixel art animations */
+@keyframes typewriter-pixel {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes pixel-glow {
+  0%, 100% { 
+    box-shadow: 0 0 0 1px currentColor; 
+  }
+  50% { 
+    box-shadow: 0 0 0 2px currentColor, 0 0 8px currentColor; 
+  }
+}
+
+@keyframes fade-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-typewriter-pixel {
+  animation: typewriter-pixel 2s steps(40) forwards;
+}
+
+.animate-pixel-glow {
+  animation: pixel-glow 2s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+/* Pixel button styles */
+.btn-pixel {
+  @apply font-pixel border-2 border-current;
+  box-shadow: 2px 2px 0px currentColor;
+  transition: all 50ms ease-out;
+}
+
+.btn-pixel:hover {
+  box-shadow: 3px 3px 0px currentColor;
+  transform: translate(-1px, -1px);
+}
+
+.btn-pixel:active {
+  box-shadow: inset 1px 1px 0px rgba(0,0,0,0.3);
+  transform: translate(1px, 1px);
+}
+
+/* Pixel card styles */
+.card-pixel {
+  @apply border-2 border-current;
+  box-shadow: 2px 2px 0px currentColor;
+}
+
+.card-pixel:hover {
+  box-shadow: 3px 3px 0px currentColor;
+  transform: translate(-1px, -1px);
+}
+
+/* Grid system for pixel alignment */
+.grid-pixel-8 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8px, 1fr));
+  gap: 8px;
+}
+
+.grid-pixel-16 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16px, 1fr));
+  gap: 16px;
+}
+
+/* Pixel-perfect borders */
+.border-pixel {
+  border-style: solid;
+  border-width: 1px;
+  border-image: none;
+}
+
+.border-pixel-2 {
+  border-style: solid;
+  border-width: 2px;
+  border-image: none;
+}
+
+/* Pixel text shadow */
+.pixel-shadow {
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+}
+
+/* Matrix/Terminal theme colors */
+.matrix-bg {
+  background-color: #000000;
+}
+
+.matrix-text {
+  color: #ffffff;
+}
+
+.matrix-text-muted {
+  color: #808080;
+}
+
+.matrix-border {
+  border-color: #808080;
+}
+
+.terminal-prompt {
+  color: #a0a0a0;
+}
+
+.terminal-command {
+  color: #ffffff;
+}
+
+/* Game elements */
+.game-container {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+}
+
+/* Disable transitions for pixel elements when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn-pixel,
+  .card-pixel,
+  .animate-typewriter-pixel,
+  .animate-pixel-glow {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Force matrix theme throughout the application */
+* {
+  box-sizing: border-box;
+}
+
+/* Override any colorful elements to enforce matrix theme */
+.fancy-overlay,
+.fancy-heading {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+/* Ensure buttons follow matrix theme */
+button:not(.pixel-button):not([class*="pixel"]) {
+  background-color: transparent !important;
+  color: white !important;
+  border-color: #808080 !important;
+}
+
+/* Ensure all text is readable in matrix theme */
+h1, h2, h3, h4, h5, h6 {
+  color: white !important;
+}
+
+p, span, div {
+  color: white !important;
+}
+
+/* Ensure form elements follow matrix theme */
+input, textarea, select {
+  background-color: #101010 !important;
+  color: white !important;
+  border-color: #808080 !important;
+}
+
+/* Override any gradient backgrounds */
+.bg-gradient-to-r,
+.bg-gradient-to-l,
+.bg-gradient-to-t,
+.bg-gradient-to-b,
+.bg-gradient-to-br,
+.bg-gradient-to-bl,
+.bg-gradient-to-tr,
+.bg-gradient-to-tl {
+  background: black !important;
+}

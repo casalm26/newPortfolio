@@ -86,3 +86,4 @@ export { LandingPathsCtaBg } from '@/components/landing/cta-backgrounds/LandingP
 export { LandingShapesCtaBg } from '@/components/landing/cta-backgrounds/LandingShapesCtaBg';
 export { LandingStraightLinesCtaBg } from '@/components/landing/cta-backgrounds/LandingStraightLinesCtaBg';
 export { LandingWavesCtaBg } from '@/components/landing/cta-backgrounds/LandingWavesCtaBg';
+export { PixelArtName } from './PixelArtName';

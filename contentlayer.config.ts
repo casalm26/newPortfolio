@@ -82,7 +82,7 @@ const BLOG_URL = siteConfig.blogPath ? `${siteConfig.blogPath}/` : '';
 
 export const Blog = defineDocumentType(() => ({
   name: 'Blog',
-  filePathPattern: `${BLOG_URL}**/*.mdx`,
+  filePathPattern: `${BLOG_URL}*.mdx`,
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
@@ -134,9 +134,51 @@ export const Authors = defineDocumentType(() => ({
   computedFields,
 }));
 
+export const Project = defineDocumentType(() => ({
+  name: 'Project',
+  filePathPattern: 'projects/**/*.mdx',
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
+    lastmod: { type: 'date' },
+    tags: { type: 'list', of: { type: 'string' }, default: [] },
+    draft: { type: 'boolean' },
+    summary: { type: 'string' },
+    images: { type: 'json' },
+    projectType: { type: 'string', required: true }, // Technical, Creative, Business, Learning
+    category: { type: 'string' },
+    duration: { type: 'string' },
+    role: { type: 'string' },
+    skills: { type: 'list', of: { type: 'string' }, default: [] },
+    tools: { type: 'list', of: { type: 'string' }, default: [] },
+    links: { type: 'json' },
+  },
+  computedFields: {
+    ...computedFields,
+    structuredData: {
+      type: 'json',
+      resolve: (doc) => ({
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: doc.title,
+        description: doc.summary,
+        dateCreated: doc.date,
+        dateModified: doc.lastmod || doc.date,
+        author: {
+          '@type': 'Person',
+          name: 'Caspian Almerud'
+        },
+        keywords: doc.tags,
+        url: `${siteConfig.siteUrl}/projects/${doc._raw.flattenedPath.replace(/^projects\//, '')}`,
+      }),
+    },
+  },
+}));
+
 export default makeSource({
   contentDirPath: 'data',
-  documentTypes: [Blog, Authors],
+  documentTypes: [Blog, Authors, Project],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
@@ -156,8 +198,16 @@ export default makeSource({
   },
   onMissingOrIncompatibleData: 'skip-warn',
   onSuccess: async (importData) => {
-    const { allBlogs } = await importData();
+    const { allBlogs, allProjects } = await importData();
     createTagCount(allBlogs);
     createSearchIndex(allBlogs);
+    // Create project search index
+    if (allProjects && allProjects.length > 0) {
+      writeFileSync(
+        `public/projects-search.json`,
+        JSON.stringify(allCoreContent(allProjects.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())))
+      );
+      console.log('Project search index generated...');
+    }
   },
 });

@@ -26,33 +26,61 @@ module.exports = {
         sans: ['var(--font-space-default)', ...fontFamily.sans],
         display: ['var(--font-space-display)', ...fontFamily.sans],
         cursive: ['cursive'],
+        // Pixel art fonts
+        pixel: ['Courier New', 'Monaco', 'Menlo', 'monospace'],
+        mono: ['ui-monospace', 'SF Mono', 'monospace'],
       },
       colors: {
         primary: {
-          100: customColors.primary.lighter,
-          200: customColors.primary.lighter,
-          300: customColors.primary.light,
-          400: customColors.primary.light,
-          500: customColors.primary.main,
-          600: customColors.primary.main,
-          700: customColors.primary.dark,
-          800: customColors.primary.dark,
-          900: customColors.primary.darker,
+          100: '#f0f0f0',
+          200: '#e0e0e0',
+          300: '#d0d0d0',
+          400: '#a0a0a0',
+          500: '#ffffff',
+          600: '#e0e0e0',
+          700: '#808080',
+          800: '#404040',
+          900: '#000000',
+        },
+        // Matrix/Underground dev color system
+        'matrix': {
+          50: '#f9fafb',
+          100: '#f3f4f6', 
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+        },
+        'terminal': {
+          50: '#ffffff',
+          100: '#f8f8f8',
+          200: '#e8e8e8',
+          300: '#d0d0d0',
+          400: '#a0a0a0',
+          500: '#808080',
+          600: '#606060',
+          700: '#404040',
+          800: '#202020',
+          900: '#000000',
         },
         secondary: {
-          100: customColors.secondary.lighter,
-          200: customColors.secondary.lighter,
-          300: customColors.secondary.light,
-          400: customColors.secondary.light,
-          500: customColors.secondary.main,
-          600: customColors.secondary.main,
-          700: customColors.secondary.dark,
-          800: customColors.secondary.dark,
-          900: customColors.secondary.darker,
+          100: '#e0e0e0',
+          200: '#d0d0d0',
+          300: '#a0a0a0',
+          400: '#808080',
+          500: '#606060',
+          600: '#404040',
+          700: '#303030',
+          800: '#202020',
+          900: '#101010',
         },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        ring: customColors.primary.dark,
+        ring: '#808080',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         destructive: {
@@ -132,6 +160,42 @@ module.exports = {
       transitionDuration: {
         2000: '2000ms',
         3000: '3000ms',
+        // Pixel art snappy transitions
+        50: '50ms',
+        75: '75ms',
+        100: '100ms',
+      },
+      // Pixel art spacing system (8px grid)
+      spacing: {
+        'pixel': '1px',
+        'pixel-2': '2px',
+        'pixel-4': '4px',
+        'pixel-8': '8px',
+        'pixel-16': '16px',
+      },
+      // Pixel art border radius
+      borderRadius: {
+        'pixel': '1px',
+        'pixel-sm': '2px',
+        'none': '0px',
+      },
+      // Hard pixel shadows
+      boxShadow: {
+        'pixel-sm': '1px 1px 0px rgba(0,0,0,0.5)',
+        'pixel': '2px 2px 0px rgba(0,0,0,0.3)',
+        'pixel-md': '3px 3px 0px rgba(0,0,0,0.3)', 
+        'pixel-lg': '4px 4px 0px rgba(0,0,0,0.3)',
+        'pixel-inset': 'inset 2px 2px 0px rgba(255,255,255,0.2)',
+        'pixel-pressed': 'inset 1px 1px 0px rgba(0,0,0,0.3)',
+      },
+      // Pixel font sizes (8px multiples)
+      fontSize: {
+        'pixel-xs': ['8px', '12px'],
+        'pixel-sm': ['12px', '16px'],
+        'pixel-base': ['16px', '20px'],
+        'pixel-lg': ['20px', '24px'],
+        'pixel-xl': ['24px', '28px'],
+        'pixel-2xl': ['32px', '36px'],
       },
       keyframes: {
         'accordion-down': {
@@ -164,31 +228,24 @@ module.exports = {
           '0%': {
             transform: 'rotate(-35deg)',
           },
-
           '30%': {
             transform: 'rotate(-10deg)',
           },
-
           '50%': {
             transform: 'rotate(20deg)',
           },
-
           '60%': {
             transform: 'rotate(35deg)',
           },
-
           '70%': {
             transform: 'rotate(15deg)',
           },
-
           '80%': {
             transform: 'rotate(45deg)',
           },
-
           '90%': {
             transform: 'rotate(-10deg)',
           },
-
           '100%': {
             transform: 'rotate(-35deg)',
           },
@@ -197,11 +254,9 @@ module.exports = {
           '0%,50%,to': {
             transform: 'rotate(0deg)',
           },
-
           '25%': {
             transform: 'rotate(.5deg)',
           },
-
           '75%': {
             transform: 'rotate(-.5deg)',
           },
@@ -213,6 +268,10 @@ module.exports = {
           '100%': {
             transform: 'translateX(-50%)',
           },
+        },
+        typewriter: {
+          '0%': { width: '0' },
+          '100%': { width: '100%' },
         },
       },
       animation: {
@@ -230,6 +289,9 @@ module.exports = {
         'fade-in-down-normal-delay':
           'fade-in-down 0.8s ease-in-out 2s forwards',
         marquee: '30s marquee linear infinite',
+        // Pixel art animations
+        'pixel-bounce': 'bounce 0.5s ease-in-out',
+        'typewriter': 'typewriter 2s steps(40) forwards',
       },
     },
   },

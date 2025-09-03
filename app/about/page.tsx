@@ -1,99 +1,177 @@
-import Footer from '@/components/shared/Footer';
 import Header from '@/components/shared/Header';
-import { LandingTeamSection, LandingTeamMember } from '@/components/landing';
+
+export const metadata = {
+  title: 'About',
+  description: 'Developer, problem solver, and technology enthusiast',
+};
 
 export default function About() {
   return (
-    <div className="flex flex-col w-full min-h-screen items-center justify-between fancy-overlay">
+    <div className="min-h-screen bg-black">
       <Header />
-
-      <div className="w-full flex flex-col items-center my-12">
-        <section className="w-full p-6 container-narrow">
-          <h1 className="text-4xl font-semibold leading-tight md:leading-tight max-w-xs sm:max-w-none md:text-6xl fancy-heading">
-            About Our Company
-          </h1>
-
-          <p className="mt-6 md:text-xl">
-            We are a forward-thinking company dedicated to delivering innovative
-            solutions that help businesses thrive in today's competitive
-            landscape. Our team of experts combines cutting-edge technology with
-            deep industry knowledge to create exceptional results for our
-            clients.
-          </p>
-
-          <p className="mt-6 md:text-xl">
-            Founded with the vision of transforming how businesses operate, we
-            have grown to become a trusted partner for organizations of all
-            sizes. Our commitment to excellence, integrity, and customer success
-            drives everything we do.
-          </p>
-
-          <div className="mt-12">
-            <h2 className="text-2xl font-semibold mb-6">Our Mission</h2>
-            <p className="md:text-lg">
-              To empower businesses with innovative technology solutions that
-              drive growth, efficiency, and success in an ever-evolving digital
-              world.
-            </p>
+      
+      <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
+        {/* Terminal Header */}
+        <div className="mb-12">
+          <div className="font-pixel text-sm text-terminal-400 mb-2">
+            caspian@localhost:~$ cat about.txt
           </div>
+          <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
+            ABOUT.EXE
+          </h1>
+          <p className="text-terminal-300 text-lg">
+            Developer, problem solver, and technology enthusiast crafting digital experiences.
+          </p>
+        </div>
 
-          <div className="mt-12">
-            <h2 className="text-2xl font-semibold mb-6">Our Values</h2>
-            <div className="grid md:grid-cols-2 gap-6">
+        {/* Main Content */}
+        <div className="space-y-12">
+          {/* Bio Section */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; whoami
+            </div>
+            <div className="text-white space-y-4">
+              <p>
+                I'm a full-stack developer with a passion for building robust, scalable applications 
+                and solving complex technical challenges. My journey in software development has taken 
+                me through various technologies and domains, from frontend interfaces to backend 
+                architectures.
+              </p>
+              <p>
+                When I'm not coding, you'll find me exploring new technologies, contributing to 
+                open-source projects, or diving deep into system design and performance optimization.
+              </p>
+            </div>
+          </section>
+
+          {/* Skills Matrix */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; ls -la skills/
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-2">Innovation</h3>
-                <p>We constantly push boundaries to deliver cutting-edge solutions.</p>
+                <h3 className="font-pixel text-sm text-white mb-4">FRONTEND/</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">React.js</span>
+                    <span className="text-terminal-500">██████████</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">TypeScript</span>
+                    <span className="text-terminal-500">█████████░</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">Next.js</span>
+                    <span className="text-terminal-500">████████░░</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">Tailwind</span>
+                    <span className="text-terminal-500">██████████</span>
+                  </div>
+                </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Excellence</h3>
-                <p>We maintain the highest standards in everything we create.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Integrity</h3>
-                <p>We build trust through honest and transparent relationships.</p>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Customer Success</h3>
-                <p>Your success is our success, and we're committed to helping you achieve your goals.</p>
+                <h3 className="font-pixel text-sm text-white mb-4">BACKEND/</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">Node.js</span>
+                    <span className="text-terminal-500">████████░░</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">PostgreSQL</span>
+                    <span className="text-terminal-500">███████░░░</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">Docker</span>
+                    <span className="text-terminal-500">██████░░░░</span>
+                  </div>
+                  <div className="flex justify-between font-mono text-sm">
+                    <span className="text-terminal-300">AWS</span>
+                    <span className="text-terminal-500">█████░░░░░</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Team Section */}
-        <LandingTeamSection
-          title="Meet Our Team"
-          description="Our experienced team of professionals is dedicated to your success."
-          className="mt-16 mb-8"
-        >
-          <LandingTeamMember
-            name="Alex Thompson"
-            role="Founder & CEO"
-            imageSrc="/static/images/people/4.webp"
-            description="Visionary leader with 15+ years of industry experience."
-          />
-          <LandingTeamMember
-            name="Jessica Wu"
-            role="Head of Product"
-            imageSrc="/static/images/people/5.webp"
-            description="Product strategist focused on user experience and innovation."
-          />
-          <LandingTeamMember
-            name="David Kumar"
-            role="Lead Developer"
-            imageSrc="/static/images/people/6.webp"
-            description="Technical expert ensuring platform reliability and performance."
-          />
-          <LandingTeamMember
-            name="Sarah Martinez"
-            role="Marketing Director"
-            imageSrc="/static/images/people/1.webp"
-            description="Creative strategist driving brand growth and customer engagement."
-          />
-        </LandingTeamSection>
-      </div>
+          {/* Philosophy */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; cat philosophy.md
+            </div>
+            <div className="text-white space-y-4">
+              <h3 className="font-pixel text-sm">DEVELOPMENT PHILOSOPHY</h3>
+              <ul className="space-y-2 text-terminal-300">
+                <li className="flex items-start">
+                  <span className="text-terminal-500 mr-3">&gt;</span>
+                  Clean, maintainable code is more valuable than clever code
+                </li>
+                <li className="flex items-start">
+                  <span className="text-terminal-500 mr-3">&gt;</span>
+                  Performance matters, but premature optimization is the root of all evil
+                </li>
+                <li className="flex items-start">
+                  <span className="text-terminal-500 mr-3">&gt;</span>
+                  User experience should drive technical decisions
+                </li>
+                <li className="flex items-start">
+                  <span className="text-terminal-500 mr-3">&gt;</span>
+                  Continuous learning is essential in our ever-evolving field
+                </li>
+              </ul>
+            </div>
+          </section>
 
-      <Footer />
+          {/* Current Status */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; ps aux | grep current_status
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <span className="text-white">Status:</span>
+                <span className="font-pixel text-xs px-2 py-1 border border-green-500 text-green-500">
+                  AVAILABLE_FOR_OPPORTUNITIES
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-white">Location:</span>
+                <span className="text-terminal-300">Remote / Global</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-white">Focus:</span>
+                <span className="text-terminal-300">Full-stack Development</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Connect */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; find . -name "contact*"
+            </div>
+            <div className="text-white">
+              <p className="mb-4">Interested in collaborating or discussing opportunities?</p>
+              <div className="space-y-2">
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-400">Email:</span>
+                  <span className="text-terminal-300 ml-2">caspian@example.com</span>
+                </div>
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-400">GitHub:</span>
+                  <span className="text-terminal-300 ml-2">github.com/caspian</span>
+                </div>
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-400">LinkedIn:</span>
+                  <span className="text-terminal-300 ml-2">linkedin.com/in/caspian</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
     </div>
   );
 }

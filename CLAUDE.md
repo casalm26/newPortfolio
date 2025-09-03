@@ -19,6 +19,43 @@ This is a Next.js 15 business website boilerplate built with TypeScript, React 1
 - `npm run pretty` - Format all files with Prettier
 - `npm run appinfo` - Generate application info (runs automatically before dev/build)
 
+### Testing
+#### Unit Tests
+- `npm run test` - Run all unit tests with Vitest
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:ui` - Open Vitest UI for interactive testing
+- `npm run test:coverage` - Generate test coverage report
+- `npm run test:unit` - Run specific unit tests for lib and components
+
+#### Integration Tests
+- `npm run test:integration` - Run integration tests
+
+#### Performance Tests
+- `npm run test:performance` - Run performance and load tests
+
+#### End-to-End Tests
+- `npm run test:e2e` - Run all E2E tests with Playwright
+- `npm run test:e2e:ui` - Interactive E2E test UI
+- `npm run test:e2e:headed` - Run E2E tests with visible browser
+- `npm run test:e2e:debug` - Debug E2E tests
+- `npm run test:e2e:report` - Show Playwright test report
+
+#### Combined Test Suites
+- `npm run test:local` - Run unit and integration tests
+- `npm run test:full` - Run local and E2E tests
+- `npm run test:all` - Run unit and E2E tests (legacy command)
+
+#### Docker Testing
+- `npm run test:docker` - Run unit tests in Docker container
+- `npm run test:docker:e2e` - Run E2E tests in Docker environment
+- `npm run test:docker:all` - Run all tests in Docker with services (PostgreSQL, Redis)
+- `npm run test:docker:clean` - Clean Docker containers and volumes
+- `npm run dev:test` - Start Docker test environment for development
+
+#### Test Utilities
+- `npm run test:hooks` - Verify testing setup and hooks
+- `npm run test:ci` - Run full CI test suite with Docker
+
 ## Architecture
 
 ### Core Structure
@@ -54,6 +91,16 @@ This is a Next.js 15 business website boilerplate built with TypeScript, React 1
 - ESLint configured for Next.js with custom rules
 - Content Security Policy configured in `next.config.js`
 
+### Testing Architecture
+- **Test Framework**: Vitest for unit and integration tests
+- **E2E Testing**: Playwright with full browser automation
+- **Test Environment**: jsdom for DOM testing
+- **Coverage**: V8 provider with HTML, JSON, and text reports
+- **Docker Testing**: Full-stack testing with PostgreSQL, Redis, and MongoDB
+- **Test Setup**: Global test setup in `test-setup.ts`
+- **Mock Service Worker**: MSW for API mocking
+- **Test Containers**: @testcontainers for database testing
+
 ## Development Notes
 
 ### TypeScript Paths
@@ -82,6 +129,13 @@ The project uses path aliases:
 - Build: Next.js build with Contentlayer processing
 - Post-build: Custom script for additional processing
 - Bundle analysis available with `ANALYZE=true`
+
+### Development Workflow
+- **Git Hooks**: Husky for pre-commit hooks
+- **Commit Linting**: Commitlint with conventional commits
+- **Lint Staged**: Automatic linting and formatting on commit
+- **Docker Support**: Development and testing with Docker Compose
+- **CI/CD Ready**: GitHub Actions configuration included
 
 ## Getting Started with This Boilerplate
 
@@ -128,7 +182,7 @@ The boilerplate includes extensive landing page components:
 - Reading time calculation
 - Table of contents generation
 
-## Mandatory Testing Rules
+## Testing Requirements
 
 **ALWAYS follow these rules for every file you create or modify:**
 
@@ -140,6 +194,25 @@ The boilerplate includes extensive landing page components:
 3. **Test Structure**: Use describe/it blocks with descriptive names that explain what is being tested
 4. **Export for Testing**: Ensure functions are properly exported so they can be imported in test files
 5. **Test File Naming**: Test files should be named `[filename].test.ts` and placed in the same directory as the source file
+
+### Test Types and Locations
+- **Unit Tests**: `components/**/*.test.tsx`, `lib/**/*.test.ts`
+- **Integration Tests**: `src/tests/integration/`
+- **E2E Tests**: `e2e/` directory with Playwright
+- **Performance Tests**: `src/tests/performance/`
+- **Test Setup**: Global setup in `test-setup.ts`
+
+### Running Specific Tests
+```bash
+# Run tests for a specific file
+npx vitest run lib/utils.test.ts
+
+# Run E2E tests for specific spec
+npx playwright test auth.spec.ts
+
+# Run tests with specific pattern
+npx vitest run --reporter=verbose components/ui/
+```
 
 ## Test Template
 

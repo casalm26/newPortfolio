@@ -65,3 +65,7 @@ export function convertToRgba({
   // Fallback
   return `rgba(177, 177, 177, ${opacity})`;
 }
+
+export function formatDate(date: Date): string {
+  return date.toISOString().split('T')[0];
+}

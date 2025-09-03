@@ -4,7 +4,7 @@ avatar: /static/images/avatar.png
 occupation: Content Team
 company: Your Business Name
 email: content@yourdomain.com
-twitter: @yourbusiness
+twitter: 'yourbusiness'
 linkedin: company/yourbusiness
 github: yourbusiness
 ---

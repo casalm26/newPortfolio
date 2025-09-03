@@ -1,200 +1,266 @@
-import Footer from '@/components/shared/Footer';
+'use client';
+
 import Header from '@/components/shared/Header';
-import { Button } from '@/components/shared/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/shared/ui/card';
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { useState } from 'react';
+
+export const metadata = {
+  title: 'Contact',
+  description: 'Get in touch for collaboration and opportunities',
+};
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setStatus('sent');
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setStatus('idle');
+    }, 3000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
   return (
-    <div className="flex flex-col w-full min-h-screen items-center justify-between fancy-overlay">
+    <div className="min-h-screen bg-black">
       <Header />
-
-      <div className="w-full flex flex-col items-center my-12">
-        <section className="w-full p-6 container-narrow">
-          <h1 className="text-4xl font-semibold leading-tight md:leading-tight max-w-xs sm:max-w-none md:text-6xl fancy-heading">
-            Get in Touch
+      
+      <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
+        {/* Terminal Header */}
+        <div className="mb-12">
+          <div className="font-pixel text-sm text-terminal-400 mb-2">
+            caspian@localhost:~$ ./contact.sh
+          </div>
+          <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
+            CONTACT.EXE
           </h1>
-
-          <p className="mt-6 md:text-xl">
-            Ready to transform your business? We'd love to hear from you.
-            Reach out to discuss your project, get a quote, or learn more
-            about how we can help you achieve your goals.
+          <p className="text-terminal-300 text-lg">
+            Initialize communication protocol. Ready to receive your transmission.
           </p>
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 mt-12">
-            {/* Contact Form */}
-            <Card className="w-full">
-              <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and we'll get back to you within 24 hours.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium mb-2">
-                      First Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      name="firstName"
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium mb-2">
-                      Last Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      required
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
-                    />
-                  </div>
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-6">
+&gt; echo "message" &gt; /dev/contact
+            </div>
+            
+            {status === 'sent' ? (
+              <div className="space-y-4">
+                <div className="font-pixel text-green-400">
+                  Message sent successfully!
                 </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
-                  />
+                <div className="font-mono text-sm text-terminal-300">
+                  <div>HTTP/1.1 200 OK</div>
+                  <div>Status: Message queued for processing</div>
+                  <div>Response-Time: &lt; 24 hours</div>
+                  <div>Connection: Will be established shortly</div>
                 </div>
-
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">
-                    Company
+                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                    NAME:
                   </label>
                   <input
                     type="text"
-                    id="company"
-                    name="company"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
+                    placeholder="Enter your name..."
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject *
+                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                    EMAIL:
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
+                    placeholder="your.email@domain.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                    SUBJECT:
                   </label>
                   <select
-                    id="subject"
                     name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
+                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
                   >
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="sales">Sales & Pricing</option>
-                    <option value="support">Technical Support</option>
-                    <option value="partnership">Partnership</option>
+                    <option value="">Select category...</option>
+                    <option value="collaboration">Collaboration</option>
+                    <option value="job_opportunity">Job Opportunity</option>
+                    <option value="project_inquiry">Project Inquiry</option>
+                    <option value="consulting">Consulting</option>
                     <option value="other">Other</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message *
+                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                    MESSAGE:
                   </label>
                   <textarea
-                    id="message"
                     name="message"
-                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
                     required
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent dark:border-gray-600 dark:bg-gray-700"
-                    placeholder="Tell us about your project or how we can help you..."
+                    rows={6}
+                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none resize-none"
+                    placeholder="Type your message here..."
                   />
                 </div>
 
-                <Button type="submit" className="w-full">
-                  Send Message
-                </Button>
-              </CardContent>
-            </Card>
+                <button
+                  type="submit"
+                  disabled={status === 'sending'}
+                  className={`
+                    w-full p-3 border font-pixel text-xs transition-colors
+                    ${status === 'sending' 
+                      ? 'border-terminal-500 text-terminal-500 cursor-not-allowed'
+                      : 'border-white bg-white text-black hover:bg-transparent hover:text-white'
+                    }
+                  `}
+                >
+                  {status === 'sending' ? 'TRANSMITTING...' : 'SEND MESSAGE'}
+                </button>
+              </form>
+            )}
+          </div>
 
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Mail className="h-5 w-5" />
-                    Email Us
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg">contact@yourdomain.com</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    For general inquiries and support
-                  </p>
-                  <p className="text-lg mt-4">sales@yourdomain.com</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    For sales and partnership inquiries
-                  </p>
-                </CardContent>
-              </Card>
+          {/* Contact Information */}
+          <div className="space-y-8">
+            {/* Direct Contact */}
+            <div className="border border-terminal-400 p-6">
+              <div className="font-pixel text-xs text-terminal-400 mb-4">
+&gt; cat contact_info.txt
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <div className="font-pixel text-xs text-terminal-500 mb-1">EMAIL:</div>
+                  <div className="font-mono text-white">caspian@example.com</div>
+                </div>
+                <div>
+                  <div className="font-pixel text-xs text-terminal-500 mb-1">RESPONSE_TIME:</div>
+                  <div className="font-mono text-terminal-300">&lt; 24 hours</div>
+                </div>
+                <div>
+                  <div className="font-pixel text-xs text-terminal-500 mb-1">AVAILABILITY:</div>
+                  <div className="font-mono text-terminal-300">Mon-Fri, 9AM-6PM UTC</div>
+                </div>
+              </div>
+            </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Phone className="h-5 w-5" />
-                    Call Us
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg">+1 (555) 123-4567</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    Business hours: Mon-Fri, 9 AM - 6 PM EST
-                  </p>
-                </CardContent>
-              </Card>
+            {/* Social Links */}
+            <div className="border border-terminal-400 p-6">
+              <div className="font-pixel text-xs text-terminal-400 mb-4">
+&gt; ls -la social/
+              </div>
+              <div className="space-y-3">
+                <a 
+                  href="https://github.com/caspian" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block font-mono text-terminal-300 hover:text-white transition-colors"
+                >
+                  → github.com/caspian
+                </a>
+                <a 
+                  href="https://linkedin.com/in/caspian" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block font-mono text-terminal-300 hover:text-white transition-colors"
+                >
+                  → linkedin.com/in/caspian
+                </a>
+                <a 
+                  href="https://twitter.com/caspian" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block font-mono text-terminal-300 hover:text-white transition-colors"
+                >
+                  → twitter.com/caspian
+                </a>
+              </div>
+            </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="h-5 w-5" />
-                    Visit Us
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg">123 Business Avenue</p>
-                  <p className="text-lg">Suite 100</p>
-                  <p className="text-lg">New York, NY 10001</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    By appointment only
-                  </p>
-                </CardContent>
-              </Card>
+            {/* Location */}
+            <div className="border border-terminal-400 p-6">
+              <div className="font-pixel text-xs text-terminal-400 mb-4">
+&gt; curl -s ipinfo.io
+              </div>
+              <div className="space-y-2">
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-500">"timezone":</span>
+                  <span className="text-terminal-300 ml-2">"UTC+0"</span>
+                </div>
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-500">"region":</span>
+                  <span className="text-terminal-300 ml-2">"Remote Global"</span>
+                </div>
+                <div className="font-mono text-sm">
+                  <span className="text-terminal-500">"status":</span>
+                  <span className="text-green-400 ml-2">"online"</span>
+                </div>
+              </div>
+            </div>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="h-5 w-5" />
-                    Response Time
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg">Within 24 hours</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">
-                    We typically respond to all inquiries within one business day
-                  </p>
-                </CardContent>
-              </Card>
+            {/* PGP Key */}
+            <div className="border border-terminal-400 p-6">
+              <div className="font-pixel text-xs text-terminal-400 mb-4">
+&gt; gpg --list-keys
+              </div>
+              <div className="font-mono text-xs text-terminal-300 space-y-1">
+                <div>pub   4096R/ABCD1234 2024-01-01</div>
+                <div>uid   Caspian &lt;caspian@example.com&gt;</div>
+                <div className="text-terminal-500 mt-2">
+                  For secure communications
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
 
-      <Footer />
+        {/* Footer Note */}
+        <div className="mt-16 pt-8 border-t border-terminal-400">
+          <div className="font-pixel text-xs text-terminal-500 text-center">
+            Connection established. Awaiting your input...
+          </div>
+        </div>
+      </main>
     </div>
   );
 }
