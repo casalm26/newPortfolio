@@ -18,9 +18,9 @@ vi.mock('@/components/landing', () => ({
 describe('Landing Page', () => {
   describe('Page Structure', () => {
     it('should render the main page layout', () => {
-      render(<Page />);
+      const { container } = render(<Page />);
       
-      const main = document.querySelector('div');
+      const main = container.firstChild as HTMLElement;
       expect(main).toHaveClass('min-h-screen', 'bg-black');
     });
 

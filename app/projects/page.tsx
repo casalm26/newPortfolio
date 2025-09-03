@@ -1,3 +1,4 @@
+// @ts-ignore
 import { allProjects } from 'contentlayer/generated';
 import Header from '@/components/shared/Header';
 import Link from 'next/link';

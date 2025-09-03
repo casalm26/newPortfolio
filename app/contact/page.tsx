@@ -3,11 +3,6 @@
 import Header from '@/components/shared/Header';
 import { useState } from 'react';
 
-export const metadata = {
-  title: 'Contact',
-  description: 'Get in touch for collaboration and opportunities',
-};
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -80,10 +75,11 @@ export default function Contact() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                  <label htmlFor="name" className="block font-pixel text-xs text-terminal-400 mb-2">
                     NAME:
                   </label>
                   <input
+                    id="name"
                     type="text"
                     name="name"
                     value={formData.name}
@@ -95,10 +91,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                  <label htmlFor="email" className="block font-pixel text-xs text-terminal-400 mb-2">
                     EMAIL:
                   </label>
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -110,10 +107,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                  <label htmlFor="subject" className="block font-pixel text-xs text-terminal-400 mb-2">
                     SUBJECT:
                   </label>
                   <select
+                    id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
@@ -130,10 +128,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="block font-pixel text-xs text-terminal-400 mb-2">
+                  <label htmlFor="message" className="block font-pixel text-xs text-terminal-400 mb-2">
                     MESSAGE:
                   </label>
                   <textarea
+                    id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}

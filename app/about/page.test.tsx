@@ -73,14 +73,11 @@ describe('About Page', () => {
     it('should render all philosophy points', () => {
       render(<About />);
       
-      const philosophyPoints = screen.getAllByText('>').filter(el => 
-        el.textContent?.includes('Clean') || 
-        el.textContent?.includes('Performance') ||
-        el.textContent?.includes('User experience') ||
-        el.textContent?.includes('Continuous learning')
-      );
-      
-      expect(philosophyPoints.length).toBeGreaterThan(0);
+      // Check for philosophy list items directly
+      expect(screen.getByText('Clean, maintainable code is more valuable than clever code')).toBeInTheDocument();
+      expect(screen.getByText('Performance matters, but premature optimization is the root of all evil')).toBeInTheDocument();
+      expect(screen.getByText('User experience should drive technical decisions')).toBeInTheDocument();
+      expect(screen.getByText('Continuous learning is essential in our ever-evolving field')).toBeInTheDocument();
     });
   });
 

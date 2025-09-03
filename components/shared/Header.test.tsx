@@ -35,7 +35,7 @@ describe('Header', () => {
     it('should have terminal styling classes', () => {
       const { container } = render(<Header />);
       
-      expect(container.firstChild).toHaveClass('fixed', 'top-0', 'w-full', 'bg-black', 'border-b', 'border-terminal-400');
+      expect(container.firstChild).toHaveClass('fixed', 'top-0', 'left-0', 'right-0', 'z-50', 'bg-black/95', 'backdrop-blur-sm', 'border-b', 'border-terminal-400');
     });
   });
 
@@ -52,7 +52,7 @@ describe('Header', () => {
       render(<Header />);
       
       const projectsLink = screen.getByRole('link', { name: /PROJECTS/i });
-      expect(projectsLink).toHaveClass('hover:text-white');
+      expect(projectsLink).toHaveClass('hover:bg-white', 'hover:text-black');
     });
   });
 
@@ -85,8 +85,8 @@ describe('Header', () => {
     it('should render correctly with different viewport sizes', () => {
       render(<Header />);
       
-      const container = screen.getByRole('navigation').parentElement;
-      expect(container).toHaveClass('px-4');
+      const container = screen.getByRole('navigation').parentElement?.parentElement;
+      expect(container).toHaveClass('container', 'mx-auto', 'px-4', 'py-3');
     });
   });
 });

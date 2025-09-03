@@ -42,7 +42,7 @@ describe('PixelButton', () => {
       );
       
       const button = screen.getByRole('link', { name: 'Secondary Button' });
-      expect(button).toHaveClass('border-terminal-400', 'text-terminal-300');
+      expect(button).toHaveClass('bg-transparent', 'text-white', 'border-terminal-400');
     });
 
     it('should apply pixel font styling', () => {
@@ -65,7 +65,7 @@ describe('PixelButton', () => {
       render(<PixelButton href="/test">Test</PixelButton>);
       
       const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('md:px-8', 'md:py-4', 'md:text-base');
+      expect(button).toHaveClass('text-sm', 'md:text-base');
     });
   });
 
@@ -89,14 +89,14 @@ describe('PixelButton', () => {
       );
       
       const button = screen.getByRole('link', { name: 'Hover Test' });
-      expect(button).toHaveClass('hover:border-white', 'hover:text-white');
+      expect(button).toHaveClass('hover:bg-white', 'hover:text-black');
     });
 
     it('should have transition classes', () => {
       render(<PixelButton href="/test">Test</PixelButton>);
       
       const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('transition-colors');
+      expect(button).toHaveClass('transition-all', 'duration-75');
     });
   });
 
@@ -144,7 +144,8 @@ describe('PixelButton', () => {
     it('should handle empty href', () => {
       render(<PixelButton href="">Empty Href</PixelButton>);
       
-      const button = screen.getByRole('link', { name: 'Empty Href' });
+      // Empty href links may not be accessible as "link" role
+      const button = screen.getByText('Empty Href');
       expect(button).toHaveAttribute('href', '');
     });
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { PixelButton } from '@/components/shared/ui/PixelButton';
+import PixelButton from '@/components/shared/ui/PixelButton';
 
 interface PixelArtNameProps {
   className?: string;

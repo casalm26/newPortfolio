@@ -8,7 +8,7 @@ interface PixelButtonProps {
   className?: string;
 }
 
-export function PixelButton({ href, children, variant = 'primary', className }: PixelButtonProps) {
+export default function PixelButton({ href, children, variant = 'primary', className }: PixelButtonProps) {
   const baseClasses = "font-pixel text-sm md:text-base px-6 py-3 border transition-all duration-75 uppercase tracking-wide inline-block text-center";
   
   const variantClasses = {
