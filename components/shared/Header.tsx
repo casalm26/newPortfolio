@@ -69,6 +69,8 @@ const Header = ({ className }: { className?: string }) => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
             className="md:hidden font-pixel px-3 py-2 bg-transparent text-white border border-terminal-400 hover:bg-white hover:text-black transition-all duration-75"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
