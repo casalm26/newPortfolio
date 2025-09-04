@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Your Business Name</title>
+      <link>https://yourdomain.com</link>
+      <description>A modern business website built with Next.js, featuring a professional design and powerful features for your company.</description>
+      <language>en-us</language>
+      <managingEditor>contact@yourdomain.com (Your Business Name)</managingEditor>
+      <webMaster>contact@yourdomain.com (Your Business Name)</webMaster>
+      <lastBuildDate>Wed, 10 Jan 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://yourdomain.com/tags/innovation/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://yourdomain.com/future-of-technology</guid>
+    <title>The Future of Technology: Trends Shaping Business in 2024</title>
+    <link>https://yourdomain.com/future-of-technology</link>
+    <description>Explore emerging technologies and their impact on modern businesses. Learn how to prepare for the technological revolution ahead.</description>
+    <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
+    <author>contact@yourdomain.com (Your Business Name)</author>
+    <category>technology</category><category>innovation</category><category>AI</category><category>future</category><category>business</category>
+  </item>
+
+    </channel>
+  </rss>

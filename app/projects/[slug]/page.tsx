@@ -151,7 +151,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Project Content */}
         <article className="prose prose-invert prose-lg max-w-none">
-          <MDXContent source={project.body.raw} />
+          <MDXContent source={project.body.code} />
         </article>
 
         {/* Navigation Footer */}

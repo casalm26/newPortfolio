@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Your Business Name</title>
+      <link>https://yourdomain.com</link>
+      <description>A modern business website built with Next.js, featuring a professional design and powerful features for your company.</description>
+      <language>en-us</language>
+      <managingEditor>contact@yourdomain.com (Your Business Name)</managingEditor>
+      <webMaster>contact@yourdomain.com (Your Business Name)</webMaster>
+      <lastBuildDate>Fri, 05 Jan 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://yourdomain.com/tags/results/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://yourdomain.com/customer-success</guid>
+    <title>Customer Success Stories: How Our Platform Transforms Businesses</title>
+    <link>https://yourdomain.com/customer-success</link>
+    <description>Learn how our clients achieved remarkable results with our platform. Real stories, measurable outcomes, and proven strategies.</description>
+    <pubDate>Fri, 05 Jan 2024 00:00:00 GMT</pubDate>
+    <author>contact@yourdomain.com (Your Business Name)</author>
+    <category>success-stories</category><category>case-studies</category><category>customers</category><category>results</category>
+  </item>
+
+    </channel>
+  </rss>
