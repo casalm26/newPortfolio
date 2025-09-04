@@ -1,3 +1,4 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import PixelButton from './ui/PixelButton';
@@ -5,7 +6,7 @@ import PixelButton from './ui/PixelButton';
 // Mock next/link
 vi.mock('next/link', () => {
   return {
-    default: ({ children, href, ...props }: any) => (
+    default: ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => (
       <a href={href} {...props}>
         {children}
       </a>

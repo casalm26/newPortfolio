@@ -1,0 +1,87 @@
+# TypeScript Errors in Portfolio Project
+
+## Build-Breaking Errors (Priority 1 - Must Fix for Deployment)
+
+### 1. app/services/page.tsx - LandingProductFeature icon prop errors
+**Files:** app/services/page.tsx
+**Lines:** 32, 37, 42, 47, 52, 57, 62, 67
+**Error:** Type '{ title: string; description: string; icon: Element; }' is not assignable to type 'IntrinsicAttributes & { ... }'.
+Property 'icon' does not exist on type '...'
+**Fix:** Either add icon prop to LandingProductFeature component or remove icon props from usage
+
+### 2. components/shared/PageTitle.test.tsx - Missing children prop
+**File:** components/shared/PageTitle.test.tsx
+**Line:** 51
+**Error:** Property 'children' is missing in type '{}' but required in type 'Props'.
+**Fix:** Add required children prop to PageTitle component in test
+
+### 3. components/shared/PixelArtName.test.tsx - Top-level await
+**File:** components/shared/PixelArtName.test.tsx
+**Line:** 32
+**Error:** Top-level 'await' expressions are only allowed when the 'module' option is set to 'es2022', 'esnext', etc.
+**Fix:** Update tsconfig.json module setting or refactor the await usage
+
+### 4. e2e/fixtures/base.ts - Unknown property authenticatedPage
+**File:** e2e/fixtures/base.ts
+**Line:** 6
+**Error:** Object literal may only specify known properties, and 'authenticatedPage' does not exist in type 'Fixtures<...>'
+**Fix:** Define proper fixture type or remove unknown property
+
+### 5. lib/utils.test.ts - Optional parameter type issues
+**File:** lib/utils.test.ts
+**Lines:** 112, 113
+**Error:** Argument type issues with optional opacity and color properties
+**Fix:** Update function signature or test parameters to handle optional properties correctly
+
+### 6. src/tests/integration/setup.ts - Read-only property assignment
+**File:** src/tests/integration/setup.ts
+**Line:** 42
+**Error:** Cannot assign to 'NODE_ENV' because it is a read-only property
+**Fix:** Use different approach to set environment variables in tests
+
+## Demo Files Errors (Priority 2 - Can be excluded from build)
+
+### 7. Multiple demo files - Module resolution and JSX errors
+**Files:** demo/form-examples/*.tsx (multiple files)
+**Errors:** 
+- Cannot find module '@/components/shared/ui/*' declarations
+- Cannot use JSX unless the '--jsx' flag is provided
+**Fix:** Either exclude demo directory from TypeScript compilation or fix import paths
+
+## ESLint Warnings (Priority 3 - Non-blocking but should fix)
+
+### 8. React Hook dependency warnings
+**Files:** 
+- components/landing/cta-backgrounds/LandingShapesCtaBg.tsx (line 207)
+- components/landing/cta-backgrounds/LandingWavesCtaBg.tsx (line 303)
+**Error:** React Hook useMemo/useEffect has missing dependency warnings
+**Fix:** Add missing dependencies to dependency arrays or use useCallback
+
+## Build Configuration Issues
+
+### 9. Multiple lockfiles warning
+**Warning:** Found multiple lockfiles
+**Files:** 
+- /Users/caspianalmerud/package-lock.json
+- /Users/caspianalmerud/Code/Work/newPortfolio/package-lock.json
+**Fix:** Remove duplicate lockfiles
+
+### 10. Content Layer warning
+**Warning:** Couldn't determine document type for cv-timeline/timeline.json
+**Fix:** Either add proper filePathPattern or remove the file
+
+## Summary
+- **Critical Errors (blocking deployment):** 6 errors
+- **Demo-related Errors (can exclude):** Multiple files
+- **Warnings (non-blocking):** 4 warnings
+- **Configuration Issues:** 2 issues
+
+## Recommended Fix Order:
+1. Fix app/services/page.tsx LandingProductFeature component issues
+2. Fix test file errors (PageTitle, PixelArtName tests)  
+3. Fix e2e fixture types
+4. Fix lib/utils.test.ts parameter types
+5. Fix integration test setup
+6. Exclude demo files from build or fix imports
+7. Address ESLint warnings
+8. Clean up lockfiles and contentlayer config

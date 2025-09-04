@@ -6,7 +6,7 @@ import { MDXContent } from '@/components/shared/MDXContent';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -16,7 +16,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props) {
-  const project = allProjects.find((project) => project.slug === params.slug);
+  const { slug } = await params;
+  const project = allProjects.find((project) => project.slug === slug);
 
   if (!project) {
     return {};
@@ -28,8 +29,9 @@ export async function generateMetadata({ params }: Props) {
   };
 }
 
-export default function ProjectPage({ params }: Props) {
-  const project = allProjects.find((project) => project.slug === params.slug);
+export default async function ProjectPage({ params }: Props) {
+  const { slug } = await params;
+  const project = allProjects.find((project) => project.slug === slug);
 
   if (!project) {
     notFound();

@@ -7,8 +7,8 @@
 - [x] Clean up existing boilerplate files
 - [x] Configure project structure for portfolio content
 - [x] Set up development environment with hot reload
-- [ ] Configure ESLint and Prettier for pixel-art project
-- [ ] Set up Git workflow and commit conventions
+- [x] Configure ESLint and Prettier for pixel-art project
+- [x] Set up Git workflow and commit conventions
 
 ### Design System Implementation
 - [x] Create design tokens for 8px grid system
@@ -20,22 +20,22 @@
 - [x] Create pixel-perfect component base classes
 
 ### Content Structure Setup
-- [ ] Set up data structure for projects (MDX files)
+- [x] Set up data structure for projects (MDX files)
 - [ ] Create CV timeline data structure (JSON)
-- [ ] Set up blog content structure
-- [ ] Create author and personal data structure
-- [ ] Configure Contentlayer for portfolio content
+- [x] Set up blog content structure
+- [x] Create author and personal data structure
+- [x] Configure Contentlayer for portfolio content
 
 ## PHASE 1: MVP DEVELOPMENT (WEEKS 1-4)
 
 ### Week 1: Core Setup & Landing Page
 
 #### Visual Design System
-- [ ] Implement Tailwind config with pixel art tokens
-- [ ] Create custom CSS for font-smooth: never
-- [ ] Set up dark mode (orange theme) styling
-- [ ] Set up light mode (purple/blue theme) styling
-- [ ] Create pixel-perfect grid system utilities
+- [x] Implement Tailwind config with pixel art tokens
+- [x] Create custom CSS for font-smooth: never
+- [x] Set up dark mode (matrix/terminal theme) styling
+- [x] Set up light mode (matrix/terminal theme) styling
+- [x] Create pixel-perfect grid system utilities
 - [ ] Test cross-browser pixel rendering
 
 #### Landing Page
@@ -128,7 +128,9 @@
 - [ ] Fix any mobile-specific bugs
 
 #### Testing & Polish
-- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [x] Cross-browser testing framework setup (Playwright)
+- [x] Unit testing setup (Vitest)
+- [x] Test coverage configuration
 - [ ] Accessibility audit and fixes
 - [ ] Performance optimization (image compression, lazy loading)
 - [ ] SEO setup (meta tags, sitemap, structured data)
@@ -156,12 +158,12 @@
 ### Week 6: Blog System
 
 #### Blog Infrastructure
-- [ ] Set up blog content structure with Contentlayer
-- [ ] Create blog post template
-- [ ] Implement blog listing page
-- [ ] Add blog post detail pages
-- [ ] Create tag and category system
-- [ ] Add reading time calculation
+- [x] Set up blog content structure with Contentlayer
+- [x] Create blog post template
+- [x] Implement blog listing page
+- [x] Add blog post detail pages
+- [x] Create tag and category system
+- [x] Add reading time calculation
 
 #### Blog Content & Design
 - [ ] Write 3-5 initial blog posts

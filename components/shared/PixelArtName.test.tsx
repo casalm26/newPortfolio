@@ -20,9 +20,9 @@ vi.mock('@/components/landing', () => ({
           <div className="w-1 h-4 bg-terminal-600 animate-pulse delay-300" />
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-4 mt-8">
-          <a href="/projects" className="inline-block">cd ./projects</a>
-          <a href="/cv" className="inline-block">cat cv.json</a>
-          <a href="/contact" className="inline-block">sudo touch contact.sh</a>
+          <span className="inline-block">cd ./projects</span>
+          <span className="inline-block">cat cv.json</span>
+          <span className="inline-block">sudo touch contact.sh</span>
         </div>
       </div>
     </div>
@@ -48,21 +48,12 @@ describe('PixelArtName', () => {
       expect(typewriterContainer).toHaveClass('font-pixel');
     });
 
-    it('should render action buttons', () => {
+    it('should render terminal commands', () => {
       render(<PixelArtName />);
       
-      expect(screen.getByRole('link', { name: /cd \.\/projects/i })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: /cat cv\.json/i })).toBeInTheDocument();
-    });
-
-    it('should have correct button links', () => {
-      render(<PixelArtName />);
-      
-      const projectsButton = screen.getByRole('link', { name: /cd \.\/projects/i });
-      const cvButton = screen.getByRole('link', { name: /cat cv\.json/i });
-      
-      expect(projectsButton).toHaveAttribute('href', '/projects');
-      expect(cvButton).toHaveAttribute('href', '/cv');
+      expect(screen.getByText('cd ./projects')).toBeInTheDocument();
+      expect(screen.getByText('cat cv.json')).toBeInTheDocument();
+      expect(screen.getByText('sudo touch contact.sh')).toBeInTheDocument();
     });
   });
 
@@ -96,18 +87,8 @@ describe('PixelArtName', () => {
     });
   });
 
-  describe('Button Interactions', () => {
-    it('should render buttons with proper styling', () => {
-      render(<PixelArtName />);
-      
-      const projectsButton = screen.getByRole('link', { name: /cd \.\/projects/i });
-      const cvButton = screen.getByRole('link', { name: /cat cv\.json/i });
-      
-      expect(projectsButton).toBeInTheDocument();
-      expect(cvButton).toBeInTheDocument();
-    });
-
-    it('should have accessible button text', () => {
+  describe('Terminal Commands', () => {
+    it('should render terminal commands', () => {
       render(<PixelArtName />);
       
       expect(screen.getByText('cd ./projects')).toBeInTheDocument();

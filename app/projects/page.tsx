@@ -1,5 +1,5 @@
 // @ts-ignore
-import { allProjects } from 'contentlayer/generated';
+import { allProjects, Project } from 'contentlayer/generated';
 import Header from '@/components/shared/Header';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
@@ -9,7 +9,7 @@ export const metadata = {
   description: 'A collection of my development projects and case studies',
 };
 
-function ProjectCard({ project }: { project: any }) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <Link 
       href={`/projects/${project.slug}`}
