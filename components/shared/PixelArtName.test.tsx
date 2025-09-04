@@ -29,7 +29,8 @@ vi.mock('@/components/landing', () => ({
   )
 }));
 
-const { PixelArtName } = await import('@/components/landing');
+// Import the mocked component
+import { PixelArtName } from '@/components/landing';
 
 describe('PixelArtName', () => {
 

@@ -47,8 +47,8 @@ describe('PageTitle', () => {
   });
 
   describe('edge cases', () => {
-    it('should handle empty content', () => {
-      render(<PageTitle></PageTitle>);
+    it('should handle empty string content', () => {
+      render(<PageTitle>{""}</PageTitle>);
       
       const heading = screen.getByRole('heading', { level: 1 });
       expect(heading).toBeInTheDocument();

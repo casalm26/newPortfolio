@@ -109,8 +109,10 @@ describe('utils', () => {
 
       it('should handle missing parameters', () => {
         // TypeScript would catch this, but we test runtime behavior
-        expect(() => convertToRgba({ color: '#ffffff' } as { color: string; opacity?: number })).not.toThrow();
-        expect(() => convertToRgba({ opacity: 0.5 } as { color?: string; opacity: number })).not.toThrow();
+        // Test with missing opacity by providing a default
+        expect(() => convertToRgba({ color: '#ffffff', opacity: undefined as unknown as number })).not.toThrow();
+        // Test with missing color by providing a default  
+        expect(() => convertToRgba({ color: undefined as unknown as string, opacity: 0.5 })).not.toThrow();
       });
     });
   });

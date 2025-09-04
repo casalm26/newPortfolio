@@ -39,7 +39,17 @@ export async function setupTestEnvironment(): Promise<TestEnvironment> {
   // Set environment variables
   process.env.DATABASE_URL = databaseUrl;
   process.env.REDIS_URL = redisUrl;
-  process.env.NODE_ENV = 'test';
+  
+  // Set NODE_ENV safely (handle read-only case)
+  try {
+    // Use type assertion to bypass TypeScript readonly check
+    (process.env as any).NODE_ENV = 'test';
+  } catch (error) {
+    // NODE_ENV might be read-only, which is okay in test environment
+    if (process.env.NODE_ENV !== 'test') {
+      console.warn('Could not set NODE_ENV to test, current value:', process.env.NODE_ENV);
+    }
+  }
 
   return testEnvironment;
 }

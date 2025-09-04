@@ -1,7 +1,13 @@
-import { test as base } from '@playwright/test';
+import { test as base, Page } from '@playwright/test';
+
+// Define fixture types
+type TestFixtures = {
+  authenticatedPage: Page;
+  loadedPage: Page;
+};
 
 // Extend base test with custom fixtures
-export const test = base.extend({
+export const test = base.extend<TestFixtures>({
   // Add custom fixtures here
   authenticatedPage: async ({ page }, use) => {
     // Example: automatically log in for tests that need auth

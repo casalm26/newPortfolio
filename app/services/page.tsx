@@ -29,42 +29,42 @@ export default function Services() {
             <LandingProductFeature
               title="Strategy & Consulting"
               description="Expert guidance to develop winning strategies and roadmaps for your business transformation."
-              icon={<BarChart4 className="h-8 w-8" />}
+              leadingComponent={<BarChart4 className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Technology Solutions"
               description="Custom software development and technology implementation to streamline your operations."
-              icon={<Zap className="h-8 w-8" />}
+              leadingComponent={<Zap className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Security & Compliance"
               description="Comprehensive security solutions and compliance management to protect your business."
-              icon={<Shield className="h-8 w-8" />}
+              leadingComponent={<Shield className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Team Training"
               description="Professional training programs to upskill your team and maximize platform adoption."
-              icon={<Users className="h-8 w-8" />}
+              leadingComponent={<Users className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Global Support"
               description="24/7 worldwide support with local expertise to ensure your success anywhere."
-              icon={<Globe className="h-8 w-8" />}
+              leadingComponent={<Globe className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Scale & Growth"
               description="Scalable solutions that grow with your business, from startup to enterprise."
-              icon={<Rocket className="h-8 w-8" />}
+              leadingComponent={<Rocket className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Custom Integration"
               description="Seamless integration with your existing systems and third-party applications."
-              icon={<Settings className="h-8 w-8" />}
+              leadingComponent={<Settings className="h-8 w-8 text-primary-500 mb-4" />}
             />
             <LandingProductFeature
               title="Premium Support"
               description="Dedicated account management and priority support for enterprise clients."
-              icon={<Headphones className="h-8 w-8" />}
+              leadingComponent={<Headphones className="h-8 w-8 text-primary-500 mb-4" />}
             />
           </LandingProductFeaturesGrid>
 
