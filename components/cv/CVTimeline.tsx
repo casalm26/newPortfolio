@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
-import timelineData from '@/data/cv-timeline/timeline.json';
+import timelineData from '@/data/cv/timeline.json';
 
 interface TimelineItem {
   id: string;

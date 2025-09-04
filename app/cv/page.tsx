@@ -1,4 +1,5 @@
 import Header from '@/components/shared/Header';
+import Breadcrumb from '@/components/shared/Breadcrumb';
 import { CVTimeline } from '@/components/cv/CVTimeline';
 
 export const metadata = {
@@ -12,6 +13,11 @@ export default function CVPage() {
       <Header />
       
       <main className="container mx-auto px-4 pt-24 pb-12">
+        {/* Breadcrumb */}
+        <div className="mb-8">
+          <Breadcrumb />
+        </div>
+
         {/* Terminal Header */}
         <div className="mb-12">
           <div className="font-pixel text-sm text-terminal-400 mb-2">

@@ -1,6 +1,8 @@
 import { allProjects } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
 import Header from '@/components/shared/Header';
+import Breadcrumb from '@/components/shared/Breadcrumb';
+import ProjectNavigation from '@/components/projects/ProjectNavigation';
 import Link from 'next/link';
 import { MDXContent } from '@/components/shared/MDXContent';
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
@@ -42,15 +44,24 @@ export default async function ProjectPage({ params }: Props) {
       <Header />
       
       <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
-        {/* Navigation */}
+        {/* Breadcrumb Navigation */}
         <div className="mb-8">
-          <Link 
-            href="/projects"
-            className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft size={16} className="mr-2" />
-            cd ../projects
-          </Link>
+          <Breadcrumb 
+            customItems={[
+              { label: 'HOME', href: '/' },
+              { label: 'PROJECTS', href: '/projects' },
+              { label: project.title.toUpperCase(), href: `/projects/${project.slug}` }
+            ]}
+          />
+          <div className="mt-4">
+            <Link 
+              href="/projects"
+              className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
+            >
+              <ArrowLeft size={16} className="mr-2" />
+              cd ../projects
+            </Link>
+          </div>
         </div>
 
         {/* Project Header */}
@@ -156,13 +167,18 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Navigation Footer */}
         <footer className="mt-16 pt-8 border-t border-terminal-400">
-          <Link 
-            href="/projects"
-            className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
-          >
-            <ArrowLeft size={16} className="mr-2" />
-            Back to projects
-          </Link>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
+            <Link 
+              href="/projects"
+              className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
+            >
+              <ArrowLeft size={16} className="mr-2" />
+              Back to projects
+            </Link>
+            
+            {/* Project Navigation */}
+            <ProjectNavigation currentSlug={project.slug} />
+          </div>
         </footer>
       </main>
     </div>

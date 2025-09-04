@@ -13,8 +13,15 @@ export function PixelArtName({ className }: PixelArtNameProps) {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
+  const [animationSkipped, setAnimationSkipped] = useState(false);
 
   useEffect(() => {
+    if (animationSkipped) {
+      setDisplayedText(fullName);
+      setCurrentIndex(fullName.length);
+      return;
+    }
+
     if (currentIndex < fullName.length) {
       const timer = setTimeout(() => {
         setDisplayedText(fullName.slice(0, currentIndex + 1));
@@ -28,10 +35,25 @@ export function PixelArtName({ className }: PixelArtNameProps) {
       }, 500);
       return () => clearInterval(cursorTimer);
     }
-  }, [currentIndex, fullName.length]);
+  }, [currentIndex, fullName.length, animationSkipped]);
+
+  const skipAnimation = () => {
+    setAnimationSkipped(true);
+  };
 
   return (
     <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
+      {/* Skip Animation Button */}
+      {currentIndex < fullName.length && !animationSkipped && (
+        <button
+          onClick={skipAnimation}
+          className="absolute top-4 right-4 font-pixel text-xs px-3 py-2 bg-transparent text-terminal-400 border border-terminal-400 hover:bg-white hover:text-black transition-all duration-75 z-[60]"
+          aria-label="Skip typewriter animation"
+        >
+          SKIP &gt;&gt;
+        </button>
+      )}
+      
       <div className="relative">
         <h1 className="font-pixel text-4xl md:text-6xl lg:text-8xl font-bold text-center tracking-wider">
           <span className="text-white">
@@ -62,7 +84,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
         </div>
         
         {/* CTA Buttons */}
-        {currentIndex >= fullName.length && (
+        {(currentIndex >= fullName.length || animationSkipped) && (
           <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-4 mt-8 animate-fade-in">
             <PixelButton href="/projects" variant="primary">
               cd ./projects
