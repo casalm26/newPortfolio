@@ -187,14 +187,14 @@ describe('Breadcrumb Component', () => {
 
   describe('Error handling', () => {
     it('should handle usePathname returning null', () => {
-      mockUsePathname.mockReturnValue(null as any);
+      mockUsePathname.mockReturnValue(null as string | null);
       const { container } = render(<Breadcrumb />);
       expect(container.firstChild).toBeNull();
     });
 
     it('should handle invalid custom items', () => {
       mockUsePathname.mockReturnValue('/test');
-      const customItems = [] as any;
+      const customItems = [] as never[];
       
       const { container } = render(<Breadcrumb customItems={customItems} />);
       // Should fall back to path-based generation

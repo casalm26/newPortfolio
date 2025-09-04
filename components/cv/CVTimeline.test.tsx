@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { CVTimeline } from './CVTimeline';
 
 // Mock the timeline data
-vi.mock('@/data/cv-timeline/timeline.json', () => ({
+vi.mock('@/data/cv/timeline.json', () => ({
   default: {
     timeline: [
       {
@@ -29,7 +29,7 @@ vi.mock('@/data/cv-timeline/timeline.json', () => ({
       }
     ],
     categories: {
-      work: { label: 'Work' },
+      work: { label: 'Work Experience' },
       education: { label: 'Education' }
     }
   }
@@ -41,7 +41,7 @@ describe('CVTimeline', () => {
       render(<CVTimeline />);
       
       expect(screen.getByText('ALL (2)')).toBeInTheDocument();
-      expect(screen.getByText('WORK (1)')).toBeInTheDocument();
+      expect(screen.getByText('WORK EXPERIENCE (1)')).toBeInTheDocument();
       expect(screen.getByText('EDUCATION (1)')).toBeInTheDocument();
     });
 
@@ -66,7 +66,7 @@ describe('CVTimeline', () => {
     it('should filter items when work filter is selected', () => {
       render(<CVTimeline />);
       
-      fireEvent.click(screen.getByText('WORK (1)'));
+      fireEvent.click(screen.getByText('WORK EXPERIENCE (1)'));
       
       expect(screen.getByText('Senior Developer')).toBeInTheDocument();
       expect(screen.queryByText('Computer Science')).not.toBeInTheDocument();
@@ -76,7 +76,7 @@ describe('CVTimeline', () => {
       render(<CVTimeline />);
       
       // First filter by work
-      fireEvent.click(screen.getByText('WORK (1)'));
+      fireEvent.click(screen.getByText('WORK EXPERIENCE (1)'));
       // Then click ALL again
       fireEvent.click(screen.getByText('ALL (2)'));
       
