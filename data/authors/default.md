@@ -1,12 +1,14 @@
 ---
-name: Your Business Team
+name: Caspian Almerud
 avatar: /static/images/avatar.png
-occupation: Content Team
-company: Your Business Name
-email: content@yourdomain.com
-twitter: 'yourbusiness'
-linkedin: company/yourbusiness
-github: yourbusiness
+occupation: Generalist Developer
+company: Independent
+email: hello@caspian.dev
+twitter: ''
+linkedin: https://linkedin.com/in/caspian-almerud
+github: https://github.com/caspianalmerud
 ---
 
-Our content team works tirelessly to create valuable resources and insights for our community. We are always looking for ways to improve our content and welcome any feedback. If you have any questions or concerns, please contact us [here](mailto:content@yourdomain.com).
+I'm a generalist developer who thrives at the intersection of technology, creativity, and business strategy. Unlike specialists who dive deep into single domains, I bridge multiple disciplines to solve complex, multi-faceted challenges.
+
+From full-stack web applications to blockchain systems, from AI/ML platforms to interactive art installations, and from startup launches to brand identity systems - I approach each project with fresh perspective and cross-domain insights.

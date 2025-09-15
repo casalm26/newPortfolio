@@ -2,7 +2,7 @@
 
 import Header from '@/components/shared/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,20 +13,44 @@ export default function ContactForm() {
   });
 
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [focusedField, setFocusedField] = useState<string>('');
+  const [typingSound, setTypingSound] = useState(false);
+  const [sendingProgress, setSendingProgress] = useState(0);
+  const [consoleMessages, setConsoleMessages] = useState<string[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
+    setSendingProgress(0);
+    setConsoleMessages([]);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate game-like loading with console messages
+    const messages = [
+      'Initializing connection...',
+      'Encrypting message data...',
+      'Establishing secure tunnel...',
+      'Transmitting packet 1/3...',
+      'Transmitting packet 2/3...',
+      'Transmitting packet 3/3...',
+      'Verifying integrity...',
+      'Message delivered successfully!'
+    ];
+    
+    for (let i = 0; i < messages.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 200));
+      setConsoleMessages(prev => [...prev, messages[i]]);
+      setSendingProgress(((i + 1) / messages.length) * 100);
+    }
+    
     setStatus('sent');
     
-    // Reset form after 3 seconds
+    // Reset form after 5 seconds
     setTimeout(() => {
       setFormData({ name: '', email: '', subject: '', message: '' });
       setStatus('idle');
-    }, 3000);
+      setConsoleMessages([]);
+      setSendingProgress(0);
+    }, 5000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -34,7 +58,27 @@ export default function ContactForm() {
       ...prev,
       [e.target.name]: e.target.value
     }));
+    
+    // Simulate typing sound effect
+    setTypingSound(true);
+    setTimeout(() => setTypingSound(false), 50);
   };
+
+  const handleFocus = (fieldName: string) => {
+    setFocusedField(fieldName);
+  };
+
+  const handleBlur = () => {
+    setFocusedField('');
+  };
+
+  // Add typing sound effect simulation
+  useEffect(() => {
+    if (typingSound) {
+      // In a real implementation, you would play an actual sound file here
+      // navigator.mediaDevices?.getUserMedia && new Audio('/sounds/type.wav').play().catch(() => {});
+    }
+  }, [typingSound]);
 
   return (
     <div className="min-h-screen bg-black">
@@ -66,23 +110,48 @@ export default function ContactForm() {
               &gt; echo "message" &gt; /dev/contact
             </div>
             
-            {status === 'sent' ? (
+            {status === 'sending' ? (
               <div className="space-y-4">
-                <div className="font-pixel text-green-400">
-                  Message sent successfully!
+                <div className="font-pixel text-yellow-400 animate-pulse">
+                  TRANSMITTING DATA...
+                </div>
+                <div className="w-full bg-terminal-900 border border-terminal-500 h-4 relative overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-to-r from-green-600 to-green-400 transition-all duration-200 ease-out"
+                    style={{ width: `${sendingProgress}%` }}
+                  ></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-pixel text-xs text-white">{Math.round(sendingProgress)}%</span>
+                  </div>
+                </div>
+                <div className="font-mono text-xs text-terminal-300 h-32 overflow-hidden">
+                  {consoleMessages.map((message, i) => (
+                    <div key={i} className="opacity-100 animate-fade-in">
+                      &gt; {message}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : status === 'sent' ? (
+              <div className="space-y-4">
+                <div className="font-pixel text-green-400 animate-pulse">
+                  ✓ TRANSMISSION SUCCESSFUL
                 </div>
                 <div className="font-mono text-sm text-terminal-300">
-                  <div>HTTP/1.1 200 OK</div>
-                  <div>Status: Message queued for processing</div>
-                  <div>Response-Time: &lt; 24 hours</div>
-                  <div>Connection: Will be established shortly</div>
+                  <div>&gt; Connection established</div>
+                  <div>&gt; HTTP/1.1 200 OK</div>
+                  <div>&gt; Status: Message queued for processing</div>
+                  <div>&gt; Response-Time: &lt; 24 hours</div>
+                  <div>&gt; Session will reset in 5 seconds...</div>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block font-pixel text-xs text-terminal-400 mb-2">
-                    NAME:
+                  <label htmlFor="name" className={`block font-pixel text-xs mb-2 transition-colors ${
+                    focusedField === 'name' ? 'text-green-400' : 'text-terminal-400'
+                  }`}>
+                    {focusedField === 'name' ? '> ' : ''}NAME{focusedField === 'name' ? '_' : ':'}
                   </label>
                   <input
                     id="name"
@@ -90,15 +159,28 @@ export default function ContactForm() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('name')}
+                    onBlur={handleBlur}
                     required
-                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
+                    className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
+                      focusedField === 'name' 
+                        ? 'border-2 border-green-400 shadow-md shadow-green-400/20' 
+                        : 'border border-terminal-500 focus:border-white'
+                    }`}
                     placeholder="Enter your name..."
                   />
+                  {typingSound && focusedField === 'name' && (
+                    <div className="text-xs text-green-400 font-pixel mt-1">
+                      [KEYLOGGER ACTIVE]
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block font-pixel text-xs text-terminal-400 mb-2">
-                    EMAIL:
+                  <label htmlFor="email" className={`block font-pixel text-xs mb-2 transition-colors ${
+                    focusedField === 'email' ? 'text-blue-400' : 'text-terminal-400'
+                  }`}>
+                    {focusedField === 'email' ? '> ' : ''}EMAIL{focusedField === 'email' ? '_' : ':'}
                   </label>
                   <input
                     id="email"
@@ -106,61 +188,103 @@ export default function ContactForm() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('email')}
+                    onBlur={handleBlur}
                     required
-                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
+                    className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
+                      focusedField === 'email' 
+                        ? 'border-2 border-blue-400 shadow-md shadow-blue-400/20' 
+                        : 'border border-terminal-500 focus:border-white'
+                    }`}
                     placeholder="your.email@domain.com"
                   />
+                  {typingSound && focusedField === 'email' && (
+                    <div className="text-xs text-blue-400 font-pixel mt-1">
+                      [EMAIL VALIDATOR RUNNING]
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block font-pixel text-xs text-terminal-400 mb-2">
-                    SUBJECT:
+                  <label htmlFor="subject" className={`block font-pixel text-xs mb-2 transition-colors ${
+                    focusedField === 'subject' ? 'text-purple-400' : 'text-terminal-400'
+                  }`}>
+                    {focusedField === 'subject' ? '> ' : ''}SUBJECT{focusedField === 'subject' ? '_' : ':'}
                   </label>
                   <select
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('subject')}
+                    onBlur={handleBlur}
                     required
-                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none"
+                    className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
+                      focusedField === 'subject' 
+                        ? 'border-2 border-purple-400 shadow-md shadow-purple-400/20' 
+                        : 'border border-terminal-500 focus:border-white'
+                    }`}
                   >
                     <option value="">Select category...</option>
-                    <option value="collaboration">Collaboration</option>
-                    <option value="job_opportunity">Job Opportunity</option>
-                    <option value="project_inquiry">Project Inquiry</option>
-                    <option value="consulting">Consulting</option>
-                    <option value="other">Other</option>
+                    <option value="collaboration">🤝 Collaboration</option>
+                    <option value="job_opportunity">💼 Job Opportunity</option>
+                    <option value="project_inquiry">🚀 Project Inquiry</option>
+                    <option value="consulting">💡 Consulting</option>
+                    <option value="other">📋 Other</option>
                   </select>
+                  {focusedField === 'subject' && (
+                    <div className="text-xs text-purple-400 font-pixel mt-1">
+                      [CATEGORY SELECTOR ACTIVE]
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block font-pixel text-xs text-terminal-400 mb-2">
-                    MESSAGE:
+                  <label htmlFor="message" className={`block font-pixel text-xs mb-2 transition-colors ${
+                    focusedField === 'message' ? 'text-orange-400' : 'text-terminal-400'
+                  }`}>
+                    {focusedField === 'message' ? '> ' : ''}MESSAGE{focusedField === 'message' ? '_' : ':'}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    onFocus={() => handleFocus('message')}
+                    onBlur={handleBlur}
                     required
                     rows={6}
-                    className="w-full p-3 bg-black border border-terminal-500 text-white font-mono focus:border-white focus:outline-none resize-none"
+                    className={`w-full p-3 bg-black text-white font-mono focus:outline-none resize-none transition-all duration-150 ${
+                      focusedField === 'message' 
+                        ? 'border-2 border-orange-400 shadow-md shadow-orange-400/20' 
+                        : 'border border-terminal-500 focus:border-white'
+                    }`}
                     placeholder="Type your message here..."
                   />
+                  {typingSound && focusedField === 'message' && (
+                    <div className="text-xs text-orange-400 font-pixel mt-1">
+                      [MESSAGE BUFFER: {formData.message.length}/1000 chars]
+                    </div>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  disabled={status === 'sending'}
+                  disabled={status !== 'idle'}
                   className={`
-                    w-full p-3 border font-pixel text-xs transition-colors
-                    ${status === 'sending' 
+                    w-full p-4 border-2 font-pixel text-sm transition-all duration-150 relative overflow-hidden
+                    ${status !== 'idle'
                       ? 'border-terminal-500 text-terminal-500 cursor-not-allowed'
-                      : 'border-white bg-white text-black hover:bg-transparent hover:text-white'
+                      : 'border-white bg-white text-black hover:bg-transparent hover:text-white hover:shadow-lg hover:shadow-white/20 hover:border-green-400 active:scale-95'
                     }
                   `}
                 >
-                  {status === 'sending' ? 'TRANSMITTING...' : 'SEND MESSAGE'}
+                  <div className="relative z-10">
+                    🚀 SEND MESSAGE
+                  </div>
+                  {status === 'idle' && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-1000"></div>
+                  )}
                 </button>
               </form>
             )}

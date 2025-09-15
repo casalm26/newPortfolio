@@ -7,7 +7,7 @@ const siteConfig = {
   blogPath: '', // The location of all blog pages under 'data'. Empty string means 'data' (default). Best for SEO is to have articles under the root path.
   allArticlesPath: '/all-articles', // The name of the page where you can see a list of all articles (needs to match app/all-articles/page.tsx)
 
-  // Configure analytics
+  // Configure analytics - Privacy-focused analytics setup
   disableAnalytics: false, // Disable all analytics on the site
   analytics: {
     // By default Vercel analytics is enabled.
@@ -26,9 +26,9 @@ const siteConfig = {
     // posthogAnalytics: {
     //   posthogProjectApiKey: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
     // },
-    // googleAnalytics: {
-    //   googleAnalyticsId: '', // e.g. G-XXXXXXX
-    // },
+    googleAnalytics: {
+      googleAnalyticsId: 'G-XXXXXXXXXX', // Replace with actual GA4 ID when available
+    },
   },
 
   newsletter: {

@@ -12,7 +12,7 @@ import {
   TwitterIcon,
 } from 'lucide-react';
 import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
+import PersonalFooter from '@/components/shared/PersonalFooter';
 interface Props {
   children: ReactNode;
   content: Omit<Authors, '_id' | '_raw' | 'body'>;
@@ -96,7 +96,7 @@ export default function AuthorLayout({ children, content }: Props) {
         </div>
       </div>
 
-      <Footer />
+      <PersonalFooter />
     </div>
   );
 }

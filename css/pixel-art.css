@@ -16,6 +16,15 @@
   image-rendering: crisp-edges;
 }
 
+/* Pixel art images */
+.pixel-art {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
 /* Custom pixel art animations */
 @keyframes typewriter-pixel {
   from { width: 0 }

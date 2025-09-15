@@ -1,22 +1,22 @@
 
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-      <title>Your Business Name</title>
-      <link>https://yourdomain.com</link>
-      <description>A modern business website built with Next.js, featuring a professional design and powerful features for your company.</description>
+      <title>Caspian Almerud - Generalist Developer</title>
+      <link>https://caspian.dev</link>
+      <description>Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.</description>
       <language>en-us</language>
-      <managingEditor>contact@yourdomain.com (Your Business Name)</managingEditor>
-      <webMaster>contact@yourdomain.com (Your Business Name)</webMaster>
+      <managingEditor>hello@caspian.dev (Caspian Almerud)</managingEditor>
+      <webMaster>hello@caspian.dev (Caspian Almerud)</webMaster>
       <lastBuildDate>Wed, 10 Jan 2024 00:00:00 GMT</lastBuildDate>
-      <atom:link href="https://yourdomain.com/tags/ai/feed.xml" rel="self" type="application/rss+xml"/>
+      <atom:link href="https://caspian.dev/tags/ai/feed.xml" rel="self" type="application/rss+xml"/>
       
   <item>
-    <guid>https://yourdomain.com/future-of-technology</guid>
+    <guid>https://caspian.dev/future-of-technology</guid>
     <title>The Future of Technology: Trends Shaping Business in 2024</title>
-    <link>https://yourdomain.com/future-of-technology</link>
+    <link>https://caspian.dev/future-of-technology</link>
     <description>Explore emerging technologies and their impact on modern businesses. Learn how to prepare for the technological revolution ahead.</description>
     <pubDate>Wed, 10 Jan 2024 00:00:00 GMT</pubDate>
-    <author>contact@yourdomain.com (Your Business Name)</author>
+    <author>hello@caspian.dev (Caspian Almerud)</author>
     <category>technology</category><category>innovation</category><category>AI</category><category>future</category><category>business</category>
   </item>
 

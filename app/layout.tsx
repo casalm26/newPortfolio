@@ -128,6 +128,44 @@ export default function RootLayout({
           content="#000"
         />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Caspian Almerud",
+              "jobTitle": "Generalist Developer",
+              "description": "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.",
+              "url": "https://caspian.dev",
+              "email": "hello@caspian.dev",
+              "image": "https://caspian.dev/static/images/avatar.png",
+              "sameAs": [
+                "https://github.com/caspianalmerud",
+                "https://linkedin.com/in/caspian-almerud",
+                "https://twitter.com/caspianalmerud"
+              ],
+              "knowsAbout": [
+                "Full-Stack Development",
+                "React",
+                "Next.js",
+                "TypeScript", 
+                "Blockchain Development",
+                "Artificial Intelligence",
+                "Machine Learning",
+                "Interactive Art",
+                "Business Strategy",
+                "Product Management"
+              ],
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Independent"
+              }
+            })
+          }}
+        />
       </head>
 
       <body className="flex flex-col bg-black text-white antialiased min-h-screen">

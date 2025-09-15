@@ -1,5 +1,6 @@
 import Header from '@/components/shared/Header';
 import Breadcrumb from '@/components/shared/Breadcrumb';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'About',
@@ -32,6 +33,41 @@ export default function About() {
 
         {/* Main Content */}
         <div className="space-y-12">
+          {/* Profile Photo Section */}
+          <section className="border border-terminal-400 p-6">
+            <div className="font-pixel text-xs text-terminal-400 mb-4">
+              &gt; display avatar.png --format=ascii --filter=pixel
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-6">
+              <div className="relative">
+                <div className="w-48 h-48 border-2 border-terminal-400 bg-terminal-900 p-4 pixel-perfect">
+                  <Image 
+                    src="/static/images/avatar.png" 
+                    alt="Caspian Almerud - Generalist Developer"
+                    width={192}
+                    height={192}
+                    className="w-full h-full object-cover pixel-art"
+                    style={{ imageRendering: 'pixelated' }}
+                    priority
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-green-500 w-4 h-4 border-2 border-black"></div>
+              </div>
+              <div className="text-center md:text-left">
+                <div className="font-pixel text-xs text-terminal-400 mb-2">
+                  $ whoami
+                </div>
+                <h2 className="font-pixel text-2xl text-white mb-2">CASPIAN_ALMERUD</h2>
+                <div className="space-y-1 text-terminal-300 text-sm">
+                  <div>Status: <span className="text-green-400">ONLINE</span></div>
+                  <div>Role: <span className="text-blue-400">GENERALIST_DEVELOPER</span></div>
+                  <div>Location: <span className="text-purple-400">GLOBAL_REMOTE</span></div>
+                  <div>Mode: <span className="text-orange-400">CONTINUOUS_LEARNING</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Bio Section */}
           <section className="border border-terminal-400 p-6">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
