@@ -1,0 +1,681 @@
+---
+title: "Modern Full-Stack Architecture: From Monolith to Microservices"
+date: "2024-03-22"
+tags: ["architecture", "microservices", "full-stack", "devops", "scalability"]
+draft: false
+summary: "A comprehensive guide to designing scalable full-stack applications, covering architecture patterns, technology choices, and real-world implementation strategies."
+images: ["/static/images/backdrop-5.webp"]
+authors: ["default"]
+---
+
+Building scalable web applications in 2024 requires navigating an increasingly complex landscape of architectural patterns, cloud services, and developer tools. After architecting systems that scale from hundreds to millions of users, here's my practical guide to modern full-stack architecture decisions.
+
+## The Evolution: From Simple to Scalable
+
+### Starting Point: The Monolithic Foundation
+Most successful applications start simple—and that's exactly right. The monolithic pattern offers clear advantages for early-stage development:
+
+```typescript
+// Traditional monolithic structure
+/src
+  /components     # React components
+  /pages         # Next.js pages
+  /api           # API routes
+  /lib           # Shared utilities
+  /database      # Database models
+```
+
+**Benefits of Starting Monolithic:**
+- **Faster Development**: Single deployment, shared code, unified debugging
+- **Lower Complexity**: One database, one deployment pipeline, simple monitoring
+- **Cost Effective**: Single server instance, minimal infrastructure overhead
+- **Team Productivity**: Entire team works in one codebase, easier knowledge sharing
+
+### The Inflection Point: When to Evolve
+The decision to move beyond monolithic architecture isn't about code size—it's about team dynamics and scalability constraints:
+
+**Technical Indicators:**
+- Database queries taking >200ms regularly
+- Deployment taking >10 minutes
+- CI/CD pipeline failing due to test complexity
+- Different components requiring different scaling characteristics
+
+**Organizational Indicators:**
+- Team size exceeding 8-10 developers
+- Multiple teams working on different product areas
+- Different release cycles needed for different features
+- Specialized expertise requirements (ML, data processing, real-time features)
+
+## Architecture Patterns: Choosing the Right Approach
+
+### 1. Modular Monolith: The Middle Ground
+
+Before jumping to microservices, consider the modular monolith approach:
+
+```typescript
+// Modular monolith structure
+/src
+  /modules
+    /user-management
+      /api
+      /components
+      /database
+      /types
+    /payment-processing
+    /content-management
+  /shared
+    /ui-components
+    /utilities
+    /types
+```
+
+**Implementation Strategy:**
+```typescript
+// Domain-driven module boundaries
+interface UserModule {
+  getUserById(id: string): Promise<User>;
+  createUser(userData: CreateUserDto): Promise<User>;
+  // Clear API boundaries between modules
+}
+
+// Dependency injection for module communication
+class UserService implements UserModule {
+  constructor(
+    private database: DatabaseService,
+    private eventBus: EventBusService
+  ) {}
+
+  async createUser(userData: CreateUserDto): Promise<User> {
+    const user = await this.database.users.create(userData);
+    // Publish event for other modules
+    await this.eventBus.publish('user.created', { userId: user.id });
+    return user;
+  }
+}
+```
+
+### 2. Microservices: When Complexity is Worth It
+
+Microservices make sense when you have clear service boundaries and organizational need:
+
+```yaml
+# docker-compose.yml for microservices
+services:
+  user-service:
+    build: ./services/user-service
+    environment:
+      - DATABASE_URL=${USER_DB_URL}
+      - REDIS_URL=${REDIS_URL}
+
+  payment-service:
+    build: ./services/payment-service
+    environment:
+      - DATABASE_URL=${PAYMENT_DB_URL}
+      - STRIPE_KEY=${STRIPE_KEY}
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - USER_SERVICE_URL=http://user-service:3001
+      - PAYMENT_SERVICE_URL=http://payment-service:3002
+```
+
+**Service Communication Patterns:**
+```typescript
+// Event-driven communication
+interface ServiceEvent {
+  eventId: string;
+  eventType: string;
+  timestamp: Date;
+  payload: unknown;
+}
+
+class PaymentService {
+  async processPayment(paymentData: PaymentDto) {
+    try {
+      const result = await this.stripeService.charge(paymentData);
+
+      // Publish success event
+      await this.eventBus.publish({
+        eventType: 'payment.completed',
+        payload: { paymentId: result.id, userId: paymentData.userId }
+      });
+
+      return result;
+    } catch (error) {
+      // Publish failure event for compensation
+      await this.eventBus.publish({
+        eventType: 'payment.failed',
+        payload: { paymentData, error: error.message }
+      });
+      throw error;
+    }
+  }
+}
+```
+
+### 3. Serverless: Event-Driven Scalability
+
+For specific use cases, serverless functions provide optimal scalability:
+
+```typescript
+// AWS Lambda function for image processing
+export const handler = async (event: S3Event) => {
+  for (const record of event.Records) {
+    const bucket = record.s3.bucket.name;
+    const key = record.s3.object.key;
+
+    // Process image upload
+    const image = await s3.getObject({ Bucket: bucket, Key: key }).promise();
+    const resized = await sharp(image.Body)
+      .resize(800, 600)
+      .jpeg({ quality: 80 })
+      .toBuffer();
+
+    // Store processed image
+    await s3.putObject({
+      Bucket: `${bucket}-processed`,
+      Key: key,
+      Body: resized,
+      ContentType: 'image/jpeg'
+    }).promise();
+
+    // Notify completion
+    await sns.publish({
+      TopicArn: process.env.COMPLETION_TOPIC,
+      Message: JSON.stringify({ bucket, key, status: 'completed' })
+    }).promise();
+  }
+};
+```
+
+## Technology Stack Decisions
+
+### Database Architecture: Polyglot Persistence
+
+Modern applications benefit from using the right database for each use case:
+
+```typescript
+// Database selection by use case
+interface DatabaseStrategy {
+  // Transactional data
+  postgresql: {
+    users: UserRepository;
+    orders: OrderRepository;
+    payments: PaymentRepository;
+  };
+
+  // Caching and sessions
+  redis: {
+    sessions: SessionCache;
+    rateLimit: RateLimitCache;
+    jobQueue: JobQueue;
+  };
+
+  // Search and analytics
+  elasticsearch: {
+    products: ProductSearchService;
+    logs: LogAnalyticsService;
+  };
+
+  // File storage
+  s3: {
+    images: ImageStorageService;
+    documents: DocumentStorageService;
+  };
+}
+```
+
+**Implementation with Repository Pattern:**
+```typescript
+// Abstract repository interface
+interface Repository<T> {
+  findById(id: string): Promise<T | null>;
+  create(data: Partial<T>): Promise<T>;
+  update(id: string, data: Partial<T>): Promise<T>;
+  delete(id: string): Promise<void>;
+}
+
+// PostgreSQL implementation
+class PostgreSQLUserRepository implements Repository<User> {
+  constructor(private db: Pool) {}
+
+  async findById(id: string): Promise<User | null> {
+    const result = await this.db.query(
+      'SELECT * FROM users WHERE id = $1',
+      [id]
+    );
+    return result.rows[0] || null;
+  }
+
+  // ... other methods
+}
+
+// Redis cache layer
+class CachedUserRepository implements Repository<User> {
+  constructor(
+    private baseRepo: Repository<User>,
+    private cache: RedisClient
+  ) {}
+
+  async findById(id: string): Promise<User | null> {
+    // Check cache first
+    const cached = await this.cache.get(`user:${id}`);
+    if (cached) return JSON.parse(cached);
+
+    // Fallback to database
+    const user = await this.baseRepo.findById(id);
+    if (user) {
+      await this.cache.setex(`user:${id}`, 300, JSON.stringify(user));
+    }
+    return user;
+  }
+}
+```
+
+### API Design: RESTful with GraphQL Enhancement
+
+Hybrid API approach for different client needs:
+
+```typescript
+// REST API for simple operations
+@Controller('/api/users')
+export class UserController {
+  @Get(':id')
+  async getUser(@Param('id') id: string): Promise<UserResponseDto> {
+    const user = await this.userService.findById(id);
+    return this.transformToDto(user);
+  }
+
+  @Post()
+  @UseGuards(AuthGuard)
+  async createUser(@Body() userData: CreateUserDto): Promise<UserResponseDto> {
+    const user = await this.userService.create(userData);
+    return this.transformToDto(user);
+  }
+}
+
+// GraphQL for complex queries
+const typeDefs = gql`
+  type User {
+    id: ID!
+    name: String!
+    email: String!
+    orders: [Order!]!
+    favoriteProducts: [Product!]!
+  }
+
+  type Query {
+    user(id: ID!): User
+    users(filter: UserFilter, pagination: Pagination): UserConnection
+  }
+`;
+
+const resolvers = {
+  User: {
+    orders: (user: User) => orderService.findByUserId(user.id),
+    favoriteProducts: (user: User) => productService.findFavorites(user.id),
+  },
+  Query: {
+    user: (_, { id }) => userService.findById(id),
+    users: (_, { filter, pagination }) => userService.findMany(filter, pagination),
+  },
+};
+```
+
+## DevOps and Deployment Strategies
+
+### Containerization Strategy
+
+```dockerfile
+# Multi-stage build for production optimization
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+
+# Security optimizations
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+USER nextjs
+
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+### Infrastructure as Code
+
+```terraform
+# Terraform for AWS infrastructure
+resource "aws_ecs_cluster" "main" {
+  name = "production-cluster"
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+}
+
+resource "aws_ecs_service" "app" {
+  name            = "app-service"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.app.arn
+  desired_count   = 3
+
+  deployment_configuration {
+    maximum_percent         = 200
+    minimum_healthy_percent = 100
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.app.arn
+    container_name   = "app"
+    container_port   = 3000
+  }
+}
+```
+
+### CI/CD Pipeline
+
+```yaml
+# GitHub Actions workflow
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_SHA
+
+      - name: Deploy to ECS
+        run: |
+          aws ecs update-service \
+            --cluster production-cluster \
+            --service app-service \
+            --force-new-deployment
+```
+
+## Monitoring and Observability
+
+### Comprehensive Monitoring Stack
+
+```typescript
+// Custom metrics collection
+import { createPrometheusMetrics } from '@prometheus/client';
+
+const metrics = createPrometheusMetrics({
+  requestDuration: new Histogram({
+    name: 'http_request_duration_seconds',
+    help: 'HTTP request duration in seconds',
+    labelNames: ['method', 'route', 'status_code'],
+  }),
+
+  databaseConnections: new Gauge({
+    name: 'database_connections_active',
+    help: 'Number of active database connections',
+  }),
+
+  businessMetrics: new Counter({
+    name: 'orders_total',
+    help: 'Total number of orders processed',
+    labelNames: ['status', 'payment_method'],
+  }),
+});
+
+// Middleware for automatic metrics collection
+export const metricsMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = (Date.now() - start) / 1000;
+    metrics.requestDuration
+      .labels(req.method, req.route?.path || req.path, res.statusCode.toString())
+      .observe(duration);
+  });
+
+  next();
+};
+```
+
+### Error Tracking and Alerting
+
+```typescript
+// Structured error handling
+interface ApplicationError extends Error {
+  code: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  context: Record<string, unknown>;
+  userId?: string;
+}
+
+class ErrorHandler {
+  static async handle(error: ApplicationError, req: Request) {
+    // Log structured error
+    logger.error('Application error', {
+      error: error.message,
+      code: error.code,
+      severity: error.severity,
+      stack: error.stack,
+      userId: error.userId,
+      requestId: req.headers['x-request-id'],
+      context: error.context,
+    });
+
+    // Send to error tracking service
+    Sentry.captureException(error, {
+      tags: {
+        severity: error.severity,
+        code: error.code,
+      },
+      user: { id: error.userId },
+      extra: error.context,
+    });
+
+    // Alert on critical errors
+    if (error.severity === 'critical') {
+      await this.sendSlackAlert(error, req);
+    }
+  }
+
+  private static async sendSlackAlert(error: ApplicationError, req: Request) {
+    await fetch(process.env.SLACK_WEBHOOK_URL!, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: `🚨 Critical Error in Production`,
+        blocks: [
+          {
+            type: 'section',
+            text: {
+              type: 'mrkdwn',
+              text: `*Error:* ${error.message}\n*Code:* ${error.code}\n*User:* ${error.userId || 'Anonymous'}`,
+            },
+          },
+        ],
+      }),
+    });
+  }
+}
+```
+
+## Performance Optimization Strategies
+
+### Caching Layers
+
+```typescript
+// Multi-level caching strategy
+class CacheManager {
+  constructor(
+    private redisClient: RedisClient,
+    private memoryCache: LRUCache<string, unknown>
+  ) {}
+
+  async get<T>(key: string): Promise<T | null> {
+    // L1: Memory cache (fastest)
+    const memoryResult = this.memoryCache.get(key) as T;
+    if (memoryResult) return memoryResult;
+
+    // L2: Redis cache (network hop)
+    const redisResult = await this.redisClient.get(key);
+    if (redisResult) {
+      const parsed = JSON.parse(redisResult) as T;
+      this.memoryCache.set(key, parsed);
+      return parsed;
+    }
+
+    return null;
+  }
+
+  async set<T>(key: string, value: T, ttlSeconds = 300): Promise<void> {
+    // Set in both cache layers
+    this.memoryCache.set(key, value);
+    await this.redisClient.setex(key, ttlSeconds, JSON.stringify(value));
+  }
+
+  async invalidate(pattern: string): Promise<void> {
+    // Clear memory cache
+    this.memoryCache.clear();
+
+    // Clear Redis cache by pattern
+    const keys = await this.redisClient.keys(pattern);
+    if (keys.length > 0) {
+      await this.redisClient.del(...keys);
+    }
+  }
+}
+```
+
+### Database Query Optimization
+
+```typescript
+// Query optimization with proper indexing
+class OptimizedUserRepository {
+  async findUsersWithRecentOrders(limit = 20): Promise<User[]> {
+    // Optimized query with proper joins and indexing
+    const query = `
+      SELECT DISTINCT u.id, u.name, u.email, u.created_at,
+             COUNT(o.id) as order_count,
+             MAX(o.created_at) as last_order_date
+      FROM users u
+      INNER JOIN orders o ON u.id = o.user_id
+      WHERE o.created_at >= NOW() - INTERVAL '30 days'
+        AND o.status = 'completed'
+      GROUP BY u.id, u.name, u.email, u.created_at
+      ORDER BY last_order_date DESC
+      LIMIT $1
+    `;
+
+    const result = await this.db.query(query, [limit]);
+    return result.rows.map(row => this.mapRowToUser(row));
+  }
+
+  // Index suggestions for optimal performance
+  /*
+    CREATE INDEX CONCURRENTLY idx_orders_user_created_status
+    ON orders (user_id, created_at DESC, status)
+    WHERE status = 'completed';
+
+    CREATE INDEX CONCURRENTLY idx_orders_recent_completed
+    ON orders (created_at DESC)
+    WHERE created_at >= NOW() - INTERVAL '30 days'
+    AND status = 'completed';
+  */
+}
+```
+
+## Real-World Implementation: Lessons Learned
+
+### Scaling Timeline and Decisions
+
+**Month 1-6: Monolithic Foundation**
+- Single Next.js application with PostgreSQL
+- 1-3 developers, <1000 users
+- **Focus**: Feature development and user validation
+
+**Month 6-12: Modular Monolith**
+- Clear module boundaries, shared database
+- 3-6 developers, 1K-10K users
+- **Focus**: Team scalability and code organization
+
+**Month 12-24: Selective Microservices**
+- Extract high-load or specialized services first
+- 6-12 developers, 10K-100K users
+- **Focus**: Performance bottlenecks and team autonomy
+
+**Month 24+: Mature Architecture**
+- Event-driven microservices with API gateway
+- 12+ developers across multiple teams
+- **Focus**: Reliability, observability, and feature velocity
+
+### Common Pitfalls and Solutions
+
+**Premature Optimization**
+- *Problem*: Implementing microservices too early
+- *Solution*: Start monolithic, extract services based on real constraints
+
+**Distributed Data Consistency**
+- *Problem*: Transaction boundaries across services
+- *Solution*: Event sourcing and eventual consistency patterns
+
+**Service Discovery Complexity**
+- *Problem*: Service-to-service communication overhead
+- *Solution*: API gateway and service mesh (Istio/Linkerd)
+
+**Monitoring Complexity**
+- *Problem*: Distributed tracing across services
+- *Solution*: OpenTelemetry and centralized logging (ELK stack)
+
+## Conclusion: Architecture as Competitive Advantage
+
+The right architecture isn't about using the latest technologies—it's about enabling your team to deliver value efficiently at your current scale while maintaining flexibility for future growth.
+
+**Key Principles for Success:**
+1. **Start Simple**: Monoliths aren't legacy; they're pragmatic
+2. **Evolve Gradually**: Architecture should follow organizational needs
+3. **Measure Everything**: Data-driven decisions over theoretical benefits
+4. **Plan for Failure**: Resilience patterns from day one
+5. **Optimize for Change**: Flexibility over premature optimization
+
+The architecture that got you to product-market fit won't get you to scale, and the architecture that handles scale would have slowed your initial growth. Embrace this evolution as a feature, not a bug.
+
+---
+
+*Building scalable architecture? I'd love to discuss your specific challenges. Reach out on [LinkedIn](https://linkedin.com/in/caspian-almerud) or [email](mailto:hello@caspian.dev).*
