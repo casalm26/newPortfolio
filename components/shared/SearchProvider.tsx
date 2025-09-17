@@ -3,7 +3,7 @@
 import { KBarSearchProvider } from "@shipixen/pliny/search/KBar";
 import { useRouter } from "next/navigation";
 import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
-import { Blog } from "contentlayer/generated";
+import { Blog, Project } from "contentlayer/generated";
 import { formatDate } from "@shipixen/pliny/utils/formatDate";
 import { searchLinks } from "@/data/config/searchLinks";
 
@@ -41,10 +41,24 @@ export const SearchProvider = ({ children }) => {
                 name: link.name,
                 keywords: link.keywords,
                 section: link.section,
+                subtitle: link.shortcut ? `⌘${link.shortcut.join(",")}` : "",
                 perform: () => router.push(link.href),
               };
             }),
           ];
+        },
+        additionalSearchDocuments: {
+          path: "projects-search.json",
+          onLoad(projectsJson: Project[]) {
+            return projectsJson.map((project: Project) => ({
+              id: project.slug,
+              name: project.title,
+              keywords: `${project.summary} ${project.skills?.join(" ")} ${project.tools?.join(" ")} ${project.projectType}`,
+              section: "Projects",
+              subtitle: `${project.projectType} · ${project.role} · ${project.duration}`,
+              perform: () => router.push(`/projects/${project.slug}`),
+            }));
+          },
         },
       }}
     >
