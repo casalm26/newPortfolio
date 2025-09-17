@@ -1,4 +1,4 @@
-import { Checkbox } from '@/components/shared/ui/checkbox';
+import { Checkbox } from "@/components/shared/ui/checkbox";
 
 export default function CheckboxDisabled() {
   return (

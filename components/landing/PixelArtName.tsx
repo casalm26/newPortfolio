@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
-import PixelButton from '@/components/shared/ui/PixelButton';
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import PixelButton from "@/components/shared/ui/PixelButton";
 
 interface PixelArtNameProps {
   className?: string;
@@ -31,7 +31,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
     } else {
       // Blink cursor effect after typing is complete
       const cursorTimer = setInterval(() => {
-        setShowCursor(prev => !prev);
+        setShowCursor((prev) => !prev);
       }, 500);
       return () => clearInterval(cursorTimer);
     }
@@ -42,7 +42,12 @@ export function PixelArtName({ className }: PixelArtNameProps) {
   };
 
   return (
-    <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center space-y-4",
+        className,
+      )}
+    >
       {/* Skip Animation Button */}
       {currentIndex < fullName.length && !animationSkipped && (
         <button
@@ -53,23 +58,21 @@ export function PixelArtName({ className }: PixelArtNameProps) {
           SKIP &gt;&gt;
         </button>
       )}
-      
+
       <div className="relative">
         <h1 className="font-pixel text-4xl md:text-6xl lg:text-8xl font-bold text-center tracking-wider">
-          <span className="text-white">
-            {displayedText}
-          </span>
-          <span 
+          <span className="text-white">{displayedText}</span>
+          <span
             className={cn(
               "text-white transition-opacity duration-100",
-              showCursor ? "opacity-100" : "opacity-0"
+              showCursor ? "opacity-100" : "opacity-0",
             )}
           >
             |
           </span>
         </h1>
       </div>
-      
+
       <div className="text-center space-y-4">
         <p className="font-pixel text-lg md:text-xl text-terminal-300 tracking-wide">
           $ whoami
@@ -82,7 +85,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
           <div className="w-1 h-4 bg-terminal-400 animate-pulse delay-150" />
           <div className="w-1 h-4 bg-terminal-600 animate-pulse delay-300" />
         </div>
-        
+
         {/* CTA Buttons */}
         {(currentIndex >= fullName.length || animationSkipped) && (
           <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-4 mt-8 animate-fade-in">

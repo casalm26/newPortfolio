@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useMDXComponent } from 'next-contentlayer2/hooks';
+import { useMDXComponent } from "next-contentlayer2/hooks";
 
 interface MDXContentProps {
   source: string;
@@ -8,7 +8,7 @@ interface MDXContentProps {
 
 export function MDXContent({ source }: MDXContentProps) {
   const Component = useMDXComponent(source);
-  
+
   return (
     <div className="mdx-content">
       <Component />

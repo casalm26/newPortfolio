@@ -5,7 +5,7 @@
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: unset;
   font-smooth: never;
-  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-family: "Courier New", "Monaco", "Menlo", monospace;
 }
 
 /* Pixel perfect utilities */
@@ -27,27 +27,34 @@
 
 /* Custom pixel art animations */
 @keyframes typewriter-pixel {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes pixel-glow {
-  0%, 100% { 
-    box-shadow: 0 0 0 1px currentColor; 
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px currentColor;
   }
-  50% { 
-    box-shadow: 0 0 0 2px currentColor, 0 0 8px currentColor; 
+  50% {
+    box-shadow:
+      0 0 0 2px currentColor,
+      0 0 8px currentColor;
   }
 }
 
 @keyframes fade-in {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -76,7 +83,7 @@
 }
 
 .btn-pixel:active {
-  box-shadow: inset 1px 1px 0px rgba(0,0,0,0.3);
+  box-shadow: inset 1px 1px 0px rgba(0, 0, 0, 0.3);
   transform: translate(1px, 1px);
 }
 
@@ -119,7 +126,7 @@
 
 /* Pixel text shadow */
 .pixel-shadow {
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 /* Matrix/Terminal theme colors */
@@ -185,16 +192,25 @@ button:not(.pixel-button):not([class*="pixel"]) {
 }
 
 /* Ensure all text is readable in matrix theme */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: white !important;
 }
 
-p, span, div {
+p,
+span,
+div {
   color: white !important;
 }
 
 /* Ensure form elements follow matrix theme */
-input, textarea, select {
+input,
+textarea,
+select {
   background-color: #101010 !important;
   color: white !important;
   border-color: #808080 !important;

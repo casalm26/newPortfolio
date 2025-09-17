@@ -1,7 +1,7 @@
-import { GenericContainer, StartedTestContainer } from 'testcontainers';
-import { PostgreSqlContainer } from '@testcontainers/postgresql';
-import { RedisContainer } from '@testcontainers/redis';
-import { beforeAll, afterAll } from 'vitest';
+import { GenericContainer, StartedTestContainer } from "testcontainers";
+import { PostgreSqlContainer } from "@testcontainers/postgresql";
+import { RedisContainer } from "@testcontainers/redis";
+import { beforeAll, afterAll } from "vitest";
 
 export interface TestEnvironment {
   postgres: StartedTestContainer;
@@ -14,15 +14,15 @@ let testEnvironment: TestEnvironment;
 
 export async function setupTestEnvironment(): Promise<TestEnvironment> {
   // Start PostgreSQL
-  const postgres = await new PostgreSqlContainer('postgres:15-alpine')
-    .withDatabase('testdb')
-    .withUsername('testuser')
-    .withPassword('testpass')
+  const postgres = await new PostgreSqlContainer("postgres:15-alpine")
+    .withDatabase("testdb")
+    .withUsername("testuser")
+    .withPassword("testpass")
     .withExposedPorts(5432)
     .start();
 
   // Start Redis
-  const redis = await new RedisContainer('redis:7-alpine')
+  const redis = await new RedisContainer("redis:7-alpine")
     .withExposedPorts(6379)
     .start();
 
@@ -39,15 +39,18 @@ export async function setupTestEnvironment(): Promise<TestEnvironment> {
   // Set environment variables
   process.env.DATABASE_URL = databaseUrl;
   process.env.REDIS_URL = redisUrl;
-  
+
   // Set NODE_ENV safely (handle read-only case)
   try {
     // Use type assertion to bypass TypeScript readonly check
-    (process.env as any).NODE_ENV = 'test';
+    (process.env as any).NODE_ENV = "test";
   } catch (error) {
     // NODE_ENV might be read-only, which is okay in test environment
-    if (process.env.NODE_ENV !== 'test') {
-      console.warn('Could not set NODE_ENV to test, current value:', process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== "test") {
+      console.warn(
+        "Could not set NODE_ENV to test, current value:",
+        process.env.NODE_ENV,
+      );
     }
   }
 

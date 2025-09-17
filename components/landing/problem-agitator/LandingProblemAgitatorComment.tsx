@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 
 export const LandingProblemAgitatorComment = ({
   className,
@@ -10,7 +10,7 @@ export const LandingProblemAgitatorComment = ({
   return (
     <div
       className={clsx(
-        'absolute text-xs font-semibold tracking-wide text-red-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300',
+        "absolute text-xs font-semibold tracking-wide text-red-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300",
         className,
       )}
     >

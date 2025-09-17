@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import SocialLinks from '@/components/shared/SocialLinks';
-import Link from 'next/link';
+import SocialLinks from "@/components/shared/SocialLinks";
+import Link from "next/link";
 
-const PersonalFooter = ({ className = '' }: { className?: string }) => {
+const PersonalFooter = ({ className = "" }: { className?: string }) => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     quick: [
-      { href: '/', label: 'Home' },
-      { href: '/about', label: 'About' },
-      { href: '/projects', label: 'Projects' },
-      { href: '/cv', label: 'CV Timeline' },
-      { href: '/contact', label: 'Contact' },
+      { href: "/", label: "Home" },
+      { href: "/about", label: "About" },
+      { href: "/projects", label: "Projects" },
+      { href: "/cv", label: "CV Timeline" },
+      { href: "/contact", label: "Contact" },
     ],
     legal: [
-      { href: '/privacy', label: 'Privacy' },
-      { href: '/terms', label: 'Terms' },
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
     ],
   };
 
@@ -35,8 +35,10 @@ const PersonalFooter = ({ className = '' }: { className?: string }) => {
               </span>
             </div>
             <div className="font-pixel text-xs text-terminal-400 max-w-sm">
-              &gt; whoami --role<br/>
-              Generalist developer bridging technical expertise with creative problem-solving.
+              &gt; whoami --role
+              <br />
+              Generalist developer bridging technical expertise with creative
+              problem-solving.
             </div>
             <div className="font-pixel text-xs text-terminal-300">
               Status: <span className="text-green-400">AVAILABLE_FOR_HIRE</span>
@@ -71,16 +73,18 @@ const PersonalFooter = ({ className = '' }: { className?: string }) => {
               </h3>
               <SocialLinks variant="footer" showLabels={false} size={20} />
             </div>
-            
+
             <div className="space-y-2">
               <div className="font-pixel text-xs text-terminal-300">
-                <span className="text-terminal-500">email:</span> hello@caspian.dev
+                <span className="text-terminal-500">email:</span>{" "}
+                hello@caspian.dev
               </div>
               <div className="font-pixel text-xs text-terminal-300">
                 <span className="text-terminal-500">timezone:</span> UTC+0
               </div>
               <div className="font-pixel text-xs text-terminal-300">
-                <span className="text-terminal-500">response_time:</span> &lt; 24h
+                <span className="text-terminal-500">response_time:</span> &lt;
+                24h
               </div>
             </div>
           </div>
@@ -92,7 +96,7 @@ const PersonalFooter = ({ className = '' }: { className?: string }) => {
             <div className="font-pixel text-xs text-terminal-500">
               © {currentYear} Caspian Almerud. All rights reserved.
             </div>
-            
+
             <div className="flex items-center space-x-4">
               {footerLinks.legal.map((link) => (
                 <Link
@@ -104,7 +108,7 @@ const PersonalFooter = ({ className = '' }: { className?: string }) => {
                 </Link>
               ))}
             </div>
-            
+
             <div className="font-pixel text-xs text-terminal-500">
               &gt; exit 0
             </div>

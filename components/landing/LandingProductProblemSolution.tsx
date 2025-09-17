@@ -1,10 +1,10 @@
-import { clsx } from 'clsx';
-import { CheckIcon, XIcon } from 'lucide-react';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
+import { clsx } from "clsx";
+import { CheckIcon, XIcon } from "lucide-react";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
 import {
   KeyPoint,
   LandingProductFeatureKeyPoints,
-} from '@/components/landing/LandingProductFeatureKeyPoints';
+} from "@/components/landing/LandingProductFeatureKeyPoints";
 
 export function LandingProductProblemSolution({
   className,
@@ -14,15 +14,15 @@ export function LandingProductProblemSolution({
   descriptionComponent,
   problems = [],
   solutions = [],
-  solutionTitle = 'Solution',
+  solutionTitle = "Solution",
   solutionTitleComponent,
-  problemTitle = 'Problem',
+  problemTitle = "Problem",
   problemTitleComponent,
-  variant = 'primary',
+  variant = "primary",
   withBackground = false,
   withBackgroundGlow = false,
-  backgroundGlowVariant = 'primary',
-  textPosition = 'center',
+  backgroundGlowVariant = "primary",
+  textPosition = "center",
 }: {
   className?: string;
   title?: string;
@@ -35,30 +35,30 @@ export function LandingProductProblemSolution({
   solutionTitleComponent?: React.ReactNode;
   problemTitle?: string;
   problemTitleComponent?: React.ReactNode;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  backgroundGlowVariant?: 'primary' | 'secondary';
-  textPosition?: 'center' | 'left';
+  backgroundGlowVariant?: "primary" | "secondary";
+  textPosition?: "center" | "left";
 }) {
   return (
     <section
       className={clsx(
-        'w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
       {withBackgroundGlow ? (
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-1/2 pointer-events-none">
           <GlowBg
-            className={clsx('w-full lg:w-2/3 h-auto z-0')}
+            className={clsx("w-full lg:w-2/3 h-auto z-0")}
             variant={backgroundGlowVariant}
           />
         </div>
@@ -66,30 +66,30 @@ export function LandingProductProblemSolution({
 
       <div
         className={clsx(
-          'container-wide w-full px-6 flex flex-col relative',
-          textPosition === 'left'
-            ? 'items-start text-left'
-            : 'items-center text-center',
+          "container-wide w-full px-6 flex flex-col relative",
+          textPosition === "left"
+            ? "items-start text-left"
+            : "items-center text-center",
         )}
       >
         {title || titleComponent || description || descriptionComponent ? (
           <div
             className={clsx(
-              'w-full flex flex-col gap-4 mb-10',
-              textPosition === 'center'
-                ? 'md:max-w-lg xl:max-w-2xl items-center text-center'
-                : 'items-start',
+              "w-full flex flex-col gap-4 mb-10",
+              textPosition === "center"
+                ? "md:max-w-lg xl:max-w-2xl items-center text-center"
+                : "items-start",
             )}
           >
-            {titleComponent || (title && (
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight">
-                {title}
-              </h2>
-            ))}
+            {titleComponent ||
+              (title && (
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight">
+                  {title}
+                </h2>
+              ))}
 
-            {descriptionComponent || (description && (
-              <p className="md:text-xl">{description}</p>
-            ))}
+            {descriptionComponent ||
+              (description && <p className="md:text-xl">{description}</p>)}
           </div>
         ) : null}
 
@@ -97,15 +97,16 @@ export function LandingProductProblemSolution({
           {problems.length ? (
             <div
               className={clsx(
-                'flex flex-col bg-red-50 dark:bg-red-950 py-6 px-4 rounded-lg',
-                textPosition === 'left' ? 'px-6' : '',
+                "flex flex-col bg-red-50 dark:bg-red-950 py-6 px-4 rounded-lg",
+                textPosition === "left" ? "px-6" : "",
               )}
             >
-              {problemTitleComponent || (problemTitle && (
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
-                  {problemTitle}
-                </h3>
-              ))}
+              {problemTitleComponent ||
+                (problemTitle && (
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+                    {problemTitle}
+                  </h3>
+                ))}
 
               <LandingProductFeatureKeyPoints
                 keyPoints={problems}
@@ -120,15 +121,16 @@ export function LandingProductProblemSolution({
           {solutions.length ? (
             <div
               className={clsx(
-                'flex flex-col bg-green-50 dark:bg-green-950 py-6 px-4 rounded-lg',
-                textPosition === 'left' ? 'px-6' : '',
+                "flex flex-col bg-green-50 dark:bg-green-950 py-6 px-4 rounded-lg",
+                textPosition === "left" ? "px-6" : "",
               )}
             >
-              {solutionTitleComponent || (solutionTitle && (
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
-                  {solutionTitle}
-                </h3>
-              ))}
+              {solutionTitleComponent ||
+                (solutionTitle && (
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+                    {solutionTitle}
+                  </h3>
+                ))}
 
               <LandingProductFeatureKeyPoints
                 keyPoints={solutions}

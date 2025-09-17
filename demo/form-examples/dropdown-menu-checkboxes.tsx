@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
+import * as React from "react";
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
-import { Button } from '@/components/shared/ui/button';
+import { Button } from "@/components/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -11,9 +11,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/shared/ui/dropdown-menu';
+} from "@/components/shared/ui/dropdown-menu";
 
-type Checked = DropdownMenuCheckboxItemProps['checked'];
+type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function DropdownMenuCheckboxes() {
   const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Checkbox } from '@/components/shared/ui/checkbox';
+import { Checkbox } from "@/components/shared/ui/checkbox";
 
 export default function CheckboxDemo() {
   return (

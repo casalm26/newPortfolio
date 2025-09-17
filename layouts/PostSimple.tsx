@@ -1,15 +1,15 @@
-import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
-import { formatDate } from '@shipixen/pliny/utils/formatDate';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import PageTitle from '@/components/shared/PageTitle';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import SectionContainer from '@/components/shared/SectionContainer';
-import { siteConfig } from '@/data/config/site.settings';
-import ScrollTop from '@/components/shared/ScrollTop';
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+import { formatDate } from "@shipixen/pliny/utils/formatDate";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import PageTitle from "@/components/shared/PageTitle";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
+import SectionContainer from "@/components/shared/SectionContainer";
+import { siteConfig } from "@/data/config/site.settings";
+import ScrollTop from "@/components/shared/ScrollTop";
 
 interface LayoutProps {
   className?: string;

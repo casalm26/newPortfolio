@@ -1,13 +1,13 @@
 /**
  * NB: This template is not legal advice, and you are solely responsible for ensuring that you meet your obligations under applicable laws. As privacy laws are constantly evolving, you should regularly review your privacy notice to ensure that it is compliant with updated laws and regulation and that it accurately reflects current data handling practices. We recommend that you consult a lawyer as needed.
  */
-import Link from 'next/link';
-import { metadata } from '@/data/config/metadata';
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
+import Link from "next/link";
+import { metadata } from "@/data/config/metadata";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 const policyConfig = {
-  lastUpdated: 'March 1st, 2024',
+  lastUpdated: "March 1st, 2024",
 };
 
 export default function TermsPage() {
@@ -32,10 +32,10 @@ export default function TermsPage() {
         <div className="mt-20 max-w-screen-md mx-auto bg-white dark:bg-black w-full rounded shadow-md p-6 mb-8">
           <h2 className="text-lg font-semibold mb-4">OVERVIEW</h2>
           <p className="mb-4">
-            This website is operated by{' '}
+            This website is operated by{" "}
             <span className="font-bold">{metadata.businessName}</span>.
-            Throughout the site, the terms “we”, “us” and “our” refer to{' '}
-            <span className="font-bold">{metadata.businessName}</span>.{' '}
+            Throughout the site, the terms “we”, “us” and “our” refer to{" "}
+            <span className="font-bold">{metadata.businessName}</span>.{" "}
             <span className="font-bold">{metadata.businessName}</span> offers
             this website, including all information, tools, and services
             available from this site to you, the user, conditioned upon your
@@ -379,7 +379,7 @@ export default function TermsPage() {
           <p className="mb-4">
             Your submission of personal information through this website is
             governed by our Privacy Policy. To view our Privacy Policy, please
-            see{' '}
+            see{" "}
             <Link href="/privacy" className="text-blue-500">
               Privacy Policy
             </Link>
@@ -524,7 +524,7 @@ export default function TermsPage() {
             SECTION 14 - INDEMNIFICATION
           </h2>
           <p className="mb-4">
-            You agree to indemnify, defend, and hold harmless{' '}
+            You agree to indemnify, defend, and hold harmless{" "}
             {metadata.businessName}
             and our parent, subsidiaries, affiliates, partners, officers,
             directors, agents, contractors, licensors, service providers,
@@ -646,7 +646,7 @@ export default function TermsPage() {
             SECTION 20 - CONTACT INFORMATION
           </h2>
           <p className="mb-4">
-            Questions about the Terms of Service should be sent to us at{' '}
+            Questions about the Terms of Service should be sent to us at{" "}
             <a
               href={`mailto:${metadata.supportEmail}`}
               className="text-blue-500"

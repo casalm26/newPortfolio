@@ -1,11 +1,11 @@
-import { clsx } from 'clsx';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
+import { clsx } from "clsx";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/shared/ui/accordion';
+} from "@/components/shared/ui/accordion";
 
 export interface FaqItem {
   question: string;
@@ -25,8 +25,8 @@ export const LandingFaqCollapsibleSection = ({
   faqItems,
   withBackground = false,
   withBackgroundGlow = false,
-  variant = 'primary',
-  backgroundGlowVariant = 'primary',
+  variant = "primary",
+  backgroundGlowVariant = "primary",
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -36,42 +36,42 @@ export const LandingFaqCollapsibleSection = ({
   faqItems: FaqItem[];
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  variant?: 'primary' | 'secondary';
-  backgroundGlowVariant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
+  backgroundGlowVariant?: "primary" | "secondary";
 }) => {
   return (
     <section
       className={clsx(
-        'relative w-full flex justify-center items-center gap-8 py-12 lg:py-16 flex-col',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "relative w-full flex justify-center items-center gap-8 py-12 lg:py-16 flex-col",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
       {withBackgroundGlow ? (
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-1/2 pointer-events-none">
           <GlowBg
-            className={clsx('w-full lg:w-2/3 h-auto z-0')}
+            className={clsx("w-full lg:w-2/3 h-auto z-0")}
             variant={backgroundGlowVariant}
           />
         </div>
       ) : null}
 
-      <div className={clsx(className, 'w-full p-6 container-narrow')}>
-        {titleComponent || (title && (
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight max-w-xs sm:max-w-none fancyHeading">
-            {title}
-          </h2>
-        ))}
+      <div className={clsx(className, "w-full p-6 container-narrow")}>
+        {titleComponent ||
+          (title && (
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight max-w-xs sm:max-w-none fancyHeading">
+              {title}
+            </h2>
+          ))}
 
-        {descriptionComponent || (description && (
-          <p className="mt-6 md:text-xl">{description}</p>
-        ))}
+        {descriptionComponent ||
+          (description && <p className="mt-6 md:text-xl">{description}</p>)}
 
         <Accordion
           type="single"
@@ -83,12 +83,12 @@ export const LandingFaqCollapsibleSection = ({
               key={index}
               value={`item-${index}`}
               className={clsx(
-                withBackground && variant === 'primary'
-                  ? 'border-primary-500/10'
-                  : '',
-                withBackground && variant === 'secondary'
-                  ? 'border-secondary-500/10'
-                  : '',
+                withBackground && variant === "primary"
+                  ? "border-primary-500/10"
+                  : "",
+                withBackground && variant === "secondary"
+                  ? "border-secondary-500/10"
+                  : "",
               )}
             >
               <AccordionTrigger className="text-left">

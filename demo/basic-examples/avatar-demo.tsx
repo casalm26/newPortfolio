@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from '@/components/shared/ui/avatar';
+} from "@/components/shared/ui/avatar";
 
 export default function AvatarDemo() {
   return (

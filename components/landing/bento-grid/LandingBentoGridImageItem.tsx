@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import Image from 'next/image';
-import { LandingBentoGridItem, ItemVariant } from './LandingBentoGridItem';
+import React from "react";
+import clsx from "clsx";
+import Image from "next/image";
+import { LandingBentoGridItem, ItemVariant } from "./LandingBentoGridItem";
 
 /**
  * A specialized bento grid item with optional top text, center image, and bottom text.
@@ -11,7 +11,7 @@ export function LandingBentoGridImageItem({
   topText,
   topTextComponent,
   imageSrc,
-  imageAlt = '',
+  imageAlt = "",
   imageComponent,
   imageFill = true,
   imageHeight = 400,
@@ -22,7 +22,7 @@ export function LandingBentoGridImageItem({
   rowSpan,
   className,
   href,
-  variant = 'default',
+  variant = "default",
   asChild = false,
   children,
   ...props
@@ -50,11 +50,11 @@ export function LandingBentoGridImageItem({
       {topTextComponent || (
         <div
           className={clsx(
-            'flex items-start justify-center text-sm text-center',
-            variant === 'primary' && 'text-primary-500 dark:text-primary-400',
-            variant === 'secondary' &&
-              'text-secondary-500 dark:text-secondary-400',
-            variant === 'default' && 'text-foreground',
+            "flex items-start justify-center text-sm text-center",
+            variant === "primary" && "text-primary-500 dark:text-primary-400",
+            variant === "secondary" &&
+              "text-secondary-500 dark:text-secondary-400",
+            variant === "default" && "text-foreground",
           )}
         >
           {topText}
@@ -65,8 +65,8 @@ export function LandingBentoGridImageItem({
         (imageSrc && (
           <div
             className={clsx(
-              'flex items-center justify-center relative overflow-hidden rounded-md',
-              imageFill && '-mx-6',
+              "flex items-center justify-center relative overflow-hidden rounded-md",
+              imageFill && "-mx-6",
             )}
           >
             <Image
@@ -74,7 +74,7 @@ export function LandingBentoGridImageItem({
               alt={imageAlt}
               height={imageHeight}
               width={imageWidth}
-              className={clsx(imageFill ? 'w-full' : 'object-cover')}
+              className={clsx(imageFill ? "w-full" : "object-cover")}
             />
           </div>
         ))}
@@ -82,11 +82,11 @@ export function LandingBentoGridImageItem({
       {bottomTextComponent || (
         <div
           className={clsx(
-            'flex items-end justify-center text-sm text-center',
-            variant === 'primary' && 'text-primary-500 dark:text-primary-400',
-            variant === 'secondary' &&
-              'text-secondary-500 dark:text-secondary-400',
-            variant === 'default' && 'text-muted-foreground',
+            "flex items-end justify-center text-sm text-center",
+            variant === "primary" && "text-primary-500 dark:text-primary-400",
+            variant === "secondary" &&
+              "text-secondary-500 dark:text-secondary-400",
+            variant === "default" && "text-muted-foreground",
           )}
         >
           {bottomText}

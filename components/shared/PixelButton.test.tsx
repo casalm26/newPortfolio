@@ -1,173 +1,189 @@
-import React from 'react';
-import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import PixelButton from './ui/PixelButton';
+import React from "react";
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
+import PixelButton from "./ui/PixelButton";
 
 // Mock next/link
-vi.mock('next/link', () => {
+vi.mock("next/link", () => {
   return {
-    default: ({ children, href, ...props }: { children: React.ReactNode; href: string; [key: string]: unknown }) => (
+    default: ({
+      children,
+      href,
+      ...props
+    }: {
+      children: React.ReactNode;
+      href: string;
+      [key: string]: unknown;
+    }) => (
       <a href={href} {...props}>
         {children}
       </a>
-    )
+    ),
   };
 });
 
-describe('PixelButton', () => {
-  describe('Component Rendering', () => {
-    it('should render button with default props', () => {
+describe("PixelButton", () => {
+  describe("Component Rendering", () => {
+    it("should render button with default props", () => {
       render(<PixelButton href="/test">Test Button</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Test Button' });
+
+      const button = screen.getByRole("link", { name: "Test Button" });
       expect(button).toBeInTheDocument();
-      expect(button).toHaveAttribute('href', '/test');
+      expect(button).toHaveAttribute("href", "/test");
     });
 
-    it('should render with primary variant styling', () => {
+    it("should render with primary variant styling", () => {
       render(
         <PixelButton href="/test" variant="primary">
           Primary Button
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Primary Button' });
-      expect(button).toHaveClass('bg-white', 'text-black');
+
+      const button = screen.getByRole("link", { name: "Primary Button" });
+      expect(button).toHaveClass("bg-white", "text-black");
     });
 
-    it('should render with secondary variant styling', () => {
+    it("should render with secondary variant styling", () => {
       render(
         <PixelButton href="/test" variant="secondary">
           Secondary Button
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Secondary Button' });
-      expect(button).toHaveClass('bg-transparent', 'text-white', 'border-terminal-400');
+
+      const button = screen.getByRole("link", { name: "Secondary Button" });
+      expect(button).toHaveClass(
+        "bg-transparent",
+        "text-white",
+        "border-terminal-400",
+      );
     });
 
-    it('should apply pixel font styling', () => {
+    it("should apply pixel font styling", () => {
       render(<PixelButton href="/test">Test</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('font-pixel');
+
+      const button = screen.getByRole("link", { name: "Test" });
+      expect(button).toHaveClass("font-pixel");
     });
   });
 
-  describe('Size Variants', () => {
-    it('should apply default size classes', () => {
+  describe("Size Variants", () => {
+    it("should apply default size classes", () => {
       render(<PixelButton href="/test">Test</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('px-6', 'py-3', 'text-sm');
+
+      const button = screen.getByRole("link", { name: "Test" });
+      expect(button).toHaveClass("px-6", "py-3", "text-sm");
     });
 
-    it('should handle responsive sizing', () => {
+    it("should handle responsive sizing", () => {
       render(<PixelButton href="/test">Test</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('text-sm', 'md:text-base');
+
+      const button = screen.getByRole("link", { name: "Test" });
+      expect(button).toHaveClass("text-sm", "md:text-base");
     });
   });
 
-  describe('Interactive States', () => {
-    it('should have hover effects for primary variant', () => {
+  describe("Interactive States", () => {
+    it("should have hover effects for primary variant", () => {
       render(
         <PixelButton href="/test" variant="primary">
           Hover Test
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Hover Test' });
-      expect(button).toHaveClass('hover:bg-transparent', 'hover:text-white');
+
+      const button = screen.getByRole("link", { name: "Hover Test" });
+      expect(button).toHaveClass("hover:bg-transparent", "hover:text-white");
     });
 
-    it('should have hover effects for secondary variant', () => {
+    it("should have hover effects for secondary variant", () => {
       render(
         <PixelButton href="/test" variant="secondary">
           Hover Test
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Hover Test' });
-      expect(button).toHaveClass('hover:bg-white', 'hover:text-black');
+
+      const button = screen.getByRole("link", { name: "Hover Test" });
+      expect(button).toHaveClass("hover:bg-white", "hover:text-black");
     });
 
-    it('should have transition classes', () => {
+    it("should have transition classes", () => {
       render(<PixelButton href="/test">Test</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Test' });
-      expect(button).toHaveClass('transition-all', 'duration-75');
+
+      const button = screen.getByRole("link", { name: "Test" });
+      expect(button).toHaveClass("transition-all", "duration-75");
     });
   });
 
-  describe('Accessibility', () => {
-    it('should be keyboard accessible', () => {
+  describe("Accessibility", () => {
+    it("should be keyboard accessible", () => {
       render(<PixelButton href="/test">Accessible Button</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Accessible Button' });
+
+      const button = screen.getByRole("link", { name: "Accessible Button" });
       expect(button).toBeInTheDocument();
     });
 
-    it('should have proper link semantics', () => {
+    it("should have proper link semantics", () => {
       render(<PixelButton href="/external">External Link</PixelButton>);
-      
-      const link = screen.getByRole('link', { name: 'External Link' });
-      expect(link).toHaveAttribute('href', '/external');
+
+      const link = screen.getByRole("link", { name: "External Link" });
+      expect(link).toHaveAttribute("href", "/external");
     });
   });
 
-  describe('Custom Props', () => {
-    it('should accept and apply custom className', () => {
+  describe("Custom Props", () => {
+    it("should accept and apply custom className", () => {
       render(
         <PixelButton href="/test" className="custom-class">
           Custom Class
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Custom Class' });
-      expect(button).toHaveClass('custom-class');
+
+      const button = screen.getByRole("link", { name: "Custom Class" });
+      expect(button).toHaveClass("custom-class");
     });
 
-    it('should merge custom className with default classes', () => {
+    it("should merge custom className with default classes", () => {
       render(
         <PixelButton href="/test" className="custom-class">
           Merged Classes
-        </PixelButton>
+        </PixelButton>,
       );
-      
-      const button = screen.getByRole('link', { name: 'Merged Classes' });
-      expect(button).toHaveClass('custom-class', 'font-pixel', 'border');
+
+      const button = screen.getByRole("link", { name: "Merged Classes" });
+      expect(button).toHaveClass("custom-class", "font-pixel", "border");
     });
   });
 
-  describe('Edge Cases', () => {
-    it('should handle empty href', () => {
+  describe("Edge Cases", () => {
+    it("should handle empty href", () => {
       render(<PixelButton href="">Empty Href</PixelButton>);
-      
+
       // Empty href links may not be accessible as "link" role
-      const button = screen.getByText('Empty Href');
-      expect(button).toHaveAttribute('href', '');
+      const button = screen.getByText("Empty Href");
+      expect(button).toHaveAttribute("href", "");
     });
 
-    it('should handle long text content', () => {
-      const longText = 'This is a very long button text that might wrap';
+    it("should handle long text content", () => {
+      const longText = "This is a very long button text that might wrap";
       render(<PixelButton href="/test">{longText}</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: longText });
+
+      const button = screen.getByRole("link", { name: longText });
       expect(button).toBeInTheDocument();
     });
 
-    it('should handle special characters in href', () => {
-      render(<PixelButton href="/test?param=value&other=123">Special Chars</PixelButton>);
-      
-      const button = screen.getByRole('link', { name: 'Special Chars' });
-      expect(button).toHaveAttribute('href', '/test?param=value&other=123');
+    it("should handle special characters in href", () => {
+      render(
+        <PixelButton href="/test?param=value&other=123">
+          Special Chars
+        </PixelButton>,
+      );
+
+      const button = screen.getByRole("link", { name: "Special Chars" });
+      expect(button).toHaveAttribute("href", "/test?param=value&other=123");
     });
 
-    it('should render without crashing with minimal props', () => {
-      expect(() => 
-        render(<PixelButton href="/">Minimal</PixelButton>)
+    it("should render without crashing with minimal props", () => {
+      expect(() =>
+        render(<PixelButton href="/">Minimal</PixelButton>),
       ).not.toThrow();
     });
   });

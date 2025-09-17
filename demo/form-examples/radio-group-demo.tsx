@@ -1,5 +1,5 @@
-import { Label } from '@/components/shared/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/shared/ui/radio-group';
+import { Label } from "@/components/shared/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/shared/ui/radio-group";
 
 export default function RadioGroupDemo() {
   return (

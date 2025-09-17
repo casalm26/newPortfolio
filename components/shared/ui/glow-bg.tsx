@@ -1,23 +1,23 @@
-import clsx from 'clsx';
-import { colors } from '@/data/config/colors';
+import clsx from "clsx";
+import { colors } from "@/data/config/colors";
 
 export const GlowBg = ({
   className,
-  variant = 'primary',
+  variant = "primary",
 }: {
   className?: string;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
 }) => {
   const stopColor =
-    variant === 'primary' ? colors.primary.lighter : colors.secondary.lighter;
+    variant === "primary" ? colors.primary.lighter : colors.secondary.lighter;
   const stopColorTwo =
-    variant === 'primary' ? colors.primary.darker : colors.secondary.darker;
+    variant === "primary" ? colors.primary.darker : colors.secondary.darker;
 
   return (
     <svg
       viewBox="0 0 1024 1024"
       aria-hidden="true"
-      className={clsx(className, 'absolute -z-10')}
+      className={clsx(className, "absolute -z-10")}
     >
       <circle
         cx="512"

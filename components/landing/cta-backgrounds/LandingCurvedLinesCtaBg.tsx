@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import React, { useRef, useState, useCallback, useEffect } from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingCurvedLinesCtaBg = ({
   className,
-  variant = 'default',
-  speed = 'normal',
+  variant = "default",
+  speed = "normal",
   strokeWidth = 2,
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
-  speed?: 'slow' | 'normal' | 'fast';
+  variant?: "default" | "primary" | "secondary";
+  speed?: "slow" | "normal" | "fast";
   strokeWidth?: number;
 }) => {
   const domRef = useRef<HTMLDivElement>(null);
   const [animationKey, setAnimationKey] = useState(0);
-  const [colors, setColors] = useState({ color1: '#ccc', color2: '#555' });
+  const [colors, setColors] = useState({ color1: "#ccc", color2: "#555" });
 
   const generateNewColors = useCallback(() => {
     if (!domRef.current) return;
@@ -27,47 +27,47 @@ export const LandingCurvedLinesCtaBg = ({
 
     let newColors;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const primaryDarker = computedStyle
-          .getPropertyValue('--primary-darker')
+          .getPropertyValue("--primary-darker")
           .trim();
         newColors = {
           color1:
-            convertToRgba({ color: primaryLighter, opacity: 1 }) || '#ccc',
-          color2: convertToRgba({ color: primaryDarker, opacity: 1 }) || '#555',
+            convertToRgba({ color: primaryLighter, opacity: 1 }) || "#ccc",
+          color2: convertToRgba({ color: primaryDarker, opacity: 1 }) || "#555",
         };
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryLighter = computedStyle
-          .getPropertyValue('--secondary-lighter')
+          .getPropertyValue("--secondary-lighter")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
-            convertToRgba({ color: secondaryLighter, opacity: 1 }) || '#ccc',
+            convertToRgba({ color: secondaryLighter, opacity: 1 }) || "#ccc",
           color2:
-            convertToRgba({ color: secondaryDarker, opacity: 1 }) || '#555',
+            convertToRgba({ color: secondaryDarker, opacity: 1 }) || "#555",
         };
         break;
       }
       default: {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
-            convertToRgba({ color: primaryLighter, opacity: 1 }) || '#ccc',
+            convertToRgba({ color: primaryLighter, opacity: 1 }) || "#ccc",
           color2:
-            convertToRgba({ color: secondaryDarker, opacity: 1 }) || '#555',
+            convertToRgba({ color: secondaryDarker, opacity: 1 }) || "#555",
         };
         break;
       }
@@ -77,9 +77,9 @@ export const LandingCurvedLinesCtaBg = ({
 
   const getAnimationDuration = () => {
     switch (speed) {
-      case 'slow':
+      case "slow":
         return 6;
-      case 'fast':
+      case "fast":
         return 2;
       default:
         return 4;
@@ -108,7 +108,7 @@ export const LandingCurvedLinesCtaBg = ({
   return (
     <div
       ref={domRef}
-      className={clsx('absolute inset-0 overflow-hidden', className)}
+      className={clsx("absolute inset-0 overflow-hidden", className)}
     >
       <svg
         className="absolute h-full w-full"
@@ -149,7 +149,7 @@ export const LandingCurvedLinesCtaBg = ({
           }}
           transition={{
             duration: duration,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             repeat: Number.POSITIVE_INFINITY,
             repeatDelay: 1,
             times: [0, 0.3, 0.7, 1],
@@ -169,7 +169,7 @@ export const LandingCurvedLinesCtaBg = ({
           }}
           transition={{
             duration: duration,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             repeat: Number.POSITIVE_INFINITY,
             repeatDelay: 1,
             delay: 0.5,
@@ -191,7 +191,7 @@ export const LandingCurvedLinesCtaBg = ({
           }}
           transition={{
             duration: duration,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             repeat: Number.POSITIVE_INFINITY,
             repeatDelay: 1,
             delay: 1,

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/shared/ui/button';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
-import { clsx } from 'clsx';
-import { CheckIcon } from 'lucide-react';
-import Link from 'next/link';
+import { Button } from "@/components/shared/ui/button";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
+import { clsx } from "clsx";
+import { CheckIcon } from "lucide-react";
+import Link from "next/link";
 
 /**
  * A component meant to be used to show a pricing plan in the landing page, typically used with LandingPricingSection.
@@ -16,9 +16,9 @@ export const LandingPricingPlan = ({
   titleComponent,
   description,
   descriptionComponent,
-  href = '#',
+  href = "#",
   onClick = () => {},
-  ctaText = 'Get started',
+  ctaText = "Get started",
   price,
   discountPrice,
   priceSuffix,
@@ -45,16 +45,16 @@ export const LandingPricingPlan = ({
   return (
     <div
       className={clsx(
-        'max-w-xs border rounded-3xl p-8 xl:p-10 relative overflow-hidden',
+        "max-w-xs border rounded-3xl p-8 xl:p-10 relative overflow-hidden",
         highlighted
-          ? 'bg-white dark:bg-gray-900/80 border-primary-500/50 dark:border-primary-700/50'
-          : '',
+          ? "bg-white dark:bg-gray-900/80 border-primary-500/50 dark:border-primary-700/50"
+          : "",
         featured
-          ? 'bg-gray-900 border-gray-900 dark:bg-gray-100 dark:border-gray-100'
-          : '',
+          ? "bg-gray-900 border-gray-900 dark:bg-gray-100 dark:border-gray-100"
+          : "",
         !featured && !highlighted
-          ? 'bg-white dark:bg-gray-900/80 border-gray-300/70 dark:border-gray-700'
-          : '',
+          ? "bg-white dark:bg-gray-900/80 border-gray-300/70 dark:border-gray-700"
+          : "",
 
         className,
       )}
@@ -76,7 +76,7 @@ export const LandingPricingPlan = ({
             aria-hidden
           >
             <GlowBg
-              className={clsx('w-full h-auto z-0 dark:opacity-50 opacity-100')}
+              className={clsx("w-full h-auto z-0 dark:opacity-50 opacity-100")}
               variant="primary"
             />
           </div>
@@ -87,8 +87,8 @@ export const LandingPricingPlan = ({
         {title ? (
           <h3
             className={clsx(
-              'text-2xl font-bold tracking-tight',
-              featured ? 'w-full text-white dark:text-black' : '',
+              "text-2xl font-bold tracking-tight",
+              featured ? "w-full text-white dark:text-black" : "",
             )}
           >
             {title}
@@ -100,10 +100,10 @@ export const LandingPricingPlan = ({
         {description ? (
           <p
             className={clsx(
-              'w-full text-sm leading-6',
+              "w-full text-sm leading-6",
               featured
-                ? 'text-gray-300 dark:text-gray-500'
-                : 'text-gray-600 dark:text-gray-400',
+                ? "text-gray-300 dark:text-gray-500"
+                : "text-gray-600 dark:text-gray-400",
             )}
           >
             {description}
@@ -115,15 +115,15 @@ export const LandingPricingPlan = ({
         <p className="mt-6 flex items-baseline gap-x-1">
           <span
             className={clsx(
-              featured ? 'text-white dark:text-black' : '',
-              'text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight',
-              discountPrice ? 'line-through' : '',
+              featured ? "text-white dark:text-black" : "",
+              "text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight",
+              discountPrice ? "line-through" : "",
             )}
           >
             {price}
           </span>
 
-          <span className={clsx(featured ? 'text-white dark:text-black' : '')}>
+          <span className={clsx(featured ? "text-white dark:text-black" : "")}>
             {discountPrice}
           </span>
 
@@ -131,9 +131,9 @@ export const LandingPricingPlan = ({
             <span
               className={clsx(
                 featured
-                  ? 'text-gray-300 dark:text-gray-500'
-                  : 'dark:text-gray-400 text-gray-600',
-                'text-sm font-semibold leading-6',
+                  ? "text-gray-300 dark:text-gray-500"
+                  : "dark:text-gray-400 text-gray-600",
+                "text-sm font-semibold leading-6",
               )}
             >
               {priceSuffix}
@@ -145,16 +145,16 @@ export const LandingPricingPlan = ({
           size="lg"
           disabled={soldOut}
           className={clsx(
-            'w-full',
-            featured || soldOut ? 'grayscale' : '',
-            !highlighted && !featured ? 'bg-gray-100 dark:bg-gray-600' : '',
-            soldOut ? 'opacity-50 pointer-events-none' : '',
+            "w-full",
+            featured || soldOut ? "grayscale" : "",
+            !highlighted && !featured ? "bg-gray-100 dark:bg-gray-600" : "",
+            soldOut ? "opacity-50 pointer-events-none" : "",
           )}
-          variant={highlighted ? 'default' : 'outline'}
+          variant={highlighted ? "default" : "outline"}
           asChild
         >
-          <Link href={href} onClick={onClick} className={'flex mt-6 shadow-sm'}>
-            {soldOut ? 'Sold out' : ctaText}
+          <Link href={href} onClick={onClick} className={"flex mt-6 shadow-sm"}>
+            {soldOut ? "Sold out" : ctaText}
           </Link>
         </Button>
 
@@ -162,18 +162,18 @@ export const LandingPricingPlan = ({
           <ul
             className={clsx(
               featured
-                ? 'text-gray-300 dark:text-gray-500'
-                : 'text-gray-700 dark:text-gray-400',
-              'mt-8 space-y-3 text-sm leading-6 xl:mt-10',
+                ? "text-gray-300 dark:text-gray-500"
+                : "text-gray-700 dark:text-gray-400",
+              "mt-8 space-y-3 text-sm leading-6 xl:mt-10",
             )}
           >
             {children.map((child, index) => (
               <li key={index} className="flex gap-x-3">
                 <CheckIcon
                   className={clsx(
-                    featured ? 'text-white dark:text-black' : '',
-                    highlighted ? 'text-primary-500' : 'text-gray-500',
-                    'h-6 w-5 flex-none',
+                    featured ? "text-white dark:text-black" : "",
+                    highlighted ? "text-primary-500" : "text-gray-500",
+                    "h-6 w-5 flex-none",
                   )}
                   aria-hidden="true"
                 />

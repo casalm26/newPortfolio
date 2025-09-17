@@ -1,5 +1,5 @@
-import { Button } from '@/components/shared/ui/button';
-import { Input } from '@/components/shared/ui/input';
+import { Button } from "@/components/shared/ui/button";
+import { Input } from "@/components/shared/ui/input";
 
 export default function InputWithButton() {
   return (

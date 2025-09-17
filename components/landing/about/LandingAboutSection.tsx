@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from '@/components/shared/Image';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
+import clsx from "clsx";
+import Image from "@/components/shared/Image";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
 
 /**
  * A component for the About Us section of the landing page.
@@ -9,17 +9,17 @@ import { GlowBg } from '@/components/shared/ui/glow-bg';
 export function LandingAboutSection({
   className,
   innerClassName,
-  title = 'About Us',
+  title = "About Us",
   titleComponent,
   description,
   descriptionComponent,
-  imageSrc = '/static/images/about-image.webp',
-  imageAlt = 'About us image',
-  textPosition = 'left',
+  imageSrc = "/static/images/about-image.webp",
+  imageAlt = "About us image",
+  textPosition = "left",
   withBackground = false,
   withBackgroundGlow = false,
-  variant = 'primary',
-  backgroundGlowVariant = 'primary',
+  variant = "primary",
+  backgroundGlowVariant = "primary",
 }: {
   className?: string;
   innerClassName?: string;
@@ -29,23 +29,23 @@ export function LandingAboutSection({
   descriptionComponent?: React.ReactNode;
   imageSrc?: string;
   imageAlt?: string;
-  textPosition?: 'center' | 'left';
+  textPosition?: "center" | "left";
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  variant?: 'primary' | 'secondary';
-  backgroundGlowVariant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
+  backgroundGlowVariant?: "primary" | "secondary";
 }) {
   return (
     <section
       className={clsx(
-        'w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
@@ -53,7 +53,7 @@ export function LandingAboutSection({
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-1/2 pointer-events-none">
           <GlowBg
             className={clsx(
-              'w-full lg:w-1/2 h-auto z-0 dark:opacity-50 opacity-100',
+              "w-full lg:w-1/2 h-auto z-0 dark:opacity-50 opacity-100",
             )}
             variant={backgroundGlowVariant}
           />
@@ -62,30 +62,32 @@ export function LandingAboutSection({
 
       <div
         className={clsx(
-          'container-wide w-full p-6 flex flex-col items-center justify-center relative',
+          "container-wide w-full p-6 flex flex-col items-center justify-center relative",
           innerClassName,
         )}
       >
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div
             className={clsx(
-              'flex flex-col gap-4',
-              textPosition === 'center'
-                ? 'items-center text-center'
-                : 'items-start',
+              "flex flex-col gap-4",
+              textPosition === "center"
+                ? "items-center text-center"
+                : "items-start",
             )}
           >
-            {titleComponent || (title && (
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight">
-                {title}
-              </h1>
-            ))}
+            {titleComponent ||
+              (title && (
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight">
+                  {title}
+                </h1>
+              ))}
 
-            {descriptionComponent || (description && (
-              <p className="text-base md:text-lg max-w-xl mt-2 text-gray-700 dark:text-gray-300">
-                {description}
-              </p>
-            ))}
+            {descriptionComponent ||
+              (description && (
+                <p className="text-base md:text-lg max-w-xl mt-2 text-gray-700 dark:text-gray-300">
+                  {description}
+                </p>
+              ))}
           </div>
 
           <div className="w-full h-full flex justify-center lg:justify-end">

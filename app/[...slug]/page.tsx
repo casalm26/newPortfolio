@@ -1,30 +1,30 @@
-import 'css/prism.css';
-import 'katex/dist/katex.css';
-import Link from 'next/link';
-import { Metadata } from 'next';
+import "css/prism.css";
+import "katex/dist/katex.css";
+import Link from "next/link";
+import { Metadata } from "next";
 
-import PageTitle from '@/components/shared/PageTitle';
-import { components } from '@/components/MDXComponents';
-import { MDXLayoutRenderer } from '@shipixen/pliny/mdx-components';
+import PageTitle from "@/components/shared/PageTitle";
+import { components } from "@/components/MDXComponents";
+import { MDXLayoutRenderer } from "@shipixen/pliny/mdx-components";
 import {
   sortPosts,
   coreContent,
   allCoreContent,
-} from '@shipixen/pliny/utils/contentlayer';
-import { allBlogs, allAuthors } from 'contentlayer/generated';
-import type { Authors, Blog } from 'contentlayer/generated';
-import { Button } from '@/components/shared/ui/button';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import PostSimple from '@/layouts/PostSimple';
-import PostLayout from '@/layouts/PostLayout';
-import PostBanner from '@/layouts/PostBanner';
+} from "@shipixen/pliny/utils/contentlayer";
+import { allBlogs, allAuthors } from "contentlayer/generated";
+import type { Authors, Blog } from "contentlayer/generated";
+import { Button } from "@/components/shared/ui/button";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
+import PostSimple from "@/layouts/PostSimple";
+import PostLayout from "@/layouts/PostLayout";
+import PostBanner from "@/layouts/PostBanner";
 
-import { siteConfig } from '@/data/config/site.settings';
+import { siteConfig } from "@/data/config/site.settings";
 
-const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : '';
+const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : "";
 
-const defaultLayout = 'PostLayout';
+const defaultLayout = "PostLayout";
 const layouts = {
   PostSimple,
   PostLayout,
@@ -35,9 +35,9 @@ export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>;
 }): Promise<Metadata | undefined> {
   const params = await props.params;
-  const path = BLOG_URL + decodeURI(params.slug.join('/'));
+  const path = BLOG_URL + decodeURI(params.slug.join("/"));
   const post = allBlogs.find((p) => p.path === path);
-  const authorList = post?.authors || ['default'];
+  const authorList = post?.authors || ["default"];
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author);
     return coreContent(authorResults as Authors);
@@ -51,11 +51,11 @@ export async function generateMetadata(props: {
   const authors = authorDetails.map((author) => author.name);
   let imageList = [siteConfig.socialBanner];
   if (post.images) {
-    imageList = typeof post.images === 'string' ? [post.images] : post.images;
+    imageList = typeof post.images === "string" ? [post.images] : post.images;
   }
   const ogImages = imageList.map((img) => {
     return {
-      url: img.includes('http') ? img : siteConfig.siteUrl + img,
+      url: img.includes("http") ? img : siteConfig.siteUrl + img,
     };
   });
 
@@ -66,16 +66,16 @@ export async function generateMetadata(props: {
       title: post.title,
       description: post.summary,
       siteName: siteConfig.title,
-      locale: 'en_US',
-      type: 'article',
+      locale: "en_US",
+      type: "article",
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
-      url: './',
+      url: "./",
       images: ogImages,
       authors: authors.length > 0 ? authors : [siteConfig.author],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: post.title,
       description: post.summary,
       images: imageList,
@@ -91,7 +91,7 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  const paths = allBlogs.map((p) => ({ slug: p.path.split('/') }));
+  const paths = allBlogs.map((p) => ({ slug: p.path.split("/") }));
   return paths;
 };
 
@@ -99,7 +99,7 @@ export default async function Page(props: {
   params: Promise<{ slug: string[] }>;
 }) {
   const params = await props.params;
-  const path = decodeURI(params.slug.join('/'));
+  const path = decodeURI(params.slug.join("/"));
   // Filter out drafts in production
   const sortedCoreContents = allCoreContent(sortPosts(allBlogs));
   const postIndex = sortedCoreContents.findIndex((p) => p.path === path);
@@ -110,7 +110,7 @@ export default async function Page(props: {
 
         <div className="mt-24 text-center min-h-[40vh]">
           <PageTitle>
-            Under Construction{' '}
+            Under Construction{" "}
             <span role="img" aria-label="roadwork sign">
               🚧
             </span>
@@ -133,16 +133,16 @@ export default async function Page(props: {
   const prev = sortedCoreContents[postIndex + 1];
   const next = sortedCoreContents[postIndex - 1];
   const post = allBlogs.find((p) => p.path === path) as Blog;
-  const authorList = post?.authors || ['default'];
+  const authorList = post?.authors || ["default"];
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author);
     return coreContent(authorResults as Authors);
   });
   const mainContent = coreContent(post);
   const jsonLd = post.structuredData;
-  jsonLd['author'] = authorDetails.map((author) => {
+  jsonLd["author"] = authorDetails.map((author) => {
     return {
-      '@type': 'Person',
+      "@type": "Person",
       name: author.name,
     };
   });

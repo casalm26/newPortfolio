@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 /* Import pixel art design system */
-@import './pixel-art.css';
+@import "./pixel-art.css";
 
 @layer base {
   * {
     border-color: hsl(var(--border));
   }
-  
+
   html,
   body {
     background-color: black;
@@ -18,9 +18,11 @@
   }
 
   :root {
-    --hard-shadow: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
+    --hard-shadow:
+      0px 29px 52px 0px rgba(0, 0, 0, 0.4),
       22px 25px 16px 0px rgba(0, 0, 0, 0.2);
-    --hard-shadow-left: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
+    --hard-shadow-left:
+      0px 29px 52px 0px rgba(0, 0, 0, 0.4),
       -22px 25px 16px 0px rgba(0, 0, 0, 0.2);
     /* Matrix/Terminal theme - Black background, white text */
     --background: 0 0% 0%;
@@ -167,12 +169,12 @@
    * Fancy overlay gradients & animation.
    */
   @property --fancy-x {
-    syntax: '<percentage>';
+    syntax: "<percentage>";
     inherits: true;
     initial-value: 0%;
   }
   @property --fancy-y {
-    syntax: '<percentage>';
+    syntax: "<percentage>";
     inherits: true;
     initial-value: 0%;
   }
@@ -208,7 +210,7 @@
   .fancy-overlay::after {
     --maximum-opacity: 0.1;
 
-    content: '';
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
@@ -297,7 +299,8 @@
   .fancy-glass-contrast {
     --glass-color: 0, 0, 200;
 
-    background: radial-gradient(
+    background:
+      radial-gradient(
         63.94% 63.94% at 50% 0%,
         rgba(var(--glass-color), 0.12) 0%,
         rgba(var(--glass-color), 0) 100%
@@ -309,7 +312,7 @@
   }
 
   .fancy-glass-contrast:after {
-    content: '';
+    content: "";
     width: calc(100% + 2px);
     height: calc(100% + 2px);
     background: var(--primary-darker);
@@ -322,10 +325,11 @@
 
   .fancy-glass-contrast:before,
   .fancy-glass:before {
-    content: '';
+    content: "";
     width: calc(100% + 2px);
     height: calc(100% + 2px);
-    background: linear-gradient(
+    background:
+      linear-gradient(
         rgba(var(--glass-color), 0.12) 0%,
         rgba(var(--glass-color), 0) 74.04%
       ),

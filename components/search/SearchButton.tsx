@@ -1,6 +1,6 @@
-import { KBarButton } from '@shipixen/pliny/search/KBarButton';
-import { siteConfig } from '@/data/config/site.settings';
-import { SearchIcon } from 'lucide-react';
+import { KBarButton } from "@shipixen/pliny/search/KBarButton";
+import { siteConfig } from "@/data/config/site.settings";
+import { SearchIcon } from "lucide-react";
 
 const SearchButton = () => {
   if (siteConfig.search) {

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import * as React from 'react';
+import * as React from "react";
 import {
   ArrowUpCircle,
   CheckCircle2,
@@ -8,10 +8,10 @@ import {
   HelpCircle,
   LucideIcon,
   XCircle,
-} from 'lucide-react';
+} from "lucide-react";
 
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/shared/ui/button';
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/shared/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -19,12 +19,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/shared/ui/command';
+} from "@/components/shared/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/shared/ui/popover';
+} from "@/components/shared/ui/popover";
 
 type Status = {
   value: string;
@@ -34,28 +34,28 @@ type Status = {
 
 const statuses: Status[] = [
   {
-    value: 'backlog',
-    label: 'Backlog',
+    value: "backlog",
+    label: "Backlog",
     icon: HelpCircle,
   },
   {
-    value: 'todo',
-    label: 'Todo',
+    value: "todo",
+    label: "Todo",
     icon: Circle,
   },
   {
-    value: 'in progress',
-    label: 'In Progress',
+    value: "in progress",
+    label: "In Progress",
     icon: ArrowUpCircle,
   },
   {
-    value: 'done',
-    label: 'Done',
+    value: "done",
+    label: "Done",
     icon: CheckCircle2,
   },
   {
-    value: 'canceled',
-    label: 'Canceled',
+    value: "canceled",
+    label: "Canceled",
     icon: XCircle,
   },
 ];
@@ -106,10 +106,10 @@ export default function ComboboxPopover() {
                   >
                     <status.icon
                       className={cn(
-                        'mr-2 h-4 w-4',
+                        "mr-2 h-4 w-4",
                         status.value === selectedStatus?.value
-                          ? 'opacity-100'
-                          : 'opacity-40',
+                          ? "opacity-100"
+                          : "opacity-40",
                       )}
                     />
                     <span>{status.label}</span>

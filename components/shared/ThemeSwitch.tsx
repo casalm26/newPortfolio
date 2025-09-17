@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { MoonIcon, SunIcon } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useThemeSwitch } from '@/components/shared/useThemeSwitch';
+import { useEffect, useState } from "react";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { motion } from "framer-motion";
+import { useThemeSwitch } from "@/components/shared/useThemeSwitch";
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -17,7 +17,7 @@ const ThemeSwitch = () => {
     animate: { opacity: 1, translateY: 0 },
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
     exit: { opacity: 0, translateY: -10 },
   };
@@ -32,7 +32,7 @@ const ThemeSwitch = () => {
       onClick={updateTheme}
       className="relative w-6 h-6"
     >
-      {currentTheme === 'dark' ? (
+      {currentTheme === "dark" ? (
         <motion.div
           {...animation}
           key="dark"

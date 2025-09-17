@@ -1,5 +1,5 @@
 // MongoDB initialization script for testing
-db = db.getSiblingDB('testdb');
+db = db.getSiblingDB("testdb");
 
 // Create test collections and data
 db.users.insertMany([
@@ -9,16 +9,16 @@ db.users.insertMany([
     password_hash: "$2b$10$hash1",
     name: "Test User 1",
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
   },
   {
     _id: ObjectId("507f1f77bcf86cd799439012"),
-    email: "testuser2@example.com", 
+    email: "testuser2@example.com",
     password_hash: "$2b$10$hash2",
     name: "Test User 2",
     created_at: new Date(),
-    updated_at: new Date()
-  }
+    updated_at: new Date(),
+  },
 ]);
 
 db.posts.insertMany([
@@ -28,7 +28,7 @@ db.posts.insertMany([
     content: "Content 1",
     user_id: ObjectId("507f1f77bcf86cd799439011"),
     created_at: new Date(),
-    updated_at: new Date()
+    updated_at: new Date(),
   },
   {
     _id: ObjectId("507f1f77bcf86cd799439022"),
@@ -36,8 +36,8 @@ db.posts.insertMany([
     content: "Content 2",
     user_id: ObjectId("507f1f77bcf86cd799439012"),
     created_at: new Date(),
-    updated_at: new Date()
-  }
+    updated_at: new Date(),
+  },
 ]);
 
 // Create indexes

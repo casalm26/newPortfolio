@@ -1,14 +1,14 @@
-import { slug } from 'github-slugger';
-import tagData from 'app/tag-data.json';
-import { genPageMetadata } from 'app/seo';
-import Link from '@/components/shared/Link';
-import Tag from '@/components/blog/Tag';
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
+import { slug } from "github-slugger";
+import tagData from "app/tag-data.json";
+import { genPageMetadata } from "app/seo";
+import Link from "@/components/shared/Link";
+import Tag from "@/components/blog/Tag";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 export const metadata = genPageMetadata({
-  title: 'Tags',
-  description: 'All tags on the site.',
+  title: "Tags",
+  description: "All tags on the site.",
 });
 
 export default async function Page() {
@@ -29,7 +29,7 @@ export default async function Page() {
           </p>
 
           <div className="w-full mt-12 flex flex-wrap">
-            {tagKeys.length === 0 && 'No tags found.'}
+            {tagKeys.length === 0 && "No tags found."}
             {sortedTags.map((t) => {
               return (
                 <div key={t} className="mb-2 mr-5 mt-2">

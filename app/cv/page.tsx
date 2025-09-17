@@ -1,17 +1,17 @@
-import Header from '@/components/shared/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import { CVTimeline } from '@/components/cv/CVTimeline';
+import Header from "@/components/shared/Header";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+import { CVTimeline } from "@/components/cv/CVTimeline";
 
 export const metadata = {
-  title: 'CV',
-  description: 'Professional experience and career timeline',
+  title: "CV",
+  description: "Professional experience and career timeline",
 };
 
 export default function CVPage() {
   return (
     <div className="min-h-screen bg-black">
       <Header />
-      
+
       <main className="container mx-auto px-4 pt-24 pb-12">
         {/* Breadcrumb */}
         <div className="mb-8">
@@ -27,8 +27,8 @@ export default function CVPage() {
             CAREER_PATH/
           </h1>
           <p className="text-terminal-300 max-w-2xl">
-            Interactive timeline of my professional journey, skills development, and key milestones.
-            Click on nodes to expand details.
+            Interactive timeline of my professional journey, skills development,
+            and key milestones. Click on nodes to expand details.
           </p>
         </div>
 

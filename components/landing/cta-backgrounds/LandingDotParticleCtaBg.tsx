@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import { useEffect, useRef } from "react";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingDotParticleCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -17,7 +17,7 @@ export const LandingDotParticleCtaBg = ({
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const updateCanvasSize = () => {
@@ -35,20 +35,20 @@ export const LandingDotParticleCtaBg = ({
       const computedStyle = getComputedStyle(canvas);
 
       switch (variant) {
-        case 'primary': {
+        case "primary": {
           const primaryColor = computedStyle
-            .getPropertyValue('--primary-main')
+            .getPropertyValue("--primary-main")
             .trim();
           return convertToRgba({ color: primaryColor, opacity: 0.5 });
         }
-        case 'secondary': {
+        case "secondary": {
           const secondaryColor = computedStyle
-            .getPropertyValue('--secondary-main')
+            .getPropertyValue("--secondary-main")
             .trim();
           return convertToRgba({ color: secondaryColor, opacity: 0.5 });
         }
         default:
-          return 'rgba(177, 177, 177, 0.5)';
+          return "rgba(177, 177, 177, 0.5)";
       }
     };
 
@@ -109,11 +109,11 @@ export const LandingDotParticleCtaBg = ({
       updateCanvasSize();
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [variant]);
 
   return (
-    <canvas ref={canvasRef} className={clsx('h-full w-full', className)} />
+    <canvas ref={canvasRef} className={clsx("h-full w-full", className)} />
   );
 };

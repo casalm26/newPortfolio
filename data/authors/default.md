@@ -4,7 +4,7 @@ avatar: /static/images/avatar.png
 occupation: Generalist Developer
 company: Independent
 email: hello@caspian.dev
-twitter: ''
+twitter: ""
 linkedin: https://linkedin.com/in/caspian-almerud
 github: https://github.com/caspianalmerud
 ---

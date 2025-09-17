@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 class Grad {
   x: number;
@@ -119,7 +119,7 @@ interface MovedPoint {
 
 export const LandingWavesCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
   waveSpeedX = 0.0125,
   waveSpeedY = 0.005,
   waveAmpX = 32,
@@ -128,7 +128,7 @@ export const LandingWavesCtaBg = ({
   yGap = 32,
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
   waveSpeedX?: number;
   waveSpeedY?: number;
   waveAmpX?: number;
@@ -140,7 +140,7 @@ export const LandingWavesCtaBg = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const lineColorRef = useRef<string>('rgba(100, 100, 100, 0.5)');
+  const lineColorRef = useRef<string>("rgba(100, 100, 100, 0.5)");
 
   const boundingRef = useRef({ width: 0, height: 0, left: 0, top: 0 });
   const noiseRef = useRef(new Noise(Math.random()));
@@ -153,27 +153,27 @@ export const LandingWavesCtaBg = ({
 
     let lineColor;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryMain = computedStyle
-          .getPropertyValue('--primary-main')
+          .getPropertyValue("--primary-main")
           .trim();
         lineColor =
           convertToRgba({ color: primaryMain, opacity: 0.5 }) ||
-          'rgba(100, 100, 100, 0.5)';
+          "rgba(100, 100, 100, 0.5)";
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryMain = computedStyle
-          .getPropertyValue('--secondary-main')
+          .getPropertyValue("--secondary-main")
           .trim();
         lineColor =
           convertToRgba({ color: secondaryMain, opacity: 0.5 }) ||
-          'rgba(100, 100, 100, 0.5)';
+          "rgba(100, 100, 100, 0.5)";
         break;
       }
       default: {
         // For default variant, use a neutral gray color
-        lineColor = 'rgba(100, 100, 100, 0.5)';
+        lineColor = "rgba(100, 100, 100, 0.5)";
         break;
       }
     }
@@ -205,7 +205,7 @@ export const LandingWavesCtaBg = ({
 
     generateNewColors();
 
-    ctxRef.current = canvas.getContext('2d');
+    ctxRef.current = canvas.getContext("2d");
 
     function setSize() {
       if (!container || !canvas) return;
@@ -295,26 +295,34 @@ export const LandingWavesCtaBg = ({
     setLines();
     requestAnimationFrame(tick);
 
-    window.addEventListener('resize', onResize);
+    window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener("resize", onResize);
     };
-  }, [waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, xGap, yGap, generateNewColors]);
+  }, [
+    waveSpeedX,
+    waveSpeedY,
+    waveAmpX,
+    waveAmpY,
+    xGap,
+    yGap,
+    generateNewColors,
+  ]);
 
   return (
-    <div ref={domRef} className={clsx('inset-0 opacity-70', className)}>
+    <div ref={domRef} className={clsx("inset-0 opacity-70", className)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
           duration: 2,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         ref={containerRef}
         className="absolute inset-0 w-full h-full overflow-hidden"
         style={{
-          backgroundColor: 'transparent',
+          backgroundColor: "transparent",
         }}
       >
         <canvas ref={canvasRef} className="block w-full h-full" />

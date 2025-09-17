@@ -16,7 +16,14 @@
         "Implemented CI/CD pipelines reducing deployment time by 70%",
         "Mentored junior developers and conducted code reviews"
       ],
-      "skills": ["React", "Node.js", "TypeScript", "AWS", "Docker", "PostgreSQL"],
+      "skills": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "AWS",
+        "Docker",
+        "PostgreSQL"
+      ],
       "achievements": [
         "Reduced application load time by 60% through optimization",
         "Implemented microservices architecture for better scalability",
@@ -25,7 +32,7 @@
     },
     {
       "id": "work-previous",
-      "type": "work", 
+      "type": "work",
       "title": "Full-Stack Developer",
       "company": "Digital Solutions Co.",
       "location": "Stockholm, Sweden",
@@ -61,7 +68,12 @@
         "GPA: 4.2/5.0",
         "Relevant coursework: Advanced Algorithms, System Design, Database Systems"
       ],
-      "skills": ["System Architecture", "Algorithms", "Database Design", "Research"]
+      "skills": [
+        "System Architecture",
+        "Algorithms",
+        "Database Design",
+        "Research"
+      ]
     },
     {
       "id": "skill-react",
@@ -157,7 +169,7 @@
     },
     "education": {
       "label": "Education",
-      "color": "#3b82f6", 
+      "color": "#3b82f6",
       "icon": "academic-cap"
     },
     "skill": {

@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import { LandingBentoGridItem, BentoGridItem } from './LandingBentoGridItem';
+import React from "react";
+import clsx from "clsx";
+import { LandingBentoGridItem, BentoGridItem } from "./LandingBentoGridItem";
 
 export interface LandingBentoGridSectionProps {
   title?: string;
@@ -13,9 +13,9 @@ export interface LandingBentoGridSectionProps {
   gridClassName?: string;
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  backgroundGlowVariant?: 'primary' | 'secondary';
-  variant?: 'primary' | 'secondary';
-  textPosition?: 'center' | 'left';
+  backgroundGlowVariant?: "primary" | "secondary";
+  variant?: "primary" | "secondary";
+  textPosition?: "center" | "left";
 }
 
 /**
@@ -29,27 +29,27 @@ export function LandingBentoGridSection({
   descriptionComponent,
   items = [],
   children,
-  className = '',
-  gridClassName = '',
+  className = "",
+  gridClassName = "",
   withBackground = false,
   withBackgroundGlow = false,
-  backgroundGlowVariant = 'primary',
-  variant = 'primary',
-  textPosition = 'center',
+  backgroundGlowVariant = "primary",
+  variant = "primary",
+  textPosition = "center",
 }: LandingBentoGridSectionProps) {
   const hasChildrenToRender = React.Children.count(children) > 0;
 
   return (
     <section
       className={clsx(
-        'w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
@@ -57,10 +57,10 @@ export function LandingBentoGridSection({
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-3/4 pointer-events-none">
           <div
             className={clsx(
-              'w-full lg:w-3/4 h-auto z-0 dark:opacity-50 opacity-100 rounded-full blur-3xl',
-              backgroundGlowVariant === 'primary'
-                ? 'bg-primary-200/30 dark:bg-primary-900/30'
-                : 'bg-secondary-200/30 dark:bg-secondary-900/30',
+              "w-full lg:w-3/4 h-auto z-0 dark:opacity-50 opacity-100 rounded-full blur-3xl",
+              backgroundGlowVariant === "primary"
+                ? "bg-primary-200/30 dark:bg-primary-900/30"
+                : "bg-secondary-200/30 dark:bg-secondary-900/30",
             )}
           />
         </div>
@@ -68,10 +68,10 @@ export function LandingBentoGridSection({
 
       <div
         className={clsx(
-          'container-wide w-full px-6 flex flex-col relative',
-          textPosition === 'center'
-            ? 'items-center text-center'
-            : 'items-start text-left',
+          "container-wide w-full px-6 flex flex-col relative",
+          textPosition === "center"
+            ? "items-center text-center"
+            : "items-start text-left",
         )}
       >
         {titleComponent ||
@@ -90,7 +90,7 @@ export function LandingBentoGridSection({
 
         <div
           className={clsx(
-            'w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6',
+            "w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6",
             gridClassName,
           )}
         >

@@ -1,19 +1,19 @@
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import clsx from "clsx";
+import { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
   className?: string;
-  type?: 'narrow' | 'wide' | 'ultrawide';
+  type?: "narrow" | "wide" | "ultrawide";
 }
 
 export default function SectionContainer({
   children,
-  type = 'narrow',
+  type = "narrow",
   className,
 }: Props) {
   return (
-    <section className={clsx(className, 'w-full', `p-6 container-${type}`)}>
+    <section className={clsx(className, "w-full", `p-6 container-${type}`)}>
       {children}
     </section>
   );

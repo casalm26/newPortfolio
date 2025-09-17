@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/shared/ui/skeleton';
+import { Skeleton } from "@/components/shared/ui/skeleton";
 
 export default function SkeletonDemo() {
   return (

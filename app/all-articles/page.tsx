@@ -1,12 +1,12 @@
-import { allCoreContent, sortPosts } from '@shipixen/pliny/utils/contentlayer';
-import { allBlogs } from 'contentlayer/generated';
-import { genPageMetadata } from 'app/seo';
-import { POSTS_PER_PAGE } from '@/app/all-articles/settings';
-import ListLayout from '@/layouts/ListLayoutWithTags';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
+import { allCoreContent, sortPosts } from "@shipixen/pliny/utils/contentlayer";
+import { allBlogs } from "contentlayer/generated";
+import { genPageMetadata } from "app/seo";
+import { POSTS_PER_PAGE } from "@/app/all-articles/settings";
+import ListLayout from "@/layouts/ListLayoutWithTags";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 
-export const metadata = genPageMetadata({ title: 'Blog' });
+export const metadata = genPageMetadata({ title: "Blog" });
 
 export default function BlogPage() {
   const posts = allCoreContent(sortPosts(allBlogs));

@@ -1,11 +1,11 @@
-import Link from '@/components/shared/Link';
-import { siteConfig } from '@/data/config/site.settings';
-import { formatDate } from '@shipixen/pliny/utils/formatDate';
-import NewsletterForm from '@shipixen/pliny/ui/NewsletterForm';
-import { sortPosts, allCoreContent } from '@shipixen/pliny/utils/contentlayer';
-import { allBlogs } from 'contentlayer/generated';
-import { LandingBlogList } from '@/components/landing/blog/LandingBlogList';
-import { LandingBlogPost } from '@/components/landing/blog/LandingBlogPost';
+import Link from "@/components/shared/Link";
+import { siteConfig } from "@/data/config/site.settings";
+import { formatDate } from "@shipixen/pliny/utils/formatDate";
+import NewsletterForm from "@shipixen/pliny/ui/NewsletterForm";
+import { sortPosts, allCoreContent } from "@shipixen/pliny/utils/contentlayer";
+import { allBlogs } from "contentlayer/generated";
+import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
+import { LandingBlogPost } from "@/components/landing/blog/LandingBlogPost";
 
 const MAX_DISPLAY = 3;
 

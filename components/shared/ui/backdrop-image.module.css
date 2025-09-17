@@ -12,19 +12,19 @@
   filter: saturate(0.5);
 }
 
-@media (min-width: theme('screens.md')) {
+@media (min-width: theme("screens.md")) {
   .figure {
     height: 500px;
   }
 }
 
-@media (min-width: theme('screens.lg')) {
+@media (min-width: theme("screens.lg")) {
   .figure {
     height: 600px;
   }
 }
 
-@media (min-width: theme('screens.xl')) {
+@media (min-width: theme("screens.xl")) {
   .figure {
     height: 700px;
   }

@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingEllipseSideCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
 }) => {
   const domRef = useRef<HTMLDivElement>(null);
   const [animationKey, setAnimationKey] = useState(0);
   const [colors, setColors] = useState({
-    color1: 'rgba(177, 177, 177, 0.3)',
-    color2: 'rgba(34, 34, 34, 0.3)',
+    color1: "rgba(177, 177, 177, 0.3)",
+    color2: "rgba(34, 34, 34, 0.3)",
   });
 
   const ellipsePositions = {
-    ellipse1: { left: '-25%', top: '25%' },
-    ellipse2: { right: '-25%', top: '50%' },
+    ellipse1: { left: "-25%", top: "25%" },
+    ellipse2: { right: "-25%", top: "50%" },
   };
 
   const generateNewColors = useCallback(() => {
@@ -31,54 +31,54 @@ export const LandingEllipseSideCtaBg = ({
 
     let newColors;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const primaryDarker = computedStyle
-          .getPropertyValue('--primary-darker')
+          .getPropertyValue("--primary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: primaryLighter, opacity: 0.3 }) ||
-            'rgba(177, 177, 177, 0.3)',
+            "rgba(177, 177, 177, 0.3)",
           color2:
             convertToRgba({ color: primaryDarker, opacity: 0.3 }) ||
-            'rgba(34, 34, 34, 0.3)',
+            "rgba(34, 34, 34, 0.3)",
         };
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryLighter = computedStyle
-          .getPropertyValue('--secondary-lighter')
+          .getPropertyValue("--secondary-lighter")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: secondaryLighter, opacity: 0.3 }) ||
-            'rgba(177, 177, 177, 0.3)',
+            "rgba(177, 177, 177, 0.3)",
           color2:
             convertToRgba({ color: secondaryDarker, opacity: 0.3 }) ||
-            'rgba(34, 34, 34, 0.3)',
+            "rgba(34, 34, 34, 0.3)",
         };
         break;
       }
       default: {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: primaryLighter, opacity: 0.3 }) ||
-            'rgba(177, 177, 177, 0.3)',
+            "rgba(177, 177, 177, 0.3)",
           color2:
             convertToRgba({ color: secondaryDarker, opacity: 0.3 }) ||
-            'rgba(34, 34, 34, 0.3)',
+            "rgba(34, 34, 34, 0.3)",
         };
         break;
       }
@@ -104,14 +104,14 @@ export const LandingEllipseSideCtaBg = ({
   }, [handleCycleReset, cycleDuration]);
 
   return (
-    <div ref={domRef} className={clsx('inset-0', className)}>
+    <div ref={domRef} className={clsx("inset-0", className)}>
       <motion.div
         key={`ellipse1-${animationKey}`}
         initial={{ opacity: 0.9, scale: 0.8 }}
         animate={{ opacity: [0.9, 1, 1, 0.9], scale: [0.8, 1, 1, 0.8] }}
         transition={{
           duration: 10,
-          ease: 'easeInOut',
+          ease: "easeInOut",
           repeat: Number.POSITIVE_INFINITY,
           repeatDelay: 5,
         }}
@@ -128,7 +128,7 @@ export const LandingEllipseSideCtaBg = ({
         animate={{ opacity: [0.9, 1, 1, 0.9], scale: [0.8, 1, 1, 0.8] }}
         transition={{
           duration: 10,
-          ease: 'easeInOut',
+          ease: "easeInOut",
           repeat: Number.POSITIVE_INFINITY,
           repeatDelay: 5,
           delay: 0.5,

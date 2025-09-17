@@ -13,9 +13,9 @@ import {
   User,
   UserPlus,
   Users,
-} from 'lucide-react';
+} from "lucide-react";
 
-import { Button } from '@/components/shared/ui/button';
+import { Button } from "@/components/shared/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -29,7 +29,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@/components/shared/ui/dropdown-menu';
+} from "@/components/shared/ui/dropdown-menu";
 
 export default function DropdownMenuDemo() {
   return (

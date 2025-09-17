@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import { clsx } from "clsx";
 
 /**
  * A component meant to be used with LandingFooter.
@@ -18,7 +18,7 @@ export const LandingFooterColumn = ({
   return (
     <div
       className={clsx(
-        'flex flex-col gap-4 justify-center w-full text-xs',
+        "flex flex-col gap-4 justify-center w-full text-xs",
         className,
       )}
     >

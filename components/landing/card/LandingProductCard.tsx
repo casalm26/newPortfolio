@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import Image from 'next/image';
+import React from "react";
+import clsx from "clsx";
+import Image from "next/image";
 
 export interface ProductCardProps {
   title: string;
@@ -14,7 +14,7 @@ export interface ProductCardProps {
   bottomComponent?: React.ReactNode;
   featured?: boolean;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'default';
+  variant?: "primary" | "secondary" | "default";
   href?: string;
 }
 
@@ -28,32 +28,32 @@ export function LandingProductCard({
   description,
   descriptionComponent,
   imageSrc,
-  imageAlt = '',
+  imageAlt = "",
   actionComponent,
   topComponent,
   bottomComponent,
   featured = false,
   className,
-  variant = 'default',
+  variant = "default",
   href,
 }: ProductCardProps) {
   const cardClasses = clsx(
-    'relative group flex flex-row md:flex-col gap-4 rounded-xl border shadow-sm transition-all duration-200 overflow-hidden h-full',
-    featured && 'border-2 shadow-md',
+    "relative group flex flex-row md:flex-col gap-4 rounded-xl border shadow-sm transition-all duration-200 overflow-hidden h-full",
+    featured && "border-2 shadow-md",
     featured &&
-      variant === 'primary' &&
-      'border-primary-500/20 dark:border-primary-700/20',
+      variant === "primary" &&
+      "border-primary-500/20 dark:border-primary-700/20",
     featured &&
-      variant === 'secondary' &&
-      'border-secondary-500/20 dark:border-secondary-700/20',
-    variant === 'default' && 'bg-white dark:bg-gray-900',
-    variant === 'primary' && 'bg-primary-100/20 dark:bg-primary-900/10',
-    variant === 'secondary' && 'bg-secondary-100/20 dark:bg-secondary-900/10',
-    'hover:shadow-md',
+      variant === "secondary" &&
+      "border-secondary-500/20 dark:border-secondary-700/20",
+    variant === "default" && "bg-white dark:bg-gray-900",
+    variant === "primary" && "bg-primary-100/20 dark:bg-primary-900/10",
+    variant === "secondary" && "bg-secondary-100/20 dark:bg-secondary-900/10",
+    "hover:shadow-md",
     className,
   );
 
-  const Component = href ? 'a' : 'div';
+  const Component = href ? "a" : "div";
   const hrefProps = href ? { href } : {};
 
   return (
@@ -81,8 +81,8 @@ export function LandingProductCard({
           {titleComponent || (
             <h3
               className={clsx(
-                'md:text-lg font-medium',
-                featured && 'font-bold',
+                "md:text-lg font-medium",
+                featured && "font-bold",
               )}
             >
               {title}

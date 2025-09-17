@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
 // Mock testcontainers
 const mockPostgresContainer = {
@@ -8,7 +8,9 @@ const mockPostgresContainer = {
   withExposedPorts: vi.fn().mockReturnThis(),
   start: vi.fn().mockResolvedValue({
     stop: vi.fn().mockResolvedValue(undefined),
-    getConnectionUri: vi.fn().mockReturnValue('postgres://testuser:testpass@localhost:5432/testdb'),
+    getConnectionUri: vi
+      .fn()
+      .mockReturnValue("postgres://testuser:testpass@localhost:5432/testdb"),
   }),
 };
 
@@ -16,26 +18,26 @@ const mockRedisContainer = {
   withExposedPorts: vi.fn().mockReturnThis(),
   start: vi.fn().mockResolvedValue({
     stop: vi.fn().mockResolvedValue(undefined),
-    getHost: vi.fn().mockReturnValue('localhost'),
+    getHost: vi.fn().mockReturnValue("localhost"),
     getMappedPort: vi.fn().mockReturnValue(6379),
   }),
 };
 
-vi.mock('testcontainers', () => ({
+vi.mock("testcontainers", () => ({
   GenericContainer: vi.fn(),
 }));
 
-vi.mock('@testcontainers/postgresql', () => ({
+vi.mock("@testcontainers/postgresql", () => ({
   PostgreSqlContainer: vi.fn().mockImplementation(() => mockPostgresContainer),
 }));
 
-vi.mock('@testcontainers/redis', () => ({
+vi.mock("@testcontainers/redis", () => ({
   RedisContainer: vi.fn().mockImplementation(() => mockRedisContainer),
 }));
 
 // Mock vitest hooks
-vi.mock('vitest', async () => {
-  const actual = await vi.importActual('vitest');
+vi.mock("vitest", async () => {
+  const actual = await vi.importActual("vitest");
   return {
     ...actual,
     beforeAll: vi.fn(),
@@ -44,9 +46,11 @@ vi.mock('vitest', async () => {
 });
 
 // Import the module after mocking
-const { setupTestEnvironment, teardownTestEnvironment } = await import('./setup');
+const { setupTestEnvironment, teardownTestEnvironment } = await import(
+  "./setup"
+);
 
-describe('Integration Test Setup', () => {
+describe("Integration Test Setup", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Reset environment variables
@@ -58,48 +62,54 @@ describe('Integration Test Setup', () => {
     vi.clearAllMocks();
   });
 
-  describe('setupTestEnvironment', () => {
-    it('should start PostgreSQL and Redis containers', async () => {
+  describe("setupTestEnvironment", () => {
+    it("should start PostgreSQL and Redis containers", async () => {
       const result = await setupTestEnvironment();
 
-      expect(mockPostgresContainer.withDatabase).toHaveBeenCalledWith('testdb');
-      expect(mockPostgresContainer.withUsername).toHaveBeenCalledWith('testuser');
-      expect(mockPostgresContainer.withPassword).toHaveBeenCalledWith('testpass');
+      expect(mockPostgresContainer.withDatabase).toHaveBeenCalledWith("testdb");
+      expect(mockPostgresContainer.withUsername).toHaveBeenCalledWith(
+        "testuser",
+      );
+      expect(mockPostgresContainer.withPassword).toHaveBeenCalledWith(
+        "testpass",
+      );
       expect(mockPostgresContainer.withExposedPorts).toHaveBeenCalledWith(5432);
       expect(mockPostgresContainer.start).toHaveBeenCalled();
 
       expect(mockRedisContainer.withExposedPorts).toHaveBeenCalledWith(6379);
       expect(mockRedisContainer.start).toHaveBeenCalled();
 
-      expect(result).toHaveProperty('postgres');
-      expect(result).toHaveProperty('redis');
-      expect(result).toHaveProperty('databaseUrl');
-      expect(result).toHaveProperty('redisUrl');
+      expect(result).toHaveProperty("postgres");
+      expect(result).toHaveProperty("redis");
+      expect(result).toHaveProperty("databaseUrl");
+      expect(result).toHaveProperty("redisUrl");
     });
 
-    it('should set environment variables correctly', async () => {
+    it("should set environment variables correctly", async () => {
       await setupTestEnvironment();
 
-      expect(process.env.DATABASE_URL).toBe('postgres://testuser:testpass@localhost:5432/testdb');
-      expect(process.env.REDIS_URL).toBe('redis://localhost:6379');
+      expect(process.env.DATABASE_URL).toBe(
+        "postgres://testuser:testpass@localhost:5432/testdb",
+      );
+      expect(process.env.REDIS_URL).toBe("redis://localhost:6379");
     });
 
-    it('should handle NODE_ENV assignment safely', async () => {
+    it("should handle NODE_ENV assignment safely", async () => {
       const originalNodeEnv = process.env.NODE_ENV;
-      
+
       // Test when NODE_ENV can be set normally
       await setupTestEnvironment();
-      
+
       // Restore original NODE_ENV
       if (originalNodeEnv !== undefined) {
         process.env.NODE_ENV = originalNodeEnv;
       }
-      
+
       // The test should not throw even if NODE_ENV is read-only
       expect(true).toBe(true); // Test passes if no error thrown
     });
 
-    it('should return valid TestEnvironment object', async () => {
+    it("should return valid TestEnvironment object", async () => {
       const result = await setupTestEnvironment();
 
       expect(result).toMatchObject({
@@ -111,8 +121,8 @@ describe('Integration Test Setup', () => {
     });
   });
 
-  describe('teardownTestEnvironment', () => {
-    it('should stop containers when environment exists', async () => {
+  describe("teardownTestEnvironment", () => {
+    it("should stop containers when environment exists", async () => {
       // First setup the environment
       await setupTestEnvironment();
 
@@ -123,18 +133,22 @@ describe('Integration Test Setup', () => {
       // Update the started containers to have stop methods
       mockPostgresContainer.start.mockResolvedValue({
         stop: mockPostgresStop,
-        getConnectionUri: vi.fn().mockReturnValue('postgres://testuser:testpass@localhost:5432/testdb'),
+        getConnectionUri: vi
+          .fn()
+          .mockReturnValue(
+            "postgres://testuser:testpass@localhost:5432/testdb",
+          ),
       });
 
       mockRedisContainer.start.mockResolvedValue({
         stop: mockRedisStop,
-        getHost: vi.fn().mockReturnValue('localhost'),
+        getHost: vi.fn().mockReturnValue("localhost"),
         getMappedPort: vi.fn().mockReturnValue(6379),
       });
 
       // Setup again with new mocks
       await setupTestEnvironment();
-      
+
       // Now teardown
       await teardownTestEnvironment();
 
@@ -142,55 +156,73 @@ describe('Integration Test Setup', () => {
       expect(mockRedisStop).toHaveBeenCalled();
     });
 
-    it('should handle teardown when no environment exists', async () => {
+    it("should handle teardown when no environment exists", async () => {
       // Should not throw when called without setup
       await expect(teardownTestEnvironment()).resolves.toBeUndefined();
     });
   });
 
-  describe('Error Handling', () => {
-    it('should handle PostgreSQL container startup failure', async () => {
-      mockPostgresContainer.start.mockRejectedValue(new Error('PostgreSQL startup failed'));
+  describe("Error Handling", () => {
+    it("should handle PostgreSQL container startup failure", async () => {
+      mockPostgresContainer.start.mockRejectedValue(
+        new Error("PostgreSQL startup failed"),
+      );
 
-      await expect(setupTestEnvironment()).rejects.toThrow('PostgreSQL startup failed');
+      await expect(setupTestEnvironment()).rejects.toThrow(
+        "PostgreSQL startup failed",
+      );
     });
 
-    it('should handle Redis container startup failure', async () => {
+    it("should handle Redis container startup failure", async () => {
       // Reset PostgreSQL to succeed, but make Redis fail
       mockPostgresContainer.start.mockResolvedValue({
         stop: vi.fn().mockResolvedValue(undefined),
-        getConnectionUri: vi.fn().mockReturnValue('postgres://testuser:testpass@localhost:5432/testdb'),
+        getConnectionUri: vi
+          .fn()
+          .mockReturnValue(
+            "postgres://testuser:testpass@localhost:5432/testdb",
+          ),
       });
 
-      mockRedisContainer.start.mockRejectedValue(new Error('Redis startup failed'));
+      mockRedisContainer.start.mockRejectedValue(
+        new Error("Redis startup failed"),
+      );
 
-      await expect(setupTestEnvironment()).rejects.toThrow('Redis startup failed');
+      await expect(setupTestEnvironment()).rejects.toThrow(
+        "Redis startup failed",
+      );
     });
 
-    it('should handle container stop failure gracefully', async () => {
-      const mockPostgresStop = vi.fn().mockRejectedValue(new Error('Stop failed'));
+    it("should handle container stop failure gracefully", async () => {
+      const mockPostgresStop = vi
+        .fn()
+        .mockRejectedValue(new Error("Stop failed"));
       const mockRedisStop = vi.fn().mockResolvedValue(undefined);
 
       mockPostgresContainer.start.mockResolvedValue({
         stop: mockPostgresStop,
-        getConnectionUri: vi.fn().mockReturnValue('postgres://testuser:testpass@localhost:5432/testdb'),
+        getConnectionUri: vi
+          .fn()
+          .mockReturnValue(
+            "postgres://testuser:testpass@localhost:5432/testdb",
+          ),
       });
 
       mockRedisContainer.start.mockResolvedValue({
         stop: mockRedisStop,
-        getHost: vi.fn().mockReturnValue('localhost'),
+        getHost: vi.fn().mockReturnValue("localhost"),
         getMappedPort: vi.fn().mockReturnValue(6379),
       });
 
       await setupTestEnvironment();
-      
+
       // Teardown should handle stop failure
-      await expect(teardownTestEnvironment()).rejects.toThrow('Stop failed');
+      await expect(teardownTestEnvironment()).rejects.toThrow("Stop failed");
     });
   });
 
-  describe('Environment Variables', () => {
-    it('should preserve existing environment variables', async () => {
+  describe("Environment Variables", () => {
+    it("should preserve existing environment variables", async () => {
       const originalDatabaseUrl = process.env.DATABASE_URL;
       const originalRedisUrl = process.env.REDIS_URL;
 
@@ -201,20 +233,20 @@ describe('Integration Test Setup', () => {
       expect(process.env.REDIS_URL).not.toBe(originalRedisUrl);
 
       // Values should be test-appropriate
-      expect(process.env.DATABASE_URL).toContain('postgres://');
-      expect(process.env.REDIS_URL).toContain('redis://');
+      expect(process.env.DATABASE_URL).toContain("postgres://");
+      expect(process.env.REDIS_URL).toContain("redis://");
     });
 
-    it('should handle read-only NODE_ENV gracefully', async () => {
+    it("should handle read-only NODE_ENV gracefully", async () => {
       // Mock console.warn to check if it's called
-      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
       // Try to make NODE_ENV read-only (this may not work in all environments)
       const originalNodeEnv = process.env.NODE_ENV;
-      
+
       try {
         await setupTestEnvironment();
-        
+
         // Test should complete without error
         expect(true).toBe(true);
       } finally {
@@ -227,8 +259,8 @@ describe('Integration Test Setup', () => {
     });
   });
 
-  describe('Edge Cases', () => {
-    it('should handle concurrent setup calls', async () => {
+  describe("Edge Cases", () => {
+    it("should handle concurrent setup calls", async () => {
       const promise1 = setupTestEnvironment();
       const promise2 = setupTestEnvironment();
 
@@ -240,36 +272,42 @@ describe('Integration Test Setup', () => {
       expect(result1.redisUrl).toBe(result2.redisUrl);
     });
 
-    it('should handle multiple teardown calls', async () => {
+    it("should handle multiple teardown calls", async () => {
       // Reset container mocks to successful versions
       const mockPostgresStop = vi.fn().mockResolvedValue(undefined);
       const mockRedisStop = vi.fn().mockResolvedValue(undefined);
 
       mockPostgresContainer.start.mockResolvedValue({
         stop: mockPostgresStop,
-        getConnectionUri: vi.fn().mockReturnValue('postgres://testuser:testpass@localhost:5432/testdb'),
+        getConnectionUri: vi
+          .fn()
+          .mockReturnValue(
+            "postgres://testuser:testpass@localhost:5432/testdb",
+          ),
       });
 
       mockRedisContainer.start.mockResolvedValue({
         stop: mockRedisStop,
-        getHost: vi.fn().mockReturnValue('localhost'),
+        getHost: vi.fn().mockReturnValue("localhost"),
         getMappedPort: vi.fn().mockReturnValue(6379),
       });
 
       await setupTestEnvironment();
-      
+
       // Multiple teardowns should not throw
       await teardownTestEnvironment();
       await teardownTestEnvironment();
-      
+
       expect(mockPostgresStop).toHaveBeenCalled();
       expect(mockRedisStop).toHaveBeenCalled();
     });
 
-    it('should provide correct connection URLs format', async () => {
+    it("should provide correct connection URLs format", async () => {
       const result = await setupTestEnvironment();
 
-      expect(result.databaseUrl).toMatch(/^postgres:\/\/\w+:\w+@[\w.-]+:\d+\/\w+$/);
+      expect(result.databaseUrl).toMatch(
+        /^postgres:\/\/\w+:\w+@[\w.-]+:\d+\/\w+$/,
+      );
       expect(result.redisUrl).toMatch(/^redis:\/\/[\w.-]+:\d+$/);
     });
   });

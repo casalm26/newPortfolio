@@ -1,25 +1,25 @@
-import { Source_Sans_3, Oswald } from 'next/font/google';
-import { siteConfig } from '@/data/config/site.settings';
-import { ThemeProviders } from './theme-providers';
-import { Metadata } from 'next';
+import { Source_Sans_3, Oswald } from "next/font/google";
+import { siteConfig } from "@/data/config/site.settings";
+import { ThemeProviders } from "./theme-providers";
+import { Metadata } from "next";
 
-import { colors } from '@/data/config/colors.js';
+import { colors } from "@/data/config/colors.js";
 
-import '@/css/globals.css';
-import { SearchProvider } from '@/components/shared/SearchProvider';
-import { AnalyticsWrapper } from '@/components/shared/Analytics';
+import "@/css/globals.css";
+import { SearchProvider } from "@/components/shared/SearchProvider";
+import { AnalyticsWrapper } from "@/components/shared/Analytics";
 
 const displayFont = Oswald({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-display',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-display",
 });
 
 const baseFont = Source_Sans_3({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-default',
-  weight: ['400', '600'],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-default",
+  weight: ["400", "600"],
 });
 
 const globalColors = colors;
@@ -42,16 +42,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
-    url: './',
+    url: "./",
     siteName: siteConfig.title,
     images: [siteConfig.socialBanner],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   alternates: {
-    canonical: './',
+    canonical: "./",
     types: {
-      'application/rss+xml': `${siteConfig.siteUrl}/feed.xml`,
+      "application/rss+xml": `${siteConfig.siteUrl}/feed.xml`,
     },
   },
   robots: {
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   twitter: {
     title: siteConfig.title,
-    card: 'summary_large_image',
+    card: "summary_large_image",
     images: [siteConfig.socialBanner],
   },
 };
@@ -87,7 +87,7 @@ export default function RootLayout({
         <style>
           {`
           :root, :before, :after {
-            ${style.join(';')}
+            ${style.join(";")}
           }
         `}
         </style>
@@ -128,7 +128,7 @@ export default function RootLayout({
           content="#000"
         />
         <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
-        
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -136,34 +136,35 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Caspian Almerud",
-              "jobTitle": "Generalist Developer",
-              "description": "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.",
-              "url": "https://caspian.dev",
-              "email": "hello@caspian.dev",
-              "image": "https://caspian.dev/static/images/avatar.png",
-              "sameAs": [
+              name: "Caspian Almerud",
+              jobTitle: "Generalist Developer",
+              description:
+                "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.",
+              url: "https://caspian.dev",
+              email: "hello@caspian.dev",
+              image: "https://caspian.dev/static/images/avatar.png",
+              sameAs: [
                 "https://github.com/caspianalmerud",
                 "https://linkedin.com/in/caspian-almerud",
-                "https://twitter.com/caspianalmerud"
+                "https://twitter.com/caspianalmerud",
               ],
-              "knowsAbout": [
+              knowsAbout: [
                 "Full-Stack Development",
                 "React",
                 "Next.js",
-                "TypeScript", 
+                "TypeScript",
                 "Blockchain Development",
                 "Artificial Intelligence",
                 "Machine Learning",
                 "Interactive Art",
                 "Business Strategy",
-                "Product Management"
+                "Product Management",
               ],
-              "worksFor": {
+              worksFor: {
                 "@type": "Organization",
-                "name": "Independent"
-              }
-            })
+                name: "Independent",
+              },
+            }),
           }}
         />
       </head>

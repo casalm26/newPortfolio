@@ -1,13 +1,13 @@
-import { LandingProblemAgitatorItem } from '@/components/landing/problem-agitator/LandingProblemAgitatorItem';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
-import clsx from 'clsx';
-import { Children, ReactElement, cloneElement, Fragment } from 'react';
+import { LandingProblemAgitatorItem } from "@/components/landing/problem-agitator/LandingProblemAgitatorItem";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
+import clsx from "clsx";
+import { Children, ReactElement, cloneElement, Fragment } from "react";
 
 type Child = ReactElement<any, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 const Arrow = ({ className }: { className?: string }) => {
   return (
-    <div className={clsx('h-[120px] flex opacity-20', className)}>
+    <div className={clsx("h-[120px] flex opacity-20", className)}>
       <svg
         viewBox="0 0 39 119"
         fill="none"
@@ -36,12 +36,12 @@ export const LandingProblemAgitator = ({
   descriptionComponent,
   cliffhanger,
   cliffhangerComponent,
-  textPosition = 'center',
+  textPosition = "center",
   withBackground = true,
   withBackgroundGlow = false,
-  variant = 'primary',
-  backgroundGlowVariant = 'primary',
-  containerType = 'ultrawide',
+  variant = "primary",
+  backgroundGlowVariant = "primary",
+  containerType = "ultrawide",
 }: {
   className?: string;
   children?: React.ReactNode;
@@ -51,19 +51,19 @@ export const LandingProblemAgitator = ({
   descriptionComponent?: React.ReactNode;
   cliffhanger?: string | React.ReactNode;
   cliffhangerComponent?: React.ReactNode;
-  textPosition?: 'center' | 'left';
+  textPosition?: "center" | "left";
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  variant?: 'primary' | 'secondary';
-  backgroundGlowVariant?: 'primary' | 'secondary';
-  containerType?: 'narrow' | 'wide' | 'ultrawide';
+  variant?: "primary" | "secondary";
+  backgroundGlowVariant?: "primary" | "secondary";
+  containerType?: "narrow" | "wide" | "ultrawide";
 }) => {
   const childrenWithProps = Children.map(children, (child) => {
     if (!child) {
       return null;
     }
 
-    if (typeof child !== 'object') {
+    if (typeof child !== "object") {
       return child;
     }
 
@@ -71,7 +71,7 @@ export const LandingProblemAgitator = ({
     const reactChildType = reactChild?.type;
 
     return cloneElement(reactChild, {
-      className: ''.concat(''),
+      className: "".concat(""),
       ...(reactChildType === LandingProblemAgitatorItem ? {} : {}),
     });
   });
@@ -79,16 +79,16 @@ export const LandingProblemAgitator = ({
   const childNumber = Children.count(children);
 
   const rotationClassesThree = {
-    0: 'rotate-[220deg] items-center -translate-y-[15px] -translate-x-[30px]',
-    1: 'rotate-[-45deg] items-center -translate-y-[15px] translate-x-[30px]',
-    2: 'rotate-[90deg] items-center justify-center translate-y-[60px]',
+    0: "rotate-[220deg] items-center -translate-y-[15px] -translate-x-[30px]",
+    1: "rotate-[-45deg] items-center -translate-y-[15px] translate-x-[30px]",
+    2: "rotate-[90deg] items-center justify-center translate-y-[60px]",
   };
 
   const rotationClassesFour = {
-    0: 'rotate-[220deg] items-center -translate-y-[15px] -translate-x-[30px]',
-    1: 'rotate-[-45deg] items-center -translate-y-[15px] translate-x-[30px]',
-    2: 'rotate-[45deg] items-center translate-x-[30px] translate-y-[30px]',
-    3: 'rotate-[120deg] items-center translate-y-[45px]',
+    0: "rotate-[220deg] items-center -translate-y-[15px] -translate-x-[30px]",
+    1: "rotate-[-45deg] items-center -translate-y-[15px] translate-x-[30px]",
+    2: "rotate-[45deg] items-center translate-x-[30px] translate-y-[30px]",
+    3: "rotate-[120deg] items-center translate-y-[45px]",
   };
 
   const renderGridItems = () => {
@@ -133,21 +133,21 @@ export const LandingProblemAgitator = ({
   return (
     <section
       className={clsx(
-        'w-full flex justify-center items-center gap-8 p-6 py-12 lg:py-16 flex-col',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "w-full flex justify-center items-center gap-8 p-6 py-12 lg:py-16 flex-col",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
       {withBackgroundGlow ? (
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-1/2 pointer-events-none">
           <GlowBg
-            className={clsx('w-full lg:w-2/3 h-auto z-0')}
+            className={clsx("w-full lg:w-2/3 h-auto z-0")}
             variant={backgroundGlowVariant}
           />
         </div>
@@ -156,29 +156,31 @@ export const LandingProblemAgitator = ({
       {title || description || titleComponent || descriptionComponent ? (
         <div
           className={clsx(
-            'relative w-full flex flex-col sm:items-center',
+            "relative w-full flex flex-col sm:items-center",
             `container-${containerType}`,
-            textPosition === 'center'
-              ? 'items-center text-center'
-              : 'items-start',
+            textPosition === "center"
+              ? "items-center text-center"
+              : "items-start",
           )}
         >
-          {titleComponent || (title && (
-            <h2 className="w-full text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight md:leading-tight max-w-sm sm:max-w-none">
-              {title}
-            </h2>
-          ))}
+          {titleComponent ||
+            (title && (
+              <h2 className="w-full text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight md:leading-tight max-w-sm sm:max-w-none">
+                {title}
+              </h2>
+            ))}
 
-          {descriptionComponent || (description && (
-            <p className="w-full mt-6 md:text-xl">{description}</p>
-          ))}
+          {descriptionComponent ||
+            (description && (
+              <p className="w-full mt-6 md:text-xl">{description}</p>
+            ))}
         </div>
       ) : null}
 
       <div
         className={clsx(
-          'relative isolate grid grid-cols-3 gap-4 mt-8',
-          childNumber === 3 ? 'grid-rows-2' : 'grid-rows-3',
+          "relative isolate grid grid-cols-3 gap-4 mt-8",
+          childNumber === 3 ? "grid-rows-2" : "grid-rows-3",
           `container-${containerType}`,
         )}
       >
@@ -188,13 +190,14 @@ export const LandingProblemAgitator = ({
       {cliffhangerComponent || cliffhanger ? (
         <div
           className={clsx(
-            'mt-12 w-full flex justify-center items-center',
-            textPosition === 'center' ? 'text-center' : 'text-left',
+            "mt-12 w-full flex justify-center items-center",
+            textPosition === "center" ? "text-center" : "text-left",
           )}
         >
-          {cliffhangerComponent || (cliffhanger && (
-            <p className="text-3xl font-medium">{cliffhanger}</p>
-          ))}
+          {cliffhangerComponent ||
+            (cliffhanger && (
+              <p className="text-3xl font-medium">{cliffhanger}</p>
+            ))}
         </div>
       ) : null}
     </section>

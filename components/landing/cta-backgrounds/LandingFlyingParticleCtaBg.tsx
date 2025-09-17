@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import { useEffect, useRef } from "react";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingFlyingParticleCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -17,7 +17,7 @@ export const LandingFlyingParticleCtaBg = ({
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -42,15 +42,15 @@ export const LandingFlyingParticleCtaBg = ({
       const computedStyle = getComputedStyle(canvas);
 
       switch (variant) {
-        case 'primary': {
+        case "primary": {
           const primaryLighter = computedStyle
-            .getPropertyValue('--primary-lighter')
+            .getPropertyValue("--primary-lighter")
             .trim();
           const primaryMain = computedStyle
-            .getPropertyValue('--primary-main')
+            .getPropertyValue("--primary-main")
             .trim();
           const primaryDarker = computedStyle
-            .getPropertyValue('--primary-darker')
+            .getPropertyValue("--primary-darker")
             .trim();
 
           return [
@@ -59,15 +59,15 @@ export const LandingFlyingParticleCtaBg = ({
             convertToRgba({ color: primaryDarker, opacity: 0.7 }),
           ];
         }
-        case 'secondary': {
+        case "secondary": {
           const secondaryLighter = computedStyle
-            .getPropertyValue('--secondary-lighter')
+            .getPropertyValue("--secondary-lighter")
             .trim();
           const secondaryMain = computedStyle
-            .getPropertyValue('--secondary-main')
+            .getPropertyValue("--secondary-main")
             .trim();
           const secondaryDarker = computedStyle
-            .getPropertyValue('--secondary-darker')
+            .getPropertyValue("--secondary-darker")
             .trim();
 
           return [
@@ -78,9 +78,9 @@ export const LandingFlyingParticleCtaBg = ({
         }
         default:
           return [
-            'rgba(177, 177, 177, 0.6)',
-            'rgba(140, 140, 140, 0.5)',
-            'rgba(100, 100, 100, 0.7)',
+            "rgba(177, 177, 177, 0.6)",
+            "rgba(140, 140, 140, 0.5)",
+            "rgba(100, 100, 100, 0.7)",
           ];
       }
     };
@@ -245,14 +245,14 @@ export const LandingFlyingParticleCtaBg = ({
     init();
     animate();
 
-    window.addEventListener('resize', handleResize);
-    parentElement.addEventListener('mousemove', handleMouseMove);
-    parentElement.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener("resize", handleResize);
+    parentElement.addEventListener("mousemove", handleMouseMove);
+    parentElement.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      parentElement.removeEventListener('mousemove', handleMouseMove);
-      parentElement.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener("resize", handleResize);
+      parentElement.removeEventListener("mousemove", handleMouseMove);
+      parentElement.removeEventListener("mouseleave", handleMouseLeave);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
@@ -260,6 +260,6 @@ export const LandingFlyingParticleCtaBg = ({
   }, [variant]);
 
   return (
-    <canvas ref={canvasRef} className={clsx('h-full w-full', className)} />
+    <canvas ref={canvasRef} className={clsx("h-full w-full", className)} />
   );
 };

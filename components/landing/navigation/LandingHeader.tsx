@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { MenuIcon, OrbitIcon } from 'lucide-react';
-import { Button } from '@/components/shared/ui/button';
+import { useState } from "react";
+import Link from "next/link";
+import { MenuIcon, OrbitIcon } from "lucide-react";
+import { Button } from "@/components/shared/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-} from '@/components/shared/ui/sheet';
-import clsx from 'clsx';
+} from "@/components/shared/ui/sheet";
+import clsx from "clsx";
 
 /**
  * A component that renders the navigation bar for the landing page.
@@ -19,14 +19,14 @@ export const LandingHeader = ({
   logoComponent,
   children,
   withBackground = false,
-  variant = 'primary',
+  variant = "primary",
   fixed = false,
   className,
 }: {
   logoComponent?: React.ReactNode;
   children: React.ReactNode;
   withBackground?: boolean;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   fixed?: boolean;
   className?: string;
 }) => {
@@ -35,17 +35,17 @@ export const LandingHeader = ({
   return (
     <nav
       className={clsx(
-        'flex items-center justify-between gap-6 p-4 w-full max-w-full container-narrow lg:rounded-lg',
+        "flex items-center justify-between gap-6 p-4 w-full max-w-full container-narrow lg:rounded-lg",
         fixed
-          ? 'sticky top-4 left-auto right-auto z-50 bg-white/50 dark:bg-black/20 backdrop-blur-xl'
-          : '',
-        withBackground ? 'lg:m-4 justify-self-center' : '',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10 border border-primary-100/30 dark:border-primary-900/30'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10 border border-secondary-100/30 dark:border-secondary-900/30'
-          : '',
+          ? "sticky top-4 left-auto right-auto z-50 bg-white/50 dark:bg-black/20 backdrop-blur-xl"
+          : "",
+        withBackground ? "lg:m-4 justify-self-center" : "",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10 border border-primary-100/30 dark:border-primary-900/30"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10 border border-secondary-100/30 dark:border-secondary-900/30"
+          : "",
         className,
       )}
     >

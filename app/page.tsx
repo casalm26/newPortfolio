@@ -1,5 +1,5 @@
-import Header from '@/components/shared/Header';
-import { PixelArtName } from '@/components/landing';
+import Header from "@/components/shared/Header";
+import { PixelArtName } from "@/components/landing";
 
 export default function Page() {
   return (

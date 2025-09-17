@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import { slug } from 'github-slugger';
-import { formatDate } from '@shipixen/pliny/utils/formatDate';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import { siteConfig } from '@/data/config/site.settings';
-import tagData from 'app/tag-data.json';
-import SectionContainer from '@/components/shared/SectionContainer';
+import { usePathname } from "next/navigation";
+import { slug } from "github-slugger";
+import { formatDate } from "@shipixen/pliny/utils/formatDate";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import { siteConfig } from "@/data/config/site.settings";
+import tagData from "app/tag-data.json";
+import SectionContainer from "@/components/shared/SectionContainer";
 import {
   LandingBlogPost,
   BlogPost,
-} from '@/components/landing/blog/LandingBlogPost';
-import { LandingBlogList } from '@/components/landing/blog/LandingBlogList';
+} from "@/components/landing/blog/LandingBlogPost";
+import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
 
-const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : '/';
+const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : "/";
 
 interface PaginationProps {
   totalPages: number;
@@ -31,7 +31,7 @@ interface ListLayoutProps {
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
   const pathname = usePathname();
-  const basePath = pathname.split('/')[1];
+  const basePath = pathname.split("/")[1];
   const prevPage = currentPage - 1 > 0;
   const nextPage = currentPage + 1 <= totalPages;
 
@@ -98,7 +98,7 @@ export default function ListLayoutWithTags({
   const formattedPosts = displayPosts.map((post): BlogPost => {
     return {
       path: `/${post.path}`,
-      slug: post.slug || '',
+      slug: post.slug || "",
       date: formatDate(post.date, siteConfig.locale),
       title: post.title,
       summary: post.summary,
@@ -109,7 +109,7 @@ export default function ListLayoutWithTags({
         };
       }),
       images: post.images || [],
-      readingTime: post.readingTime?.text || '',
+      readingTime: post.readingTime?.text || "",
       author: {
         name: post.authors?.[0],
       },
@@ -161,7 +161,7 @@ export default function ListLayoutWithTags({
                 {sortedTags.map((t) => {
                   return (
                     <li key={t}>
-                      {pathname.split('/tags/')[1] === slug(t) ? (
+                      {pathname.split("/tags/")[1] === slug(t) ? (
                         <h3 className="inline-block transition-all uppercase text-sm font-bold text-primary-500">
                           {`${t} (${tagCounts[t]})`}
                         </h3>

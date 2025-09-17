@@ -1,11 +1,11 @@
-import { allProjects } from 'contentlayer/generated';
-import { notFound } from 'next/navigation';
-import Header from '@/components/shared/Header';
-import Breadcrumb from '@/components/shared/Breadcrumb';
-import ProjectNavigation from '@/components/projects/ProjectNavigation';
-import Link from 'next/link';
-import { MDXContent } from '@/components/shared/MDXContent';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { allProjects } from "contentlayer/generated";
+import { notFound } from "next/navigation";
+import Header from "@/components/shared/Header";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+import ProjectNavigation from "@/components/projects/ProjectNavigation";
+import Link from "next/link";
+import { MDXContent } from "@/components/shared/MDXContent";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -42,19 +42,22 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-black">
       <Header />
-      
+
       <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
         {/* Breadcrumb Navigation */}
         <div className="mb-8">
-          <Breadcrumb 
+          <Breadcrumb
             customItems={[
-              { label: 'HOME', href: '/' },
-              { label: 'PROJECTS', href: '/projects' },
-              { label: project.title.toUpperCase(), href: `/projects/${project.slug}` }
+              { label: "HOME", href: "/" },
+              { label: "PROJECTS", href: "/projects" },
+              {
+                label: project.title.toUpperCase(),
+                href: `/projects/${project.slug}`,
+              },
             ]}
           />
           <div className="mt-4">
-            <Link 
+            <Link
               href="/projects"
               className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
             >
@@ -74,11 +77,11 @@ export default async function ProjectPage({ params }: Props) {
               {project.duration}
             </span>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             {project.title}
           </h1>
-          
+
           <p className="text-xl text-terminal-300 leading-relaxed mb-6">
             {project.summary}
           </p>
@@ -87,7 +90,7 @@ export default async function ProjectPage({ params }: Props) {
           {project.links && (
             <div className="flex flex-wrap gap-3 mb-6">
               {project.links.live && (
-                <a 
+                <a
                   href={project.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -98,7 +101,7 @@ export default async function ProjectPage({ params }: Props) {
                 </a>
               )}
               {project.links.github && (
-                <a 
+                <a
                   href={project.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -109,7 +112,7 @@ export default async function ProjectPage({ params }: Props) {
                 </a>
               )}
               {project.links.demo && (
-                <a 
+                <a
                   href={project.links.demo}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -124,18 +127,24 @@ export default async function ProjectPage({ params }: Props) {
           {/* Project Meta */}
           <div className="grid md:grid-cols-2 gap-6 p-6 border border-terminal-400">
             <div>
-              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">Role</h3>
+              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">
+                Role
+              </h3>
               <p className="text-white">{project.role}</p>
             </div>
             <div>
-              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">Category</h3>
+              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">
+                Category
+              </h3>
               <p className="text-white">{project.category}</p>
             </div>
             <div>
-              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">Skills</h3>
+              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">
+                Skills
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {project.skills?.map((skill: string) => (
-                  <span 
+                  <span
                     key={skill}
                     className="font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-300"
                   >
@@ -145,10 +154,12 @@ export default async function ProjectPage({ params }: Props) {
               </div>
             </div>
             <div>
-              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">Tools</h3>
+              <h3 className="font-pixel text-xs text-terminal-400 uppercase mb-3">
+                Tools
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tools?.map((tool: string) => (
-                  <span 
+                  <span
                     key={tool}
                     className="font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-300"
                   >
@@ -168,14 +179,14 @@ export default async function ProjectPage({ params }: Props) {
         {/* Navigation Footer */}
         <footer className="mt-16 pt-8 border-t border-terminal-400">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-            <Link 
+            <Link
               href="/projects"
               className="inline-flex items-center font-pixel text-sm text-terminal-400 hover:text-white transition-colors"
             >
               <ArrowLeft size={16} className="mr-2" />
               Back to projects
             </Link>
-            
+
             {/* Project Navigation */}
             <ProjectNavigation currentSlug={project.slug} />
           </div>

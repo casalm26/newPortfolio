@@ -1,15 +1,15 @@
-import { writeFileSync, mkdirSync } from 'fs';
-import path from 'path';
-import { createRequire } from 'module';
-import { slug } from 'github-slugger';
-import { escape } from '@shipixen/pliny/utils/htmlEscaper.js';
-import { siteConfig } from '../data/config/site.settings.js';
-import { allBlogs } from '../.contentlayer/generated/index.mjs';
+import { writeFileSync, mkdirSync } from "fs";
+import path from "path";
+import { createRequire } from "module";
+import { slug } from "github-slugger";
+import { escape } from "@shipixen/pliny/utils/htmlEscaper.js";
+import { siteConfig } from "../data/config/site.settings.js";
+import { allBlogs } from "../.contentlayer/generated/index.mjs";
 
 const require = createRequire(import.meta.url);
-const tagData = require('../app/tag-data.json');
+const tagData = require("../app/tag-data.json");
 
-const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : '';
+const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : "";
 
 const generateRssItem = (config, post) => `
   <item>
@@ -19,11 +19,11 @@ const generateRssItem = (config, post) => `
     ${post.summary && `<description>${escape(post.summary)}</description>`}
     <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     <author>${config.email} (${config.author})</author>
-    ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join('')}
+    ${post.tags && post.tags.map((t) => `<category>${t}</category>`).join("")}
   </item>
 `;
 
-const generateRss = (config, posts, page = 'feed.xml') => `
+const generateRss = (config, posts, page = "feed.xml") => `
   <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
       <title>${escape(config.title)}</title>
@@ -36,12 +36,12 @@ const generateRss = (config, posts, page = 'feed.xml') => `
       <atom:link href="${
         config.siteUrl
       }/${page}" rel="self" type="application/rss+xml"/>
-      ${posts.map((post) => generateRssItem(config, post)).join('')}
+      ${posts.map((post) => generateRssItem(config, post)).join("")}
     </channel>
   </rss>
 `;
 
-async function generateRSS(config, allBlogs, page = 'feed.xml') {
+async function generateRSS(config, allBlogs, page = "feed.xml") {
   const publishPosts = allBlogs
     .filter((post) => post.draft !== true)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -58,7 +58,7 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
         .filter((post) => post.tags.map((t) => slug(t)).includes(tag))
         .sort((a, b) => new Date(b.date) - new Date(a.date));
       const rss = generateRss(config, filteredPosts, `tags/${tag}/${page}`);
-      const rssPath = path.join('public', 'tags', tag);
+      const rssPath = path.join("public", "tags", tag);
       mkdirSync(rssPath, { recursive: true });
       writeFileSync(path.join(rssPath, page), rss);
     }
@@ -67,6 +67,6 @@ async function generateRSS(config, allBlogs, page = 'feed.xml') {
 
 const rss = () => {
   generateRSS(siteConfig, allBlogs);
-  console.log('RSS feed generated...');
+  console.log("RSS feed generated...");
 };
 export default rss;

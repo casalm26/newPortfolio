@@ -1,9 +1,9 @@
-import { allCoreContent, sortPosts } from '@shipixen/pliny/utils/contentlayer';
-import { allBlogs } from 'contentlayer/generated';
-import { POSTS_PER_PAGE } from '@/app/all-articles/settings';
-import ListLayout from '@/layouts/ListLayoutWithTags';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
+import { allCoreContent, sortPosts } from "@shipixen/pliny/utils/contentlayer";
+import { allBlogs } from "contentlayer/generated";
+import { POSTS_PER_PAGE } from "@/app/all-articles/settings";
+import ListLayout from "@/layouts/ListLayoutWithTags";
+import Header from "@/components/shared/Header";
+import Footer from "@/components/shared/Footer";
 
 export const generateStaticParams = async () => {
   const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE);

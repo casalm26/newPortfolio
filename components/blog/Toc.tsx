@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useTocHeadObserver } from '@/components/blog/useTocHeadObserver';
-import { cn } from '@/lib/utils';
-import { Toc } from '@shipixen/pliny/mdx-plugins/remark-toc-headings';
+import { useTocHeadObserver } from "@/components/blog/useTocHeadObserver";
+import { cn } from "@/lib/utils";
+import { Toc } from "@shipixen/pliny/mdx-plugins/remark-toc-headings";
 
 export interface TOCProps {
   toc: Toc;
@@ -35,12 +35,12 @@ const TOC = ({
   fromHeading = 1,
   toHeading = 6,
   asDisclosure = false,
-  exclude = '',
+  exclude = "",
   className,
 }: TOCProps) => {
   const re = Array.isArray(exclude)
-    ? new RegExp('^(' + exclude.join('|') + ')$', 'i')
-    : new RegExp('^(' + exclude + ')$', 'i');
+    ? new RegExp("^(" + exclude.join("|") + ")$", "i")
+    : new RegExp("^(" + exclude + ")$", "i");
 
   const filteredToc = toc.filter(
     (heading) =>
@@ -58,10 +58,10 @@ const TOC = ({
           <li
             key={heading.value}
             className={cn(
-              `${heading.depth >= indentDepth ? 'ml-6' : ''}`,
+              `${heading.depth >= indentDepth ? "ml-6" : ""}`,
               activeId === heading.url
-                ? 'toc-active-link'
-                : 'toc-link fancy-link fancy-link--no-underline',
+                ? "toc-active-link"
+                : "toc-link fancy-link fancy-link--no-underline",
             )}
           >
             <a href={heading.url}>{heading.value}</a>

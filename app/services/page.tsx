@@ -1,7 +1,19 @@
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
-import { LandingProductFeaturesGrid, LandingProductFeature } from '@/components/landing';
-import { Zap, Shield, Users, BarChart4, Globe, Rocket, Settings, Headphones } from 'lucide-react';
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
+import {
+  LandingProductFeaturesGrid,
+  LandingProductFeature,
+} from "@/components/landing";
+import {
+  Zap,
+  Shield,
+  Users,
+  BarChart4,
+  Globe,
+  Rocket,
+  Settings,
+  Headphones,
+} from "lucide-react";
 
 export default function Services() {
   return (
@@ -15,9 +27,9 @@ export default function Services() {
           </h1>
 
           <p className="mt-6 md:text-xl">
-            We offer comprehensive solutions designed to help your business grow,
-            optimize operations, and achieve your goals. Our expert team delivers
-            cutting-edge services tailored to your unique needs.
+            We offer comprehensive solutions designed to help your business
+            grow, optimize operations, and achieve your goals. Our expert team
+            delivers cutting-edge services tailored to your unique needs.
           </p>
 
           {/* Services Grid */}
@@ -29,60 +41,84 @@ export default function Services() {
             <LandingProductFeature
               title="Strategy & Consulting"
               description="Expert guidance to develop winning strategies and roadmaps for your business transformation."
-              leadingComponent={<BarChart4 className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <BarChart4 className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Technology Solutions"
               description="Custom software development and technology implementation to streamline your operations."
-              leadingComponent={<Zap className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Zap className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Security & Compliance"
               description="Comprehensive security solutions and compliance management to protect your business."
-              leadingComponent={<Shield className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Shield className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Team Training"
               description="Professional training programs to upskill your team and maximize platform adoption."
-              leadingComponent={<Users className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Users className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Global Support"
               description="24/7 worldwide support with local expertise to ensure your success anywhere."
-              leadingComponent={<Globe className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Globe className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Scale & Growth"
               description="Scalable solutions that grow with your business, from startup to enterprise."
-              leadingComponent={<Rocket className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Rocket className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Custom Integration"
               description="Seamless integration with your existing systems and third-party applications."
-              leadingComponent={<Settings className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Settings className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
             <LandingProductFeature
               title="Premium Support"
               description="Dedicated account management and priority support for enterprise clients."
-              leadingComponent={<Headphones className="h-8 w-8 text-primary-500 mb-4" />}
+              leadingComponent={
+                <Headphones className="h-8 w-8 text-primary-500 mb-4" />
+              }
             />
           </LandingProductFeaturesGrid>
 
           <div className="mt-16">
-            <h2 className="text-3xl font-semibold mb-8">Why Choose Our Services?</h2>
+            <h2 className="text-3xl font-semibold mb-8">
+              Why Choose Our Services?
+            </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h3 className="text-xl font-semibold mb-4">Proven Track Record</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Proven Track Record
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  With hundreds of successful projects and satisfied clients, we have
-                  the experience and expertise to deliver exceptional results.
+                  With hundreds of successful projects and satisfied clients, we
+                  have the experience and expertise to deliver exceptional
+                  results.
                 </p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-4">Tailored Solutions</h3>
+                <h3 className="text-xl font-semibold mb-4">
+                  Tailored Solutions
+                </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   We understand that every business is unique, and we create
-                  customized solutions that fit your specific requirements and goals.
+                  customized solutions that fit your specific requirements and
+                  goals.
                 </p>
               </div>
               <div>

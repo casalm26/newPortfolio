@@ -1,6 +1,6 @@
-import Image from '@/components/shared/Image';
-import Link from 'next/link';
-import { clsx } from 'clsx';
+import Image from "@/components/shared/Image";
+import Link from "next/link";
+import { clsx } from "clsx";
 
 export interface BlogPost {
   path?: string;
@@ -24,14 +24,14 @@ export interface BlogPost {
  */
 export const LandingBlogPost = ({
   post,
-  imagePosition = 'right',
+  imagePosition = "right",
 }: {
   post: BlogPost;
-  imagePosition?: 'left' | 'center' | 'right';
+  imagePosition?: "left" | "center" | "right";
 }) => {
   const {
     path,
-    basePath = '/blog',
+    basePath = "/blog",
     slug,
     date,
     title,
@@ -44,29 +44,29 @@ export const LandingBlogPost = ({
   const firstImage = images?.[0];
 
   const isHorizontalLayout =
-    imagePosition === 'left' || imagePosition === 'right';
+    imagePosition === "left" || imagePosition === "right";
 
   return (
     <div
       className={clsx(
-        'flex group bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-800',
-        isHorizontalLayout ? 'flex-col-reverse md:flex-row' : 'flex-col',
+        "flex group bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-200 dark:border-gray-800",
+        isHorizontalLayout ? "flex-col-reverse md:flex-row" : "flex-col",
       )}
     >
       {firstImage && (
         <div
           className={clsx(
-            'relative overflow-hidden',
-            imagePosition === 'center' && 'w-full h-48',
-            imagePosition === 'left' && 'w-full h-40 md:w-1/3 md:h-auto',
-            imagePosition === 'right' &&
-              'w-full h-40 md:w-1/3 md:h-auto order-last',
+            "relative overflow-hidden",
+            imagePosition === "center" && "w-full h-48",
+            imagePosition === "left" && "w-full h-40 md:w-1/3 md:h-auto",
+            imagePosition === "right" &&
+              "w-full h-40 md:w-1/3 md:h-auto order-last",
           )}
         >
           <Link href={path || `${basePath}/${slug}`}>
             <Image
               src={firstImage}
-              alt={title || 'Blog post image'}
+              alt={title || "Blog post image"}
               fill
               className="object-cover transition-transform group-hover:scale-105 duration-500"
             />
@@ -76,8 +76,8 @@ export const LandingBlogPost = ({
 
       <div
         className={clsx(
-          'relative flex flex-col gap-4 p-6',
-          isHorizontalLayout && 'flex-1',
+          "relative flex flex-col gap-4 p-6",
+          isHorizontalLayout && "flex-1",
         )}
       >
         <Link
@@ -93,7 +93,7 @@ export const LandingBlogPost = ({
               <div className="relative w-8 h-8 rounded-full overflow-hidden">
                 <Image
                   src={author.avatar}
-                  alt={author.name || 'Author'}
+                  alt={author.name || "Author"}
                   fill
                   className="object-cover"
                 />
@@ -123,14 +123,14 @@ export const LandingBlogPost = ({
         <div className="flex flex-wrap justify-between gap-4 mt-auto pt-4">
           {readingTime && (
             <span className="flex-shrink-0 text-sm text-gray-500 dark:text-gray-400 py-0.5">
-              {readingTime} {typeof readingTime === 'number' ? 'min read' : ''}
+              {readingTime} {typeof readingTime === "number" ? "min read" : ""}
             </span>
           )}
 
           {tags && tags.length > 0 && (
             <div className="flex flex-wrap gap-2 items-center">
               {tags.map((tag, index) => {
-                if (typeof tag === 'string') {
+                if (typeof tag === "string") {
                   return (
                     <span
                       key={index}

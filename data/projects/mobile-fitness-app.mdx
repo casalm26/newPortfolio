@@ -1,21 +1,31 @@
 ---
-title: 'FitTracker - Personal Fitness Mobile App'
-date: '2024-05-15'
-lastmod: '2024-06-30'
-tags: ['React Native', 'Mobile', 'Fitness', 'UX Design', 'Firebase']
+title: "FitTracker - Personal Fitness Mobile App"
+date: "2024-05-15"
+lastmod: "2024-06-30"
+tags: ["React Native", "Mobile", "Fitness", "UX Design", "Firebase"]
 draft: false
-summary: 'Cross-platform mobile fitness tracking app with workout planning, progress tracking, and social features'
-images: ['/projects/fittracker/hero.png']
-projectType: 'Technical'
-category: 'Mobile Development'
-duration: '3 months'
-role: 'Mobile Developer & UX Designer'
-skills: ['React Native', 'TypeScript', 'Firebase', 'Redux Toolkit', 'Expo', 'Figma']
-tools: ['React Native', 'Expo', 'Firebase', 'Redux', 'Figma', 'TestFlight', 'Google Play Console']
+summary: "Cross-platform mobile fitness tracking app with workout planning, progress tracking, and social features"
+images: ["/projects/fittracker/hero.png"]
+projectType: "Technical"
+category: "Mobile Development"
+duration: "3 months"
+role: "Mobile Developer & UX Designer"
+skills:
+  ["React Native", "TypeScript", "Firebase", "Redux Toolkit", "Expo", "Figma"]
+tools:
+  [
+    "React Native",
+    "Expo",
+    "Firebase",
+    "Redux",
+    "Figma",
+    "TestFlight",
+    "Google Play Console",
+  ]
 links:
-  live: 'https://apps.apple.com/fittracker'
-  github: 'https://github.com/username/fittracker-app'
-  demo: 'https://youtu.be/fittracker-demo'
+  live: "https://apps.apple.com/fittracker"
+  github: "https://github.com/username/fittracker-app"
+  demo: "https://youtu.be/fittracker-demo"
 ---
 
 ## Project Overview
@@ -34,6 +44,7 @@ FitTracker is a comprehensive cross-platform mobile fitness application that hel
 ## Technical Implementation
 
 ### Mobile Architecture
+
 - **Cross-Platform Development**: Single codebase for iOS and Android
 - **State Management**: Redux Toolkit for predictable state updates
 - **Local Storage**: SQLite for offline data persistence
@@ -41,12 +52,14 @@ FitTracker is a comprehensive cross-platform mobile fitness application that hel
 - **Push Notifications**: Workout reminders and achievement alerts
 
 ### User Experience Design
+
 - **Research-Driven Design**: Conducted user interviews with 50+ fitness enthusiasts
 - **Accessibility First**: VoiceOver/TalkBack support, high contrast modes
 - **Motion Design**: Smooth animations using React Native Reanimated
 - **Responsive Layout**: Adapts to all screen sizes and orientations
 
 ### Performance Optimization
+
 - **Bundle Splitting**: Code splitting for faster app launch
 - **Image Optimization**: WebP format with fallbacks, lazy loading
 - **Memory Management**: Optimized list rendering for large datasets
@@ -70,12 +83,14 @@ FitTracker is a comprehensive cross-platform mobile fitness application that hel
 ## Design Process
 
 ### User Research
+
 - Conducted 50+ user interviews
 - Analyzed competitor apps and market gaps
 - Created user personas and journey maps
 - Tested prototypes with real users
 
 ### Visual Design
+
 - Created comprehensive design system
 - Prototyped interactions in Figma
 - Maintained consistency across 80+ screens
@@ -88,10 +103,10 @@ FitTracker is a comprehensive cross-platform mobile fitness application that hel
 const syncWorkouts = async () => {
   const localWorkouts = await getLocalWorkouts();
   const remoteWorkouts = await getRemoteWorkouts();
-  
+
   const conflicts = findConflicts(localWorkouts, remoteWorkouts);
   const resolved = await resolveConflicts(conflicts);
-  
+
   await updateLocal(resolved);
   await updateRemote(resolved);
 };

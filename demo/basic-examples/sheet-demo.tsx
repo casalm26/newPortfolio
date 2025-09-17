@@ -1,6 +1,6 @@
-import { Button } from '@/components/shared/ui/button';
-import { Input } from '@/components/shared/ui/input';
-import { Label } from '@/components/shared/ui/label';
+import { Button } from "@/components/shared/ui/button";
+import { Input } from "@/components/shared/ui/input";
+import { Label } from "@/components/shared/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -10,7 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/shared/ui/sheet';
+} from "@/components/shared/ui/sheet";
 
 export default function SheetDemo() {
   return (

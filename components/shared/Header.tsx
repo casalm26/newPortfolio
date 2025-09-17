@@ -1,35 +1,40 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import ThemeSwitch from '@/components/shared/ThemeSwitch';
-import SearchButton from '@/components/search/SearchButton';
-import SocialLinks from '@/components/shared/SocialLinks';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import ThemeSwitch from "@/components/shared/ThemeSwitch";
+import SearchButton from "@/components/search/SearchButton";
+import SocialLinks from "@/components/shared/SocialLinks";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const Header = ({ className }: { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
   const navItems = [
-    { href: '/', label: 'HOME', prefix: '~/' },
-    { href: '/projects', label: 'PROJECTS', prefix: './projects' },
-    { href: '/cv', label: 'CV', prefix: './cv' },
-    { href: '/about', label: 'ABOUT', prefix: './about' },
-    { href: '/contact', label: 'CONTACT', prefix: './contact' },
+    { href: "/", label: "HOME", prefix: "~/" },
+    { href: "/projects", label: "PROJECTS", prefix: "./projects" },
+    { href: "/cv", label: "CV", prefix: "./cv" },
+    { href: "/about", label: "ABOUT", prefix: "./about" },
+    { href: "/contact", label: "CONTACT", prefix: "./contact" },
   ];
 
   const isActive = (href: string) => {
     if (!pathname) return false;
-    if (href === '/' && pathname === '/') return true;
-    if (href !== '/' && pathname.startsWith(href)) return true;
+    if (href === "/" && pathname === "/") return true;
+    if (href !== "/" && pathname.startsWith(href)) return true;
     return false;
   };
 
   return (
-    <header className={cn("fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-terminal-400", className)}>
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-terminal-400",
+        className,
+      )}
+    >
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -51,8 +56,8 @@ const Header = ({ className }: { className?: string }) => {
                 className={cn(
                   "font-pixel text-xs px-3 py-2 border transition-all duration-75",
                   isActive(item.href)
-                    ? "bg-white text-black border-white" 
-                    : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black"
+                    ? "bg-white text-black border-white"
+                    : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
                 )}
               >
                 <span className="mr-1 text-terminal-400">{item.prefix}</span>
@@ -93,7 +98,7 @@ const Header = ({ className }: { className?: string }) => {
                     "font-pixel text-sm px-4 py-3 border transition-all duration-75 w-full text-left",
                     isActive(item.href)
                       ? "bg-white text-black border-white"
-                      : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black"
+                      : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
                   )}
                 >
                   <span className="mr-2 text-terminal-400">{item.prefix}</span>

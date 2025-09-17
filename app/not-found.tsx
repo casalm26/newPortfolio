@@ -1,6 +1,6 @@
-import Link from '@/components/shared/Link';
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
+import Link from "@/components/shared/Link";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
 
 export default function NotFound() {
   return (

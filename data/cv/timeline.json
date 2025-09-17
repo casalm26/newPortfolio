@@ -41,7 +41,15 @@
         "Participated in Agile development with weekly sprints",
         "Engaged in mob-programming and pair-programming sessions"
       ],
-      "skills": ["JavaScript", "React.js", "Node.js", "Project Management", "TypeScript", "HTML5", "CSS"],
+      "skills": [
+        "JavaScript",
+        "React.js",
+        "Node.js",
+        "Project Management",
+        "TypeScript",
+        "HTML5",
+        "CSS"
+      ],
       "achievements": [
         "Completed intensive 12-week bootcamp",
         "Built multiple full-stack projects",
@@ -68,7 +76,14 @@
         "Provided coaching services to individuals and teams",
         "Consulted on office technology solutions"
       ],
-      "skills": ["Consulting", "Web Development", "Database Management", "Podcast Production", "Video Editing", "IT Infrastructure"],
+      "skills": [
+        "Consulting",
+        "Web Development",
+        "Database Management",
+        "Podcast Production",
+        "Video Editing",
+        "IT Infrastructure"
+      ],
       "achievements": [
         "Successfully ran independent consulting business for 5+ years",
         "Delivered projects across multiple technical domains",
@@ -116,7 +131,15 @@
         "Created and implemented email campaigns directly targeted at customers",
         "Identified and executed affiliate partnerships with relevant influencers and podcasts"
       ],
-      "skills": ["Google Ads", "SEM", "SEO", "B2C", "PPC", "Meta Business Manager", "B2B"],
+      "skills": [
+        "Google Ads",
+        "SEM",
+        "SEO",
+        "B2C",
+        "PPC",
+        "Meta Business Manager",
+        "B2B"
+      ],
       "achievements": [
         "Successfully managed editorial calendar with consistent content publication",
         "Improved technical SEO performance with regular reporting",
@@ -144,7 +167,14 @@
         "Strategy for finding new investors",
         "Oversaw CRM and CMS software"
       ],
-      "skills": ["Newsletters", "Investor Relations", "Customer Support", "Database Management", "Funding", "Event Management"],
+      "skills": [
+        "Newsletters",
+        "Investor Relations",
+        "Customer Support",
+        "Database Management",
+        "Funding",
+        "Event Management"
+      ],
       "achievements": [
         "Successfully managed investor event with 220+ participants",
         "Implemented automated investor onboarding systems",
@@ -168,7 +198,12 @@
         "Supported business development initiatives",
         "Created content marketing strategies"
       ],
-      "skills": ["SEO", "Video Editing", "Business Development", "Content Marketing"],
+      "skills": [
+        "SEO",
+        "Video Editing",
+        "Business Development",
+        "Content Marketing"
+      ],
       "achievements": [
         "Contributed to Sweden's largest personal finance platform",
         "Streamlined content production processes",
@@ -190,7 +225,12 @@
         "Offered mental health support and guidance",
         "Supported educational development and planning"
       ],
-      "skills": ["Youth Development", "Mentoring", "Program Development", "Social Services"],
+      "skills": [
+        "Youth Development",
+        "Mentoring",
+        "Program Development",
+        "Social Services"
+      ],
       "achievements": [
         "Successfully supported multiple teenagers in their development",
         "Developed effective youth engagement programs",
@@ -212,7 +252,12 @@
         "Created educational material for various types of learners",
         "Managed project timeline and deliverables"
       ],
-      "skills": ["Project Management", "Digital Strategy", "Community Building", "Educational Content"],
+      "skills": [
+        "Project Management",
+        "Digital Strategy",
+        "Community Building",
+        "Educational Content"
+      ],
       "achievements": [
         "Successfully managed major digital collection project",
         "Coordinated community engagement for educational purposes",
@@ -233,7 +278,12 @@
         "Developed creative content and marketing strategies",
         "Managed project development from concept to execution"
       ],
-      "skills": ["Creative Development", "Co-founding", "Energy Sector", "Marketing"],
+      "skills": [
+        "Creative Development",
+        "Co-founding",
+        "Energy Sector",
+        "Marketing"
+      ],
       "achievements": [
         "Successfully co-founded and launched creative venture",
         "Developed innovative energy-focused content",
@@ -245,7 +295,7 @@
       "type": "work",
       "title": "Host",
       "company": "Ett Samtal",
-      "location": "Sweden", 
+      "location": "Sweden",
       "startDate": "2019-01",
       "endDate": "2019-06",
       "description": "Hosted conversations and events. Focused on meaningful dialogue and community building.",
@@ -254,7 +304,12 @@
         "Facilitated meaningful dialogues between participants",
         "Created content for social media and video platforms"
       ],
-      "skills": ["Event Hosting", "Community Building", "Content Creation", "Public Speaking"],
+      "skills": [
+        "Event Hosting",
+        "Community Building",
+        "Content Creation",
+        "Public Speaking"
+      ],
       "achievements": [
         "Successfully hosted numerous community conversations",
         "Built strong local community connections",
@@ -276,7 +331,12 @@
         "Managed content production and distribution",
         "Built audience engagement across social media platforms"
       ],
-      "skills": ["Content Creation", "Video Production", "Social Media", "Educational Content"],
+      "skills": [
+        "Content Creation",
+        "Video Production",
+        "Social Media",
+        "Educational Content"
+      ],
       "achievements": [
         "Maintained consistent daily content creation schedule",
         "Built engaged audience across multiple platforms",
@@ -298,7 +358,12 @@
         "Supported Visual Viking Academy training programs",
         "Assisted with project coordination and client relations"
       ],
-      "skills": ["Project Management", "Visual Thinking", "Graphical Recording", "Training Development"],
+      "skills": [
+        "Project Management",
+        "Visual Thinking",
+        "Graphical Recording",
+        "Training Development"
+      ],
       "achievements": [
         "Completed comprehensive project management internship",
         "Mastered Visual Thinking methodologies",
@@ -321,7 +386,12 @@
         "Produced documentary content about local community",
         "Created event decorations and atmospheric design"
       ],
-      "skills": ["Event Management", "Theatre Production", "Documentary Production", "Creative Direction"],
+      "skills": [
+        "Event Management",
+        "Theatre Production",
+        "Documentary Production",
+        "Creative Direction"
+      ],
       "achievements": [
         "Successfully produced theatre event at Malmö City Theatre",
         "Created compelling documentary about local community",
@@ -330,7 +400,7 @@
     },
     {
       "id": "2017-assistant-project-manager",
-      "type": "work", 
+      "type": "work",
       "title": "Assistant Project Manager",
       "company": "Skånes Basketball Federation",
       "location": "Malmö, Sweden",
@@ -343,7 +413,12 @@
         "Supported the startup and development of 'Home Court' project",
         "Coordinated with basketball clubs and community organizations"
       ],
-      "skills": ["Sports Administration", "Grant Writing", "Partnership Development", "Youth Programs"],
+      "skills": [
+        "Sports Administration",
+        "Grant Writing",
+        "Partnership Development",
+        "Youth Programs"
+      ],
       "achievements": [
         "Successfully secured funding for 'Home Court' project",
         "Established valuable partnerships within basketball community",
@@ -365,7 +440,12 @@
         "Handled administration and project management",
         "Built organizational structure from ground up"
       ],
-      "skills": ["NGO Development", "Organizational Building", "Strategic Planning", "Personnel Management"],
+      "skills": [
+        "NGO Development",
+        "Organizational Building",
+        "Strategic Planning",
+        "Personnel Management"
+      ],
       "achievements": [
         "Successfully transformed project into sustainable NGO",
         "Built comprehensive organizational structure",
@@ -387,7 +467,12 @@
         "Developed and marketed homecare and miscellaneous services",
         "Managed business operations and client relationships"
       ],
-      "skills": ["Entrepreneurship", "Financial Management", "Business Development", "Service Sales"],
+      "skills": [
+        "Entrepreneurship",
+        "Financial Management",
+        "Business Development",
+        "Service Sales"
+      ],
       "achievements": [
         "Achieved turnover of 100,000 SEK in first 5 months",
         "Successfully launched and operated student company",

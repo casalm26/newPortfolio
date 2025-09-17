@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { formatDate } from '@shipixen/pliny/utils/formatDate';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import { siteConfig } from '@/data/config/site.settings';
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { formatDate } from "@shipixen/pliny/utils/formatDate";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import { siteConfig } from "@/data/config/site.settings";
 import {
   LandingBlogPost,
   BlogPost,
-} from '@/components/landing/blog/LandingBlogPost';
-import { LandingBlogList } from '@/components/landing/blog/LandingBlogList';
+} from "@/components/landing/blog/LandingBlogPost";
+import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
 
 interface PaginationProps {
   totalPages: number;
@@ -27,7 +27,7 @@ interface ListLayoutProps {
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
   const pathname = usePathname();
-  const basePath = pathname.split('/')[1];
+  const basePath = pathname.split("/")[1];
   const prevPage = currentPage - 1 > 0;
   const nextPage = currentPage + 1 <= totalPages;
 
@@ -81,9 +81,9 @@ export default function ListLayout({
   initialDisplayPosts = [],
   pagination,
 }: ListLayoutProps) {
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState("");
   const filteredBlogPosts = posts.filter((post) => {
-    const searchContent = post.title + post.summary + post.tags?.join(' ');
+    const searchContent = post.title + post.summary + post.tags?.join(" ");
     return searchContent.toLowerCase().includes(searchValue.toLowerCase());
   });
 
@@ -97,7 +97,7 @@ export default function ListLayout({
   const formattedPosts = displayPosts.map((post): BlogPost => {
     return {
       path: `/${post.path}`,
-      slug: post.slug || '',
+      slug: post.slug || "",
       date: formatDate(post.date, siteConfig.locale),
       title: post.title,
       summary: post.summary,
@@ -108,7 +108,7 @@ export default function ListLayout({
         };
       }),
       images: post.images || [],
-      readingTime: post.readingTime?.text || '',
+      readingTime: post.readingTime?.text || "",
       author: {
         name: post.authors?.[0],
       },

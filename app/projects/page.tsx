@@ -1,17 +1,17 @@
 // @ts-ignore
-import { allProjects, Project } from 'contentlayer/generated';
-import Header from '@/components/shared/Header';
-import Link from 'next/link';
-import { formatDate } from '@/lib/utils';
+import { allProjects, Project } from "contentlayer/generated";
+import Header from "@/components/shared/Header";
+import Link from "next/link";
+import { formatDate } from "@/lib/utils";
 
 export const metadata = {
-  title: 'Projects',
-  description: 'A collection of my development projects and case studies',
+  title: "Projects",
+  description: "A collection of my development projects and case studies",
 };
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link 
+    <Link
       href={`/projects/${project.slug}`}
       className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-75 group"
     >
@@ -24,18 +24,18 @@ function ProjectCard({ project }: { project: Project }) {
             {project.duration}
           </span>
         </div>
-        
+
         <h2 className="text-xl font-bold text-white group-hover:text-terminal-200 transition-colors">
           {project.title}
         </h2>
-        
+
         <p className="text-terminal-300 text-sm leading-relaxed line-clamp-2">
           {project.summary}
         </p>
-        
+
         <div className="flex flex-wrap gap-2">
           {project.skills?.slice(0, 3).map((skill: string) => (
-            <span 
+            <span
               key={skill}
               className="font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-300"
             >
@@ -48,7 +48,7 @@ function ProjectCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        
+
         <div className="flex items-center justify-between pt-2">
           <span className="font-pixel text-xs text-terminal-400">
             {project.role}
@@ -64,16 +64,16 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function ProjectsPage() {
   // Sort projects by date, newest first
-  const sortedProjects = allProjects.sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+  const sortedProjects = allProjects.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  const projectTypes = ['Technical', 'Creative', 'Business'];
+  const projectTypes = ["Technical", "Creative", "Business"];
 
   return (
     <div className="min-h-screen bg-black">
       <Header />
-      
+
       <main className="container mx-auto px-4 pt-24 pb-12">
         {/* Terminal Header */}
         <div className="mb-12">
@@ -84,8 +84,9 @@ export default function ProjectsPage() {
             PROJECTS/
           </h1>
           <p className="text-terminal-300 max-w-2xl">
-            A collection of development projects, case studies, and technical implementations. 
-            Each project showcases different aspects of full-stack development and problem-solving.
+            A collection of development projects, case studies, and technical
+            implementations. Each project showcases different aspects of
+            full-stack development and problem-solving.
           </p>
         </div>
 
@@ -98,10 +99,12 @@ export default function ProjectsPage() {
             <button className="font-pixel text-xs px-3 py-2 border border-white bg-white text-black">
               ALL ({sortedProjects.length})
             </button>
-            {projectTypes.map(type => {
-              const count = sortedProjects.filter(p => p.projectType === type).length;
+            {projectTypes.map((type) => {
+              const count = sortedProjects.filter(
+                (p) => p.projectType === type,
+              ).length;
               return (
-                <button 
+                <button
                   key={type}
                   className="font-pixel text-xs px-3 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
                 >
@@ -122,7 +125,8 @@ export default function ProjectsPage() {
         {/* Terminal Footer */}
         <div className="mt-12 pt-8 border-t border-terminal-400">
           <div className="font-pixel text-xs text-terminal-400">
-            found {sortedProjects.length} projects • last updated {formatDate(new Date())}
+            found {sortedProjects.length} projects • last updated{" "}
+            {formatDate(new Date())}
           </div>
         </div>
       </main>

@@ -1,5 +1,5 @@
-import { clsx } from 'clsx';
-import { CheckIcon, XIcon, InfoIcon } from 'lucide-react';
+import { clsx } from "clsx";
+import { CheckIcon, XIcon, InfoIcon } from "lucide-react";
 
 /**
  * A component meant to be used to show a comparison item in the landing page,
@@ -13,7 +13,7 @@ export const LandingPriceComparisonItem = ({
   textComponent,
   description,
   descriptionComponent,
-  state = 'neutral',
+  state = "neutral",
   showText = false,
   showDescription = false,
 }: {
@@ -24,7 +24,7 @@ export const LandingPriceComparisonItem = ({
   textComponent?: React.ReactNode;
   description?: string | React.ReactNode;
   descriptionComponent?: React.ReactNode;
-  state?: 'check' | 'cross' | 'neutral' | 'custom';
+  state?: "check" | "cross" | "neutral" | "custom";
   showText?: boolean;
   showDescription?: boolean;
 }) => {
@@ -34,14 +34,14 @@ export const LandingPriceComparisonItem = ({
     }
 
     switch (state) {
-      case 'check':
+      case "check":
         return (
           <CheckIcon
             className="h-5 w-5 text-green-500 dark:text-green-400"
             aria-hidden="true"
           />
         );
-      case 'cross':
+      case "cross":
         return (
           <XIcon
             className="h-5 w-5 text-red-500 dark:text-red-400"
@@ -57,8 +57,8 @@ export const LandingPriceComparisonItem = ({
     <div className="flex gap-3 items-center w-full px-3">
       <div
         className={clsx(
-          'flex-shrink-0',
-          !showText ? 'w-full flex justify-center' : '',
+          "flex-shrink-0",
+          !showText ? "w-full flex justify-center" : "",
         )}
       >
         {renderIcon()}
@@ -81,7 +81,7 @@ export const LandingPriceComparisonItem = ({
           <button
             className="p-1"
             title={
-              typeof description === 'string' ? description : 'More information'
+              typeof description === "string" ? description : "More information"
             }
           >
             <InfoIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
@@ -100,10 +100,10 @@ export const LandingPriceComparisonItem = ({
   return (
     <div
       className={clsx(
-        'flex items-center py-3 px-2 h-14',
+        "flex items-center py-3 px-2 h-14",
         !showText
-          ? 'bg-gray-50 dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800'
-          : '',
+          ? "bg-gray-50 dark:bg-gray-950 border-b border-gray-100 dark:border-gray-800"
+          : "",
         className,
       )}
     >

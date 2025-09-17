@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { version } from '@/data/app-info';
-import { metadata } from '@/data/config/metadata';
+import { version } from "@/data/app-info";
+import { metadata } from "@/data/config/metadata";
 
-const appWindow = typeof window !== 'undefined' ? window : null;
-const appNavigator = typeof window !== 'undefined' ? window?.navigator : null;
+const appWindow = typeof window !== "undefined" ? window : null;
+const appNavigator = typeof window !== "undefined" ? window?.navigator : null;
 
-const sanitizeMailBody = (body) => body.replace(/(?:\r\n|\r|\n)/g, '%0D%0A');
+const sanitizeMailBody = (body) => body.replace(/(?:\r\n|\r|\n)/g, "%0D%0A");
 
 export const SUPPORT_EMAIL = metadata.supportEmail;
 
@@ -43,11 +43,11 @@ export const HELP_HREF = `mailto:${SUPPORT_EMAIL}?subject=${HELP_SUBJECT}&body=$
 export const FooterSupportButton = () => {
   const openSupport = (e) => {
     e.preventDefault();
-    window.open(HELP_HREF, '_blank');
+    window.open(HELP_HREF, "_blank");
   };
 
   return (
-    <a href="#" onClick={openSupport} className={'nav-link'}>
+    <a href="#" onClick={openSupport} className={"nav-link"}>
       Contact Support
     </a>
   );

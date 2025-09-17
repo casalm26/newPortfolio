@@ -1,23 +1,23 @@
-import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
-import { ExternalLinkIcon } from 'lucide-react';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog, Authors } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import PageTitle from '@/components/shared/PageTitle';
-import SectionContainer from '@/components/shared/SectionContainer';
-import Image from '@/components/shared/Image';
-import Tag from '@/components/blog/Tag';
-import { siteConfig } from '@/data/config/site.settings';
-import ScrollTop from '@/components/shared/ScrollTop';
-import Header from '@/components/shared/Header';
-import { TOC } from '@/components/blog/Toc';
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+import { ExternalLinkIcon } from "lucide-react";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog, Authors } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import PageTitle from "@/components/shared/PageTitle";
+import SectionContainer from "@/components/shared/SectionContainer";
+import Image from "@/components/shared/Image";
+import Tag from "@/components/blog/Tag";
+import { siteConfig } from "@/data/config/site.settings";
+import ScrollTop from "@/components/shared/ScrollTop";
+import Header from "@/components/shared/Header";
+import { TOC } from "@/components/blog/Toc";
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 };
 
 interface LayoutProps {
@@ -78,7 +78,7 @@ export default function PostLayout({
                       href={author.twitter}
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     >
-                      {author.twitter.replace('https://twitter.com/', '@')}
+                      {author.twitter.replace("https://twitter.com/", "@")}
                     </Link>
                   )}
                 </dd>
@@ -152,7 +152,7 @@ export default function PostLayout({
   return (
     <SectionContainer
       type="ultrawide"
-      className={cn('fancy-overlay !p-0', className)}
+      className={cn("fancy-overlay !p-0", className)}
     >
       <Header className="mb-4 lg:mb-12" />
 
@@ -197,7 +197,7 @@ export default function PostLayout({
         <div className="grid-rows-[auto_1fr] pb-8 xl:grid xl:grid-cols-4 xl:gap-x-6">
           <div
             className={cn(
-              'lg:bg-white dark:lg:bg-slate-900 p-6 lg:px-10 lg:py-4 xl:col-span-3 xl:row-span-1 xl:pb-0 rounded-xl',
+              "lg:bg-white dark:lg:bg-slate-900 p-6 lg:px-10 lg:py-4 xl:col-span-3 xl:row-span-1 xl:pb-0 rounded-xl",
             )}
           >
             {displayImage ? (

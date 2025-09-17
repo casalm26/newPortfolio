@@ -49,7 +49,9 @@ npm run dev
 This boilerplate includes comprehensive testing setup with multiple test types:
 
 ### Unit Tests
+
 Test individual components and utilities:
+
 ```bash
 npm run test:unit        # Run unit tests
 npm run test:watch       # Watch mode
@@ -58,13 +60,17 @@ npm run test:coverage    # Coverage report
 ```
 
 ### Integration Tests
+
 Test API endpoints and business logic:
+
 ```bash
 npm run test:integration  # Run integration tests
 ```
 
 ### E2E Tests
+
 Test complete user workflows with Playwright:
+
 ```bash
 npm run test:e2e         # Run all E2E tests
 npm run test:e2e:ui      # Interactive UI mode
@@ -73,12 +79,15 @@ npm run test:e2e:debug   # Debug mode
 ```
 
 ### Performance Tests
+
 Load and performance testing:
+
 ```bash
 npm run test:performance  # Run performance tests
 ```
 
 ### Combined Test Suites
+
 ```bash
 npm run test:local       # Unit + Integration
 npm run test:full        # Local + E2E
@@ -86,6 +95,7 @@ npm run test:all         # Unit + E2E (legacy)
 ```
 
 ### Verify Setup
+
 ```bash
 npm run test:hooks       # Verify testing setup
 ```
@@ -95,9 +105,11 @@ npm run test:hooks       # Verify testing setup
 For full-stack testing with real databases and services:
 
 ### Prerequisites
+
 - Docker and Docker Compose installed
 
 ### Docker Test Commands
+
 ```bash
 # Run full Docker test suite
 npm run test:docker:all
@@ -114,7 +126,9 @@ npm run test:docker:clean
 ```
 
 ### Docker Test Environment
+
 The Docker setup includes:
+
 - **PostgreSQL** - Test database
 - **Redis** - Caching and sessions
 - **MongoDB** - Document database (optional)
@@ -145,16 +159,46 @@ This is a standard Next.js application that can be deployed to any hosting servi
 ## Customization
 
 ### Configuration
+
 Update your business information in:
+
 - `data/config/metadata.js` - Site metadata, social links, and business info
 - `data/config/site.settings.js` - Site configuration and analytics
 
+### Google Analytics 4 Setup
+
+To enable Google Analytics tracking:
+
+1. **Create a GA4 Property:**
+   - Go to [Google Analytics](https://analytics.google.com/)
+   - Create a new GA4 property for your website
+   - Copy your Measurement ID (format: `G-XXXXXXXXX`)
+
+2. **Configure Environment Variables:**
+   - Copy `.env.example` to `.env.local`
+   - Replace `G-XXXXXXXXXX` with your actual GA4 Measurement ID
+   ```bash
+   NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-YOUR-ACTUAL-ID
+   ```
+
+3. **Privacy Compliance:**
+   - The analytics implementation respects user privacy
+   - Update your privacy policy to mention Google Analytics usage
+   - Consider implementing cookie consent if required by your jurisdiction
+
+4. **Alternative Analytics:**
+   - The boilerplate also supports Umami, Plausible, PostHog, and Simple Analytics
+   - Uncomment the relevant configuration in `data/config/site.settings.js`
+   - Vercel Analytics is enabled by default
+
 ### Branding
+
 - Replace logo in `public/static/images/logo.png`
 - Update favicons in `public/static/favicons/`
 - Modify colors in `data/config/colors.js`
 
 ### Content
+
 - Homepage content in `app/page.tsx`
 - Footer and header in `components/shared/`
 - Landing page components in `components/landing/`
@@ -164,13 +208,14 @@ Update your business information in:
 Create blog posts as MDX files in the `data/` directory. Each post should include frontmatter with title, date, tags, and summary.
 
 Example:
+
 ```mdx
 ---
-title: 'My First Post'
-date: '2024-01-01'
-tags: ['web-development', 'nextjs']
+title: "My First Post"
+date: "2024-01-01"
+tags: ["web-development", "nextjs"]
 draft: false
-summary: 'A brief description of your post'
+summary: "A brief description of your post"
 ---
 
 Your content here...

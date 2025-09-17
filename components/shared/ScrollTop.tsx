@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const ScrollTop = () => {
   const [show, setShow] = useState(false);
@@ -11,8 +11,8 @@ const ScrollTop = () => {
       else setShow(false);
     };
 
-    window.addEventListener('scroll', handleWindowScroll);
-    return () => window.removeEventListener('scroll', handleWindowScroll);
+    window.addEventListener("scroll", handleWindowScroll);
+    return () => window.removeEventListener("scroll", handleWindowScroll);
   }, []);
 
   const handleScrollTop = () => {
@@ -22,7 +22,7 @@ const ScrollTop = () => {
   return (
     <div
       className={`fixed z-10 bottom-8 right-8 hidden flex-col gap-3 ${
-        show ? 'md:flex' : 'md:hidden'
+        show ? "md:flex" : "md:hidden"
       }`}
     >
       <button

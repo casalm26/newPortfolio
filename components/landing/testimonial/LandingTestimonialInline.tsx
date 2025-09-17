@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import { clsx } from "clsx";
 
 /**
  * A component meant to be used in the landing page.
@@ -10,31 +10,31 @@ export const LandingTestimonialInline = ({
   className,
   children,
   withBackground = false,
-  variant = 'primary',
-  containerType = 'wide',
+  variant = "primary",
+  containerType = "wide",
 }: {
   className?: string;
   children?: React.ReactNode;
   withBackground?: boolean;
-  variant?: 'primary' | 'secondary';
-  containerType?: 'narrow' | 'wide' | 'ultrawide';
+  variant?: "primary" | "secondary";
+  containerType?: "narrow" | "wide" | "ultrawide";
 }) => {
   return (
     <section
       className={clsx(
-        'w-full flex justify-center items-center gap-8 p-6 py-12 lg:py-16 flex-col',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
+        "w-full flex justify-center items-center gap-8 p-6 py-12 lg:py-16 flex-col",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
         className,
       )}
     >
       <div
         className={clsx(
-          '!p-0 relative isolate w-full flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-ellipsis',
+          "!p-0 relative isolate w-full flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 overflow-ellipsis",
           `container-${containerType}`,
         )}
       >

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingFlickeringGridCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
   squareSize = 4,
   gridGap = 6,
   flickerChance = 0.1,
   maxOpacity = 0.3,
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
   squareSize?: number;
   gridGap?: number;
   flickerChance?: number;
@@ -24,9 +24,9 @@ export const LandingFlickeringGridCtaBg = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const colorsRef = useRef<string[]>([
-    'rgba(177, 177, 177,',
-    'rgba(34, 34, 34,',
-    'rgba(100, 100, 100,',
+    "rgba(177, 177, 177,",
+    "rgba(34, 34, 34,",
+    "rgba(100, 100, 100,",
   ]);
   const [isInView, setIsInView] = useState(false);
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
@@ -38,72 +38,72 @@ export const LandingFlickeringGridCtaBg = ({
 
     let newColors;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const primaryMain = computedStyle
-          .getPropertyValue('--primary-main')
+          .getPropertyValue("--primary-main")
           .trim();
         const primaryDarker = computedStyle
-          .getPropertyValue('--primary-darker')
+          .getPropertyValue("--primary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: primaryLighter, opacity: 1 }) ||
-            'rgb(177, 177, 177)',
+            "rgb(177, 177, 177)",
           color2:
             convertToRgba({ color: primaryMain, opacity: 1 }) ||
-            'rgb(100, 100, 100)',
+            "rgb(100, 100, 100)",
           color3:
             convertToRgba({ color: primaryDarker, opacity: 1 }) ||
-            'rgb(34, 34, 34)',
+            "rgb(34, 34, 34)",
         };
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryLighter = computedStyle
-          .getPropertyValue('--secondary-lighter')
+          .getPropertyValue("--secondary-lighter")
           .trim();
         const secondaryMain = computedStyle
-          .getPropertyValue('--secondary-main')
+          .getPropertyValue("--secondary-main")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: secondaryLighter, opacity: 1 }) ||
-            'rgb(177, 177, 177)',
+            "rgb(177, 177, 177)",
           color2:
             convertToRgba({ color: secondaryMain, opacity: 1 }) ||
-            'rgb(100, 100, 100)',
+            "rgb(100, 100, 100)",
           color3:
             convertToRgba({ color: secondaryDarker, opacity: 1 }) ||
-            'rgb(34, 34, 34)',
+            "rgb(34, 34, 34)",
         };
         break;
       }
       default: {
         const primaryLighter = computedStyle
-          .getPropertyValue('--primary-lighter')
+          .getPropertyValue("--primary-lighter")
           .trim();
         const secondaryMain = computedStyle
-          .getPropertyValue('--secondary-main')
+          .getPropertyValue("--secondary-main")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
         newColors = {
           color1:
             convertToRgba({ color: primaryLighter, opacity: 1 }) ||
-            'rgb(177, 177, 177)',
+            "rgb(177, 177, 177)",
           color2:
             convertToRgba({ color: secondaryMain, opacity: 1 }) ||
-            'rgb(100, 100, 100)',
+            "rgb(100, 100, 100)",
           color3:
             convertToRgba({ color: secondaryDarker, opacity: 1 }) ||
-            'rgb(34, 34, 34)',
+            "rgb(34, 34, 34)",
         };
         break;
       }
@@ -111,13 +111,13 @@ export const LandingFlickeringGridCtaBg = ({
 
     // Update the ref with converted colors
     const toRGBA = (color: string) => {
-      if (typeof window === 'undefined') {
+      if (typeof window === "undefined") {
         return `rgba(0, 0, 0,`;
       }
-      const canvas = document.createElement('canvas');
+      const canvas = document.createElement("canvas");
       canvas.width = canvas.height = 1;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return 'rgba(255, 0, 0,';
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return "rgba(255, 0, 0,";
       ctx.fillStyle = color;
       ctx.fillRect(0, 0, 1, 1);
       const [r, g, b] = Array.from(ctx.getImageData(0, 0, 1, 1).data);
@@ -176,7 +176,7 @@ export const LandingFlickeringGridCtaBg = ({
       dpr: number,
     ) => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = 'transparent';
+      ctx.fillStyle = "transparent";
       ctx.fillRect(0, 0, width, height);
 
       for (let i = 0; i < cols; i++) {
@@ -215,7 +215,7 @@ export const LandingFlickeringGridCtaBg = ({
     const container = containerRef.current;
     if (!canvas || !container) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animationFrameId: number;
@@ -301,13 +301,13 @@ export const LandingFlickeringGridCtaBg = ({
   }, [setupCanvas, updateSquares, drawGrid, isInView]);
 
   return (
-    <div ref={domRef} className={clsx('inset-0 opacity-60', className)}>
+    <div ref={domRef} className={clsx("inset-0 opacity-60", className)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
           duration: 2,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         ref={containerRef}
         className="absolute inset-0 w-full h-full"

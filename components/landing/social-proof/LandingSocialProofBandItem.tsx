@@ -1,5 +1,5 @@
-import { LandingRating } from '@/components/landing/rating/LandingRating';
-import clsx from 'clsx';
+import { LandingRating } from "@/components/landing/rating/LandingRating";
+import clsx from "clsx";
 import {
   CheckCheckIcon,
   ClockIcon,
@@ -8,7 +8,7 @@ import {
   TrophyIcon,
   Wand2Icon,
   ZapIcon,
-} from 'lucide-react';
+} from "lucide-react";
 
 /**
  * Shows a social proof/key feature/milestone item with an optional graphic.
@@ -17,44 +17,44 @@ import {
  */
 export const LandingSocialProofBandItem = ({
   className,
-  graphic = 'checkmark',
+  graphic = "checkmark",
   customGraphic,
   children,
   graphicClassName,
 }: {
   className?: string;
   graphic?:
-    | 'none'
-    | 'checkmark'
-    | 'gift'
-    | 'magic'
-    | 'trophy'
-    | 'rating'
-    | 'zap'
-    | 'rocket'
-    | 'time';
+    | "none"
+    | "checkmark"
+    | "gift"
+    | "magic"
+    | "trophy"
+    | "rating"
+    | "zap"
+    | "rocket"
+    | "time";
   customGraphic?: React.ReactNode;
   graphicClassName?: string;
   children: React.ReactNode;
 }) => {
   const GRAPHIC_CONFIG = {
-    checkmark: { Icon: CheckCheckIcon, color: 'text-green-500' },
-    magic: { Icon: Wand2Icon, color: 'text-yellow-500' },
-    trophy: { Icon: TrophyIcon, color: 'text-yellow-500' },
-    gift: { Icon: GiftIcon, color: 'text-green-500' },
-    zap: { Icon: ZapIcon, color: 'text-yellow-500' },
-    rocket: { Icon: RocketIcon, color: 'text-green-500' },
-    time: { Icon: ClockIcon, color: 'text-green-500' },
+    checkmark: { Icon: CheckCheckIcon, color: "text-green-500" },
+    magic: { Icon: Wand2Icon, color: "text-yellow-500" },
+    trophy: { Icon: TrophyIcon, color: "text-yellow-500" },
+    gift: { Icon: GiftIcon, color: "text-green-500" },
+    zap: { Icon: ZapIcon, color: "text-yellow-500" },
+    rocket: { Icon: RocketIcon, color: "text-green-500" },
+    time: { Icon: ClockIcon, color: "text-green-500" },
   } as const;
 
   const renderGraphic = () => {
-    if (graphic === 'none') return null;
+    if (graphic === "none") return null;
 
-    if (graphic === 'rating') {
+    if (graphic === "rating") {
       return (
         <LandingRating
           size="small"
-          className={clsx('mr-1.5', graphicClassName)}
+          className={clsx("mr-1.5", graphicClassName)}
         />
       );
     }
@@ -63,7 +63,7 @@ export const LandingSocialProofBandItem = ({
       const { Icon, color } =
         GRAPHIC_CONFIG[graphic as keyof typeof GRAPHIC_CONFIG];
       return (
-        <Icon className={clsx('w-4 h-4 mr-1.5', color, graphicClassName)} />
+        <Icon className={clsx("w-4 h-4 mr-1.5", color, graphicClassName)} />
       );
     }
 
@@ -73,11 +73,11 @@ export const LandingSocialProofBandItem = ({
   return (
     <div
       className={clsx(
-        'flex items-center justify-start gap-0.5 shrink-0',
+        "flex items-center justify-start gap-0.5 shrink-0",
         className,
       )}
     >
-      {graphic !== 'none' && !customGraphic && (
+      {graphic !== "none" && !customGraphic && (
         <span className="shrink-0">{renderGraphic()}</span>
       )}
 

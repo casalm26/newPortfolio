@@ -1,5 +1,5 @@
-import { Button } from '@/components/shared/ui/button';
-import { Textarea } from '@/components/shared/ui/textarea';
+import { Button } from "@/components/shared/ui/button";
+import { Textarea } from "@/components/shared/ui/textarea";
 
 export default function TextareaWithButton() {
   return (

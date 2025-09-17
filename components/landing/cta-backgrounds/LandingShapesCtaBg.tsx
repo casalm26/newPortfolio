@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, {
   useRef,
@@ -7,10 +7,10 @@ import React, {
   useCallback,
   useMemo,
   memo,
-} from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+} from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 interface ShapeConfig {
   id: number;
@@ -39,18 +39,18 @@ const ElegantShape = memo(
   }) => {
     const getShapeStyles = useCallback((shapeType: string) => {
       const baseClasses =
-        'absolute inset-0 backdrop-blur-[2px] border-2 border-slate-400/[0.2] dark:border-white/[0.15] shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_50%_50%,rgba(120,120,120,0.2),transparent_70%)] dark:after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]';
+        "absolute inset-0 backdrop-blur-[2px] border-2 border-slate-400/[0.2] dark:border-white/[0.15] shadow-[0_8px_32px_0_rgba(0,0,0,0.2)] dark:shadow-[0_8px_32px_0_rgba(255,255,255,0.1)] after:absolute after:inset-0 after:bg-[radial-gradient(circle_at_50%_50%,rgba(120,120,120,0.2),transparent_70%)] dark:after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]";
 
       switch (shapeType) {
-        case 'rectangle':
+        case "rectangle":
           return `${baseClasses} rounded-lg`;
-        case 'triangle':
+        case "triangle":
           return baseClasses;
-        case 'square':
+        case "square":
           return `${baseClasses} rounded-lg`;
-        case 'circle':
+        case "circle":
           return `${baseClasses} rounded-full`;
-        case 'ellipse':
+        case "ellipse":
         default:
           return `${baseClasses} rounded-full`;
       }
@@ -74,7 +74,7 @@ const ElegantShape = memo(
           ease: [0.23, 0.86, 0.39, 0.96],
           opacity: { duration: 1.2 },
         }}
-        className={clsx('absolute', config.x, config.y)}
+        className={clsx("absolute", config.x, config.y)}
       >
         <motion.div
           animate={
@@ -87,7 +87,7 @@ const ElegantShape = memo(
           transition={{
             duration: animationDuration,
             repeat: Number.POSITIVE_INFINITY,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             delay: config.delay + 2.4, // Start floating after entrance animation completes
           }}
           style={{
@@ -99,13 +99,13 @@ const ElegantShape = memo(
           <div
             className={clsx(
               getShapeStyles(shapeType),
-              'transition-all transition-duration-[2000ms]',
+              "transition-all transition-duration-[2000ms]",
             )}
             style={{
               backgroundImage: `linear-gradient(to right, ${gradientColor})`,
-              ...(shapeType === 'triangle'
+              ...(shapeType === "triangle"
                 ? {
-                    clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+                    clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
                   }
                 : {}),
             }}
@@ -126,32 +126,32 @@ const ElegantShape = memo(
   },
 );
 
-ElegantShape.displayName = 'ElegantShape';
+ElegantShape.displayName = "ElegantShape";
 
 export const LandingShapesCtaBg = ({
   className,
-  variant = 'default',
-  shapeType = 'rectangle',
+  variant = "default",
+  shapeType = "rectangle",
   shapeCount = 5,
-  animationSpeed = 'normal',
+  animationSpeed = "normal",
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
-  shapeType?: 'ellipse' | 'rectangle' | 'triangle' | 'square' | 'circle';
+  variant?: "default" | "primary" | "secondary";
+  shapeType?: "ellipse" | "rectangle" | "triangle" | "square" | "circle";
   shapeCount?: number;
-  animationSpeed?: 'slow' | 'normal' | 'fast';
+  animationSpeed?: "slow" | "normal" | "fast";
 }) => {
   const domRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [gradientColors, setGradientColors] = useState({
-    color1: 'rgba(107, 114, 128, 0.15)', // gray-500
-    color2: 'rgba(115, 115, 115, 0.15)', // neutral-500
-    color3: 'rgba(100, 116, 139, 0.15)', // slate-500
+    color1: "rgba(107, 114, 128, 0.15)", // gray-500
+    color2: "rgba(115, 115, 115, 0.15)", // neutral-500
+    color3: "rgba(100, 116, 139, 0.15)", // slate-500
   });
 
   // Generate shapes once and keep them stable
   const shapes = useMemo((): ShapeConfig[] => {
-    const isSquare = ['square', 'triangle', 'circle'].includes(shapeType);
+    const isSquare = ["square", "triangle", "circle"].includes(shapeType);
     const baseShapes = [
       {
         id: 1,
@@ -159,8 +159,8 @@ export const LandingShapesCtaBg = ({
         height: 140,
         rotate: 12,
         delay: 0.3,
-        x: 'left-[-10%] md:left-[-5%]',
-        y: 'top-[20%] md:top-[25%]',
+        x: "left-[-10%] md:left-[-5%]",
+        y: "top-[20%] md:top-[25%]",
       },
       {
         id: 2,
@@ -168,8 +168,8 @@ export const LandingShapesCtaBg = ({
         height: 120,
         rotate: -15,
         delay: 0.5,
-        x: 'right-[-10%] md:right-[-5%]',
-        y: 'top-[70%] md:top-[75%]',
+        x: "right-[-10%] md:right-[-5%]",
+        y: "top-[70%] md:top-[75%]",
       },
       {
         id: 3,
@@ -177,8 +177,8 @@ export const LandingShapesCtaBg = ({
         height: 80,
         rotate: -8,
         delay: 0.4,
-        x: 'left-[0] md:left-[5%]',
-        y: 'bottom-[5%] md:bottom-[10%]',
+        x: "left-[0] md:left-[5%]",
+        y: "bottom-[5%] md:bottom-[10%]",
       },
       {
         id: 4,
@@ -186,8 +186,8 @@ export const LandingShapesCtaBg = ({
         height: 60,
         rotate: 20,
         delay: 0.6,
-        x: 'right-[5%] md:right-[10%]',
-        y: 'top-[10%] md:top-[15%]',
+        x: "right-[5%] md:right-[10%]",
+        y: "top-[10%] md:top-[15%]",
       },
       {
         id: 5,
@@ -195,8 +195,8 @@ export const LandingShapesCtaBg = ({
         height: 40,
         rotate: -25,
         delay: 0.7,
-        x: 'left-[20%] md:left-[25%]',
-        y: 'top-[0%] md:top-[5%]',
+        x: "left-[20%] md:left-[25%]",
+        y: "top-[0%] md:top-[5%]",
       },
     ];
 
@@ -213,12 +213,12 @@ export const LandingShapesCtaBg = ({
 
     let newColors;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryMain = computedStyle
-          .getPropertyValue('--primary-main')
+          .getPropertyValue("--primary-main")
           .trim();
         const primaryDarker = computedStyle
-          .getPropertyValue('--primary-darker')
+          .getPropertyValue("--primary-darker")
           .trim();
 
         // Convert the CSS variable colors to rgba
@@ -227,21 +227,21 @@ export const LandingShapesCtaBg = ({
         const color3 = convertToRgba({ color: primaryDarker, opacity: 0.6 });
 
         newColors = {
-          color1: color1 || 'rgba(107, 114, 128, 0.15)',
-          color2: color2 || 'rgba(107, 114, 128, 0.20)',
-          color3: color3 || 'rgba(107, 114, 128, 0.10)',
+          color1: color1 || "rgba(107, 114, 128, 0.15)",
+          color2: color2 || "rgba(107, 114, 128, 0.20)",
+          color3: color3 || "rgba(107, 114, 128, 0.10)",
         };
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryLighter = computedStyle
-          .getPropertyValue('--secondary-lighter')
+          .getPropertyValue("--secondary-lighter")
           .trim();
         const secondaryMain = computedStyle
-          .getPropertyValue('--secondary-main')
+          .getPropertyValue("--secondary-main")
           .trim();
         const secondaryDarker = computedStyle
-          .getPropertyValue('--secondary-darker')
+          .getPropertyValue("--secondary-darker")
           .trim();
 
         const color1 = convertToRgba({
@@ -252,18 +252,18 @@ export const LandingShapesCtaBg = ({
         const color3 = convertToRgba({ color: secondaryDarker, opacity: 0.1 });
 
         newColors = {
-          color1: color1 || 'rgba(115, 115, 115, 0.15)',
-          color2: color2 || 'rgba(115, 115, 115, 0.20)',
-          color3: color3 || 'rgba(115, 115, 115, 0.10)',
+          color1: color1 || "rgba(115, 115, 115, 0.15)",
+          color2: color2 || "rgba(115, 115, 115, 0.20)",
+          color3: color3 || "rgba(115, 115, 115, 0.10)",
         };
         break;
       }
       default: {
         // Default neutral colors
         newColors = {
-          color1: 'rgba(107, 114, 128, 0.15)', // gray-500
-          color2: 'rgba(115, 115, 115, 0.15)', // neutral-500
-          color3: 'rgba(100, 116, 139, 0.15)', // slate-500
+          color1: "rgba(107, 114, 128, 0.15)", // gray-500
+          color2: "rgba(115, 115, 115, 0.15)", // neutral-500
+          color3: "rgba(100, 116, 139, 0.15)", // slate-500
         };
         break;
       }
@@ -273,11 +273,11 @@ export const LandingShapesCtaBg = ({
 
   const getAnimationDuration = useCallback(() => {
     switch (animationSpeed) {
-      case 'slow':
+      case "slow":
         return 16;
-      case 'fast':
+      case "fast":
         return 8;
-      case 'normal':
+      case "normal":
       default:
         return 12;
     }
@@ -315,13 +315,13 @@ export const LandingShapesCtaBg = ({
   }, []);
 
   return (
-    <div ref={domRef} className={clsx('inset-0', className)}>
+    <div ref={domRef} className={clsx("inset-0", className)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
           duration: 2,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
       >

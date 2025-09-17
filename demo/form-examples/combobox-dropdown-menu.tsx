@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Calendar, MoreHorizontal, Tags, Trash, User } from 'lucide-react';
+import * as React from "react";
+import { Calendar, MoreHorizontal, Tags, Trash, User } from "lucide-react";
 
-import { Button } from '@/components/shared/ui/button';
+import { Button } from "@/components/shared/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -11,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from '@/components/shared/ui/command';
+} from "@/components/shared/ui/command";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,20 +24,20 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '@/components/shared/ui/dropdown-menu';
+} from "@/components/shared/ui/dropdown-menu";
 
 const labels = [
-  'feature',
-  'bug',
-  'enhancement',
-  'documentation',
-  'design',
-  'question',
-  'maintenance',
+  "feature",
+  "bug",
+  "enhancement",
+  "documentation",
+  "design",
+  "question",
+  "maintenance",
 ];
 
 export default function ComboboxDropdownMenu() {
-  const [label, setLabel] = React.useState('feature');
+  const [label, setLabel] = React.useState("feature");
   const [open, setOpen] = React.useState(false);
 
   return (

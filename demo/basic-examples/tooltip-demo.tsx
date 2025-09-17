@@ -1,10 +1,10 @@
-import { Button } from '@/components/shared/ui/button';
+import { Button } from "@/components/shared/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/shared/ui/tooltip';
+} from "@/components/shared/ui/tooltip";
 
 export default function TooltipDemo() {
   return (

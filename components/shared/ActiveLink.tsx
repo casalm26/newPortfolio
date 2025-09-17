@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { usePathname } from 'next/navigation';
-import Link from './Link';
-import React, { useState, useEffect, Children } from 'react';
+import { usePathname } from "next/navigation";
+import Link from "./Link";
+import React, { useState, useEffect, Children } from "react";
 
 const ActiveLink = ({ children, activeClassName, ...props }) => {
   const routePathname = usePathname();
 
   const child = Children.only(children);
-  const childClassName = child.props.className || '';
+  const childClassName = child.props.className || "";
   const [className, setClassName] = useState(childClassName);
 
   useEffect(() => {

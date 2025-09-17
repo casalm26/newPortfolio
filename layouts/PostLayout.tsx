@@ -1,23 +1,23 @@
-import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
-import { ExternalLinkIcon } from 'lucide-react';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog, Authors } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import PageTitle from '@/components/shared/PageTitle';
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
-import SectionContainer from '@/components/shared/SectionContainer';
-import Image from '@/components/shared/Image';
-import Tag from '@/components/blog/Tag';
-import { siteConfig } from '@/data/config/site.settings';
-import ScrollTop from '@/components/shared/ScrollTop';
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+import { ExternalLinkIcon } from "lucide-react";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog, Authors } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import PageTitle from "@/components/shared/PageTitle";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
+import SectionContainer from "@/components/shared/SectionContainer";
+import Image from "@/components/shared/Image";
+import Tag from "@/components/blog/Tag";
+import { siteConfig } from "@/data/config/site.settings";
+import ScrollTop from "@/components/shared/ScrollTop";
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 };
 
 interface LayoutProps {
@@ -45,7 +45,7 @@ export default function PostLayout({
 
       <SectionContainer
         type="wide"
-        className={cn('fancy-overlay fancy-overlay--muted', className)}
+        className={cn("fancy-overlay fancy-overlay--muted", className)}
       >
         <ScrollTop />
         <article>
@@ -101,8 +101,8 @@ export default function PostLayout({
                               className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                             >
                               {author.twitter.replace(
-                                'https://twitter.com/',
-                                '@',
+                                "https://twitter.com/",
+                                "@",
                               )}
                             </Link>
                           )}

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { allProjects } from 'contentlayer/generated';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from "next/link";
+import { allProjects } from "contentlayer/generated";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ProjectNavigationProps {
   currentSlug: string;
@@ -10,22 +10,28 @@ interface ProjectNavigationProps {
 
 export function ProjectNavigation({ currentSlug }: ProjectNavigationProps) {
   // Sort projects by date (newest first) to maintain consistent order
-  const sortedProjects = allProjects.sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+  const sortedProjects = allProjects.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  const currentIndex = sortedProjects.findIndex(project => project.slug === currentSlug);
-  
+  const currentIndex = sortedProjects.findIndex(
+    (project) => project.slug === currentSlug,
+  );
+
   if (currentIndex === -1) return null;
 
-  const previousProject = currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
-  const nextProject = currentIndex < sortedProjects.length - 1 ? sortedProjects[currentIndex + 1] : null;
+  const previousProject =
+    currentIndex > 0 ? sortedProjects[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex < sortedProjects.length - 1
+      ? sortedProjects[currentIndex + 1]
+      : null;
 
   return (
     <div className="flex items-center space-x-4">
       {/* Previous Project */}
       {previousProject ? (
-        <Link 
+        <Link
           href={`/projects/${previousProject.slug}`}
           className="group flex items-center font-pixel text-xs px-3 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
         >
@@ -52,7 +58,7 @@ export function ProjectNavigation({ currentSlug }: ProjectNavigationProps) {
 
       {/* Next Project */}
       {nextProject ? (
-        <Link 
+        <Link
           href={`/projects/${nextProject.slug}`}
           className="group flex items-center font-pixel text-xs px-3 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
         >

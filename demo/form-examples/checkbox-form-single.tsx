@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from '@/components/shared/ui/button';
-import { Checkbox } from '@/components/shared/ui/checkbox';
+import { Button } from "@/components/shared/ui/button";
+import { Checkbox } from "@/components/shared/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -14,8 +14,8 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/shared/ui/form';
-import { toast } from '@/components/shared/ui/use-toast';
+} from "@/components/shared/ui/form";
+import { toast } from "@/components/shared/ui/use-toast";
 
 const FormSchema = z.object({
   mobile: z.boolean().default(false).optional(),
@@ -31,7 +31,7 @@ export default function CheckboxReactHookFormSingle() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
-      title: 'You submitted the following values:',
+      title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -59,7 +59,7 @@ export default function CheckboxReactHookFormSingle() {
                   Use different settings for my mobile devices
                 </FormLabel>
                 <FormDescription>
-                  You can manage your mobile notifications in the{' '}
+                  You can manage your mobile notifications in the{" "}
                   <Link href="/examples/forms">mobile settings</Link> page.
                 </FormDescription>
               </div>

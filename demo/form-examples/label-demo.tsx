@@ -1,5 +1,5 @@
-import { Checkbox } from '@/components/shared/ui/checkbox';
-import { Label } from '@/components/shared/ui/label';
+import { Checkbox } from "@/components/shared/ui/checkbox";
+import { Label } from "@/components/shared/ui/label";
 
 export default function LabelDemo() {
   return (

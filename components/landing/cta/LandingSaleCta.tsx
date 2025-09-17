@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import { Button } from '@/components/shared/ui/button';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
+import clsx from "clsx";
+import { Button } from "@/components/shared/ui/button";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
 
 /**
  * A component meant to be used in the landing page.
@@ -15,14 +15,14 @@ export const LandingSaleCtaSection = ({
   description,
   descriptionComponent,
   footerComponent,
-  ctaHref = '#',
+  ctaHref = "#",
   ctaLabel,
-  secondaryCtaHref = '#',
+  secondaryCtaHref = "#",
   secondaryCtaLabel,
   withBackground = false,
   withBackgroundGlow = false,
-  variant = 'primary',
-  backgroundGlowVariant = 'primary',
+  variant = "primary",
+  backgroundGlowVariant = "primary",
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -37,42 +37,42 @@ export const LandingSaleCtaSection = ({
   secondaryCtaLabel?: string;
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  variant?: 'primary' | 'secondary';
-  backgroundGlowVariant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
+  backgroundGlowVariant?: "primary" | "secondary";
 }) => {
   return (
     <section
       className={clsx(
-        'relative w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "relative w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
       {withBackgroundGlow ? (
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-1/2 pointer-events-none">
           <GlowBg
-            className={clsx('w-full lg:w-2/3 h-auto z-0')}
+            className={clsx("w-full lg:w-2/3 h-auto z-0")}
             variant={backgroundGlowVariant}
           />
         </div>
       ) : null}
 
-      <div className={clsx(className, 'w-full p-6 container-narrow')}>
-        {titleComponent || (title && (
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight max-w-xs sm:max-w-none fancyHeading">
-            {title}
-          </h2>
-        ))}
+      <div className={clsx(className, "w-full p-6 container-narrow")}>
+        {titleComponent ||
+          (title && (
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight max-w-xs sm:max-w-none fancyHeading">
+              {title}
+            </h2>
+          ))}
 
-        {descriptionComponent || (description && (
-          <p className="mt-6 md:text-xl">{description}</p>
-        ))}
+        {descriptionComponent ||
+          (description && <p className="mt-6 md:text-xl">{description}</p>)}
 
         <div className="mt-6 flex flex-wrap gap-4 w-full items-center">
           {ctaLabel ? (
@@ -89,7 +89,7 @@ export const LandingSaleCtaSection = ({
               size="xl"
               asChild
               variant={
-                variant === 'primary' ? 'outlinePrimary' : 'outlineSecondary'
+                variant === "primary" ? "outlinePrimary" : "outlineSecondary"
               }
             >
               <a

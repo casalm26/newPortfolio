@@ -1,5 +1,5 @@
-import { Input } from '@/components/shared/ui/input';
-import { Label } from '@/components/shared/ui/label';
+import { Input } from "@/components/shared/ui/input";
+import { Label } from "@/components/shared/ui/label";
 
 export default function InputWithLabel() {
   return (

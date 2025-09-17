@@ -1,5 +1,5 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -19,10 +19,10 @@ export function convertToRgba({
   color = color.trim();
 
   // If already rgba, extract rgb part and apply new opacity
-  if (color.startsWith('rgba(')) {
+  if (color.startsWith("rgba(")) {
     const match = color.match(/rgba?\(([^)]+)\)/);
     if (match) {
-      const values = match[1].split(',').map((v) => v.trim());
+      const values = match[1].split(",").map((v) => v.trim());
       if (values.length >= 3) {
         return `rgba(${values[0]}, ${values[1]}, ${values[2]}, ${opacity})`;
       }
@@ -30,7 +30,7 @@ export function convertToRgba({
   }
 
   // If rgb, just add opacity
-  if (color.startsWith('rgb(')) {
+  if (color.startsWith("rgb(")) {
     const match = color.match(/rgb\(([^)]+)\)/);
     if (match) {
       return `rgba(${match[1]}, ${opacity})`;
@@ -38,7 +38,7 @@ export function convertToRgba({
   }
 
   // If hex color
-  if (color.startsWith('#')) {
+  if (color.startsWith("#")) {
     const hex = color.slice(1);
     let r: number, g: number, b: number;
 
@@ -67,5 +67,5 @@ export function convertToRgba({
 }
 
 export function formatDate(date: Date): string {
-  return date.toISOString().split('T')[0];
+  return date.toISOString().split("T")[0];
 }

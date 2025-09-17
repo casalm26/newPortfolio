@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import type { Authors } from 'contentlayer/generated';
-import Image from '@/components/shared/Image';
-import { Button } from '@/components/shared/ui/button';
+import { ReactNode } from "react";
+import type { Authors } from "contentlayer/generated";
+import Image from "@/components/shared/Image";
+import { Button } from "@/components/shared/ui/button";
 
 import {
   MailIcon,
@@ -10,12 +10,12 @@ import {
   YoutubeIcon,
   LinkedinIcon,
   TwitterIcon,
-} from 'lucide-react';
-import Header from '@/components/shared/Header';
-import PersonalFooter from '@/components/shared/PersonalFooter';
+} from "lucide-react";
+import Header from "@/components/shared/Header";
+import PersonalFooter from "@/components/shared/PersonalFooter";
 interface Props {
   children: ReactNode;
-  content: Omit<Authors, '_id' | '_raw' | 'body'>;
+  content: Omit<Authors, "_id" | "_raw" | "body">;
 }
 
 export default function AuthorLayout({ children, content }: Props) {

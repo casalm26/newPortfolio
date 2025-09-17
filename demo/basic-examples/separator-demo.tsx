@@ -1,4 +1,4 @@
-import { Separator } from '@/components/shared/ui/separator';
+import { Separator } from "@/components/shared/ui/separator";
 
 export default function SeparatorDemo() {
   return (

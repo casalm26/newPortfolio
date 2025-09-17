@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import clsx from 'clsx';
-import { convertToRgba } from '@/lib/utils';
+import React, { useRef, useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { convertToRgba } from "@/lib/utils";
 
 export const LandingPathsCtaBg = ({
   className,
-  variant = 'default',
+  variant = "default",
   position = 1,
-  pathPosition = 'topRight',
+  pathPosition = "topRight",
   pathCount = 36,
   animationDuration = 20,
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'secondary';
+  variant?: "default" | "primary" | "secondary";
   position?: number;
-  pathPosition?: 'bottomLeft' | 'topRight' | 'bottomRight' | 'topLeft';
+  pathPosition?: "bottomLeft" | "topRight" | "bottomRight" | "topLeft";
   pathCount?: number;
   animationDuration?: number;
 }) => {
   const domRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
-  const [strokeColor, setStrokeColor] = useState('rgba(100, 100, 100, 0.5)');
+  const [strokeColor, setStrokeColor] = useState("rgba(100, 100, 100, 0.5)");
 
   const generateNewColors = useCallback(() => {
     if (!domRef.current) return;
@@ -31,27 +31,27 @@ export const LandingPathsCtaBg = ({
 
     let newStrokeColor;
     switch (variant) {
-      case 'primary': {
+      case "primary": {
         const primaryMain = computedStyle
-          .getPropertyValue('--primary-main')
+          .getPropertyValue("--primary-main")
           .trim();
         newStrokeColor =
           convertToRgba({ color: primaryMain, opacity: 0.5 }) ||
-          'rgba(100, 100, 100, 0.5)';
+          "rgba(100, 100, 100, 0.5)";
         break;
       }
-      case 'secondary': {
+      case "secondary": {
         const secondaryMain = computedStyle
-          .getPropertyValue('--secondary-main')
+          .getPropertyValue("--secondary-main")
           .trim();
         newStrokeColor =
           convertToRgba({ color: secondaryMain, opacity: 0.5 }) ||
-          'rgba(100, 100, 100, 0.5)';
+          "rgba(100, 100, 100, 0.5)";
         break;
       }
       default: {
         // For default variant, use a neutral gray color
-        newStrokeColor = 'rgba(100, 100, 100, 0.5)';
+        newStrokeColor = "rgba(100, 100, 100, 0.5)";
         break;
       }
     }
@@ -109,20 +109,20 @@ export const LandingPathsCtaBg = ({
   }, []);
 
   return (
-    <div ref={domRef} className={clsx('inset-0', className)}>
+    <div ref={domRef} className={clsx("inset-0", className)}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
           duration: 2,
-          ease: 'easeInOut',
+          ease: "easeInOut",
         }}
         className={clsx(
-          'absolute inset-0 w-full h-full pointer-events-none',
-          pathPosition === 'topRight' && '-scale-y-100',
-          pathPosition === 'bottomRight' && '-scale-x-100',
-          pathPosition === 'bottomLeft' && '-scale-x-100 -scale-y-100',
-          pathPosition === 'topLeft' && '-scale-x-100',
+          "absolute inset-0 w-full h-full pointer-events-none",
+          pathPosition === "topRight" && "-scale-y-100",
+          pathPosition === "bottomRight" && "-scale-x-100",
+          pathPosition === "bottomLeft" && "-scale-x-100 -scale-y-100",
+          pathPosition === "topLeft" && "-scale-x-100",
           className,
         )}
       >
@@ -146,7 +146,7 @@ export const LandingPathsCtaBg = ({
                 transition={{
                   duration: animationDuration + Math.random() * 10,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: 'linear',
+                  ease: "linear",
                   times: [0, 0.1, 0.8, 1],
                 }}
               />

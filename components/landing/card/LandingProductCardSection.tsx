@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
-import { LandingProductCard, ProductCardProps } from './LandingProductCard';
+import React from "react";
+import clsx from "clsx";
+import { GlowBg } from "@/components/shared/ui/glow-bg";
+import { LandingProductCard, ProductCardProps } from "./LandingProductCard";
 
 export interface LandingProductSectionProps {
   title?: string;
@@ -16,9 +16,9 @@ export interface LandingProductSectionProps {
   gridColumns?: 3 | 4;
   withBackground?: boolean;
   withBackgroundGlow?: boolean;
-  backgroundGlowVariant?: 'primary' | 'secondary';
-  variant?: 'primary' | 'secondary';
-  textPosition?: 'center' | 'left';
+  backgroundGlowVariant?: "primary" | "secondary";
+  variant?: "primary" | "secondary";
+  textPosition?: "center" | "left";
 }
 
 /**
@@ -32,29 +32,29 @@ export function LandingProductCardSection({
   descriptionComponent,
   products = [],
   children,
-  className = '',
-  innerClassName = '',
-  gridClassName = '',
+  className = "",
+  innerClassName = "",
+  gridClassName = "",
   gridColumns = 3,
   withBackground = false,
   withBackgroundGlow = false,
-  backgroundGlowVariant = 'primary',
-  variant = 'primary',
-  textPosition = 'center',
+  backgroundGlowVariant = "primary",
+  variant = "primary",
+  textPosition = "center",
 }: LandingProductSectionProps) {
   const hasChildrenToRender = React.Children.count(children) > 0;
 
   return (
     <section
       className={clsx(
-        'w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
-        withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
-          : '',
-        withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
-          : '',
-        withBackgroundGlow ? 'relative overflow-hidden' : '',
+        "w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16",
+        withBackground && variant === "primary"
+          ? "bg-primary-100/20 dark:bg-primary-900/10"
+          : "",
+        withBackground && variant === "secondary"
+          ? "bg-secondary-100/20 dark:bg-secondary-900/10"
+          : "",
+        withBackgroundGlow ? "relative overflow-hidden" : "",
         className,
       )}
     >
@@ -62,7 +62,7 @@ export function LandingProductCardSection({
         <div className="hidden lg:flex justify-center w-full h-full absolute -bottom-3/4 pointer-events-none">
           <GlowBg
             className={clsx(
-              'w-full lg:w-3/4 h-auto z-0 dark:opacity-50 opacity-100',
+              "w-full lg:w-3/4 h-auto z-0 dark:opacity-50 opacity-100",
             )}
             variant={backgroundGlowVariant}
           />
@@ -71,10 +71,10 @@ export function LandingProductCardSection({
 
       <div
         className={clsx(
-          'container-wide w-full px-6 flex flex-col relative',
-          textPosition === 'center'
-            ? 'items-center text-center'
-            : 'items-start text-left',
+          "container-wide w-full px-6 flex flex-col relative",
+          textPosition === "center"
+            ? "items-center text-center"
+            : "items-start text-left",
           innerClassName,
         )}
       >
@@ -94,9 +94,9 @@ export function LandingProductCardSection({
 
         <div
           className={clsx(
-            'w-full grid grid-cols-1 md:grid-cols-2',
-            gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4',
-            'gap-6',
+            "w-full grid grid-cols-1 md:grid-cols-2",
+            gridColumns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4",
+            "gap-6",
             gridClassName,
           )}
         >

@@ -1,7 +1,7 @@
-import { AnalyticsConfig } from '@shipixen/pliny/analytics';
-import { CommentsConfig } from '@shipixen/pliny/comments';
-import { NewsletterConfig } from '@shipixen/pliny/newsletter';
-import { SearchConfig } from '@shipixen/pliny/search';
+import { AnalyticsConfig } from "@shipixen/pliny/analytics";
+import { CommentsConfig } from "@shipixen/pliny/comments";
+import { NewsletterConfig } from "@shipixen/pliny/newsletter";
+import { SearchConfig } from "@shipixen/pliny/search";
 
 export interface SiteMetadata {
   title: string;
@@ -23,7 +23,7 @@ export interface SiteMetadata {
   mastodon: string;
 
   language: string;
-  theme: 'system' | 'dark' | 'light';
+  theme: "system" | "dark" | "light";
   locale: string;
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export const MicrosoftStoreBlack = (props: React.SVGProps<SVGSVGElement>) => {
   return (

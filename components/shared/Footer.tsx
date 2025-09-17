@@ -2,9 +2,9 @@ import {
   LandingFooter,
   LandingFooterColumn,
   LandingFooterLink,
-} from '@/components/landing';
-import Image from 'next/image';
-import Link from 'next/link';
+} from "@/components/landing";
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = ({ className }: { className?: string }) => {
   return (

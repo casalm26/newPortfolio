@@ -1,5 +1,5 @@
-import { Label } from '@/components/shared/ui/label';
-import { Switch } from '@/components/shared/ui/switch';
+import { Label } from "@/components/shared/ui/label";
+import { Switch } from "@/components/shared/ui/switch";
 
 export default function SwitchDemo() {
   return (

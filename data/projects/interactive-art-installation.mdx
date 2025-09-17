@@ -1,20 +1,43 @@
 ---
-title: 'Digital Dreams - Interactive Art Installation'
-date: '2023-06-10'
-lastmod: '2023-08-15'
-tags: ['Creative Technology', 'Interactive Art', 'Generative Art', 'Arduino', 'Computer Vision']
+title: "Digital Dreams - Interactive Art Installation"
+date: "2023-06-10"
+lastmod: "2023-08-15"
+tags:
+  [
+    "Creative Technology",
+    "Interactive Art",
+    "Generative Art",
+    "Arduino",
+    "Computer Vision",
+  ]
 draft: false
-summary: 'Large-scale interactive art installation combining computer vision, generative algorithms, and physical computing for immersive experiences'
-images: ['/projects/digital-dreams/hero.png']
-projectType: 'Creative'
-category: 'Interactive Art & Technology'
-duration: '3 months'
-role: 'Creative Technologist & Lead Artist'
-skills: ['Creative Coding', 'Computer Vision', 'Generative Art', 'Physical Computing', 'Interactive Design']
-tools: ['Processing', 'Arduino', 'OpenCV', 'TouchDesigner', 'Max/MSP', 'Kinect', 'LED Controllers']
+summary: "Large-scale interactive art installation combining computer vision, generative algorithms, and physical computing for immersive experiences"
+images: ["/projects/digital-dreams/hero.png"]
+projectType: "Creative"
+category: "Interactive Art & Technology"
+duration: "3 months"
+role: "Creative Technologist & Lead Artist"
+skills:
+  [
+    "Creative Coding",
+    "Computer Vision",
+    "Generative Art",
+    "Physical Computing",
+    "Interactive Design",
+  ]
+tools:
+  [
+    "Processing",
+    "Arduino",
+    "OpenCV",
+    "TouchDesigner",
+    "Max/MSP",
+    "Kinect",
+    "LED Controllers",
+  ]
 links:
-  demo: 'https://vimeo.com/digital-dreams-installation'
-  github: 'https://github.com/username/digital-dreams'
+  demo: "https://vimeo.com/digital-dreams-installation"
+  github: "https://github.com/username/digital-dreams"
 ---
 
 ## Project Overview
@@ -24,44 +47,48 @@ Digital Dreams is an immersive interactive art installation that responds to hum
 ## Artistic Concept
 
 ### Vision & Themes
+
 - **Human-Technology Symbiosis**: Exploring harmonious interaction between humans and digital systems
 - **Collective Consciousness**: Individual interactions influence the shared visual experience
 - **Ephemeral Beauty**: Each generated artwork exists only in the moment, never to be repeated
 - **Emotional Resonance**: Technology responding to and amplifying human emotion
 
 ### Narrative Arc
+
 The installation evolves throughout the day, creating different moods and visual languages based on collective interaction patterns, weather data, and time-based algorithms. Early morning brings gentle, awakening visuals, while evening interactions create more intense, energetic patterns.
 
 ## Technical Architecture
 
 ### Computer Vision System
+
 - **Multi-Camera Setup**: 6 depth cameras tracking visitors from multiple angles
 - **Pose Estimation**: Real-time skeletal tracking of up to 12 simultaneous visitors
 - **Gesture Recognition**: ML model trained to recognize 20 distinct gestures
 - **Emotion Detection**: Facial analysis for basic emotional state classification
 
 ### Generative Art Engine
+
 ```processing
 // Core generative algorithm
 class ParticleSystem {
   ArrayList<Particle> particles;
   PVector attractorPoint;
   color systemColor;
-  
+
   ParticleSystem(PVector origin, color c) {
     particles = new ArrayList<Particle>();
     attractorPoint = origin.copy();
     systemColor = c;
   }
-  
+
   void addParticle(PVector humanPosition, float emotionalIntensity) {
     // Create particles influenced by human interaction
     PVector force = PVector.sub(humanPosition, attractorPoint);
     force.mult(emotionalIntensity * 0.1);
-    
+
     particles.add(new Particle(attractorPoint, force, systemColor));
   }
-  
+
   void update() {
     for (int i = particles.size()-1; i >= 0; i--) {
       Particle p = particles.get(i);
@@ -69,7 +96,7 @@ class ParticleSystem {
       if (p.isDead()) particles.remove(i);
     }
   }
-  
+
   void display() {
     // Render particle system with emotional color mapping
     for (Particle p : particles) {
@@ -80,6 +107,7 @@ class ParticleSystem {
 ```
 
 ### Physical Computing
+
 - **LED Matrix**: 2,400 individually addressable RGB LEDs
 - **Sound System**: 8-channel spatial audio with directional speakers
 - **Sensor Network**: Temperature, humidity, and light sensors for environmental responsiveness
@@ -88,6 +116,7 @@ class ParticleSystem {
 ## Interactive Design
 
 ### User Experience Flow
+
 1. **Approach**: Motion sensors detect visitors entering the space
 2. **Recognition**: Computer vision identifies and begins tracking individual visitors
 3. **Response**: Visual and audio systems respond to movement and gestures
@@ -95,6 +124,7 @@ class ParticleSystem {
 5. **Memory**: Installation retains "memory" of interactions, influencing future responses
 
 ### Interaction Mechanics
+
 - **Gesture Control**: Hand movements control particle flow and visual intensity
 - **Collaborative Creation**: Multiple visitors' movements blend to create hybrid visuals
 - **Emotional Amplification**: Detected emotions influence color palettes and animation speed
@@ -103,12 +133,14 @@ class ParticleSystem {
 ## Generative Algorithms
 
 ### Visual Generation Systems
+
 - **Fluid Dynamics**: Real-time fluid simulation responding to human movement
 - **Fractal Growth**: Organic growth patterns influenced by visitor proximity
 - **Particle Physics**: Complex particle systems with emotional state-based behaviors
 - **Color Evolution**: Dynamic color palettes generated from emotional and temporal data
 
 ### Audio Generation
+
 - **Procedural Composition**: Real-time music generation based on visual patterns
 - **Spatial Audio**: 3D sound positioning that follows and responds to visitors
 - **Ambient Layers**: Environmental sounds that change with installation mood
@@ -117,6 +149,7 @@ class ParticleSystem {
 ## Technical Implementation
 
 ### Real-Time Processing Pipeline
+
 ```cpp
 // Arduino sensor integration
 #include <FastLED.h>
@@ -139,19 +172,20 @@ void loop() {
   float temperature = readTemperature();
   float humidity = readHumidity();
   float lightLevel = readLightSensor();
-  
+
   // Send to main processing system
   sendSensorData(temperature, humidity, lightLevel);
-  
+
   // Receive LED updates from generative system
   webSocket.loop();
-  
+
   // Update LED display
   FastLED.show();
 }
 ```
 
 ### Machine Learning Integration
+
 - **Gesture Classification**: TensorFlow model trained on 10,000+ gesture samples
 - **Emotion Recognition**: OpenCV-based facial analysis with custom emotion mapping
 - **Pattern Learning**: Unsupervised learning to identify recurring interaction patterns
@@ -160,18 +194,21 @@ void loop() {
 ## Exhibition & Impact
 
 ### Public Installation
+
 - **Location**: Contemporary Art Museum, featured in "Future Interfaces" exhibition
 - **Duration**: 6-month installation with over 50,000 visitors
 - **Documentation**: Professional video documentation and artist talks
 - **Press Coverage**: Featured in Wired, Ars Technica, and Art in America
 
 ### Visitor Engagement
+
 - **Average Interaction Time**: 12 minutes (museum average: 3 minutes)
 - **Return Visitors**: 25% of visitors returned multiple times
 - **Social Sharing**: 5,000+ social media posts with installation hashtag
 - **Educational Impact**: Integrated into 15 university art and technology curricula
 
 ### Technical Achievements
+
 - **Real-Time Performance**: Consistent 60fps with up to 12 tracked visitors
 - **System Reliability**: 99.5% uptime over 6-month exhibition period
 - **Scalability**: Architecture designed for installations up to 10x larger
@@ -180,12 +217,14 @@ void loop() {
 ## Artistic Innovation
 
 ### Creative Technology Breakthroughs
+
 - **Emotional Algorithms**: New methods for translating emotion into visual parameters
 - **Collective Intelligence**: System that learns from group interaction patterns
 - **Temporal Artworks**: Unique approach to time-based generative art
 - **Sensory Synthesis**: Integration of visual, audio, and haptic feedback systems
 
 ### Interdisciplinary Collaboration
+
 - **Neuroscientists**: Consulted on emotion recognition and human-computer interaction
 - **Musicians**: Collaborated on generative audio algorithms and spatial sound design
 - **Dancers**: Worked with choreographers to understand movement and expression
@@ -208,12 +247,14 @@ void loop() {
 ## Future Iterations
 
 ### Planned Enhancements
+
 - **AI Emotion Synthesis**: More sophisticated emotion recognition using deep learning
 - **Biometric Integration**: Heart rate and stress response incorporation
 - **Remote Participation**: Online visitors influencing physical installation
 - **Cultural Adaptation**: Installation variants for different cultural contexts
 
 ### Research Contributions
+
 - **Published Papers**: 3 peer-reviewed papers on interactive generative systems
 - **Open Source**: Released interaction tracking libraries for creative technologists
 - **Educational Resources**: Workshop materials for teaching interactive art
@@ -222,12 +263,14 @@ void loop() {
 ## Lessons Learned
 
 ### Technical Insights
+
 - **Simplicity in Complexity**: Most impactful interactions are often the simplest
 - **Reliability First**: Artistic vision must be supported by robust technical implementation
 - **Real-Time Optimization**: Performance constraints drive creative innovation
 - **User-Centered Design**: Technology should serve the human experience, not dominate it
 
 ### Artistic Insights
+
 - **Collaborative Creation**: Some of the most beautiful moments came from unexpected visitor collaborations
 - **Emotional Technology**: Technology can be deeply emotional when designed with empathy
 - **Temporal Art**: Working in time-based media requires different artistic approaches

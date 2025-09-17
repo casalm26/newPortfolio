@@ -1,6 +1,6 @@
-import Image from '@/components/shared/Image';
+import Image from "@/components/shared/Image";
 
-import { AspectRatio } from '@/components/shared/ui/aspect-ratio';
+import { AspectRatio } from "@/components/shared/ui/aspect-ratio";
 
 export default function AspectRatioDemo() {
   return (

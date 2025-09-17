@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from '@/components/shared/ui/button';
+import { Button } from "@/components/shared/ui/button";
 import {
   Form,
   FormControl,
@@ -12,9 +12,9 @@ import {
   FormField,
   FormItem,
   FormLabel,
-} from '@/components/shared/ui/form';
-import { Switch } from '@/components/shared/ui/switch';
-import { toast } from '@/components/shared/ui/use-toast';
+} from "@/components/shared/ui/form";
+import { Switch } from "@/components/shared/ui/switch";
+import { toast } from "@/components/shared/ui/use-toast";
 
 const FormSchema = z.object({
   marketing_emails: z.boolean().default(false).optional(),
@@ -31,7 +31,7 @@ export default function SwitchForm() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
-      title: 'You submitted the following values:',
+      title: "You submitted the following values:",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>

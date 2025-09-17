@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from '@/components/shared/Image';
-import style from '@/components/shared/backdrop-image.module.css';
+import clsx from "clsx";
+import Image from "@/components/shared/Image";
+import style from "@/components/shared/backdrop-image.module.css";
 
 export default function BackdropImage({
   src,
@@ -26,13 +26,13 @@ export default function BackdropImage({
   return (
     <div
       className={clsx(
-        'flex items-center justify-center relative overflow-hidden',
+        "flex items-center justify-center relative overflow-hidden",
         className,
       )}
     >
       <figure
         className={clsx(
-          'flex items-center justify-center rounded-md overflow-hidden shadow-md bg-cover relative',
+          "flex items-center justify-center rounded-md overflow-hidden shadow-md bg-cover relative",
           style.figure,
           imgClassName,
         )}
@@ -49,12 +49,12 @@ export default function BackdropImage({
           quality={100}
           blurDataURL={blurDataURL}
           className={clsx(
-            'relative rounded-md overflow-hidden h-full w-auto lg:max-h-lg',
+            "relative rounded-md overflow-hidden h-full w-auto lg:max-h-lg",
             style.image,
           )}
         />
 
-        {captionText ? <figcaption>{captionText}</figcaption> : ''}
+        {captionText ? <figcaption>{captionText}</figcaption> : ""}
       </figure>
     </div>
   );

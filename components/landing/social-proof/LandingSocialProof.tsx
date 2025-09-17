@@ -1,9 +1,9 @@
-import clsx from 'clsx';
+import clsx from "clsx";
 import {
   LandingAvatar,
   SocialProofItem,
-} from '@/components/landing/social-proof/LandingAvatar';
-import { LandingRating } from '@/components/landing/rating/LandingRating';
+} from "@/components/landing/social-proof/LandingAvatar";
+import { LandingRating } from "@/components/landing/rating/LandingRating";
 
 export const getFormattedNumberOfUsers = (numberOfUsers: number) => {
   if (numberOfUsers >= 1000000) {
@@ -29,10 +29,10 @@ export const LandingSocialProof = ({
   className,
   avatarItems,
   numberOfUsers = 169,
-  suffixText = 'happy users',
+  suffixText = "happy users",
   showRating,
   disableAnimation,
-  size = 'medium',
+  size = "medium",
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -41,27 +41,27 @@ export const LandingSocialProof = ({
   suffixText?: string;
   showRating?: boolean;
   disableAnimation?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
 }) => {
   const numberText = getFormattedNumberOfUsers(numberOfUsers);
 
   return (
-    <div className={clsx('flex flex-wrap gap-2', className)}>
-      <div className={clsx('group/sp flex gap-1')}>
+    <div className={clsx("flex flex-wrap gap-2", className)}>
+      <div className={clsx("group/sp flex gap-1")}>
         {avatarItems.map((avatarItem, index) => (
           <LandingAvatar
             key={index}
-            size={size === 'small' ? 'medium' : size}
+            size={size === "small" ? "medium" : size}
             imageSrc={avatarItem.imageSrc}
             name={avatarItem.name}
             className={clsx(
-              'relative',
+              "relative",
               !disableAnimation
-                ? 'md:group-hover/sp:-ml-0.5 transition-all duration-300'
-                : '',
-              index === 1 || index === 2 ? `-ml-4` : '',
-              index === 3 ? `-ml-5` : '',
-              index > 3 ? `-ml-6` : '',
+                ? "md:group-hover/sp:-ml-0.5 transition-all duration-300"
+                : "",
+              index === 1 || index === 2 ? `-ml-4` : "",
+              index === 3 ? `-ml-5` : "",
+              index > 3 ? `-ml-6` : "",
             )}
           />
         ))}
@@ -69,11 +69,11 @@ export const LandingSocialProof = ({
         <div
           className={clsx(
             !disableAnimation
-              ? 'md:group-hover/sp:-ml-0.5 transition-all duration-300'
-              : '',
-            size === 'small' || size === 'medium' ? 'h-9 w-9 text-xs' : '',
-            size === 'large' ? 'h-16 w-16 text-base' : '',
-            'relative flex items-center justify-center rounded-full border-2 border-solid border-primary-100 -ml-5 bg-primary-100 text-gray-900 dark:text-gray-900',
+              ? "md:group-hover/sp:-ml-0.5 transition-all duration-300"
+              : "",
+            size === "small" || size === "medium" ? "h-9 w-9 text-xs" : "",
+            size === "large" ? "h-16 w-16 text-base" : "",
+            "relative flex items-center justify-center rounded-full border-2 border-solid border-primary-100 -ml-5 bg-primary-100 text-gray-900 dark:text-gray-900",
           )}
         >
           {numberText}+
@@ -86,9 +86,9 @@ export const LandingSocialProof = ({
         {!children ? (
           <p
             className={clsx(
-              'max-w-sm',
-              size === 'small' || size === 'medium' ? 'text-xs' : '',
-              size === 'large' ? 'text-base' : '',
+              "max-w-sm",
+              size === "small" || size === "medium" ? "text-xs" : "",
+              size === "large" ? "text-base" : "",
             )}
           >
             from {numberText}+ {suffixText}

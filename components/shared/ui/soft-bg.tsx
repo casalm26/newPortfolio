@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import style from '@/components/shared/ui/soft-bg.module.css';
-import { colors } from '@/data/config/colors';
+import clsx from "clsx";
+import style from "@/components/shared/ui/soft-bg.module.css";
+import { colors } from "@/data/config/colors";
 
 export const SoftBg = ({
   className,
@@ -8,13 +8,13 @@ export const SoftBg = ({
   animationDelay,
 }: {
   className?: string;
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   animationDelay?: number;
 }) => {
   const stopColor =
-    variant === 'primary' ? colors.primary.lighter : colors.secondary.lighter;
+    variant === "primary" ? colors.primary.lighter : colors.secondary.lighter;
   const stopColorTwo =
-    variant === 'primary' ? colors.primary.darker : colors.secondary.darker;
+    variant === "primary" ? colors.primary.darker : colors.secondary.darker;
 
   const delay = animationDelay || 0;
 
@@ -25,7 +25,7 @@ export const SoftBg = ({
       className={clsx(
         className,
         style.container,
-        'absolute top-0 left-0 -z-10 w-full h-full max-w-none transform-gpu blur-3xl',
+        "absolute top-0 left-0 -z-10 w-full h-full max-w-none transform-gpu blur-3xl",
       )}
       style={{
         animationDelay: `${delay}s`,

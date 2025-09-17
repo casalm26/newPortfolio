@@ -1,6 +1,6 @@
-import { clsx } from 'clsx';
-import { cloneElement, ReactElement } from 'react';
-import { CheckIcon, LucideIcon } from 'lucide-react';
+import { clsx } from "clsx";
+import { cloneElement, ReactElement } from "react";
+import { CheckIcon, LucideIcon } from "lucide-react";
 
 type Child = ReactElement<any, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
@@ -17,20 +17,20 @@ export const LandingProductFeatureKeyPoints = ({
   className,
   iconClassName,
   keyPoints,
-  variant = 'primary',
-  descriptionStyle = 'block',
+  variant = "primary",
+  descriptionStyle = "block",
   icon,
 }: {
   className?: string;
   iconClassName?: string;
   keyPoints: KeyPoint[];
-  variant?: 'primary' | 'secondary';
-  descriptionStyle?: 'inline' | 'block';
+  variant?: "primary" | "secondary";
+  descriptionStyle?: "inline" | "block";
   icon?: React.ReactNode | SVGSVGElement | LucideIcon;
 }) => {
   const iconClass = clsx(
-    'h-5 w-5 inline -mt-0.5',
-    variant === 'primary' ? 'text-primary-500' : 'text-secondary-500',
+    "h-5 w-5 inline -mt-0.5",
+    variant === "primary" ? "text-primary-500" : "text-secondary-500",
     iconClassName,
   );
 
@@ -38,7 +38,7 @@ export const LandingProductFeatureKeyPoints = ({
 
   const iconWithProps = icon ? (
     cloneElement(iconAsReactNode, {
-      className: (iconAsReactNode?.props?.className || '').concat(
+      className: (iconAsReactNode?.props?.className || "").concat(
         ` ${iconClass}`,
       ),
     })
@@ -49,7 +49,7 @@ export const LandingProductFeatureKeyPoints = ({
   return (
     <dl
       className={clsx(
-        'mt-10 max-w-xl text-base leading-7 text-gray-600 dark:text-gray-500 lg:max-w-md',
+        "mt-10 max-w-xl text-base leading-7 text-gray-600 dark:text-gray-500 lg:max-w-md",
         className,
       )}
     >
@@ -58,16 +58,16 @@ export const LandingProductFeatureKeyPoints = ({
           <div
             key={index}
             className={clsx(
-              'last:mb-0',
-              keyPoint.description ? 'mb-8' : 'mb-2',
+              "last:mb-0",
+              keyPoint.description ? "mb-8" : "mb-2",
             )}
           >
             <dt className="inline font-semibold text-gray-900 dark:text-gray-100">
               {iconWithProps} {keyPoint.title}.
-            </dt>{' '}
+            </dt>{" "}
             {keyPoint.description ? (
               <dd
-                className={clsx(descriptionStyle === 'inline' ? 'inline' : '')}
+                className={clsx(descriptionStyle === "inline" ? "inline" : "")}
               >
                 {keyPoint.description}
               </dd>

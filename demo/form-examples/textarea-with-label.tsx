@@ -1,5 +1,5 @@
-import { Label } from '@/components/shared/ui/label';
-import { Textarea } from '@/components/shared/ui/textarea';
+import { Label } from "@/components/shared/ui/label";
+import { Textarea } from "@/components/shared/ui/textarea";
 
 export default function TextareaWithLabel() {
   return (

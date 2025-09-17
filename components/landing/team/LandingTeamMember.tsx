@@ -1,6 +1,6 @@
-import Image from '@/components/shared/Image';
-import clsx from 'clsx';
-import { TeamMember } from './LandingTeamSection';
+import Image from "@/components/shared/Image";
+import clsx from "clsx";
+import { TeamMember } from "./LandingTeamSection";
 
 /**
  * A component for displaying a single team member with their image, name and role.
@@ -17,10 +17,10 @@ export function LandingTeamMember({
   imageClassName?: string;
 }) {
   return (
-    <div className={clsx('flex flex-col gap-3', className)}>
+    <div className={clsx("flex flex-col gap-3", className)}>
       <div
         className={clsx(
-          'w-full overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800',
+          "w-full overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800",
           innerClassName,
         )}
       >
@@ -30,7 +30,7 @@ export function LandingTeamMember({
           width={400}
           height={400}
           className={clsx(
-            'w-full h-auto object-cover aspect-square',
+            "w-full h-auto object-cover aspect-square",
             imageClassName,
           )}
         />

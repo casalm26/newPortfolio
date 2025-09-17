@@ -1,15 +1,15 @@
-import { cn } from '@/lib/utils';
-import { ReactNode } from 'react';
-import Image from '@/components/shared/Image';
-import Bleed from '@shipixen/pliny/ui/Bleed';
-import { CoreContent } from '@shipixen/pliny/utils/contentlayer';
-import type { Blog } from 'contentlayer/generated';
-import Link from '@/components/shared/Link';
-import PageTitle from '@/components/shared/PageTitle';
-import Footer from '@/components/shared/Footer';
-import Header from '@/components/shared/Header';
-import SectionContainer from '@/components/shared/SectionContainer';
-import ScrollTop from '@/components/shared/ScrollTop';
+import { cn } from "@/lib/utils";
+import { ReactNode } from "react";
+import Image from "@/components/shared/Image";
+import Bleed from "@shipixen/pliny/ui/Bleed";
+import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
+import type { Blog } from "contentlayer/generated";
+import Link from "@/components/shared/Link";
+import PageTitle from "@/components/shared/PageTitle";
+import Footer from "@/components/shared/Footer";
+import Header from "@/components/shared/Header";
+import SectionContainer from "@/components/shared/SectionContainer";
+import ScrollTop from "@/components/shared/ScrollTop";
 
 interface LayoutProps {
   className?: string;
@@ -28,7 +28,7 @@ export default function PostMinimal({
 }: LayoutProps) {
   const { slug, title, images } = content;
   const displayImage =
-    images && images.length > 0 ? images[0] : '/static/images/backdrop-3.webp';
+    images && images.length > 0 ? images[0] : "/static/images/backdrop-3.webp";
 
   return (
     <div className="flex flex-col w-full items-center">

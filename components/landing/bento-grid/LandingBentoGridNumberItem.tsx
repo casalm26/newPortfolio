@@ -1,7 +1,7 @@
-import React from 'react';
-import clsx from 'clsx';
-import { LandingBentoGridItem, ItemVariant } from './LandingBentoGridItem';
-import { ColorVariant } from './LandingBentoGridIconItem';
+import React from "react";
+import clsx from "clsx";
+import { LandingBentoGridItem, ItemVariant } from "./LandingBentoGridItem";
+import { ColorVariant } from "./LandingBentoGridIconItem";
 
 /**
  * A specialized bento grid item with optional top text, center large number, and bottom text.
@@ -17,7 +17,7 @@ export function LandingBentoGridNumberItem({
   rowSpan,
   className,
   href,
-  variant = 'default',
+  variant = "default",
   asChild = false,
   children,
   ...props
@@ -40,11 +40,11 @@ export function LandingBentoGridNumberItem({
       {topTextComponent || (
         <div
           className={clsx(
-            'flex items-start justify-center text-sm text-center',
-            variant === 'primary' && 'text-primary-500 dark:text-primary-400',
-            variant === 'secondary' &&
-              'text-secondary-500 dark:text-secondary-400',
-            variant === 'default' && 'text-foreground',
+            "flex items-start justify-center text-sm text-center",
+            variant === "primary" && "text-primary-500 dark:text-primary-400",
+            variant === "secondary" &&
+              "text-secondary-500 dark:text-secondary-400",
+            variant === "default" && "text-foreground",
           )}
         >
           {topText}
@@ -54,11 +54,11 @@ export function LandingBentoGridNumberItem({
       {number !== undefined && (
         <div
           className={clsx(
-            'text-3xl xl:text-5xl font-bold flex items-center justify-center',
-            variant === 'primary' && 'text-primary-500 dark:text-primary-400',
-            variant === 'secondary' &&
-              'text-secondary-500 dark:text-secondary-400',
-            variant === 'default' && 'text-foreground',
+            "text-3xl xl:text-5xl font-bold flex items-center justify-center",
+            variant === "primary" && "text-primary-500 dark:text-primary-400",
+            variant === "secondary" &&
+              "text-secondary-500 dark:text-secondary-400",
+            variant === "default" && "text-foreground",
           )}
         >
           {number}
@@ -68,11 +68,11 @@ export function LandingBentoGridNumberItem({
       {bottomTextComponent || (
         <div
           className={clsx(
-            'flex items-end justify-center text-sm text-center',
-            variant === 'primary' && 'text-primary-500 dark:text-primary-400',
-            variant === 'secondary' &&
-              'text-secondary-500 dark:text-secondary-400',
-            variant === 'default' && 'text-muted-foreground',
+            "flex items-end justify-center text-sm text-center",
+            variant === "primary" && "text-primary-500 dark:text-primary-400",
+            variant === "secondary" &&
+              "text-secondary-500 dark:text-secondary-400",
+            variant === "default" && "text-muted-foreground",
           )}
         >
           {bottomText}

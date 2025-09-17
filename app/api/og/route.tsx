@@ -1,10 +1,10 @@
-import { ImageResponse } from '@vercel/og';
-import { colors } from '@/data/config/colors';
-import { metadata } from '@/data/config/metadata';
-import { readFile } from 'fs/promises';
-import sizeOf from 'image-size';
-import path from 'path';
-import mime from 'mime-types';
+import { ImageResponse } from "@vercel/og";
+import { colors } from "@/data/config/colors";
+import { metadata } from "@/data/config/metadata";
+import { readFile } from "fs/promises";
+import sizeOf from "image-size";
+import path from "path";
+import mime from "mime-types";
 
 const MAX_LOGO_HEIGHT = 150;
 const MAX_LOGO_WIDTH = 350;
@@ -34,26 +34,26 @@ const getLogoSize = (dimensions: { width: number; height: number }) => {
 };
 
 export async function GET() {
-  const imagePath = path.join(process.cwd(), '/public/static/images/logo.png');
+  const imagePath = path.join(process.cwd(), "/public/static/images/logo.png");
   const file = await readFile(imagePath);
   const mimeType = mime.lookup(imagePath);
   const dimensions = sizeOf(file) as { width: number; height: number };
 
   const { logoWidth, logoHeight } = getLogoSize(dimensions);
-  const logoImage = `data:${mimeType};base64,${file.toString('base64')}`;
+  const logoImage = `data:${mimeType};base64,${file.toString("base64")}`;
 
   return new ImageResponse(
     (
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'relative',
-          backgroundColor: 'transparent',
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          position: "relative",
+          backgroundColor: "transparent",
         }}
       >
         <svg
@@ -61,10 +61,10 @@ export async function GET() {
           aria-hidden="true"
           style={{
             opacity: 1,
-            width: '1000px',
-            height: '1000px',
-            position: 'absolute',
-            top: '-500px',
+            width: "1000px",
+            height: "1000px",
+            position: "absolute",
+            top: "-500px",
           }}
         >
           <circle
@@ -96,12 +96,12 @@ export async function GET() {
         <div
           style={{
             padding: 60,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            height: '100%',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -110,8 +110,8 @@ export async function GET() {
             alt="Logo"
             style={{
               padding: 20,
-              backgroundColor: 'white',
-              borderRadius: '100%',
+              backgroundColor: "white",
+              borderRadius: "100%",
               width: logoWidth,
               height: logoHeight,
             }}
@@ -121,9 +121,9 @@ export async function GET() {
             style={{
               fontSize: 48,
               fontWeight: 700,
-              color: 'black',
+              color: "black",
               marginBottom: 0,
-              textAlign: 'center',
+              textAlign: "center",
             }}
           >
             {metadata.title}
@@ -132,9 +132,9 @@ export async function GET() {
             style={{
               marginTop: 12,
               fontSize: 26,
-              color: 'black',
+              color: "black",
               fontWeight: 700,
-              textAlign: 'center',
+              textAlign: "center",
             }}
           >
             {metadata.description}
