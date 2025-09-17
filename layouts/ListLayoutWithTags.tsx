@@ -14,6 +14,7 @@ import {
   BlogPost,
 } from "@/components/landing/blog/LandingBlogPost";
 import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
+import { useState, useMemo } from "react";
 
 const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : "/";
 
@@ -72,6 +73,41 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   );
 }
 
+function Breadcrumb({ pathname, title }: { pathname: string; title: string }) {
+  const segments = pathname.split('/').filter(Boolean);
+
+  return (
+    <div className="font-pixel text-xs text-terminal-400 mb-4 flex items-center gap-2">
+      <Link href="/" className="hover:text-white transition-colors">
+        ~/
+      </Link>
+      {segments.map((segment, index) => {
+        const path = '/' + segments.slice(0, index + 1).join('/');
+        const isLast = index === segments.length - 1;
+        const displayName = segment === 'all-articles' ? 'articles' :
+                           segment === 'tags' ? 'tags' :
+                           segment === 'page' ? '' :
+                           decodeURIComponent(segment);
+
+        if (!displayName) return null;
+
+        return (
+          <span key={path} className="flex items-center gap-2">
+            <span>/</span>
+            {isLast ? (
+              <span className="text-white">{displayName}</span>
+            ) : (
+              <Link href={path} className="hover:text-white transition-colors">
+                {displayName}
+              </Link>
+            )}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function ListLayoutWithTags({
   posts,
   title,
@@ -79,18 +115,57 @@ export default function ListLayoutWithTags({
   pagination,
 }: ListLayoutProps) {
   const pathname = usePathname();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("date");
+
   const tagCounts = tagData as Record<string, number>;
   const tagKeys = Object.keys(tagCounts);
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a]);
 
-  const displayPosts =
-    initialDisplayPosts.length > 0 ? initialDisplayPosts : posts;
+  // Filter and sort posts based on search and sort options
+  const filteredAndSortedPosts = useMemo(() => {
+    let filtered = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts;
 
-  if (displayPosts.length === 0) {
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(post => {
+        const searchFields = [
+          post.title,
+          post.summary,
+          ...(post.tags || [])
+        ].join(' ').toLowerCase();
+        return searchFields.includes(searchTerm.toLowerCase());
+      });
+    }
+
+    // Sort posts
+    const sorted = [...filtered];
+    switch (sortBy) {
+      case 'title':
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case 'oldest':
+        sorted.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+        break;
+      default: // newest
+        sorted.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    }
+
+    return sorted;
+  }, [posts, initialDisplayPosts, searchTerm, sortBy]);
+
+  const displayPosts = filteredAndSortedPosts;
+
+  if (displayPosts.length === 0 && !searchTerm) {
     return (
-      <div className="flex flex-col gap-1 p-6 mb-10">
-        <h2 className="text-4xl">No posts found</h2>
-        <p>Please check back later!</p>
+      <div className="min-h-screen bg-black">
+        <main className="container mx-auto px-4 pt-8 pb-12">
+          <Breadcrumb pathname={pathname} title={title} />
+          <div className="flex flex-col gap-1 p-6 mb-10">
+            <h2 className="text-4xl font-pixel text-white">No posts found</h2>
+            <p className="text-terminal-300">Please check back later!</p>
+          </div>
+        </main>
       </div>
     );
   }
@@ -119,8 +194,11 @@ export default function ListLayoutWithTags({
   return (
     <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 pt-8 pb-12">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumb pathname={pathname} title={title} />
+
         {/* Terminal Header */}
-        <div className="mb-12">
+        <div className="mb-8">
           <div className="font-pixel text-sm text-terminal-400 mb-2">
             caspian@localhost:~$ ls articles/
           </div>
@@ -131,6 +209,69 @@ export default function ListLayoutWithTags({
             Technical articles, insights, and thoughts on software development,
             architecture, and the evolving landscape of technology.
           </p>
+        </div>
+
+        {/* Search and Sort Controls */}
+        <div className="mb-8 space-y-4">
+          {/* Search Bar */}
+          <div>
+            <div className="font-pixel text-xs text-terminal-400 mb-3">
+              search articles:
+            </div>
+            <div className="relative max-w-lg">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search titles, content, tags..."
+                className="w-full font-pixel text-sm bg-black border border-terminal-400 text-white px-4 py-3 focus:border-white focus:outline-none placeholder-terminal-500"
+              />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 font-pixel text-xs text-terminal-400 hover:text-white"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Sort Options */}
+          <div className="flex items-center gap-4">
+            <div className="font-pixel text-xs text-terminal-400">
+              sort by:
+            </div>
+            <div className="flex gap-2">
+              {[
+                { key: "date", label: "NEWEST" },
+                { key: "oldest", label: "OLDEST" },
+                { key: "title", label: "A-Z" },
+              ].map((option) => (
+                <button
+                  key={option.key}
+                  onClick={() => setSortBy(option.key)}
+                  className={`font-pixel text-xs px-3 py-2 border transition-colors ${
+                    sortBy === option.key
+                      ? "border-white bg-white text-black"
+                      : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white"
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Search Results Info */}
+          {searchTerm && (
+            <div className="font-pixel text-xs text-terminal-400">
+              {displayPosts.length === 0
+                ? `No articles found for "${searchTerm}"`
+                : `Found ${displayPosts.length} article${displayPosts.length === 1 ? '' : 's'} for "${searchTerm}"`
+              }
+            </div>
+          )}
         </div>
 
         <div className="flex gap-12">
@@ -156,6 +297,61 @@ export default function ListLayoutWithTags({
           {/* Sidebar */}
           <div className="hidden lg:block w-80">
             <div className="sticky top-24">
+              {/* Quick Navigation */}
+              <div className="mb-8">
+                <div className="font-pixel text-xs text-terminal-400 mb-4">
+                  quick navigation:
+                </div>
+                <div className="space-y-2">
+                  <Link
+                    href="/all-articles"
+                    className={`flex items-center justify-between p-3 border transition-all duration-75 group ${
+                      pathname === '/all-articles'
+                        ? "border-white bg-white text-black"
+                        : "border-terminal-400 hover:border-white hover:bg-terminal-900"
+                    }`}
+                  >
+                    <span className={`font-pixel text-xs ${
+                      pathname === '/all-articles'
+                        ? "text-black"
+                        : "text-terminal-300 group-hover:text-white"
+                    }`}>
+                      ALL ARTICLES
+                    </span>
+                    <span className={`font-pixel text-xs ${
+                      pathname === '/all-articles'
+                        ? "text-black"
+                        : "text-terminal-500 group-hover:text-terminal-300"
+                    }`}>
+                      ({posts.length})
+                    </span>
+                  </Link>
+                  <Link
+                    href="/tags"
+                    className={`flex items-center justify-between p-3 border transition-all duration-75 group ${
+                      pathname === '/tags'
+                        ? "border-white bg-white text-black"
+                        : "border-terminal-400 hover:border-white hover:bg-terminal-900"
+                    }`}
+                  >
+                    <span className={`font-pixel text-xs ${
+                      pathname === '/tags'
+                        ? "text-black"
+                        : "text-terminal-300 group-hover:text-white"
+                    }`}>
+                      ALL TAGS
+                    </span>
+                    <span className={`font-pixel text-xs ${
+                      pathname === '/tags'
+                        ? "text-black"
+                        : "text-terminal-500 group-hover:text-terminal-300"
+                    }`}>
+                      ({sortedTags.length})
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
               {/* Tags Section */}
               <div className="mb-8">
                 <div className="font-pixel text-xs text-terminal-400 mb-4">
@@ -195,6 +391,43 @@ export default function ListLayoutWithTags({
                 </div>
               </div>
 
+              {/* RSS & Subscribe */}
+              <div className="mb-8">
+                <div className="font-pixel text-xs text-terminal-400 mb-4">
+                  subscribe:
+                </div>
+                <div className="space-y-2">
+                  <a
+                    href="/feed.xml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-3 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-75 group"
+                  >
+                    <span className="font-pixel text-xs text-terminal-300 group-hover:text-white">
+                      RSS FEED
+                    </span>
+                    <span className="font-pixel text-xs text-terminal-500 group-hover:text-terminal-300">
+                      XML
+                    </span>
+                  </a>
+                  {pathname.includes('/tags/') && (
+                    <a
+                      href={`/tags/${pathname.split('/tags/')[1]}/feed.xml`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between p-3 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-75 group"
+                    >
+                      <span className="font-pixel text-xs text-terminal-300 group-hover:text-white">
+                        TAG RSS
+                      </span>
+                      <span className="font-pixel text-xs text-terminal-500 group-hover:text-terminal-300">
+                        XML
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </div>
+
               {/* Stats */}
               <div className="p-4 border border-terminal-400">
                 <div className="font-pixel text-xs text-terminal-400 mb-3">
@@ -214,6 +447,10 @@ export default function ListLayoutWithTags({
                     <span className="font-pixel text-xs text-white">
                       {posts[0] ? formatDate(posts[0].date, siteConfig.locale) : 'N/A'}
                     </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-pixel text-xs text-terminal-300">RSS Feeds:</span>
+                    <span className="font-pixel text-xs text-white">{Object.keys(tagData as Record<string, number>).length + 1}</span>
                   </div>
                 </div>
               </div>
