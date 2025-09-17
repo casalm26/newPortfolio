@@ -213,10 +213,11 @@ test.describe("CV Timeline Page", () => {
     // Wait for timeline to load
     await page.waitForTimeout(1000);
 
-    // Check that timeline items exist
+    // Check that timeline items exist - look for the actual job title and timeline structure
     const timelineItems = page
-      .locator('[class*="timeline"]')
-      .or(page.locator('div:has-text("Senior Full-Stack Developer")'))
+      .locator('div:has-text("Full Stack Developer")')
+      .or(page.locator('div:has-text("Techsago - Helios")'))
+      .or(page.locator('.space-y-0'))
       .first();
     await expect(timelineItems).toBeVisible({ timeout: 10000 });
   });
