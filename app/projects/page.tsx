@@ -32,7 +32,7 @@ function ProjectCard({ project, searchTerm }: { project: Project; searchTerm: st
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-75 group"
+      className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 hover:shadow-[4px_4px_0px_#a1a1aa] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-150 group"
     >
       <div className="flex flex-col space-y-3">
         <div className="flex items-center justify-between">
@@ -233,10 +233,10 @@ export default function ProjectsPage() {
               <button
                 onClick={() => updateFilter("filter", null)}
                 className={cn(
-                  "font-pixel text-xs px-3 py-2 border transition-colors",
+                  "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                   !filterType || filterType === "all"
-                    ? "border-white bg-white text-black"
-                    : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white"
+                    ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
+                    : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
                 )}
               >
                 ALL ({allProjects.length})
@@ -249,10 +249,10 @@ export default function ProjectsPage() {
                     key={type}
                     onClick={() => updateFilter("filter", type)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-colors",
+                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                       isActive
-                        ? "border-white bg-white text-black"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white"
+                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
+                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
                     )}
                   >
                     {type.toUpperCase()} ({count})
@@ -286,10 +286,10 @@ export default function ProjectsPage() {
                     key={skill}
                     onClick={() => updateFilter("tech", skill)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-colors",
+                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                       isActive
-                        ? "border-white bg-white text-black"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white"
+                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
+                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
                     )}
                   >
                     {skill}
@@ -317,10 +317,10 @@ export default function ProjectsPage() {
                     key={option.key}
                     onClick={() => updateFilter("sort", option.key)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-colors",
+                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                       isActive
-                        ? "border-white bg-white text-black"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white"
+                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
+                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
                     )}
                   >
                     {option.label}
@@ -403,7 +403,7 @@ export default function ProjectsPage() {
                 setSearchTerm("");
                 router.push("/projects");
               }}
-              className="font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
+              className="font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-150"
             >
               CLEAR ALL FILTERS
             </button>

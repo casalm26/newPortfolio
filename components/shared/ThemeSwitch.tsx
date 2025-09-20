@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { useThemeSwitch } from "@/components/shared/useThemeSwitch";
+import { useVisualFeedback } from "@/lib/visual-feedback";
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
   const { currentTheme, updateTheme } = useThemeSwitch();
+  const feedback = useVisualFeedback();
 
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), []);
@@ -29,7 +31,11 @@ const ThemeSwitch = () => {
   return (
     <button
       aria-label="Toggle Dark Mode"
-      onClick={updateTheme}
+      onClick={() => {
+        updateTheme();
+        feedback.click();
+      }}
+      onMouseEnter={() => feedback.hover()}
       className="relative w-6 h-6"
     >
       {currentTheme === "dark" ? (

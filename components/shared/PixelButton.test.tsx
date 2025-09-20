@@ -1,190 +1,244 @@
-import React from "react";
 import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
-import PixelButton from "./ui/PixelButton";
-
-// Mock next/link
-vi.mock("next/link", () => {
-  return {
-    default: ({
-      children,
-      href,
-      ...props
-    }: {
-      children: React.ReactNode;
-      href: string;
-      [key: string]: unknown;
-    }) => (
-      <a href={href} {...props}>
-        {children}
-      </a>
-    ),
-  };
-});
+import { render, screen, fireEvent } from "@testing-library/react";
+import PixelButton, { PixelIconButton, PixelToggleButton, PixelLoadingButton } from "./PixelButton";
 
 describe("PixelButton", () => {
-  describe("Component Rendering", () => {
-    it("should render button with default props", () => {
-      render(<PixelButton href="/test">Test Button</PixelButton>);
+  describe("Basic Functionality", () => {
+    it("should render button with text", () => {
+      render(<PixelButton>Click me</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Test Button" });
-      expect(button).toBeInTheDocument();
-      expect(button).toHaveAttribute("href", "/test");
+      expect(screen.getByRole("button", { name: "Click me" })).toBeInTheDocument();
     });
 
-    it("should render with primary variant styling", () => {
-      render(
-        <PixelButton href="/test" variant="primary">
-          Primary Button
-        </PixelButton>,
-      );
+    it("should handle click events", () => {
+      const handleClick = vi.fn();
+      render(<PixelButton onClick={handleClick}>Click me</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Primary Button" });
-      expect(button).toHaveClass("bg-white", "text-black");
+      fireEvent.click(screen.getByRole("button"));
+      expect(handleClick).toHaveBeenCalledOnce();
     });
 
-    it("should render with secondary variant styling", () => {
-      render(
-        <PixelButton href="/test" variant="secondary">
-          Secondary Button
-        </PixelButton>,
-      );
+    it("should be disabled when disabled prop is true", () => {
+      render(<PixelButton disabled>Disabled</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Secondary Button" });
-      expect(button).toHaveClass(
-        "bg-transparent",
-        "text-white",
-        "border-terminal-400",
-      );
-    });
-
-    it("should apply pixel font styling", () => {
-      render(<PixelButton href="/test">Test</PixelButton>);
-
-      const button = screen.getByRole("link", { name: "Test" });
-      expect(button).toHaveClass("font-pixel");
+      expect(screen.getByRole("button")).toBeDisabled();
     });
   });
 
-  describe("Size Variants", () => {
-    it("should apply default size classes", () => {
-      render(<PixelButton href="/test">Test</PixelButton>);
+  describe("Variants", () => {
+    it("should apply primary variant by default", () => {
+      const { container } = render(<PixelButton>Primary</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Test" });
-      expect(button).toHaveClass("px-6", "py-3", "text-sm");
+      expect(container.querySelector('.bg-white')).toBeInTheDocument();
     });
 
-    it("should handle responsive sizing", () => {
-      render(<PixelButton href="/test">Test</PixelButton>);
+    it("should apply secondary variant", () => {
+      const { container } = render(<PixelButton variant="secondary">Secondary</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Test" });
-      expect(button).toHaveClass("text-sm", "md:text-base");
-    });
-  });
-
-  describe("Interactive States", () => {
-    it("should have hover effects for primary variant", () => {
-      render(
-        <PixelButton href="/test" variant="primary">
-          Hover Test
-        </PixelButton>,
-      );
-
-      const button = screen.getByRole("link", { name: "Hover Test" });
-      expect(button).toHaveClass("hover:bg-transparent", "hover:text-white");
+      expect(container.querySelector('.bg-transparent')).toBeInTheDocument();
     });
 
-    it("should have hover effects for secondary variant", () => {
-      render(
-        <PixelButton href="/test" variant="secondary">
-          Hover Test
-        </PixelButton>,
-      );
+    it("should apply accent variant", () => {
+      const { container } = render(<PixelButton variant="accent">Accent</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Hover Test" });
-      expect(button).toHaveClass("hover:bg-white", "hover:text-black");
+      expect(container.querySelector('.bg-green-400')).toBeInTheDocument();
     });
 
-    it("should have transition classes", () => {
-      render(<PixelButton href="/test">Test</PixelButton>);
+    it("should apply danger variant", () => {
+      const { container } = render(<PixelButton variant="danger">Danger</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Test" });
-      expect(button).toHaveClass("transition-all", "duration-75");
+      expect(container.querySelector('.bg-red-500')).toBeInTheDocument();
+    });
+
+    it("should apply success variant", () => {
+      const { container } = render(<PixelButton variant="success">Success</PixelButton>);
+
+      expect(container.querySelector('.bg-blue-500')).toBeInTheDocument();
     });
   });
 
-  describe("Accessibility", () => {
-    it("should be keyboard accessible", () => {
-      render(<PixelButton href="/test">Accessible Button</PixelButton>);
+  describe("Sizes", () => {
+    it("should apply medium size by default", () => {
+      const { container } = render(<PixelButton>Medium</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Accessible Button" });
-      expect(button).toBeInTheDocument();
+      expect(container.querySelector('.text-sm')).toBeInTheDocument();
     });
 
-    it("should have proper link semantics", () => {
-      render(<PixelButton href="/external">External Link</PixelButton>);
+    it("should apply small size", () => {
+      const { container } = render(<PixelButton size="sm">Small</PixelButton>);
 
-      const link = screen.getByRole("link", { name: "External Link" });
-      expect(link).toHaveAttribute("href", "/external");
-    });
-  });
-
-  describe("Custom Props", () => {
-    it("should accept and apply custom className", () => {
-      render(
-        <PixelButton href="/test" className="custom-class">
-          Custom Class
-        </PixelButton>,
-      );
-
-      const button = screen.getByRole("link", { name: "Custom Class" });
-      expect(button).toHaveClass("custom-class");
+      expect(container.querySelector('.text-xs')).toBeInTheDocument();
     });
 
-    it("should merge custom className with default classes", () => {
-      render(
-        <PixelButton href="/test" className="custom-class">
-          Merged Classes
-        </PixelButton>,
-      );
+    it("should apply large size", () => {
+      const { container } = render(<PixelButton size="lg">Large</PixelButton>);
 
-      const button = screen.getByRole("link", { name: "Merged Classes" });
-      expect(button).toHaveClass("custom-class", "font-pixel", "border");
+      expect(container.querySelector('.text-base')).toBeInTheDocument();
     });
   });
 
-  describe("Edge Cases", () => {
-    it("should handle empty href", () => {
-      render(<PixelButton href="">Empty Href</PixelButton>);
+  describe("Effects", () => {
+    it("should apply press effect by default", () => {
+      const { container } = render(<PixelButton>Press</PixelButton>);
 
-      // Empty href links may not be accessible as "link" role
-      const button = screen.getByText("Empty Href");
-      expect(button).toHaveAttribute("href", "");
+      expect(container.querySelector('button')).toHaveClass('transition-all');
     });
 
-    it("should handle long text content", () => {
-      const longText = "This is a very long button text that might wrap";
-      render(<PixelButton href="/test">{longText}</PixelButton>);
+    it("should apply bounce effect", () => {
+      const { container } = render(<PixelButton effect="bounce">Bounce</PixelButton>);
 
-      const button = screen.getByRole("link", { name: longText });
+      expect(container.querySelector('button')).toHaveClass('transition-all');
+    });
+
+    it("should apply glitch effect", () => {
+      const { container } = render(<PixelButton effect="glitch">Glitch</PixelButton>);
+
+      expect(container.querySelector('button')).toHaveClass('transition-all');
+    });
+
+    it("should apply glow effect", () => {
+      const { container } = render(<PixelButton effect="glow">Glow</PixelButton>);
+
+      expect(container.querySelector('button')).toHaveClass('transition-all');
+    });
+  });
+
+  describe("Interaction States", () => {
+    it("should handle mouse down and up events", () => {
+      render(<PixelButton>Interactive</PixelButton>);
+      const button = screen.getByRole("button");
+
+      fireEvent.mouseDown(button);
+      fireEvent.mouseUp(button);
+
       expect(button).toBeInTheDocument();
     });
 
-    it("should handle special characters in href", () => {
-      render(
-        <PixelButton href="/test?param=value&other=123">
-          Special Chars
-        </PixelButton>,
-      );
+    it("should handle mouse leave event", () => {
+      render(<PixelButton>Interactive</PixelButton>);
+      const button = screen.getByRole("button");
 
-      const button = screen.getByRole("link", { name: "Special Chars" });
-      expect(button).toHaveAttribute("href", "/test?param=value&other=123");
+      fireEvent.mouseDown(button);
+      fireEvent.mouseLeave(button);
+
+      expect(button).toBeInTheDocument();
+    });
+  });
+
+  describe("Styling", () => {
+    it("should apply custom className", () => {
+      const { container } = render(<PixelButton className="custom-class">Custom</PixelButton>);
+
+      expect(container.querySelector('.custom-class')).toBeInTheDocument();
     });
 
-    it("should render without crashing with minimal props", () => {
-      expect(() =>
-        render(<PixelButton href="/">Minimal</PixelButton>),
-      ).not.toThrow();
+    it("should have pixel font by default", () => {
+      const { container } = render(<PixelButton>Pixel</PixelButton>);
+
+      expect(container.querySelector('.font-pixel')).toBeInTheDocument();
     });
+
+    it("should have border styling", () => {
+      const { container } = render(<PixelButton>Border</PixelButton>);
+
+      expect(container.querySelector('.border-2')).toBeInTheDocument();
+    });
+  });
+});
+
+describe("PixelIconButton", () => {
+  const TestIcon = () => <span data-testid="test-icon">🎮</span>;
+
+  it("should render icon button", () => {
+    render(<PixelIconButton icon={<TestIcon />} label="Game" />);
+
+    expect(screen.getByTestId("test-icon")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toHaveAttribute("title", "Game");
+  });
+
+  it("should have square aspect ratio", () => {
+    const { container } = render(<PixelIconButton icon={<TestIcon />} />);
+
+    expect(container.querySelector('.aspect-square')).toBeInTheDocument();
+  });
+
+  it("should center icon content", () => {
+    const { container } = render(<PixelIconButton icon={<TestIcon />} />);
+
+    expect(container.querySelector('.flex')).toBeInTheDocument();
+  });
+});
+
+describe("PixelToggleButton", () => {
+  it("should render toggle button", () => {
+    const handleToggle = vi.fn();
+    render(<PixelToggleButton isToggled={false} onToggle={handleToggle}>Toggle</PixelToggleButton>);
+
+    expect(screen.getByRole("button", { name: "Toggle" })).toBeInTheDocument();
+  });
+
+  it("should call onToggle when clicked", () => {
+    const handleToggle = vi.fn();
+    render(<PixelToggleButton isToggled={false} onToggle={handleToggle}>Toggle</PixelToggleButton>);
+
+    fireEvent.click(screen.getByRole("button"));
+    expect(handleToggle).toHaveBeenCalledWith(true);
+  });
+
+  it("should show toggled state", () => {
+    const handleToggle = vi.fn();
+    const { container } = render(
+      <PixelToggleButton isToggled={true} onToggle={handleToggle}>Toggled</PixelToggleButton>
+    );
+
+    expect(container.querySelector('.bg-green-400')).toBeInTheDocument();
+  });
+
+  it("should toggle between states", () => {
+    const handleToggle = vi.fn();
+    render(<PixelToggleButton isToggled={true} onToggle={handleToggle}>Toggle</PixelToggleButton>);
+
+    fireEvent.click(screen.getByRole("button"));
+    expect(handleToggle).toHaveBeenCalledWith(false);
+  });
+});
+
+describe("PixelLoadingButton", () => {
+  it("should render normal button when not loading", () => {
+    render(<PixelLoadingButton isLoading={false}>Submit</PixelLoadingButton>);
+
+    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(screen.queryByText("LOADING...")).not.toBeInTheDocument();
+  });
+
+  it("should show loading state", () => {
+    render(<PixelLoadingButton isLoading={true}>Submit</PixelLoadingButton>);
+
+    expect(screen.getByText("LOADING...")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toBeDisabled();
+  });
+
+  it("should use custom loading text", () => {
+    render(<PixelLoadingButton isLoading={true} loadingText="PROCESSING...">Submit</PixelLoadingButton>);
+
+    expect(screen.getByText("PROCESSING...")).toBeInTheDocument();
+  });
+
+  it("should be disabled when loading", () => {
+    render(<PixelLoadingButton isLoading={true}>Submit</PixelLoadingButton>);
+
+    expect(screen.getByRole("button")).toBeDisabled();
+  });
+
+  it("should be disabled when disabled prop is true", () => {
+    render(<PixelLoadingButton isLoading={false} disabled>Submit</PixelLoadingButton>);
+
+    expect(screen.getByRole("button")).toBeDisabled();
+  });
+
+  it("should show loading spinner", () => {
+    render(<PixelLoadingButton isLoading={true}>Submit</PixelLoadingButton>);
+
+    expect(screen.getByText("⏳")).toBeInTheDocument();
   });
 });

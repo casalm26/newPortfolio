@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import timelineData from "@/data/cv/timeline.json";
+import { motion, AnimatePresence } from "framer-motion";
+import { useVisualFeedback } from "@/lib/visual-feedback";
+import ScrollAnimation from "@/components/shared/ScrollAnimation";
 
 interface TimelineItem {
   id: string;
@@ -49,6 +52,7 @@ function TimelineNode({
 }: TimelineNodeProps) {
   const category = timelineData.categories[item.type];
   const isLeft = position % 2 === 0;
+  const feedback = useVisualFeedback();
 
   const getIcon = () => {
     switch (item.type) {
@@ -70,22 +74,30 @@ function TimelineNode({
   };
 
   return (
-    <div
-      className={cn(
-        "flex items-center mb-8",
-        isLeft ? "flex-row" : "flex-row-reverse",
-      )}
-    >
-      {/* Content Card */}
+    <ScrollAnimation variant="slideInFromLeft" delay={position * 0.1}>
       <div
+        className={cn(
+          "flex items-center mb-8",
+          isLeft ? "flex-row" : "flex-row-reverse",
+        )}
+      >
+      {/* Content Card */}
+      <motion.div
         className={cn(
           "w-80 p-4 border border-terminal-400 cursor-pointer transition-all duration-200",
           isExpanded
-            ? "border-white bg-terminal-900"
-            : "hover:border-terminal-300",
+            ? "border-white bg-terminal-900 shadow-[4px_4px_0px_#ffffff]"
+            : "hover:border-terminal-300 hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]",
           isLeft ? "mr-8" : "ml-8",
         )}
-        onClick={onToggle}
+        onClick={() => {
+          onToggle();
+          feedback.click();
+        }}
+        onMouseEnter={() => feedback.hover()}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        layout
       >
         <div className="flex items-center justify-between mb-2">
           <span className="font-pixel text-xs text-terminal-400 uppercase">
@@ -110,8 +122,15 @@ function TimelineNode({
           {item.description}
         </p>
 
-        {isExpanded && (
-          <div className="mt-4 space-y-3 animate-fade-in">
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.div
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="mt-4 space-y-3"
+            >
             {item.responsibilities && (
               <div>
                 <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
@@ -119,13 +138,16 @@ function TimelineNode({
                 </h4>
                 <ul className="space-y-1">
                   {item.responsibilities.map((resp, idx) => (
-                    <li
+                    <motion.li
                       key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
                       className="text-sm text-terminal-300 flex items-start"
                     >
                       <span className="text-terminal-500 mr-2">•</span>
                       {resp}
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
               </div>
@@ -194,51 +216,72 @@ function TimelineNode({
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {Object.entries(item.links).map(([key, url]) => (
-                    <a
+                    <motion.a
                       key={key}
                       href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-pixel text-xs px-2 py-1 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => feedback.click()}
+                      onMouseEnter={() => feedback.hover()}
+                      className="font-pixel text-xs px-2 py-1 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] transition-all duration-150"
                     >
                       {key.toUpperCase()}
-                    </a>
+                    </motion.a>
                   ))}
                 </div>
               </div>
             )}
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         <div className="mt-3 font-pixel text-xs text-terminal-500">
           {isExpanded ? "▼ click to collapse" : "▶ click to expand"}
         </div>
-      </div>
+      </motion.div>
 
       {/* Timeline Node */}
       <div className="flex flex-col items-center">
-        <div
+        <motion.div
           className={cn(
-            "w-4 h-4 border-2 border-white flex items-center justify-center font-bold text-xs",
-            isExpanded ? "bg-white text-black" : "bg-black text-white",
+            "w-4 h-4 border-2 border-white flex items-center justify-center font-bold text-xs cursor-pointer transition-all duration-200",
+            isExpanded ? "bg-white text-black shadow-[2px_2px_0px_#000000]" : "bg-black text-white hover:shadow-[2px_2px_0px_#ffffff]",
           )}
+          onClick={() => {
+            onToggle();
+            feedback.click();
+          }}
+          onMouseEnter={() => feedback.hover()}
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          whileTap={{ scale: 0.9 }}
+          animate={isExpanded ? { rotate: [0, 10, -10, 0] } : {}}
+          transition={{ duration: 0.3 }}
         >
           {getIcon()}
-        </div>
+        </motion.div>
         {position < timelineData.timeline.length - 1 && (
-          <div className="w-0.5 h-8 bg-terminal-400 mt-2" />
+          <motion.div
+            className="w-0.5 h-8 bg-terminal-400 mt-2"
+            initial={{ height: 0 }}
+            animate={{ height: 32 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          />
         )}
       </div>
 
       {/* Empty space for opposite side */}
       <div className="w-80" />
-    </div>
+      </div>
+    </ScrollAnimation>
   );
 }
 
 export function CVTimeline() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<string>("all");
+  const feedback = useVisualFeedback();
 
   const filteredItems = timelineData.timeline.filter(
     (item) => filter === "all" || item.type === filter,
@@ -266,35 +309,47 @@ export function CVTimeline() {
           filter timeline:
         </div>
         <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setFilter("all")}
+          <motion.button
+            onClick={() => {
+              setFilter("all");
+              feedback.click();
+            }}
+            onMouseEnter={() => feedback.hover()}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             className={cn(
-              "font-pixel text-xs px-3 py-2 border transition-colors",
+              "font-pixel text-xs px-3 py-2 border transition-all duration-150",
               filter === "all"
-                ? "border-white bg-white text-black"
-                : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
+                ? "border-white bg-white text-black shadow-[2px_2px_0px_#000000]"
+                : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px]",
             )}
           >
             ALL ({timelineData.timeline.length})
-          </button>
+          </motion.button>
           {availableTypes.map((type) => {
             const count = timelineData.timeline.filter(
               (item) => item.type === type,
             ).length;
             const category = timelineData.categories[type];
             return (
-              <button
+              <motion.button
                 key={type}
-                onClick={() => setFilter(type)}
+                onClick={() => {
+                  setFilter(type);
+                  feedback.click();
+                }}
+                onMouseEnter={() => feedback.hover()}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={cn(
-                  "font-pixel text-xs px-3 py-2 border transition-colors",
+                  "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                   filter === type
-                    ? "border-white bg-white text-black"
-                    : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
+                    ? "border-white bg-white text-black shadow-[2px_2px_0px_#000000]"
+                    : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px]",
                 )}
               >
                 {category.label.toUpperCase()} ({count})
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -306,17 +361,26 @@ export function CVTimeline() {
         <div className="absolute left-1/2 transform -translate-x-0.5 w-0.5 h-full bg-terminal-400" />
 
         {/* Timeline Items */}
-        <div className="space-y-0">
-          {filteredItems.map((item, index) => (
-            <TimelineNode
-              key={item.id}
-              item={item as TimelineItem}
-              isExpanded={expandedItems.has(item.id)}
-              onToggle={() => toggleExpanded(item.id)}
-              position={index}
-            />
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={filter}
+            className="space-y-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {filteredItems.map((item, index) => (
+              <TimelineNode
+                key={item.id}
+                item={item as TimelineItem}
+                isExpanded={expandedItems.has(item.id)}
+                onToggle={() => toggleExpanded(item.id)}
+                position={index}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Stats Footer */}

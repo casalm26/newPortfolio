@@ -63,7 +63,8 @@ describe("ProjectNavigation Component", () => {
       render(<ProjectNavigation currentSlug="project-2" />);
 
       // Should show "2 of 3" for the middle project
-      expect(screen.getByText("2 of 3")).toBeInTheDocument();
+      const counterContainer = screen.getByText("2").closest('.font-pixel');
+      expect(counterContainer).toHaveTextContent("2 of 3");
     });
   });
 
@@ -139,11 +140,13 @@ describe("ProjectNavigation Component", () => {
     });
 
     it("should show correct counter based on date order", () => {
-      render(<ProjectNavigation currentSlug="project-1" />); // Newest project
-      expect(screen.getByText("1 of 3")).toBeInTheDocument();
+      const { rerender } = render(<ProjectNavigation currentSlug="project-1" />); // Newest project
+      let counterContainer = screen.getByText("1").closest('.font-pixel');
+      expect(counterContainer).toHaveTextContent("1 of 3");
 
-      render(<ProjectNavigation currentSlug="project-3" />); // Oldest project
-      expect(screen.getByText("3 of 3")).toBeInTheDocument();
+      rerender(<ProjectNavigation currentSlug="project-3" />); // Oldest project
+      counterContainer = screen.getByText("3").closest('.font-pixel');
+      expect(counterContainer).toHaveTextContent("3 of 3");
     });
   });
 
@@ -175,7 +178,8 @@ describe("ProjectNavigation Component", () => {
 
       // project-3 is the last (oldest) project, so NEXT should be disabled
       expect(screen.getByText("---")).toBeInTheDocument();
-      expect(screen.getByText("3 of 3")).toBeInTheDocument();
+      const counterContainer = screen.getByText("3").closest('.font-pixel');
+      expect(counterContainer).toHaveTextContent("3 of 3");
     });
   });
 
@@ -219,9 +223,10 @@ describe("ProjectNavigation Component", () => {
     it("should show project counter in correct format", () => {
       render(<ProjectNavigation currentSlug="project-1" />);
 
-      const counter = screen.getByText(/\d+ of \d+/);
-      expect(counter).toBeInTheDocument();
-      expect(counter.textContent).toMatch(/^\d+ of \d+$/);
+      // The counter text is split across multiple elements due to animations
+      const counterContainer = screen.getByText("1").closest('.font-pixel');
+      expect(counterContainer).toBeInTheDocument();
+      expect(counterContainer).toHaveTextContent("1 of 3");
     });
   });
 });

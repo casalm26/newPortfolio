@@ -31,7 +31,9 @@ describe('PixelSnakeGame', () => {
       render(<PixelSnakeGame />);
 
       expect(screen.getByText('SCORE:')).toBeInTheDocument();
-      expect(screen.getByText('0000')).toBeInTheDocument();
+      expect(screen.getByText('HIGH:')).toBeInTheDocument();
+      // Both score and high score should show 0000 initially
+      expect(screen.getAllByText('0000')).toHaveLength(2);
     });
 
     it('should render game controls and instructions', () => {
@@ -77,7 +79,8 @@ describe('PixelSnakeGame', () => {
 
       expect(screen.getByText('START GAME')).toBeInTheDocument();
       expect(screen.getByText('SCORE:')).toBeInTheDocument();
-      expect(screen.getByText('0000')).toBeInTheDocument();
+      // After reset, both score and high score should be visible
+      expect(screen.getAllByText('0000')).toHaveLength(2);
     });
   });
 
@@ -163,8 +166,8 @@ describe('PixelSnakeGame', () => {
     it('should pad score with leading zeros', () => {
       render(<PixelSnakeGame />);
 
-      // Initial score should be padded
-      expect(screen.getByText(/0000/)).toBeInTheDocument();
+      // Initial score and high score should both be padded to 0000
+      expect(screen.getAllByText('0000')).toHaveLength(2);
     });
 
     it('should contain game over elements in component structure', () => {

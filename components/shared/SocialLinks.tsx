@@ -6,6 +6,7 @@ import {
   TwitterPixelIcon,
   EmailPixelIcon,
 } from "@/components/icons/PixelSocialIcons";
+import { useVisualFeedback } from "@/lib/visual-feedback";
 
 interface SocialLink {
   href: string;
@@ -54,6 +55,7 @@ export default function SocialLinks({
   size = 20,
   className = "",
 }: SocialLinksProps) {
+  const feedback = useVisualFeedback();
   const baseClasses = "transition-colors duration-200";
 
   const variantClasses = {
@@ -77,6 +79,8 @@ export default function SocialLinks({
             aria-label={link.label}
             className={`${baseClasses} text-terminal-300 ${link.color} pixel-perfect group`}
             title={link.label}
+            onClick={() => feedback.click()}
+            onMouseEnter={() => feedback.hover()}
           >
             <IconComponent size={size} className="pixel-art" />
             {showLabels && (
