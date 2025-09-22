@@ -8,6 +8,7 @@ import { colors } from "@/data/config/colors.js";
 import "@/css/globals.css";
 import { SearchProvider } from "@/components/shared/SearchProvider";
 import { AnalyticsWrapper } from "@/components/shared/Analytics";
+import { AnimationProvider } from "@/components/shared/AnimationProvider";
 
 const displayFont = Oswald({
   subsets: ["latin"],
@@ -171,15 +172,17 @@ export default function RootLayout({
 
       <body className="flex flex-col bg-black text-white antialiased min-h-screen">
         <ThemeProviders>
-          <AnalyticsWrapper />
+          <AnimationProvider>
+            <AnalyticsWrapper />
 
-          <div className="w-full flex flex-col justify-between items-center font-sans">
-            <SearchProvider>
-              <main className="w-full flex flex-col items-center mb-auto">
-                {children}
-              </main>
-            </SearchProvider>
-          </div>
+            <div className="w-full flex flex-col justify-between items-center font-sans">
+              <SearchProvider>
+                <main className="w-full flex flex-col items-center mb-auto">
+                  {children}
+                </main>
+              </SearchProvider>
+            </div>
+          </AnimationProvider>
         </ThemeProviders>
       </body>
     </html>

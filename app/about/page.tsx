@@ -1,6 +1,9 @@
 import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import Image from "next/image";
+import { PageTransition } from "@/components/shared/PageTransition";
+import { ScrollAnimated } from "@/components/shared/ScrollAnimated";
+import { TypewriterText } from "@/components/shared/TypewriterText";
 
 export const metadata = {
   title: "About",
@@ -11,38 +14,45 @@ export const metadata = {
 export default function About() {
   return (
     <div className="min-h-screen bg-black">
-      <Header />
+      <ScrollAnimated animation="fade-in">
+        <Header />
+      </ScrollAnimated>
 
       <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
         {/* Breadcrumb */}
-        <div className="mb-8">
-          <Breadcrumb />
-        </div>
+        <ScrollAnimated animation="slide-in-left">
+          <div className="mb-8">
+            <Breadcrumb />
+          </div>
+        </ScrollAnimated>
 
         {/* Terminal Header */}
-        <div className="mb-12">
-          <div className="font-pixel text-sm text-terminal-400 mb-2">
-            caspian@localhost:~$ cat about.json | jq '.'
+        <ScrollAnimated animation="fade-in" delay={200}>
+          <div className="mb-12">
+            <div className="font-pixel text-sm text-terminal-400 mb-2">
+              <TypewriterText text="caspian@localhost:~$ cat about.json | jq '.'" speed={30} />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
+              GENERALIST.DEV
+            </h1>
+            <p className="text-terminal-300 text-lg">
+              Bridging technical expertise, creative problem-solving, and business
+              strategy.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
-            GENERALIST.DEV
-          </h1>
-          <p className="text-terminal-300 text-lg">
-            Bridging technical expertise, creative problem-solving, and business
-            strategy.
-          </p>
-        </div>
+        </ScrollAnimated>
 
         {/* Main Content */}
         <div className="space-y-12">
           {/* Profile Photo Section */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="scale-in" delay={300}>
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; display avatar.png --format=ascii --filter=pixel
             </div>
             <div className="flex flex-col md:flex-row items-center gap-6">
               <div className="relative">
-                <div className="w-48 h-48 border-2 border-terminal-400 bg-terminal-900 p-4 pixel-perfect">
+                <div className="w-48 h-48 border-2 border-terminal-400 bg-terminal-900 p-4 pixel-perfect hover:border-white hover:shadow-lg hover:shadow-white/10 transition-all duration-150">
                   <Image
                     src="/static/images/avatar.png"
                     alt="Caspian Almerud - Generalist Developer"
@@ -53,7 +63,7 @@ export default function About() {
                     priority
                   />
                 </div>
-                <div className="absolute -bottom-2 -right-2 bg-green-500 w-4 h-4 border-2 border-black"></div>
+                <div className="absolute -bottom-2 -right-2 bg-green-500 w-4 h-4 border-2 border-black animate-pulse hover:animate-none transition-all duration-150"></div>
               </div>
               <div className="text-center md:text-left">
                 <div className="font-pixel text-xs text-terminal-400 mb-2">
@@ -81,10 +91,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Bio Section */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="slide-in-right">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; whoami --verbose
             </div>
@@ -121,10 +133,12 @@ export default function About() {
                 that work across technical, creative, and business dimensions.
               </p>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Generalist Manifesto */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="slide-in-left">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; cat manifesto.md
             </div>
@@ -177,10 +191,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Multi-Domain Expertise */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="scale-in">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; tree expertise/ --depth=2
             </div>
@@ -261,10 +277,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Working Philosophy */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="slide-in-right">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; cat working_principles.yaml
             </div>
@@ -318,10 +336,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Impact Examples */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="fade-in">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; grep -i "generalist_advantage" case_studies.log
             </div>
@@ -331,7 +351,7 @@ export default function About() {
               </h3>
 
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-4 bg-terminal-900 border border-terminal-600">
+                <div className="p-4 bg-terminal-900 border border-terminal-600 hover:border-white hover:bg-terminal-800 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 cursor-pointer hover:transform hover:scale-[1.02]">
                   <h4 className="font-pixel text-xs text-blue-400 mb-2">
                     BLOCKCHAIN + UX
                   </h4>
@@ -342,7 +362,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <div className="p-4 bg-terminal-900 border border-terminal-600">
+                <div className="p-4 bg-terminal-900 border border-terminal-600 hover:border-white hover:bg-terminal-800 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 cursor-pointer hover:transform hover:scale-[1.02]">
                   <h4 className="font-pixel text-xs text-green-400 mb-2">
                     AI + BUSINESS
                   </h4>
@@ -353,7 +373,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <div className="p-4 bg-terminal-900 border border-terminal-600">
+                <div className="p-4 bg-terminal-900 border border-terminal-600 hover:border-white hover:bg-terminal-800 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 cursor-pointer hover:transform hover:scale-[1.02]">
                   <h4 className="font-pixel text-xs text-pink-400 mb-2">
                     ART + TECHNOLOGY
                   </h4>
@@ -364,7 +384,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <div className="p-4 bg-terminal-900 border border-terminal-600">
+                <div className="p-4 bg-terminal-900 border border-terminal-600 hover:border-white hover:bg-terminal-800 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 cursor-pointer hover:transform hover:scale-[1.02]">
                   <h4 className="font-pixel text-xs text-orange-400 mb-2">
                     DATA + STORYTELLING
                   </h4>
@@ -376,10 +396,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Current Focus */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="slide-in-left">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; systemctl status caspian.service
             </div>
@@ -435,10 +457,12 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
 
           {/* Connect */}
-          <section className="border border-terminal-400 p-6">
+          <ScrollAnimated animation="scale-in">
+            <section className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150">
             <div className="font-pixel text-xs text-terminal-400 mb-4">
               &gt; curl -X GET /api/contact/methods
             </div>
@@ -489,7 +513,8 @@ export default function About() {
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+          </ScrollAnimated>
         </div>
       </main>
     </div>

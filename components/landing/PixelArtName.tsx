@@ -26,7 +26,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
       const timer = setTimeout(() => {
         setDisplayedText(fullName.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
-      }, 150); // Type each character after 150ms
+      }, currentIndex === 0 ? 500 : 150); // Initial delay of 500ms, then 150ms per character
       return () => clearTimeout(timer);
     } else {
       // Blink cursor effect after typing is complete
@@ -35,7 +35,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
       }, 500);
       return () => clearInterval(cursorTimer);
     }
-  }, [currentIndex, fullName.length, animationSkipped]);
+  }, [currentIndex, animationSkipped]);
 
   const skipAnimation = () => {
     setAnimationSkipped(true);
@@ -52,7 +52,7 @@ export function PixelArtName({ className }: PixelArtNameProps) {
       {currentIndex < fullName.length && !animationSkipped && (
         <button
           onClick={skipAnimation}
-          className="absolute top-4 right-4 font-pixel text-xs px-3 py-2 bg-transparent text-terminal-400 border border-terminal-400 hover:bg-white hover:text-black transition-all duration-75 z-[60]"
+          className="btn-pixel-3d absolute top-4 right-4 font-pixel text-xs px-3 py-2 bg-transparent text-terminal-400 border-terminal-400 z-[60]"
           aria-label="Skip typewriter animation"
         >
           SKIP &gt;&gt;

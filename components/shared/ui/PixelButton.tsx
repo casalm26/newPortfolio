@@ -15,7 +15,7 @@ export default function PixelButton({
   className,
 }: PixelButtonProps) {
   const baseClasses =
-    "font-pixel text-sm md:text-base px-6 py-3 border transition-all duration-75 uppercase tracking-wide inline-block text-center";
+    "btn-pixel-3d font-pixel text-sm md:text-base px-6 py-3 uppercase tracking-wide inline-block text-center relative overflow-hidden";
 
   const variantClasses = {
     primary:
@@ -31,7 +31,9 @@ export default function PixelButton({
       href={href}
       className={cn(baseClasses, variantClasses[variant], className)}
     >
-      {children}
+      <span className="relative z-10">{children}</span>
+      {/* Shine effect on hover */}
+      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] hover:translate-x-[100%] transition-transform duration-1000"></span>
     </Link>
   );
 }

@@ -9,11 +9,11 @@ import {
   EmailPixelIcon,
 } from "@/components/icons/PixelSocialIcons";
 import { useState, useEffect } from "react";
-import { useVisualFeedback } from "@/lib/visual-feedback";
+import { PageTransition } from "@/components/shared/PageTransition";
+import { ScrollAnimated } from "@/components/shared/ScrollAnimated";
+import { PixelLoader } from "@/components/shared/PixelLoader";
 
 export default function ContactForm() {
-  const feedback = useVisualFeedback();
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,91 +28,9 @@ export default function ContactForm() {
   const [typingSound, setTypingSound] = useState(false);
   const [sendingProgress, setSendingProgress] = useState(0);
   const [consoleMessages, setConsoleMessages] = useState<string[]>([]);
-  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
-  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set());
-
-  // Validation functions
-  const validateEmail = (email: string): string => {
-    if (!email) return "Email is required";
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) return "Invalid email format";
-    return "";
-  };
-
-  const validateName = (name: string): string => {
-    if (!name.trim()) return "Name is required";
-    if (name.trim().length < 2) return "Name must be at least 2 characters";
-    return "";
-  };
-
-  const validateMessage = (message: string): string => {
-    if (!message.trim()) return "Message is required";
-    if (message.trim().length < 10) return "Message must be at least 10 characters";
-    if (message.length > 1000) return "Message must be less than 1000 characters";
-    return "";
-  };
-
-  const validateSubject = (subject: string): string => {
-    if (!subject) return "Please select a subject";
-    return "";
-  };
-
-  const validateField = (name: string, value: string): string => {
-    switch (name) {
-      case "name":
-        return validateName(value);
-      case "email":
-        return validateEmail(value);
-      case "subject":
-        return validateSubject(value);
-      case "message":
-        return validateMessage(value);
-      default:
-        return "";
-    }
-  };
-
-  const validateForm = (): boolean => {
-    const errors: Record<string, string> = {};
-    Object.keys(formData).forEach((key) => {
-      const error = validateField(key, formData[key as keyof typeof formData]);
-      if (error) {
-        errors[key] = error;
-      }
-    });
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
-
-  // Helper function to get field validation state
-  const getFieldState = (fieldName: string) => {
-    const hasError = touchedFields.has(fieldName) && validationErrors[fieldName];
-    const isValid = touchedFields.has(fieldName) && !validationErrors[fieldName] && formData[fieldName as keyof typeof formData];
-    const isFocused = focusedField === fieldName;
-
-    return {
-      hasError: !!hasError,
-      isValid: !!isValid,
-      isFocused,
-      error: validationErrors[fieldName] || "",
-    };
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Mark all fields as touched
-    setTouchedFields(new Set(Object.keys(formData)));
-
-    // Validate form
-    if (!validateForm()) {
-      feedback.error();
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-      return;
-    }
-
-    feedback.success();
     setStatus("sending");
     setSendingProgress(0);
     setConsoleMessages([]);
@@ -151,21 +69,10 @@ export default function ContactForm() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    const { name, value } = e.target;
-
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
-
-    // Real-time validation for touched fields
-    if (touchedFields.has(name)) {
-      const error = validateField(name, value);
-      setValidationErrors((prev) => ({
-        ...prev,
-        [name]: error,
-      }));
-    }
 
     // Simulate typing sound effect
     setTypingSound(true);
@@ -174,23 +81,10 @@ export default function ContactForm() {
 
   const handleFocus = (fieldName: string) => {
     setFocusedField(fieldName);
-    feedback.hover();
   };
 
-  const handleBlur = (fieldName: string) => {
+  const handleBlur = () => {
     setFocusedField("");
-
-    // Mark field as touched and validate
-    setTouchedFields((prev) => new Set([...prev, fieldName]));
-    const error = validateField(fieldName, formData[fieldName as keyof typeof formData]);
-    setValidationErrors((prev) => ({
-      ...prev,
-      [fieldName]: error,
-    }));
-
-    if (error) {
-      feedback.error();
-    }
   };
 
   // Add typing sound effect simulation
@@ -203,13 +97,17 @@ export default function ContactForm() {
 
   return (
     <div className="min-h-screen bg-black">
-      <Header />
+      <ScrollAnimated animation="fade-in">
+        <Header />
+      </ScrollAnimated>
 
       <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">
         {/* Breadcrumb */}
-        <div className="mb-8">
-          <Breadcrumb />
-        </div>
+        <ScrollAnimated animation="slide-in-left">
+          <div className="mb-8">
+            <Breadcrumb />
+          </div>
+        </ScrollAnimated>
 
         {/* Terminal Header */}
         <div className="mb-12">
@@ -227,15 +125,15 @@ export default function ContactForm() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="border border-terminal-400 p-6" role="region" aria-labelledby="contact-form-heading">
+          <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="contact-form-heading">
             <div id="contact-form-heading" className="font-pixel text-xs text-terminal-400 mb-6">
               &gt; echo "message" &gt; /dev/contact
             </div>
 
             {status === "sending" ? (
               <div className="space-y-4">
-                <div className="font-pixel text-yellow-400 animate-pulse">
-                  TRANSMITTING DATA...
+                <div className="flex items-center space-x-4">
+                  <PixelLoader type="typewriter" text="TRANSMITTING DATA..." />
                 </div>
                 <div className="w-full bg-terminal-900 border border-terminal-500 h-4 relative overflow-hidden">
                   <div
@@ -269,42 +167,19 @@ export default function ContactForm() {
                   <div>&gt; Session will reset in 5 seconds...</div>
                 </div>
               </div>
-            ) : status === "error" ? (
-              <div className="space-y-4">
-                <div className="font-pixel text-red-400 animate-pulse">
-                  ✗ VALIDATION ERROR
-                </div>
-                <div className="font-mono text-sm text-terminal-300">
-                  <div>&gt; Error: Form validation failed</div>
-                  <div>&gt; Status: {Object.keys(validationErrors).length} field(s) invalid</div>
-                  <div>&gt; Action: Please correct errors and retry</div>
-                  <div className="text-red-400 mt-2">
-                    {Object.entries(validationErrors).map(([field, error]) => (
-                      <div key={field}>&gt; {field.toUpperCase()}: {error}</div>
-                    ))}
-                  </div>
-                  <div>&gt; Retrying in 3 seconds...</div>
-                </div>
-              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6" aria-labelledby="contact-form-heading">
                 <div>
                   <label
                     htmlFor="name"
                     className={`block font-pixel text-xs mb-2 transition-colors ${
-                      getFieldState("name").hasError
-                        ? "text-red-400"
-                        : getFieldState("name").isValid
-                        ? "text-green-400"
-                        : getFieldState("name").isFocused
+                      focusedField === "name"
                         ? "text-green-400"
                         : "text-terminal-400"
                     }`}
                   >
-                    {getFieldState("name").isFocused ? "> " : ""}NAME
-                    {getFieldState("name").isFocused ? "_" : ":"}
-                    {getFieldState("name").isValid && " ✓"}
-                    {getFieldState("name").hasError && " ✗"}
+                    {focusedField === "name" ? "> " : ""}NAME
+                    {focusedField === "name" ? "_" : ":"}
                   </label>
                   <input
                     id="name"
@@ -313,27 +188,18 @@ export default function ContactForm() {
                     value={formData.name}
                     onChange={handleChange}
                     onFocus={() => handleFocus("name")}
-                    onBlur={() => handleBlur("name")}
+                    onBlur={handleBlur}
                     required
                     aria-required="true"
-                    aria-describedby={getFieldState("name").hasError ? "name-error" : getFieldState("name").isFocused && typingSound ? "name-status" : undefined}
+                    aria-describedby={focusedField === "name" && typingSound ? "name-status" : undefined}
                     className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
-                      getFieldState("name").hasError
-                        ? "border-2 border-red-400 shadow-md shadow-red-400/20"
-                        : getFieldState("name").isValid
-                        ? "border-2 border-green-400 shadow-md shadow-green-400/20"
-                        : getFieldState("name").isFocused
+                      focusedField === "name"
                         ? "border-2 border-green-400 shadow-md shadow-green-400/20"
                         : "border border-terminal-500 focus:border-white"
                     }`}
                     placeholder="Enter your name..."
                   />
-                  {getFieldState("name").hasError && (
-                    <div id="name-error" className="text-xs text-red-400 font-pixel mt-1" aria-live="polite">
-                      [ERROR: {getFieldState("name").error}]
-                    </div>
-                  )}
-                  {typingSound && getFieldState("name").isFocused && !getFieldState("name").hasError && (
+                  {typingSound && focusedField === "name" && (
                     <div id="name-status" className="text-xs text-green-400 font-pixel mt-1" aria-live="polite">
                       [KEYLOGGER ACTIVE]
                     </div>
@@ -459,8 +325,6 @@ export default function ContactForm() {
                 <button
                   type="submit"
                   disabled={status !== "idle"}
-                  onClick={() => feedback.click()}
-                  onMouseEnter={() => feedback.hover()}
                   className={`
                     w-full p-4 border-2 font-pixel text-sm transition-all duration-150 relative overflow-hidden
                     ${
@@ -482,7 +346,7 @@ export default function ContactForm() {
           {/* Contact Information */}
           <div className="space-y-8">
             {/* Direct Contact */}
-            <div className="border border-terminal-400 p-6" role="region" aria-labelledby="direct-contact-heading">
+            <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="direct-contact-heading">
               <div id="direct-contact-heading" className="font-pixel text-xs text-terminal-400 mb-4">
                 &gt; cat contact_info.txt
               </div>
@@ -517,7 +381,7 @@ export default function ContactForm() {
             </div>
 
             {/* Social Links */}
-            <div className="border border-terminal-400 p-6" role="region" aria-labelledby="social-links-heading">
+            <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="social-links-heading">
               <div id="social-links-heading" className="font-pixel text-xs text-terminal-400 mb-4">
                 &gt; ls -la social/
               </div>

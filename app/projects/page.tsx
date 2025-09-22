@@ -8,6 +8,9 @@ import { formatDate } from "@/lib/utils";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import { PageTransition } from "@/components/shared/PageTransition";
+import { ScrollAnimated } from "@/components/shared/ScrollAnimated";
+import { TypewriterText } from "@/components/shared/TypewriterText";
 
 function HighlightText({ text, searchTerm }: { text: string; searchTerm: string }) {
   if (!searchTerm) return <>{text}</>;
@@ -30,10 +33,11 @@ function HighlightText({ text, searchTerm }: { text: string; searchTerm: string 
 
 function ProjectCard({ project, searchTerm }: { project: Project; searchTerm: string }) {
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 hover:shadow-[4px_4px_0px_#a1a1aa] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-150 group"
-    >
+    <ScrollAnimated animation="fade-in">
+      <Link
+        href={`/projects/${project.slug}`}
+        className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 group card-pixel-interactive hover:transform hover:-translate-y-1"
+      >
       <div className="flex flex-col space-y-3">
         <div className="flex items-center justify-between">
           <span className="font-pixel text-xs text-terminal-400">
@@ -49,7 +53,7 @@ function ProjectCard({ project, searchTerm }: { project: Project; searchTerm: st
         </h2>
 
         <p className="text-terminal-300 text-sm leading-relaxed line-clamp-2">
-          <HighlightText text={project.summary} searchTerm={searchTerm} />
+          <HighlightText text={project.summary || ""} searchTerm={searchTerm} />
         </p>
 
         <div className="flex flex-wrap gap-2">
@@ -57,7 +61,7 @@ function ProjectCard({ project, searchTerm }: { project: Project; searchTerm: st
             <span
               key={skill}
               className={cn(
-                "font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-300",
+                "font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-300 transition-all duration-100 hover:border-white hover:text-white hover:bg-white/5",
                 searchTerm && skill.toLowerCase().includes(searchTerm.toLowerCase()) &&
                 "border-yellow-400 bg-yellow-400/20 text-yellow-300"
               )}
@@ -81,7 +85,8 @@ function ProjectCard({ project, searchTerm }: { project: Project; searchTerm: st
           </span>
         </div>
       </div>
-    </Link>
+      </Link>
+    </ScrollAnimated>
   );
 }
 
@@ -180,26 +185,31 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-black">
-      <Header />
+      <ScrollAnimated animation="fade-in">
+        <Header />
+      </ScrollAnimated>
 
       <main className="container mx-auto px-4 pt-24 pb-12">
         {/* Terminal Header */}
-        <div className="mb-12">
-          <div className="font-pixel text-sm text-terminal-400 mb-2">
-            caspian@localhost:~$ ls projects/
+        <ScrollAnimated animation="fade-in" delay={200}>
+          <div className="mb-12">
+            <div className="font-pixel text-sm text-terminal-400 mb-2">
+              <TypewriterText text="caspian@localhost:~$ ls projects/" speed={40} />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
+              PROJECTS/
+            </h1>
+            <p className="text-terminal-300 max-w-2xl">
+              A collection of development projects, case studies, and technical
+              implementations. Each project showcases different aspects of
+              full-stack development and problem-solving.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
-            PROJECTS/
-          </h1>
-          <p className="text-terminal-300 max-w-2xl">
-            A collection of development projects, case studies, and technical
-            implementations. Each project showcases different aspects of
-            full-stack development and problem-solving.
-          </p>
-        </div>
+        </ScrollAnimated>
 
         {/* Search and Filters */}
-        <div className="mb-8 space-y-6">
+        <ScrollAnimated animation="slide-in-left" delay={400}>
+          <div className="mb-8 space-y-6">
           {/* Search Bar */}
           <div>
             <div className="font-pixel text-xs text-terminal-400 mb-3">
@@ -211,12 +221,12 @@ export default function ProjectsPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search by title, skills, tools, or description..."
-                className="w-full font-pixel text-sm bg-black border border-terminal-400 text-white px-4 py-3 focus:border-white focus:outline-none placeholder-terminal-500"
+                className="w-full font-pixel text-sm bg-black border border-terminal-400 text-white px-4 py-3 focus:border-white focus:outline-none placeholder-terminal-500 transition-all duration-150 focus:shadow-lg focus:shadow-white/10 hover:border-terminal-300"
               />
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 font-pixel text-xs text-terminal-400 hover:text-white"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 font-pixel text-xs text-terminal-400 hover:text-white transition-all duration-100 hover:scale-110 active:scale-95"
                 >
                   ✕
                 </button>
@@ -233,10 +243,10 @@ export default function ProjectsPage() {
               <button
                 onClick={() => updateFilter("filter", null)}
                 className={cn(
-                  "font-pixel text-xs px-3 py-2 border transition-all duration-150",
+                  "btn-pixel-3d font-pixel text-xs px-3 py-2",
                   !filterType || filterType === "all"
-                    ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
-                    : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
+                    ? "border-white bg-white text-black"
+                    : "border-terminal-400 text-terminal-300"
                 )}
               >
                 ALL ({allProjects.length})
@@ -249,10 +259,10 @@ export default function ProjectsPage() {
                     key={type}
                     onClick={() => updateFilter("filter", type)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
+                      "btn-pixel-3d font-pixel text-xs px-3 py-2",
                       isActive
-                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
+                        ? "border-white bg-white text-black"
+                        : "border-terminal-400 text-terminal-300"
                     )}
                   >
                     {type.toUpperCase()} ({count})
@@ -286,10 +296,10 @@ export default function ProjectsPage() {
                     key={skill}
                     onClick={() => updateFilter("tech", skill)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
+                      "btn-pixel-3d font-pixel text-xs px-3 py-2",
                       isActive
-                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
+                        ? "border-white bg-white text-black"
+                        : "border-terminal-400 text-terminal-300"
                     )}
                   >
                     {skill}
@@ -317,10 +327,10 @@ export default function ProjectsPage() {
                     key={option.key}
                     onClick={() => updateFilter("sort", option.key)}
                     className={cn(
-                      "font-pixel text-xs px-3 py-2 border transition-all duration-150",
+                      "btn-pixel-3d font-pixel text-xs px-3 py-2",
                       isActive
-                        ? "border-white bg-white text-black shadow-[2px_2px_0px_#a1a1aa]"
-                        : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px]"
+                        ? "border-white bg-white text-black"
+                        : "border-terminal-400 text-terminal-300"
                     )}
                   >
                     {option.label}
@@ -342,7 +352,7 @@ export default function ProjectsPage() {
                     Type: {filterType}
                     <button
                       onClick={() => updateFilter("filter", null)}
-                      className="hover:text-terminal-300"
+                      className="hover:text-terminal-300 transition-all duration-100 hover:scale-110 active:scale-95"
                     >
                       ✕
                     </button>
@@ -353,7 +363,7 @@ export default function ProjectsPage() {
                     Tech: {techFilter}
                     <button
                       onClick={() => updateFilter("tech", null)}
-                      className="hover:text-terminal-300"
+                      className="hover:text-terminal-300 transition-all duration-100 hover:scale-110 active:scale-95"
                     >
                       ✕
                     </button>
@@ -364,7 +374,7 @@ export default function ProjectsPage() {
                     Search: "{searchTerm}"
                     <button
                       onClick={() => setSearchTerm("")}
-                      className="hover:text-terminal-300"
+                      className="hover:text-terminal-300 transition-all duration-100 hover:scale-110 active:scale-95"
                     >
                       ✕
                     </button>
@@ -373,7 +383,8 @@ export default function ProjectsPage() {
               </div>
             </div>
           )}
-        </div>
+          </div>
+        </ScrollAnimated>
 
         {/* Results Counter */}
         <div className="mb-6">
@@ -403,7 +414,7 @@ export default function ProjectsPage() {
                 setSearchTerm("");
                 router.push("/projects");
               }}
-              className="font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:bg-white hover:text-black hover:shadow-[2px_2px_0px_#a1a1aa] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-150"
+              className="btn-pixel-3d font-pixel text-xs px-4 py-2 border-terminal-400 text-terminal-300"
             >
               CLEAR ALL FILTERS
             </button>
@@ -411,12 +422,14 @@ export default function ProjectsPage() {
         )}
 
         {/* Terminal Footer */}
-        <div className="mt-12 pt-8 border-t border-terminal-400">
-          <div className="font-pixel text-xs text-terminal-400">
-            found {filteredProjects.length} projects • last updated{" "}
-            {formatDate(new Date())}
+        <ScrollAnimated animation="fade-in">
+          <div className="mt-12 pt-8 border-t border-terminal-400">
+            <div className="font-pixel text-xs text-terminal-400">
+              found {filteredProjects.length} projects • last updated{" "}
+              {formatDate(new Date())}
+            </div>
           </div>
-        </div>
+        </ScrollAnimated>
       </main>
     </div>
   );
