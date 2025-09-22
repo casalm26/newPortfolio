@@ -149,7 +149,7 @@ test.describe("Projects Page", () => {
     ).toBeVisible();
 
     // Check filter buttons
-    const allButton = page.locator('button:has-text("ALL")');
+    const allButton = page.getByRole('button', { name: 'ALL (10)' });
     await expect(allButton).toBeVisible();
   });
 
@@ -205,7 +205,7 @@ test.describe("CV Timeline Page", () => {
     ).toBeVisible();
 
     // Check filter buttons
-    const allButton = page.locator('button:has-text("ALL")');
+    const allButton = page.locator('button').filter({ hasText: /^ALL \(\d+\)$/ });
     await expect(allButton).toBeVisible();
   });
 

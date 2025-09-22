@@ -146,7 +146,7 @@ test.describe("Critical User Journeys", () => {
 
     // Check for CV timeline content - look for filter buttons and timeline structure
     await expect(
-      page.locator('button:has-text("ALL")').first(),
+      page.locator('button').filter({ hasText: /^ALL \(\d+\)$/ }).first(),
     ).toBeVisible({ timeout: 10000 });
 
     // Check for timeline container
