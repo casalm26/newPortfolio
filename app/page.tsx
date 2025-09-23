@@ -47,7 +47,8 @@ export default function Page() {
       {/* Hero Section - Pixel Art Name */}
       <section className="min-h-screen flex items-center justify-center bg-black px-4 pt-20">
         <ScrollAnimation animation="fadeIn" duration={1000}>
-          <PixelArtName className="w-full" />
+          <h1 className="sr-only">Caspian Almerud - Generalist Developer</h1>
+          <PixelArtName className="w-full" aria-hidden="true" />
         </ScrollAnimation>
       </section>
 

@@ -175,9 +175,17 @@ export default function RootLayout({
           <AnimationProvider>
             <AnalyticsWrapper />
 
+            {/* Skip links for accessibility */}
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 z-50 font-pixel text-sm border-2 border-black"
+            >
+              SKIP TO MAIN CONTENT
+            </a>
+
             <div className="w-full flex flex-col justify-between items-center font-sans">
               <SearchProvider>
-                <main className="w-full flex flex-col items-center mb-auto">
+                <main id="main-content" className="w-full flex flex-col items-center mb-auto">
                   {children}
                 </main>
               </SearchProvider>

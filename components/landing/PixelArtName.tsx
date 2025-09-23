@@ -6,9 +6,10 @@ import PixelButton from "@/components/shared/ui/PixelButton";
 
 interface PixelArtNameProps {
   className?: string;
+  "aria-hidden"?: boolean | "true" | "false";
 }
 
-export function PixelArtName({ className }: PixelArtNameProps) {
+export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtNameProps) {
   const fullName = "CASPIAN ALMERUD";
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -60,17 +61,22 @@ export function PixelArtName({ className }: PixelArtNameProps) {
       )}
 
       <div className="relative">
-        <h1 className="font-pixel text-4xl md:text-6xl lg:text-8xl font-bold text-center tracking-wider">
+        <div
+          className="font-pixel text-4xl md:text-6xl lg:text-8xl font-bold text-center tracking-wider"
+          aria-hidden={ariaHidden}
+          aria-live={!ariaHidden ? "polite" : undefined}
+        >
           <span className="text-white">{displayedText}</span>
           <span
             className={cn(
               "text-white transition-opacity duration-100",
               showCursor ? "opacity-100" : "opacity-0",
             )}
+            aria-hidden="true"
           >
             |
           </span>
-        </h1>
+        </div>
       </div>
 
       <div className="text-center space-y-4">

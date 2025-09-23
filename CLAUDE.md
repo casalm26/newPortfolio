@@ -79,18 +79,30 @@ This is a Next.js 15 business website boilerplate built with TypeScript, React 1
 ### Key Directories
 
 - `app/` - Next.js app router pages and layouts
-- `components/` - React components organized by feature (shared, landing, blog, icons, ui)
+- `components/` - React components organized by feature:
+  - `shared/` - Reusable UI components, utilities, and core components
+  - `landing/` - Landing page specific components (hero, pricing, testimonials, etc.)
+  - `blog/` - Blog-specific components
+  - `icons/` - Custom icon components
 - `layouts/` - Blog post and author page layouts
-- `data/` - Content files (MDX posts, authors, configuration)
+- `data/` - Content files:
+  - `*.mdx` - Blog posts
+  - `projects/*.mdx` - Project portfolio items
+  - `authors/*.md` - Author profiles
+  - `config/` - Site configuration files
 - `lib/` - Utilities and helper functions
 - `public/` - Static assets
+- `e2e/` - Playwright end-to-end tests
 
 ### Content System
 
-- Blog posts stored as MDX in `data/` directory
-- Contentlayer processes content and generates type-safe objects
-- Supports frontmatter, reading time calculation, TOC generation
-- Search index automatically generated from posts
+- **Blog Posts**: Stored as MDX in `data/` directory with frontmatter (title, date, tags, summary, etc.)
+- **Projects**: Portfolio items in `data/projects/` with specialized fields (projectType, skills, tools, links)
+- **Authors**: Profile pages in `data/authors/` with social links and bio information
+- Contentlayer processes all content types and generates type-safe TypeScript objects
+- Supports frontmatter, reading time calculation, TOC generation, and structured data
+- Search indices automatically generated for both blogs and projects
+- Tag system with automatic counting and categorization
 
 ### UI Components
 
@@ -101,10 +113,14 @@ This is a Next.js 15 business website boilerplate built with TypeScript, React 1
 
 ### Configuration
 
-- Site settings in `data/config/site.settings.js`
-- TypeScript path aliases configured for all major directories
-- ESLint configured for Next.js with custom rules
-- Content Security Policy configured in `next.config.js`
+- **Site Settings**: Main configuration in `data/config/site.settings.js`
+- **Metadata**: Business info and SEO settings in `data/config/metadata.js`
+- **Colors**: Design system colors in `data/config/colors.js`
+- **Navigation**: Header/footer links in `data/config/headerNavLinks.ts` and `footerLinks.ts`
+- **TypeScript**: Path aliases configured for all major directories
+- **ESLint**: Configured for Next.js with custom rules in `eslint.config.mjs`
+- **Security**: Content Security Policy and security headers in `next.config.js`
+- **Analytics**: Support for Google Analytics, Vercel Analytics, and privacy-focused alternatives
 
 ### Testing Architecture
 
@@ -121,7 +137,7 @@ This is a Next.js 15 business website boilerplate built with TypeScript, React 1
 
 ### TypeScript Paths
 
-The project uses path aliases:
+The project uses path aliases configured in `tsconfig.json`:
 
 - `@/components/*` → `components/*`
 - `@/data/*` → `data/*`
@@ -129,13 +145,17 @@ The project uses path aliases:
 - `@/css/*` → `css/*`
 - `@/lib/*` → `lib/*`
 - `@/app/*` → `app/*`
+- `@/theme/*` → `theme/*`
+- `contentlayer/generated` → `./.contentlayer/generated`
 
 ### Content Management
 
 - Create new blog posts in `data/` directory as `.mdx` files
+- Project portfolios in `data/projects/` as `.mdx` files with specialized frontmatter
 - Author profiles in `data/authors/` as `.md` files
-- Contentlayer automatically processes on build/dev
+- Contentlayer automatically processes content and generates type-safe objects
 - Search functionality requires `search: true` in site config
+- Automatic generation of tag counts and search indices for both blogs and projects
 
 ### Styling
 
@@ -153,11 +173,44 @@ The project uses path aliases:
 
 ### Development Workflow
 
+- **Port**: Development server runs on port 6006 (not default 3000)
 - **Git Hooks**: Husky for pre-commit hooks
 - **Commit Linting**: Commitlint with conventional commits
 - **Lint Staged**: Automatic linting and formatting on commit
 - **Docker Support**: Development and testing with Docker Compose
-- **CI/CD Ready**: GitHub Actions configuration included
+- **CI/CD Ready**: GitHub Actions configuration in `.github/workflows/`
+- **Pre-build**: Automatic app info generation before dev/build
+- **Post-build**: Custom processing scripts after build
+
+## Portfolio Features
+
+This boilerplate includes specialized portfolio functionality:
+
+### Project Portfolio System
+
+- **Project Types**: Technical, Creative, Business, Learning
+- **Project Fields**: Duration, role, skills, tools, external links
+- **Project Search**: Dedicated search index at `/public/projects-search.json`
+- **Project Pages**: Dynamic routing at `/projects/[slug]`
+
+### CV/Resume Features
+
+- **Timeline Data**: Structured experience data in `data/cv/timeline.json`
+- **CV Page**: Dedicated CV display at `/cv`
+- **Experience Rendering**: Automated timeline visualization
+
+### Animation System
+
+- **Pixel Art Components**: Custom pixel-style animations and buttons
+- **3D Effects**: Button animations with depth and hover states
+- **Landing Animations**: Comprehensive animation system for landing pages
+- **Animation Testing**: Dedicated test page at `/animations-test`
+
+### Games Integration
+
+- **Interactive Elements**: Built-in games and interactive components
+- **Snake Game**: Retro Snake game implementation
+- **Game Engine**: Custom game engine for interactive features
 
 ## Getting Started with This Boilerplate
 

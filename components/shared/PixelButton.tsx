@@ -187,6 +187,7 @@ export function PixelIconButton({ icon, label, ...props }: PixelIconButtonProps)
     <PixelButton
       {...props}
       className={cn("!p-2 aspect-square flex items-center justify-center", props.className)}
+      aria-label={label}
       title={label}
     >
       {icon}
@@ -214,6 +215,7 @@ export function PixelToggleButton({
         isToggled ? "bg-green-400 text-black border-green-400" : "",
         className
       )}
+      aria-pressed={isToggled}
       onClick={() => onToggle(!isToggled)}
     >
       {children}
@@ -238,11 +240,12 @@ export function PixelLoadingButton({
     <PixelButton
       {...props}
       disabled={disabled || isLoading}
+      aria-busy={isLoading}
       className={cn(isLoading ? "cursor-not-allowed opacity-75" : "", props.className)}
     >
       {isLoading ? (
         <span className="flex items-center gap-2">
-          <span className="animate-spin">⏳</span>
+          <span className="animate-spin" aria-hidden="true">⏳</span>
           {loadingText}
         </span>
       ) : (

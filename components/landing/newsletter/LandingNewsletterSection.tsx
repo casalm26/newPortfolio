@@ -4,6 +4,8 @@ import clsx from "clsx";
 import Image from "@/components/shared/Image";
 import { GlowBg } from "@/components/shared/ui/glow-bg";
 import { LandingNewsletterInput } from "@/components/landing/newsletter/LandingNewsletterInput";
+import { LazySection } from "@/components/shared/LazySection";
+import { getResponsiveImageProps, imageSizes, responsiveSizes } from "@/lib/image-utils";
 
 /**
  * A component meant to be used in the landing page.
@@ -93,65 +95,102 @@ export const LandingNewsletterSection = ({
           )}
         >
           {withAvatars ? (
-            <div className="flex mb-6">
-              <Image
-                src="/static/images/people/1.webp"
-                alt="Person 1"
-                width={200}
-                height={200}
-                className="w-14 h-14 shrink-0 rounded-full"
-              />
+            <LazySection
+              fallback={
+                <div className="flex mb-6">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      className={clsx(
+                        "shrink-0 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse",
+                        i === 1 && "w-14 h-14",
+                        i === 2 && "w-16 h-16 -ml-6",
+                        i === 3 && "w-20 h-20 -ml-4",
+                        i === 4 && "w-16 h-16 -ml-4",
+                        i === 5 && "w-14 h-14 -ml-6"
+                      )}
+                    />
+                  ))}
+                </div>
+              }
+              rootMargin="50px"
+            >
+              <div className="flex mb-6">
+                <Image
+                  {...getResponsiveImageProps({
+                    src: "/static/images/people/1.webp",
+                    alt: "Newsletter subscriber",
+                    ...imageSizes.avatar.md,
+                    sizes: responsiveSizes.avatar,
+                  })}
+                  className="w-14 h-14 shrink-0 rounded-full"
+                />
 
-              <Image
-                src="/static/images/people/2.webp"
-                alt="Person 2"
-                width={200}
-                height={200}
-                className={clsx(
-                  "w-16 h-16 shrink-0 rounded-full rotate-12 -ml-6",
-                  variant === "primary" ? "border-2 border-primary-500" : "",
-                  variant === "secondary"
-                    ? "border-2 border-secondary-500"
-                    : "",
-                )}
-              />
+                <Image
+                  {...getResponsiveImageProps({
+                    src: "/static/images/people/2.webp",
+                    alt: "Newsletter subscriber",
+                    ...imageSizes.avatar.md,
+                    sizes: responsiveSizes.avatar,
+                  })}
+                  className={clsx(
+                    "w-16 h-16 shrink-0 rounded-full rotate-12 -ml-6",
+                    variant === "primary" ? "border-2 border-primary-500" : "",
+                    variant === "secondary"
+                      ? "border-2 border-secondary-500"
+                      : "",
+                  )}
+                />
 
-              <Image
-                src="/static/images/people/3.webp"
-                alt="Person 3"
-                width={200}
-                height={200}
-                className={clsx(
-                  "w-20 h-20 shrink-0 rounded-full relative z-10 -ml-4",
-                  variant === "primary" ? "border-2 border-primary-500" : "",
-                  variant === "secondary"
-                    ? "border-2 border-secondary-500"
-                    : "",
-                )}
-              />
+                <Image
+                  {...getResponsiveImageProps({
+                    src: "/static/images/people/3.webp",
+                    alt: "Newsletter subscriber",
+                    ...imageSizes.avatar.lg,
+                    sizes: responsiveSizes.avatar,
+                  })}
+                  className={clsx(
+                    "w-20 h-20 shrink-0 rounded-full relative z-10 -ml-4",
+                    variant === "primary" ? "border-2 border-primary-500" : "",
+                    variant === "secondary"
+                      ? "border-2 border-secondary-500"
+                      : "",
+                  )}
+                />
 
-              <Image
-                src="/static/images/people/4.webp"
-                alt="Person 4"
-                width={200}
-                height={200}
-                className={clsx(
-                  "w-16 h-16 shrink-0 rounded-full -rotate-12 -ml-4",
-                  variant === "primary" ? "border-2 border-primary-500" : "",
-                  variant === "secondary"
-                    ? "border-2 border-secondary-500"
-                    : "",
-                )}
-              />
+                <Image
+                  {...getResponsiveImageProps({
+                    src: "/static/images/people/4.webp",
+                    alt: "Newsletter subscriber",
+                    ...imageSizes.avatar.md,
+                    sizes: responsiveSizes.avatar,
+                  })}
+                  className={clsx(
+                    "w-16 h-16 shrink-0 rounded-full -rotate-12 -ml-4",
+                    variant === "primary" ? "border-2 border-primary-500" : "",
+                    variant === "secondary"
+                      ? "border-2 border-secondary-500"
+                      : "",
+                  )}
+                />
 
-              <Image
-                src="/static/images/people/5.webp"
-                alt="Person 5"
-                width={200}
-                height={200}
-                className="w-14 h-14 shrink-0 rounded-full -ml-4"
-              />
-            </div>
+                <Image
+                  {...getResponsiveImageProps({
+                    src: "/static/images/people/5.webp",
+                    alt: "Newsletter subscriber",
+                    ...imageSizes.avatar.sm,
+                    sizes: responsiveSizes.avatar,
+                  })}
+                  className={clsx(
+                    "w-14 h-14 shrink-0 rounded-full -ml-6",
+                    variant === "primary" ? "border-2 border-primary-500" : "",
+                    variant === "secondary"
+                      ? "border-2 border-secondary-500"
+                      : "",
+                  )}
+                />
+              </div>
+            </LazySection>
           ) : null}
 
           {titleComponent ||

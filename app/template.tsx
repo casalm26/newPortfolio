@@ -47,15 +47,16 @@ const pixelTransitionSettings = {
 export default function Template({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {/* Pixel art loading overlay */}
-      <motion.div
+      {/* TODO: Re-implement pixel art loading overlay with proper failsafe */}
+      {/* Temporarily removed to fix black screen issue */}
+      {/* <motion.div
         className="fixed inset-0 z-50 bg-black pointer-events-none"
         variants={pixelTransition}
         initial="initial"
         animate="animate"
         exit="exit"
         transition={pixelTransitionSettings}
-      />
+      /> */}
 
       {/* Main page content */}
       <motion.div
