@@ -1,5 +1,19 @@
 import { defineConfig } from "vitest/config";
 import path from "path";
+import fs from "fs";
+
+const contentlayerGeneratedDir = path.resolve(
+  __dirname,
+  "./.contentlayer/generated",
+);
+const contentlayerMockFile = path.resolve(
+  __dirname,
+  "./test/mocks/contentlayer-generated",
+);
+
+const contentlayerAlias = fs.existsSync(contentlayerGeneratedDir)
+  ? contentlayerGeneratedDir
+  : contentlayerMockFile;
 
 export default defineConfig({
   test: {
@@ -30,10 +44,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./"),
-      "contentlayer/generated": path.resolve(
-        __dirname,
-        "./.contentlayer/generated",
-      ),
+      "contentlayer/generated": contentlayerAlias,
     },
   },
 });

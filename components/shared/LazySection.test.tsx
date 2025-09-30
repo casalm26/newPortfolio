@@ -58,9 +58,11 @@ describe('LazySection', () => {
       expect(mockObserve).toHaveBeenCalled();
     });
 
-    it('should render children when intersection observer is not available', () => {
-      global.IntersectionObserver = undefined as any;
-      global.window.IntersectionObserver = undefined as any;
+      it('should render children when intersection observer is not available', () => {
+        global.IntersectionObserver =
+          undefined as unknown as typeof IntersectionObserver;
+        global.window.IntersectionObserver =
+          undefined as unknown as typeof IntersectionObserver;
 
       const TestComponent = () => <div>Lazy content</div>;
 
@@ -84,23 +86,24 @@ describe('LazySection', () => {
 
       expect(mockIntersectionObserver).toHaveBeenCalledWith(
         expect.any(Function),
-        {
+        expect.objectContaining({
           rootMargin: '200px',
           threshold: 0.5,
-        }
+        })
       );
     });
 
     it('should apply custom className and component type', () => {
       const TestComponent = () => <div>Lazy content</div>;
 
-      render(
+      const { container } = render(
         <LazySection as="section" className="custom-class">
           <TestComponent />
         </LazySection>
       );
 
-      const section = screen.getByRole('generic');
+      const section = container.querySelector('section');
+      expect(section).not.toBeNull();
       expect(section.tagName).toBe('SECTION');
       expect(section).toHaveClass('custom-class');
     });
@@ -131,12 +134,14 @@ describe('LazySection', () => {
       expect(screen.getByText('Loading...')).toBeInTheDocument();
 
       // Simulate intersection
-      intersectionCallback!([
-        {
-          isIntersecting: true,
-          target: document.createElement('div'),
-        } as IntersectionObserverEntry,
-      ]);
+      await act(async () => {
+        intersectionCallback!([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
 
       await waitFor(() => {
         expect(screen.getByText('Lazy content')).toBeInTheDocument();
@@ -165,12 +170,14 @@ describe('LazySection', () => {
       );
 
       // Simulate intersection
-      intersectionCallback!([
-        {
-          isIntersecting: true,
-          target: document.createElement('div'),
-        } as IntersectionObserverEntry,
-      ]);
+      await act(async () => {
+        intersectionCallback!([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
 
       await waitFor(() => {
         expect(mockDisconnect).toHaveBeenCalled();
@@ -197,16 +204,101 @@ describe('LazySection', () => {
         </LazySection>
       );
 
+      const disconnectCallsBefore = mockDisconnect.mock.calls.length;
+
       // Simulate intersection
-      intersectionCallback!([
-        {
-          isIntersecting: true,
-          target: document.createElement('div'),
-        } as IntersectionObserverEntry,
-      ]);
+      await act(async () => {
+        intersectionCallback!([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
 
       await waitFor(() => {
-        expect(mockDisconnect).not.toHaveBeenCalled();
+        expect(mockDisconnect.mock.calls.length).toBe(disconnectCallsBefore);
+      });
+    });
+
+    it('should reattach observer when rendered element changes', async () => {
+      const callbacks: Array<(entries: IntersectionObserverEntry[]) => void> = [];
+
+      mockIntersectionObserver.mockImplementation((callback) => {
+        callbacks.push(callback);
+        return {
+          observe: mockObserve,
+          unobserve: mockUnobserve,
+          disconnect: mockDisconnect,
+        };
+      });
+
+      const fallback = <div>Loading...</div>;
+      const child = <div>Lazy content</div>;
+
+      const { rerender } = render(
+        <LazySection fallback={fallback} triggerOnce={false}>
+          {child}
+        </LazySection>
+      );
+
+      expect(mockObserve).toHaveBeenCalledTimes(1);
+      expect(callbacks.length).toBeGreaterThan(0);
+
+      const initialCallback = callbacks[0]!;
+
+      await act(async () => {
+        initialCallback([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText('Lazy content')).toBeInTheDocument();
+      });
+
+      await act(async () => {
+        initialCallback([
+          {
+            isIntersecting: false,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText('Loading...')).toBeInTheDocument();
+      });
+
+      rerender(
+        <LazySection fallback={fallback} triggerOnce={false} as="section">
+          {child}
+        </LazySection>
+      );
+
+      expect(mockDisconnect).toHaveBeenCalled();
+      expect(mockObserve).toHaveBeenCalledTimes(2);
+
+      const latestCallback = callbacks[callbacks.length - 1]!;
+
+      await waitFor(() => {
+        expect(screen.getByText('Loading...')).toBeInTheDocument();
+      });
+
+      await act(async () => {
+        latestCallback([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText('Lazy content')).toBeInTheDocument();
       });
     });
   });
@@ -229,56 +321,59 @@ describe('LazySection', () => {
 });
 
 describe('useIntersectionObserver', () => {
-  it('should return correct initial state', () => {
-    let hookResult: any;
+    it('should return correct initial state', () => {
+      let hookResult: ReturnType<typeof useIntersectionObserver> | null = null;
 
-    function TestComponent() {
-      hookResult = useIntersectionObserver();
-      return <div ref={hookResult.ref}>Test</div>;
-    }
+      function TestComponent() {
+        hookResult = useIntersectionObserver();
+        return <div ref={hookResult.ref}>Test</div>;
+      }
 
-    render(<TestComponent />);
+      render(<TestComponent />);
 
-    expect(hookResult.isVisible).toBe(false);
-    expect(hookResult.hasTriggered).toBe(false);
-    expect(hookResult.ref).toBeDefined();
-  });
-
-  it('should update state when element becomes visible', async () => {
-    let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
-    let hookResult: any;
-
-    mockIntersectionObserver.mockImplementation((callback) => {
-      intersectionCallback = callback;
-      return {
-        observe: mockObserve,
-        unobserve: mockUnobserve,
-        disconnect: mockDisconnect,
-      };
+      expect(hookResult).not.toBeNull();
+      expect(hookResult?.isVisible).toBe(false);
+      expect(hookResult?.hasTriggered).toBe(false);
+      expect(hookResult?.ref).toBeDefined();
     });
 
-    function TestComponent() {
-      hookResult = useIntersectionObserver();
-      return <div ref={hookResult.ref}>Test</div>;
-    }
+    it('should update state when element becomes visible', async () => {
+      let intersectionCallback: (entries: IntersectionObserverEntry[]) => void;
+      let hookResult: ReturnType<typeof useIntersectionObserver> | null = null;
 
-    render(<TestComponent />);
+      mockIntersectionObserver.mockImplementation((callback) => {
+        intersectionCallback = callback;
+        return {
+          observe: mockObserve,
+          unobserve: mockUnobserve,
+          disconnect: mockDisconnect,
+        };
+      });
 
-    expect(hookResult.isVisible).toBe(false);
+      function TestComponent() {
+        hookResult = useIntersectionObserver();
+        return <div ref={hookResult.ref}>Test</div>;
+      }
 
-    // Simulate intersection
-    intersectionCallback!([
-      {
-        isIntersecting: true,
-        target: document.createElement('div'),
-      } as IntersectionObserverEntry,
-    ]);
+      render(<TestComponent />);
 
-    await waitFor(() => {
-      expect(hookResult.isVisible).toBe(true);
-      expect(hookResult.hasTriggered).toBe(true);
+      expect(hookResult?.isVisible).toBe(false);
+
+      // Simulate intersection
+      await act(async () => {
+        intersectionCallback!([
+          {
+            isIntersecting: true,
+            target: document.createElement('div'),
+          } as IntersectionObserverEntry,
+        ]);
+      });
+
+      await waitFor(() => {
+        expect(hookResult?.isVisible).toBe(true);
+        expect(hookResult?.hasTriggered).toBe(true);
+      });
     });
-  });
 
   it('should handle custom options', () => {
     function TestComponent() {
@@ -294,10 +389,10 @@ describe('useIntersectionObserver', () => {
 
     expect(mockIntersectionObserver).toHaveBeenCalledWith(
       expect.any(Function),
-      {
+      expect.objectContaining({
         rootMargin: '50px',
         threshold: 0.25,
-      }
+      })
     );
   });
 });

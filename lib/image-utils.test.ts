@@ -109,18 +109,20 @@ describe('Image Utils', () => {
   describe('preloadImage', () => {
     beforeEach(() => {
       // Mock DOM
-      global.document = {
-        createElement: vi.fn(() => ({
-          rel: '',
-          as: '',
-          href: '',
-        })),
-        head: {
-          appendChild: vi.fn(),
-        },
-      } as any;
+        global.document = {
+          createElement: vi.fn(() => ({
+            rel: '',
+            as: '',
+            href: '',
+          })),
+          head: {
+            appendChild: vi.fn(),
+          },
+        } as unknown as Document;
 
-      global.window = {} as any;
+        global.window = {} as unknown as Window & typeof globalThis;
+        global.IntersectionObserver =
+          undefined as unknown as typeof IntersectionObserver;
     });
 
     afterEach(() => {
@@ -156,13 +158,15 @@ describe('Image Utils', () => {
 
   describe('createIntersectionObserver', () => {
     beforeEach(() => {
-      global.window = {
-        IntersectionObserver: vi.fn((callback, options) => ({
-          observe: vi.fn(),
-          unobserve: vi.fn(),
-          disconnect: vi.fn(),
-        })),
-      } as any;
+        global.window = {
+          IntersectionObserver: vi.fn((callback, options) => ({
+            observe: vi.fn(),
+            unobserve: vi.fn(),
+            disconnect: vi.fn(),
+          })),
+        } as unknown as Window & typeof globalThis;
+        global.IntersectionObserver =
+          global.window.IntersectionObserver as unknown as typeof IntersectionObserver;
     });
 
     afterEach(() => {
@@ -201,7 +205,9 @@ describe('Image Utils', () => {
     });
 
     it('should return null if IntersectionObserver is not supported', () => {
-      global.window = {} as any;
+        global.window = {} as unknown as Window & typeof globalThis;
+        global.IntersectionObserver =
+          undefined as unknown as typeof IntersectionObserver;
 
       const observer = createIntersectionObserver(vi.fn());
 
@@ -209,7 +215,9 @@ describe('Image Utils', () => {
     });
 
     it('should return null in server environment', () => {
-      global.window = undefined as any;
+        global.window = undefined as unknown as Window & typeof globalThis;
+        global.IntersectionObserver =
+          undefined as unknown as typeof IntersectionObserver;
 
       const observer = createIntersectionObserver(vi.fn());
 

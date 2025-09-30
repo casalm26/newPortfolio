@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, useRef, ReactNode } from "react";
+import {
+  useState,
+  useEffect,
+  useRef,
+  ReactNode,
+  useCallback,
+} from "react";
 import { createIntersectionObserver } from "@/lib/image-utils";
 
 interface LazySectionProps {
@@ -29,11 +35,12 @@ export function LazySection({
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
+  const [observedElement, setObservedElement] = useState<HTMLElement | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+    if (!observedElement) return;
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries;
@@ -41,11 +48,12 @@ export function LazySection({
       if (entry.isIntersecting) {
         setIsVisible(true);
         setHasTriggered(true);
+        hasTriggeredRef.current = true;
 
         if (triggerOnce && observerRef.current) {
           observerRef.current.disconnect();
         }
-      } else if (!triggerOnce && hasTriggered) {
+      } else if (!triggerOnce && hasTriggeredRef.current) {
         setIsVisible(false);
       }
     };
@@ -56,26 +64,52 @@ export function LazySection({
     });
 
     if (observerRef.current) {
-      observerRef.current.observe(element);
+      observerRef.current.observe(observedElement);
     } else {
       // Fallback for unsupported browsers
       setIsVisible(true);
+      setHasTriggered(true);
+      hasTriggeredRef.current = true;
     }
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
+        observerRef.current = null;
       }
     };
-  }, [rootMargin, threshold, triggerOnce, hasTriggered]);
+  }, [observedElement, rootMargin, threshold, triggerOnce]);
 
   const shouldRender = isVisible || (triggerOnce && hasTriggered);
 
+  const setElementRef = useCallback(
+    (node: HTMLElement | null) => {
+      elementRef.current = node;
+      setObservedElement((prev) => {
+        if (prev === node) {
+          return prev;
+        }
+
+        if (node) {
+          if (triggerOnce) {
+            if (hasTriggeredRef.current) {
+              setIsVisible(true);
+            }
+          } else {
+            hasTriggeredRef.current = false;
+            setHasTriggered(false);
+            setIsVisible(false);
+          }
+        }
+
+        return node;
+      });
+    },
+    [triggerOnce]
+  );
+
   return (
-    <Component
-      ref={elementRef as React.RefObject<HTMLElement>["current"]}
-      className={className}
-    >
+    <Component ref={setElementRef} className={className}>
       {shouldRender ? children : fallback}
     </Component>
   );
@@ -94,13 +128,14 @@ export function useIntersectionObserver(
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
+  const [observedElement, setObservedElement] = useState<HTMLElement | null>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const hasTriggeredRef = useRef(false);
 
   const { rootMargin = "100px", threshold = 0.1, triggerOnce = true } = options;
 
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+    if (!observedElement) return;
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       const [entry] = entries;
@@ -108,11 +143,12 @@ export function useIntersectionObserver(
       if (entry.isIntersecting) {
         setIsVisible(true);
         setHasTriggered(true);
+        hasTriggeredRef.current = true;
 
         if (triggerOnce && observerRef.current) {
           observerRef.current.disconnect();
         }
-      } else if (!triggerOnce && hasTriggered) {
+      } else if (!triggerOnce && hasTriggeredRef.current) {
         setIsVisible(false);
       }
     };
@@ -123,21 +159,50 @@ export function useIntersectionObserver(
     });
 
     if (observerRef.current) {
-      observerRef.current.observe(element);
+      observerRef.current.observe(observedElement);
     } else {
       // Fallback for unsupported browsers
       setIsVisible(true);
+      setHasTriggered(true);
+      hasTriggeredRef.current = true;
     }
 
     return () => {
       if (observerRef.current) {
         observerRef.current.disconnect();
+        observerRef.current = null;
       }
     };
-  }, [rootMargin, threshold, triggerOnce, hasTriggered]);
+  }, [observedElement, rootMargin, threshold, triggerOnce]);
+
+  const setHookElementRef = useCallback(
+    (node: HTMLElement | null) => {
+      elementRef.current = node;
+      setObservedElement((prev) => {
+        if (prev === node) {
+          return prev;
+        }
+
+        if (node) {
+          if (triggerOnce) {
+            if (hasTriggeredRef.current) {
+              setIsVisible(true);
+            }
+          } else {
+            hasTriggeredRef.current = false;
+            setHasTriggered(false);
+            setIsVisible(false);
+          }
+        }
+
+        return node;
+      });
+    },
+    [triggerOnce]
+  );
 
   return {
-    ref: elementRef,
+    ref: setHookElementRef,
     isVisible: isVisible || (triggerOnce && hasTriggered),
     hasTriggered,
   };
