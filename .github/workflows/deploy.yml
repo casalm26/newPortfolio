@@ -1,0 +1,244 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      deployment_type:
+        description: 'Deployment Type'
+        required: true
+        default: 'static'
+        type: choice
+        options:
+          - static
+          - node
+
+env:
+  NODE_VERSION: '20'
+  DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+  DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+  DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+  DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run E2E tests
+        run: |
+          npx playwright install --with-deps
+          npm run test:e2e
+
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --production=false
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: production
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: |
+            .next/
+            out/
+            package.json
+            package-lock.json
+            next.config.js
+            public/
+          retention-days: 1
+
+  deploy-static:
+    name: Deploy Static Files
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event.inputs.deployment_type == 'static' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.DEPLOY_HOST_KEY }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to server
+        run: |
+          # Create backup on server
+          ssh -i ~/.ssh/deploy_key -p ${{ env.DEPLOY_PORT }} ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} \
+            "if [ -d ${{ env.DEPLOY_DIR }}/out ]; then sudo mv ${{ env.DEPLOY_DIR }}/out ${{ env.DEPLOY_DIR }}/out.backup.\$(date +%Y%m%d_%H%M%S); fi"
+
+          # Sync files
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ env.DEPLOY_PORT }}" \
+            ./out/ \
+            ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:${{ env.DEPLOY_DIR }}/out/
+
+          # Set permissions and reload
+          ssh -i ~/.ssh/deploy_key -p ${{ env.DEPLOY_PORT }} ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} \
+            "sudo chown -R www-data:www-data ${{ env.DEPLOY_DIR }}/out && \
+             sudo chmod -R 755 ${{ env.DEPLOY_DIR }}/out && \
+             sudo rm -rf /var/cache/nginx/* && \
+             sudo nginx -s reload"
+
+      - name: Verify deployment
+        run: |
+          sleep 5
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.DEPLOY_HOST }})
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ Deployment successful (HTTP $HTTP_CODE)"
+          else
+            echo "⚠️ Site returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+  deploy-node:
+    name: Deploy Node.js Application
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event.inputs.deployment_type == 'node'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "${{ secrets.DEPLOY_HOST_KEY }}" >> ~/.ssh/known_hosts
+
+      - name: Create deployment package
+        run: |
+          tar -czf deploy.tar.gz \
+            --exclude=node_modules \
+            --exclude=.git \
+            --exclude=.env* \
+            --exclude=deploy \
+            --exclude=e2e \
+            --exclude=.github \
+            .
+
+      - name: Deploy to server
+        run: |
+          # Upload package
+          scp -i ~/.ssh/deploy_key -P ${{ env.DEPLOY_PORT }} \
+            deploy.tar.gz \
+            ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }}:/tmp/
+
+          # Deploy on server
+          ssh -i ~/.ssh/deploy_key -p ${{ env.DEPLOY_PORT }} ${{ env.DEPLOY_USER }}@${{ env.DEPLOY_HOST }} << 'EOF'
+            set -e
+
+            PROJECT_DIR="${{ env.DEPLOY_DIR }}"
+            TEMP_DIR="/tmp/portfolio-deploy-$(date +%s)"
+
+            # Extract and prepare
+            mkdir -p $TEMP_DIR
+            cd $TEMP_DIR
+            tar -xzf /tmp/deploy.tar.gz
+            rm /tmp/deploy.tar.gz
+
+            # Copy environment file
+            if [ -f "$PROJECT_DIR/.env.production" ]; then
+              cp $PROJECT_DIR/.env.production .env.production
+            fi
+
+            # Install and build
+            npm ci --production
+            npm run build
+
+            # Backup current deployment
+            if [ -d "$PROJECT_DIR" ]; then
+              sudo mv $PROJECT_DIR ${PROJECT_DIR}.backup.$(date +%Y%m%d_%H%M%S)
+            fi
+
+            # Move new deployment
+            sudo mv $TEMP_DIR $PROJECT_DIR
+            sudo chown -R deploy:www-data $PROJECT_DIR
+
+            # Restart application
+            cd $PROJECT_DIR
+            pm2 reload ecosystem.config.js --update-env
+            pm2 save
+
+            # Reload Nginx
+            sudo rm -rf /var/cache/nginx/*
+            sudo nginx -s reload
+          EOF
+
+      - name: Verify deployment
+        run: |
+          sleep 10
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://${{ env.DEPLOY_HOST }})
+          if [ "$HTTP_CODE" == "200" ]; then
+            echo "✅ Deployment successful (HTTP $HTTP_CODE)"
+          else
+            echo "⚠️ Site returned HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+  notify:
+    name: Notify Deployment Status
+    runs-on: ubuntu-latest
+    needs: [deploy-static, deploy-node]
+    if: always()
+    steps:
+      - name: Send notification
+        if: success()
+        run: |
+          echo "✅ Deployment successful for commit ${{ github.sha }}"
+          # Add Slack/Discord notification here if needed
+
+      - name: Send failure notification
+        if: failure()
+        run: |
+          echo "❌ Deployment failed for commit ${{ github.sha }}"
+          # Add Slack/Discord notification here if needed

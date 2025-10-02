@@ -1,0 +1,148 @@
+#!/bin/bash
+# Git post-receive hook for automatic deployment
+# Place this in your server's bare repository: /home/deploy/portfolio.git/hooks/post-receive
+
+set -e
+
+# Configuration
+PROJECT_DIR="/var/www/portfolio"
+DEPLOYMENT_TYPE="static"  # or "node"
+BRANCH="main"
+LOG_FILE="/var/log/portfolio-deploy.log"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+# Logging function
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> $LOG_FILE
+    echo -e "$1"
+}
+
+# Main deployment function
+deploy() {
+    log "${GREEN}Starting deployment...${NC}"
+
+    # Check which branch was pushed
+    while read oldrev newrev refname; do
+        branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+
+        if [ "$branch" == "$BRANCH" ]; then
+            log "${GREEN}Deploying branch: $branch${NC}"
+
+            # Change to project directory
+            cd $PROJECT_DIR
+
+            # Create deployment lock
+            if [ -f ".deploy.lock" ]; then
+                log "${YELLOW}Deployment already in progress. Waiting...${NC}"
+                sleep 10
+                if [ -f ".deploy.lock" ]; then
+                    log "${RED}Deployment lock still exists. Aborting.${NC}"
+                    exit 1
+                fi
+            fi
+
+            touch .deploy.lock
+
+            # Pull latest changes
+            log "Pulling latest changes..."
+            git fetch origin
+            git checkout $BRANCH
+            git pull origin $BRANCH
+
+            # Get commit information
+            COMMIT_HASH=$(git rev-parse HEAD)
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+
+            log "Deploying commit: $COMMIT_HASH"
+            log "Message: $COMMIT_MSG"
+            log "Author: $COMMIT_AUTHOR"
+
+            # Install dependencies
+            log "Installing dependencies..."
+            npm ci --production=false
+
+            # Build application
+            log "Building application..."
+            npm run build
+
+            if [ "$DEPLOYMENT_TYPE" == "node" ]; then
+                # Restart Node.js application
+                log "Restarting application..."
+                pm2 reload ecosystem.config.js --update-env
+                pm2 save
+
+                # Health check
+                sleep 5
+                if pm2 status | grep -q "online"; then
+                    log "${GREEN}Application restarted successfully${NC}"
+                else
+                    log "${RED}Application restart failed${NC}"
+                    rm .deploy.lock
+                    exit 1
+                fi
+            else
+                # For static deployment, files are already in place
+                log "${GREEN}Static files updated${NC}"
+            fi
+
+            # Clear caches
+            log "Clearing caches..."
+            sudo rm -rf /var/cache/nginx/*
+            sudo nginx -s reload
+
+            # Remove deployment lock
+            rm .deploy.lock
+
+            # Send notification (optional)
+            if [ ! -z "$SLACK_WEBHOOK" ]; then
+                curl -X POST $SLACK_WEBHOOK \
+                    -H 'Content-Type: application/json' \
+                    -d "{
+                        \"text\": \"Deployment successful!\",
+                        \"attachments\": [{
+                            \"color\": \"good\",
+                            \"fields\": [
+                                {\"title\": \"Branch\", \"value\": \"$branch\", \"short\": true},
+                                {\"title\": \"Commit\", \"value\": \"$COMMIT_HASH\", \"short\": true},
+                                {\"title\": \"Author\", \"value\": \"$COMMIT_AUTHOR\", \"short\": true},
+                                {\"title\": \"Message\", \"value\": \"$COMMIT_MSG\", \"short\": false}
+                            ]
+                        }]
+                    }"
+            fi
+
+            log "${GREEN}✓ Deployment completed successfully!${NC}"
+        else
+            log "${YELLOW}Push received for branch $branch, ignoring (not $BRANCH)${NC}"
+        fi
+    done
+}
+
+# Error handler
+on_error() {
+    log "${RED}✗ Deployment failed!${NC}"
+
+    # Remove lock file
+    if [ -f "$PROJECT_DIR/.deploy.lock" ]; then
+        rm "$PROJECT_DIR/.deploy.lock"
+    fi
+
+    # Send error notification
+    if [ ! -z "$SLACK_WEBHOOK" ]; then
+        curl -X POST $SLACK_WEBHOOK \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\": \"⚠️ Deployment failed! Check logs at $LOG_FILE\"}"
+    fi
+}
+
+# Set error handler
+trap on_error ERR
+
+# Run deployment
+deploy
