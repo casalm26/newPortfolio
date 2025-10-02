@@ -1,407 +1,181 @@
 # Portfolio Website - Product Requirements Document (PRD)
-*Senior PM Refined Version*
-
-## Executive Summary
-
-### Strategic Vision
-Create a differentiated pixel-art portfolio that positions Caspian as an innovative generalist developer who thinks outside conventional boundaries. The site serves as both a professional showcase and a memorable brand experience that stands out in a crowded market of traditional portfolio sites.
-
-### Value Proposition
-"A portfolio that's as innovative as the developer behind it" - demonstrating technical skills, creative thinking, and attention to user experience through an interactive, game-inspired interface that recruiters and peers will remember.
-
-### Business Objectives
-1. **Primary**: Increase quality job opportunities and career advancement
-2. **Secondary**: Build professional network and industry recognition
-3. **Tertiary**: Establish thought leadership as an innovative generalist
-
-## User Personas & Journey Mapping
-
-### Primary Persona: Technical Recruiters (70% of traffic)
-- **Context**: Scanning 50+ portfolios per day
-- **Time Budget**: 15-30 seconds initial scan
-- **Key Needs**: Quick skill assessment, contact info, standout factor
-- **Success Metric**: Moves to shortlist (5% of viewed profiles)
-- **Journey**: Landing → Skills scan → Projects glimpse → Contact/LinkedIn
-
-### Secondary Persona: Hiring Managers (25% of traffic)
-- **Context**: Evaluating 3-5 pre-screened candidates
-- **Time Budget**: 2-3 minutes deep dive
-- **Key Needs**: Project depth, problem-solving approach, cultural fit
-- **Success Metric**: Invites to interview (20% of reviewed profiles)
-- **Journey**: Direct to projects → CV timeline → About → Contact
-
-### Tertiary Persona: Peers/Colleagues (5% of traffic)
-- **Context**: Professional networking, referrals
-- **Time Budget**: 1-5 minutes exploration
-- **Key Needs**: Professional connection, shared interests
-- **Success Metric**: Social engagement and referrals
-- **Journey**: Variable → Social links → Projects → Game (retention)
-
-## Feature Prioritization Matrix
-
-### Must Have (MVP - Phase 1)
-| Feature | Impact | Effort | Priority |
-|---------|---------|---------|----------|
-| Landing Page (Progressive Name Animation) | High | Medium | P1 |
-| Visual Design System (Pixel Art) | High | High | P1 |
-| Navigation System (Location Awareness) | High | Medium | P1 |
-| Projects Showcase & Detail Pages | High | High | P1 |
-| Interactive CV Timeline | High | High | P1 |
-| About Page (Generalist Positioning) | High | Low | P1 |
-| Contact & Social Integration | High | Low | P1 |
-| Mobile Responsive Design | High | Medium | P1 |
-
-### Should Have (Phase 2)
-| Feature | Impact | Effort | Priority |
-|---------|---------|---------|----------|
-| Advanced Project Search/Filtering | Medium | Medium | P2 |
-| Mini Game (Pixel Runner) | Medium | High | P2 |
-| Blog System | Medium | High | P2 |
-| Advanced Animations & Microinteractions | Medium | Medium | P2 |
-| CV Timeline Personal Achievements Toggle | Medium | Low | P2 |
-
-### Could Have (Phase 3)
-| Feature | Impact | Effort | Priority |
-|---------|---------|---------|----------|
-| Easter Eggs & Hidden Features | Low | Medium | P3 |
-| Game High Score Leaderboard | Low | Medium | P3 |
-| Advanced CV Timeline Features (Zoom, Filters) | Low | Medium | P3 |
-| A/B Testing for Pixel vs. Professional Versions | Low | High | P3 |
-
-### Won't Have (This Version)
-- Real-time chat
-- User accounts/login
-- Complex CMS integration
-
-## Visual Design System
-
-### Pixel Art Specifications
-- **Grid System**: 8px base grid for all elements, 16px for major layout components
-- **Pixel Alignment**: All elements must align to grid for crisp rendering
-- **Inspiration**: adventofcode.com aesthetic with game-like interface elements
-- **Typography**: Monospace/pixel fonts (Courier New, Monaco, Menlo) with font-smooth: never
-- **Borders**: Hard edges, no border-radius >2px, prefer 0px for authentic pixel look
-- **Shadows**: Hard shadows with solid colors (2px 2px 0px) instead of blur effects
-
-### Color System
-**Dark Mode (Default) - Orange Theme:**
-- Primary: #f97316 (main orange), #ea580c (hover), #c2410c (active)
-- Background: #0f0f0f (true black for pixel aesthetic)
-- Text: #ffffff (white), #d1d5db (muted)
-- Accent borders and highlights in orange
-
-**Light Mode - Purple/Blue Theme (Accessibility Optimized):**
-- Primary: #6366f1 (purple-blue), #4f46e5 (hover), #4338ca (active)
-- Background: #fafafa (soft white, not harsh bright)
-- Text: #1f2937 (dark gray), #6b7280 (muted)
-- Sufficient contrast ratios (4.5:1 minimum for normal text)
-
-### Animation Guidelines
-- **Transition Duration**: 50-150ms for snappy, game-like feel
-- **Easing**: ease-out for responsive interactions
-- **Progressive Loading**: Typewriter effects for text, block-by-block for images
-- **Microinteractions**: 3D button press effects, color shifts on hover
-
-## Technical Architecture
-
-### Core Stack
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS + Custom pixel-art components
-- **Animations**: Framer Motion + CSS animations
-- **Content Management**: Contentlayer2 for projects/blog
-- **Deployment**: Vercel (recommended) or Netlify
-
-### Data Architecture
-```
-/data/
-├── projects/           # MDX files for projects
-├── cv-timeline/       # JSON for career timeline
-├── config/            # Site configuration
-└── assets/            # Pixel art and media
-```
-
-### Performance Budget
-- **LCP**: < 2.5 seconds
-- **FID**: < 100ms
-- **CLS**: < 0.1
-- **Bundle Size**: < 500KB initial load
-- **Image Optimization**: WebP with fallbacks
-
-### SEO Strategy
-- Dynamic meta tags for projects
-- Structured data (Person, CreativeWork)
-- Sitemap generation
-- Social media cards
-- Keywords: "generalist developer", "innovative portfolio", "[specific skills]"
-
-### Analytics Implementation
-- Google Analytics 4 for user behavior
-- Core Web Vitals monitoring
-- Custom events for portfolio interactions
-- A/B testing framework ready
-
-## Success Metrics (SMART Goals)
-
-### Primary KPIs (90-day targets)
-1. **Career Impact**: 3+ quality interview opportunities from portfolio
-2. **Engagement**: 60% of visitors view multiple pages (vs. 35% industry avg)
-3. **Performance**: 95%+ lighthouse scores across all categories
-4. **Reach**: 500+ unique visitors in first 3 months
-
-### Secondary KPIs
-1. **Conversion**: 15%+ contact form completion rate
-2. **Retention**: 30%+ return visitor rate
-3. **Social**: 50+ LinkedIn profile views per month
-4. **Technical**: <3 second load time on 3G networks
-
-### Measurement Framework
-- Weekly analytics reviews
-- Monthly performance audits
-- Quarterly goal reassessment
-- A/B testing on key pages (landing, projects)
-
-## Competitive Analysis
-
-### Direct Competitors
-- **Traditional portfolios**: Generic templates (weakness: forgettable)
-- **Developer showcases**: Code-focused sites (weakness: not generalist-friendly)
-
-### Inspiration Sources
-- **AdventOfCode.com**: Clean pixel aesthetic, gamification
-- **Roadmap.sh**: Excellent timeline visualization
-- **Retro gaming sites**: Nostalgic, memorable experiences
-
-### Unique Differentiators
-1. Pixel-art aesthetic in professional context
-2. Generalist skill showcase (vs. specialist focus)
-3. Interactive timeline with personal achievements
-4. Game elements without sacrificing professionalism
-
-## Risk Assessment & Mitigation
-
-### High-Risk Items
-| Risk | Impact | Probability | Mitigation |
-|------|---------|-------------|------------|
-| Pixel aesthetic too childish | High | Medium | A/B test professional vs. pixel versions |
-| Performance issues with animations | Medium | High | Progressive enhancement, performance budget |
-| Accessibility non-compliance | High | Low | Regular WCAG audits, screen reader testing |
-
-### Technical Risks
-- **Scope Creep**: Lock MVP scope, resist feature additions
-- **Browser Compatibility**: Test on all major browsers/devices
-- **Content Maintenance**: Design for easy content updates
-
-## Content Strategy
-
-### Launch Content Requirements
-- **Projects**: 8-10 diverse projects showcasing generalist skills
-- **CV Timeline**: Complete professional history with achievements
-- **About**: Personal story connecting technical and creative sides
-- **Blog**: 3-5 initial posts demonstrating thought leadership
-
-### Content Categories for Projects
-1. **Technical Projects**: Full-stack applications, APIs, tools
-2. **Creative Projects**: Design, UX/UI, multimedia
-3. **Business Projects**: Strategy, operations, process improvement
-4. **Learning Projects**: Courses, certifications, experiments
-
-## Missing Feature Specifications
-
-### Interactive CV Timeline (Enhanced Requirements)
-**Visual Design**: Inspired by roadmap.sh/devops but adapted to pixel art aesthetic
-**Data Source**: LinkedIn profile (linkedin.com/in/caspianalmerud/) with manual curation
-
-**Timeline Structure**:
-- Horizontal timeline with year markers
-- Node-based system for experiences, skills, and achievements
-- Elegant handling of overlapping time periods (stacked or grouped nodes)
-- Zoom functionality for detailed exploration
-
-**Node Types & Interactions**:
-- **Work Experience Nodes**: Expandable with role, company, key achievements
-- **Skill Development Nodes**: Technology adoption, certifications, learning milestones
-- **Personal Achievement Nodes**: Life events, travel, hobbies (different color palette)
-- **Project Nodes**: Major projects linked to timeline periods
-
-**Interactive Features**:
-- Click to expand nodes with detailed information
-- Personal achievements toggle (show/hide with smooth animation)
-- Filter by category (work, skills, personal, projects)
-- Tooltip previews on hover
-- Mobile-responsive with touch interactions
-
-**Color Coding**:
-- Professional: Orange accents (dark mode) / Purple-blue (light mode)
-- Personal: Green accents to distinguish life events
-- Skills: Yellow/amber for learning and development
-- Projects: Teal for major deliverables
-
-### Mini Game Design Document (Pixel Runner)
-**Core Concept**: Chrome dinosaur game reimagined with pixel-art character
-
-**Visual Design**:
-- **Character**: 16x16px pixel-art figure (running animation: 3-4 frames)
-- **Environment**: Minimalist pixel landscape with parallax scrolling background
-- **Obstacles**: Various pixel platforms/blocks moving left to right at different speeds
-- **UI Elements**: Retro-style score counter, high score display, game over overlay
-
-**Gameplay Mechanics**:
-- **Movement**: Character runs continuously, player controls jumping only
-- **Jumping**: Arc-based physics with gravity (not floaty)
-- **Obstacle Generation**: Randomized platform heights and gaps
-- **Difficulty Scaling**: Gradually increasing speed and obstacle frequency
-- **Collision Detection**: Pixel-perfect collision with obstacles
-
-**Controls & Accessibility**:
-- **Desktop**: Spacebar or Up arrow to jump
-- **Mobile**: Touch anywhere on screen to jump
-- **Game State**: Disable page scroll when game is active
-- **Accessibility**: Visual indicators for actions, keyboard-only playable
-
-**Technical Requirements**:
-- **Performance**: 60fps on mobile devices
-- **Responsive**: Scales to different screen sizes without breaking pixel alignment
-- **State Management**: Game state, score tracking, high score persistence
-- **Integration**: Accessible from navigation, potential easter egg triggers
-
-**UI Components**:
-- **Start Screen**: Simple "Press Space to Start" with character preview
-- **Score Display**: Real-time score in pixel font
-- **Game Over Screen**: Final score, high score, restart option
-- **High Score**: Local storage for persistent high scores
-
-### Enhanced Project Detail Pages
-**Layout Structure**: Dedicated page for each project with consistent template
-
-**Required Components**:
-- **Hero Section**: Large thumbnail/screenshot (pixel-art styled frame)
-- **Project Title**: Prominent heading in pixel font
-- **Project Description**: Detailed explanation of goals, process, and outcomes
-- **Links Section** (when available):
-  - Live Project (primary CTA button)
-  - Source Code (GitHub/repository link)
-  - Demo/Preview (interactive demo or video)
-  - Case Study/Documentation
-
-**Metadata Sections**:
-- **Skills Used**: Tag-based display of technologies, languages, methodologies
-- **Tools Used**: Software, platforms, frameworks, hardware
-- **Project Type**: Technical, Creative, Business, Learning (for generalist categorization)
-- **Duration**: Timeline and effort investment
-- **Role**: Individual vs. team project, specific responsibilities
-
-**Content Adaptation**:
-- **Code Projects**: Emphasize technical implementation, architecture decisions
-- **Design Projects**: Focus on design process, user research, iterations
-- **Business Projects**: Highlight strategy, outcomes, stakeholder management
-- **Learning Projects**: Document learning objectives and key takeaways
-- **Creative Projects**: Showcase artistic process and inspiration
-
-**Visual Design**:
-- Pixel-art borders and dividers
-- Screenshot gallery with pixel-perfect alignment
-- Interactive elements with game-like hover effects
-- Mobile-optimized layout with touch-friendly navigation
-
-### Social Media Integration
-**Required Platforms**: LinkedIn, GitHub, X (Twitter)
-**Behavior**: All social links open in new tabs
-**Visual Integration**: Pixel-art styled social icons
-**Placement**: Header navigation and footer, contact page
-**Accessibility**: Clear labels and keyboard navigation
-
-### Navigation Architecture for Generalist Skills
-**Primary Navigation**: About, Projects, CV Timeline, Contact, Blog, Game
-**Location Awareness**: Always show current page/section
-**Project Organization**: Filter by skill categories to highlight generalist nature
-**Breadcrumbs**: Clear path indication for project detail pages
-**Mobile Navigation**: Hamburger menu with pixel-art styling
-
-### Update Schedule
-- **Projects**: Add 1 new project per month
-- **Blog**: 1 post every 6-8 weeks
-- **CV**: Update after major milestones
-- **Performance Review**: Monthly optimization
-
-## Implementation Roadmap
-
-### Phase 1 - MVP (Weeks 1-4)
-- **Week 1**: Project setup, design system, landing page
-- **Week 2**: Projects showcase, basic navigation
-- **Week 3**: CV timeline, about page
-- **Week 4**: Contact, mobile optimization, testing
-
-### Phase 2 - Enhancement (Weeks 5-8)
-- **Week 5**: Search/filter functionality
-- **Week 6**: Blog system implementation
-- **Week 7**: Advanced animations, micro-interactions
-- **Week 8**: Performance optimization, SEO
-
-### Phase 3 - Polish (Weeks 9-12)
-- **Week 9**: Mini game development
-- **Week 10**: Easter eggs, advanced features
-- **Week 11**: Cross-browser testing, accessibility audit
-- **Week 12**: Launch preparation, analytics setup
-
-## Post-Launch Strategy
-
-### Month 1: Validation & Optimization
-- Monitor user behavior and pain points
-- Gather feedback from first visitors
-- Performance optimization based on real data
-- Content gaps identification
-
-### Month 2-3: Growth & Iteration
-- SEO optimization based on search performance
-- Social media promotion strategy
-- Network outreach to maximize visibility
-- Feature refinement based on analytics
-
-### Ongoing: Maintenance & Evolution
-- Quarterly content refresh
-- Annual design system updates
-- Continuous performance monitoring
-- Feature roadmap based on career goals
-
-## Dependencies & Resource Requirements
-
-### Internal Dependencies
-- Content creation (projects, writing)
-- Design asset creation (pixel art)
-- LinkedIn profile optimization
-
-### External Dependencies
-- Domain registration and DNS setup
-- Hosting platform selection
-- Analytics account setup
-
-### Skills/Tools Required
-- Next.js development
-- Pixel art creation tools
-- Animation libraries (Framer Motion)
-- SEO optimization knowledge
-
-## Success Criteria & Go-Live Checklist
-
-### Technical Readiness
-- [ ] All core pages functional on mobile/desktop
-- [ ] Performance scores >90% on Lighthouse
-- [ ] Cross-browser testing complete
-- [ ] Accessibility audit passed
-- [ ] SEO optimization implemented
-
-### Content Readiness  
-- [ ] All project content complete and reviewed
-- [ ] CV timeline data accurate and current
-- [ ] About page storytelling refined
-- [ ] Contact information verified
-
-### Business Readiness
-- [ ] Analytics and tracking configured
-- [ ] Social media profiles optimized
-- [ ] Professional network notified
-- [ ] Feedback collection process established
-
----
-
-*This PRD represents a strategic, execution-ready document that balances creative vision with measurable business outcomes. Regular review and iteration based on user feedback and performance data will ensure continued success.*
+
+## Project Overview
+A pixel-art themed portfolio website with game-like aesthetics, showcasing skills as a generalist developer. The site emphasizes innovative design, accessibility, and interactive elements while maintaining professional portfolio functionality.
+
+## Design System
+### Visual Style
+- **Theme**: Pixel art with game-like aesthetic
+- **Inspiration**: Advent of Code (adventofcode.com)
+- **Default Mode**: Dark mode
+- **Color Scheme**:
+  - Dark mode: Orange-ish palette
+  - Light mode: Purple/blue-ish palette (accessibility-friendly, not too bright)
+- **Typography**: Pixel/monospace fonts
+- **Layout**: Simple and clean with gaming elements
+
+## Core Features
+
+### 1. Landing Page
+**Priority**: High
+- Progressive pixel-art name loading animation
+- Game-like entrance experience
+- Navigation to main sections
+
+### 2. Navigation System
+**Priority**: High
+- Clear indication of current page location
+- Consistent navigation across all pages
+- Responsive design for mobile/desktop
+
+### 3. About Me Page
+**Priority**: High
+- Personal introduction
+- Professional overview
+- Skills highlight as a generalist
+
+### 4. Projects Page
+**Priority**: High
+#### Project Organization
+- Neat categorization system for generalist skillset
+- Clear project hierarchy and grouping
+- Intuitive navigation between project categories
+
+#### Search & Filtering
+- Keyword search functionality
+- Filter by:
+  - Skills/technologies used
+  - Project type
+  - Tools used
+  - Date/timeline
+
+#### Project Detail View
+- Thumbnail image
+- Project title and description
+- External links:
+  - Live project link
+  - Source code (when available)
+  - Demo link (when available)
+  - Video demonstration (when available)
+- Skills section (technologies/languages used)
+- Tools section (software/platforms used)
+- Support for non-code projects (majority of portfolio)
+
+### 5. CV/Timeline Page
+**Priority**: High
+- **Design**: Roadmap.sh/devops style but in pixel art and dark theme
+- **Data Source**: LinkedIn profile (linkedin.com/in/caspianalmerud/)
+- **Structure**:
+  - Timeline-based layout
+  - Expandable nodes for:
+    - Skills development
+    - Work experiences
+    - Workplace details/notes
+  - Handle overlapping time periods elegantly
+- **Personal Achievements Toggle**:
+  - Toggle to show/hide personal milestones
+  - Different color scheme for personal vs professional
+  - Humanize the portfolio beyond technical skills
+
+### 6. Contact Page
+**Priority**: Medium
+- Contact form or information
+- Professional contact details
+
+### 7. Social Links
+**Priority**: Medium
+- LinkedIn, GitHub, and X (Twitter)
+- Open in new tabs
+- Integrated into overall design
+
+### 8. Blog System
+**Priority**: Medium
+- List of blog posts
+- Post preview with:
+  - Title
+  - Description/excerpt
+  - Link to full post
+- Organized/sorted display
+- Responsive layout
+
+### 9. Mini Game
+**Priority**: Low (Enhancement)
+#### Game Mechanics
+- **Inspiration**: Chrome dinosaur game
+- **Character**: Pixel-art small man (instead of dinosaur)
+- **Gameplay**: Jump over moving platform obstacles
+- **Controls**: 
+  - Desktop: Spacebar to jump
+  - Mobile: Touch to jump
+  - Disable scroll when game is active
+- **Features**:
+  - Score counter
+  - Game over screen
+  - Fully responsive (mobile + desktop)
+  - Simple and fun gameplay
+- **Integration**: Accessible from main navigation or as easter egg
+
+## Technical Requirements
+
+### Platform & Deployment
+- Built on existing Next.js 15 boilerplate structure
+- Deployment platform TBD (maintain flexibility)
+- Responsive design (mobile-first)
+
+### Performance
+- Fast loading times
+- Optimized pixel art assets
+- Progressive enhancement for animations
+
+### Accessibility
+- WCAG compliance
+- Keyboard navigation support
+- Screen reader compatibility
+- High contrast mode support
+- Light mode optimized for accessibility
+
+### Browser Support
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## User Experience Goals
+1. **Professional Impact**: Showcase skills and experience effectively
+2. **Memorable Experience**: Unique pixel-art aesthetic stands out
+3. **Easy Navigation**: Users always know where they are
+4. **Accessibility**: Inclusive design for all users
+5. **Performance**: Fast, responsive experience across devices
+
+## Development Phases
+### Phase 1 - Core Portfolio (MVP)
+- Landing page with pixel-art name
+- Basic navigation
+- About page
+- Projects page with search/filter
+- CV timeline page
+- Contact page
+- Social links
+
+### Phase 2 - Enhanced Features
+- Blog system
+- Advanced project categorization
+- Enhanced animations
+- Performance optimizations
+
+### Phase 3 - Interactive Elements
+- Mini game implementation
+- Advanced interactive features
+- Easter eggs and polish
+
+## Success Metrics
+- User engagement time on site
+- Project click-through rates
+- Mobile usability scores
+- Accessibility audit scores
+- Site performance metrics (Core Web Vitals)
+
+## Questions for Clarification
+1. Specific content for About Me section?
+2. Categories for project organization as a generalist?
+3. Blog topics and content strategy?
+4. Preferred contact method integration?
+5. Any specific pixel art style preferences or existing assets?

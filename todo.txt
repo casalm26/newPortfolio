@@ -105,35 +105,35 @@
 - [x] Write generalist developer positioning content
 - [x] Create personal story connecting technical/creative sides
 - [x] Add skill showcase for generalist approach
-- [ ] Include professional photo/avatar
+- [x] Include professional photo/avatar
 - [x] Add personal interests and achievements
 - [x] Implement pixel art styling
 
 ### Week 4: Contact, Social & Mobile Optimization
 
 #### Contact & Social Integration
-- [ ] Create contact page with pixel art styling
-- [ ] Add contact form with game-like interactions
-- [ ] Implement social media integration (LinkedIn, GitHub, X)
-- [ ] Create pixel art social icons
-- [ ] Ensure new tab opening for social links
-- [ ] Add contact information accessibility
+- [x] Create contact page with pixel art styling
+- [x] Add contact form with game-like interactions
+- [x] Implement social media integration (LinkedIn, GitHub, X)
+- [x] Create pixel art social icons
+- [x] Ensure new tab opening for social links
+- [x] Add contact information accessibility
 
 #### Mobile Responsiveness
-- [ ] Test all pages on mobile devices
-- [ ] Optimize navigation for touch interfaces
-- [ ] Ensure project grid works on small screens
-- [ ] Test CV timeline mobile interactions
-- [ ] Verify animation performance on mobile
-- [ ] Fix any mobile-specific bugs
+- [x] Test all pages on mobile devices
+- [x] Optimize navigation for touch interfaces
+- [x] Ensure project grid works on small screens
+- [x] Test CV timeline mobile interactions
+- [x] Verify animation performance on mobile
+- [x] Fix any mobile-specific bugs
 
 #### Testing & Polish
 - [x] Cross-browser testing framework setup (Playwright)
 - [x] Unit testing setup (Vitest)
 - [x] Test coverage configuration
-- [ ] Accessibility audit and fixes
-- [ ] Performance optimization (image compression, lazy loading)
-- [ ] SEO setup (meta tags, sitemap, structured data)
+- [x] Accessibility audit and fixes
+- [x] Performance optimization (image compression, lazy loading)
+- [x] SEO setup (meta tags, sitemap, structured data)
 - [ ] Analytics implementation (Google Analytics 4)
 
 ## PHASE 2: ENHANCEMENT (WEEKS 5-8)
@@ -141,17 +141,17 @@
 ### Week 5: Advanced Search & Filtering
 
 #### Project Search System
-- [ ] Implement keyword search functionality
-- [ ] Add advanced filtering (skills, tools, type, date)
-- [ ] Create search UI with pixel art styling
-- [ ] Add search result highlighting
+- [x] Implement keyword search functionality
+- [x] Add advanced filtering (skills, tools, type, date)
+- [x] Create search UI with pixel art styling
+- [x] Add search result highlighting
 - [ ] Implement search performance optimization
 - [ ] Add search analytics tracking
 
 #### Enhanced Project Organization
-- [ ] Create project categorization system
-- [ ] Add project tagging system
-- [ ] Implement sort options (date, type, relevance)
+- [x] Create project categorization system
+- [x] Add project tagging system
+- [x] Implement sort options (date, type, relevance)
 - [ ] Create project collection/series grouping
 - [ ] Add related projects suggestions
 
@@ -266,22 +266,22 @@
 - [ ] Form functionality testing
 
 #### Accessibility Audit
-- [ ] Screen reader compatibility testing
-- [ ] Keyboard navigation testing
-- [ ] Color contrast verification
-- [ ] ARIA label implementation
-- [ ] Focus management testing
-- [ ] Alternative text for all images
+- [x] Screen reader compatibility testing
+- [x] Keyboard navigation testing
+- [x] Color contrast verification
+- [x] ARIA label implementation
+- [x] Focus management testing
+- [x] Alternative text for all images
 
 ### Week 12: Launch Preparation
 
 #### Performance Optimization
-- [ ] Image optimization and WebP conversion
-- [ ] Code splitting and lazy loading
+- [x] Image optimization and WebP conversion
+- [x] Code splitting and lazy loading
 - [ ] Bundle size optimization
 - [ ] Caching strategy implementation
 - [ ] CDN setup for static assets
-- [ ] Core Web Vitals optimization
+- [x] Core Web Vitals optimization
 
 #### SEO & Analytics
 - [ ] Complete meta tag implementation
@@ -299,6 +299,146 @@
 - [ ] DNS configuration
 - [ ] Monitoring and error tracking setup
 - [ ] Backup and recovery procedures
+
+## PHASE 4: HEADLESS WORDPRESS MIGRATION (WEEKS 13-15)
+
+### Week 13: WordPress Setup & Custom Plugin Development
+
+#### WordPress Installation & Configuration
+- [ ] Set up WordPress on server subdomain (cms.domain.com)
+- [ ] Configure MySQL database for WordPress
+- [ ] Set up Nginx server blocks for WordPress
+- [ ] Configure PHP-FPM for optimal performance
+- [ ] Set up SSL certificates for CMS subdomain
+- [ ] Harden WordPress security (disable XML-RPC, hide version, etc.)
+
+#### Custom Plugin Development
+- [ ] Create portfolio-plugin base structure
+- [ ] Implement custom post type for Projects
+- [ ] Build custom meta boxes for project fields (no ACF)
+- [ ] Create custom REST API endpoints (/wp-json/portfolio/v1/)
+- [ ] Implement simple API key authentication
+- [ ] Add webhook system for content updates
+- [ ] Create admin UI enhancements for better UX
+
+#### Content Migration Scripts
+- [ ] Build MDX to WordPress converter script
+- [ ] Create frontmatter to custom fields mapper
+- [ ] Implement media upload automation
+- [ ] Set up tag/category migration
+- [ ] Create author profile migration
+- [ ] Test migration with sample content
+- [ ] Execute full content migration
+
+### Week 14: Next.js Integration Layer
+
+#### API Integration Development
+- [ ] Create lib/wordpress.ts for API communication
+- [ ] Implement getProjects() function with caching
+- [ ] Build getPosts() with pagination support
+- [ ] Create getProjectBySlug() for dynamic routes
+- [ ] Implement getPostBySlug() for blog posts
+- [ ] Add getTags() and tag filtering
+- [ ] Create search functionality via WordPress
+- [ ] Implement preview mode for draft content
+
+#### Data Transformation Layer
+- [ ] Map WordPress API responses to existing interfaces
+- [ ] Preserve TypeScript types from Contentlayer
+- [ ] Handle image optimization and URLs
+- [ ] Transform WordPress blocks to React components
+- [ ] Maintain SEO metadata structure
+- [ ] Ensure backward compatibility with current data
+
+#### Caching Strategy
+- [ ] Set up Redis on server (optional)
+- [ ] Implement API response caching
+- [ ] Configure Next.js ISR (Incremental Static Regeneration)
+- [ ] Set up cache invalidation on content updates
+- [ ] Add stale-while-revalidate headers
+- [ ] Create cache warming scripts
+
+### Week 15: Deployment & Optimization
+
+#### Server Configuration
+- [ ] Install Node.js 20+ on server
+- [ ] Set up PM2 for process management
+- [ ] Configure Nginx as reverse proxy
+- [ ] Set up systemd services for auto-restart
+- [ ] Configure firewall rules
+- [ ] Set up monitoring (PM2 metrics or similar)
+
+#### === DEPLOYMENT CROSSROADS ===
+**Choose ONE deployment path based on requirements:**
+
+#### Option A: Static Export Deployment (Simpler, Faster)
+- [ ] Configure Next.js for static export
+- [ ] Set up build pipeline on server
+- [ ] Create webhook receiver for WordPress updates
+- [ ] Implement incremental builds for changed content
+- [ ] Configure Nginx to serve static files
+- [ ] Set up CDN for static assets (optional)
+- [ ] Create rollback mechanism for failed builds
+- [ ] Document rebuild triggers and process
+
+**Pros:** Maximum performance, simple hosting, better security
+**Cons:** No server-side features, rebuilds needed for content updates
+
+#### Option B: Node.js Server Deployment (Full-Featured)
+- [ ] Set up Next.js production server
+- [ ] Configure PM2 cluster mode for scaling
+- [ ] Implement health checks and auto-restart
+- [ ] Set up Nginx reverse proxy with caching
+- [ ] Configure ISR for dynamic content updates
+- [ ] Enable on-demand revalidation
+- [ ] Set up WebSocket support if needed
+- [ ] Implement graceful shutdown handling
+
+**Pros:** All Next.js features, real-time updates, dynamic routes
+**Cons:** More complex, requires Node.js management
+
+#### === END CROSSROADS ===
+
+#### Testing & Quality Assurance
+- [ ] Test all API endpoints under load
+- [ ] Verify content parity with current site
+- [ ] Check SEO preservation (URLs, meta tags)
+- [ ] Test preview functionality
+- [ ] Validate mobile responsiveness
+- [ ] Performance testing (Core Web Vitals)
+- [ ] Security audit of API endpoints
+- [ ] Test failover and error handling
+
+#### Documentation & Handoff
+- [ ] Document API endpoint structure
+- [ ] Create WordPress content editing guide
+- [ ] Write deployment runbook
+- [ ] Document environment variables
+- [ ] Create troubleshooting guide
+- [ ] Set up backup procedures
+- [ ] Document cache clearing process
+- [ ] Create monitoring dashboards
+
+### Post-Migration Tasks
+- [ ] Set up automated backups (WordPress DB + uploads)
+- [ ] Configure uptime monitoring
+- [ ] Implement content versioning
+- [ ] Set up staging environment
+- [ ] Create CI/CD pipeline
+- [ ] Plan for WordPress updates
+- [ ] Monitor API usage and performance
+- [ ] Optimize database queries
+
+### Migration Success Criteria
+- [ ] All content successfully migrated
+- [ ] No broken links or images
+- [ ] Performance metrics maintained or improved
+- [ ] SEO rankings preserved
+- [ ] Editorial workflow simplified
+- [ ] Zero downtime during migration
+- [ ] Rollback plan tested and ready
+
+---
 
 ## POST-LAUNCH MAINTENANCE
 
