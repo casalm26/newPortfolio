@@ -1,5 +1,5 @@
 import Header from "@/components/shared/Header";
-import { PixelArtName } from "@/components/landing";
+import { PixelArtName } from "@/components/PixelArtName";
 import ScrollAnimation, { ParallaxScroll, StaggerAnimation } from "@/components/shared/ScrollAnimation";
 import Link from "next/link";
 import Footer from "@/components/shared/Footer";

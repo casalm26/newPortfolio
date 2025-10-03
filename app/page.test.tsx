@@ -7,7 +7,7 @@ vi.mock("@/components/shared/Header", () => ({
   default: () => <div data-testid="header">Header</div>,
 }));
 
-vi.mock("@/components/landing", () => ({
+vi.mock("@/components/PixelArtName", () => ({
   PixelArtName: ({ className }: { className?: string }) => (
     <div data-testid="pixel-art-name" className={className}>
       PixelArtName Component

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import PixelButton from "@/components/shared/ui/PixelButton";
 
@@ -27,33 +27,31 @@ export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtN
       const timer = setTimeout(() => {
         setDisplayedText(fullName.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
-      }, currentIndex === 0 ? 500 : 150); // Initial delay of 500ms, then 150ms per character
+      }, currentIndex === 0 ? 500 : 150);
+
       return () => clearTimeout(timer);
-    } else {
-      // Blink cursor effect after typing is complete
-      const cursorTimer = setInterval(() => {
-        setShowCursor((prev) => !prev);
-      }, 500);
-      return () => clearInterval(cursorTimer);
     }
-  }, [currentIndex, animationSkipped]);
+
+    const cursorTimer = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 500);
+
+    return () => clearInterval(cursorTimer);
+  }, [currentIndex, animationSkipped, fullName]);
 
   const skipAnimation = () => {
     setAnimationSkipped(true);
   };
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center justify-center space-y-4",
-        className,
-      )}
-    >
-      {/* Skip Animation Button */}
+    <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
       {currentIndex < fullName.length && !animationSkipped && (
         <button
           onClick={skipAnimation}
-          className="btn-pixel-3d absolute top-4 right-4 font-pixel text-xs px-3 py-2 bg-transparent text-terminal-400 border-terminal-400 z-[60]"
+          className={cn(
+            "btn-pixel-3d absolute top-4 right-4 font-pixel text-xs px-3 py-2",
+            "bg-transparent text-terminal-400 border-terminal-400 z-[60]",
+          )}
           aria-label="Skip typewriter animation"
         >
           SKIP &gt;&gt;
@@ -80,19 +78,17 @@ export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtN
       </div>
 
       <div className="text-center space-y-4">
-        <p className="font-pixel text-lg md:text-xl text-terminal-300 tracking-wide">
-          $ whoami
-        </p>
+        <p className="font-pixel text-lg md:text-xl text-terminal-300 tracking-wide">$ whoami</p>
         <p className="font-pixel text-sm md:text-base text-terminal-400 tracking-wide">
           generalist_developer@localhost:~$ pwd
         </p>
+
         <div className="flex justify-center space-x-2 mt-4 mb-6">
           <div className="w-1 h-4 bg-white animate-pulse" />
           <div className="w-1 h-4 bg-terminal-400 animate-pulse delay-150" />
           <div className="w-1 h-4 bg-terminal-600 animate-pulse delay-300" />
         </div>
 
-        {/* CTA Buttons */}
         {(currentIndex >= fullName.length || animationSkipped) && (
           <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-4 mt-8 animate-fade-in">
             <PixelButton href="/projects" variant="primary">

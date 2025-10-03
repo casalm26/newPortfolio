@@ -201,7 +201,7 @@ To enable Google Analytics tracking:
 
 - Homepage content in `app/page.tsx`
 - Footer and header in `components/shared/`
-- Landing page components in `components/landing/`
+- Hero animation lives in `components/PixelArtName.tsx`
 
 ## Blog Posts
 

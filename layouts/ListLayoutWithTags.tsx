@@ -9,11 +9,6 @@ import Link from "@/components/shared/Link";
 import { siteConfig } from "@/data/config/site.settings";
 import tagData from "app/tag-data.json";
 import SectionContainer from "@/components/shared/SectionContainer";
-import {
-  LandingBlogPost,
-  BlogPost,
-} from "@/components/landing/blog/LandingBlogPost";
-import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
 import { useState, useMemo } from "react";
 
 const BLOG_URL = siteConfig.blogPath ? `/${siteConfig.blogPath}` : "/";
@@ -170,27 +165,6 @@ export default function ListLayoutWithTags({
     );
   }
 
-  const formattedPosts = displayPosts.map((post): BlogPost => {
-    return {
-      path: `/${post.path}`,
-      slug: post.slug || "",
-      date: formatDate(post.date, siteConfig.locale),
-      title: post.title,
-      summary: post.summary,
-      tags: post.tags?.map((tag) => {
-        return {
-          url: `/tags/${slug(tag)}`,
-          text: tag,
-        };
-      }),
-      images: post.images || [],
-      readingTime: post.readingTime?.text || "",
-      author: {
-        name: post.authors?.[0],
-      },
-    };
-  });
-
   return (
     <div className="min-h-screen bg-black">
       <main className="container mx-auto px-4 pt-8 pb-12">
@@ -276,15 +250,63 @@ export default function ListLayoutWithTags({
 
         <div className="flex gap-12">
           <div className="flex-1">
-            <LandingBlogList display="list" variant="primary" className="!pt-0">
-              {formattedPosts.map((post) => (
-                <LandingBlogPost
-                  key={post.slug}
-                  post={post}
-                  imagePosition="right"
-                />
+            <div className="divide-y divide-terminal-500/40">
+              {displayPosts.map((post) => (
+                <article key={post.path} className="py-8">
+                  <div className="grid gap-4 lg:grid-cols-[2fr,1fr] lg:items-start">
+                    <div className="space-y-3">
+                      <div className="flex flex-wrap items-center gap-3 text-sm text-terminal-400">
+                        <time dateTime={post.date}>
+                          {formatDate(post.date, siteConfig.locale)}
+                        </time>
+                        {post.readingTime?.text ? (
+                          <span aria-hidden="true">•</span>
+                        ) : null}
+                        {post.readingTime?.text ?? null}
+                      </div>
+
+                      <h2 className="text-2xl font-semibold text-white">
+                        <Link href={`/${post.path}`} className="hover:text-terminal-200">
+                          {post.title}
+                        </Link>
+                      </h2>
+
+                      <p className="text-terminal-300 max-w-3xl">{post.summary}</p>
+
+                      <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-terminal-500">
+                        {post.tags?.map((tag) => (
+                          <Link
+                            key={tag}
+                            href={`/tags/${slug(tag)}`}
+                            className="border border-terminal-500/60 px-2 py-1 hover:border-white hover:text-white transition-colors"
+                            aria-label={`View posts tagged ${tag}`}
+                          >
+                            {tag}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col gap-3 text-terminal-400 text-sm lg:justify-end">
+                      {post.authors?.length ? (
+                        <div>
+                          <span className="text-terminal-500">Author: </span>
+                          {post.authors[0]}
+                        </div>
+                      ) : null}
+                      <div className="flex items-center gap-2">
+                        <Link
+                          href={`/${post.path}`}
+                          className="font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
+                        >
+                          READ POST →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </article>
               ))}
-            </LandingBlogList>
+            </div>
 
             {pagination && pagination.totalPages > 1 && (
               <Pagination
@@ -461,7 +483,7 @@ export default function ListLayoutWithTags({
         {/* Terminal Footer */}
         <div className="mt-12 pt-8 border-t border-terminal-400">
           <div className="font-pixel text-xs text-terminal-400">
-            found {posts.length} articles • last updated {formatDate(new Date(), siteConfig.locale)}
+            found {posts.length} articles • last updated {formatDate(new Date().toISOString(), siteConfig.locale)}
           </div>
         </div>
       </main>

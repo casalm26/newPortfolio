@@ -7,11 +7,6 @@ import { CoreContent } from "@shipixen/pliny/utils/contentlayer";
 import type { Blog } from "contentlayer/generated";
 import Link from "@/components/shared/Link";
 import { siteConfig } from "@/data/config/site.settings";
-import {
-  LandingBlogPost,
-  BlogPost,
-} from "@/components/landing/blog/LandingBlogPost";
-import { LandingBlogList } from "@/components/landing/blog/LandingBlogList";
 
 interface PaginationProps {
   totalPages: number;
@@ -93,28 +88,6 @@ export default function ListLayout({
       ? initialDisplayPosts
       : filteredBlogPosts;
 
-  // Convert posts to BlogPost format for LandingBlogPost component
-  const formattedPosts = displayPosts.map((post): BlogPost => {
-    return {
-      path: `/${post.path}`,
-      slug: post.slug || "",
-      date: formatDate(post.date, siteConfig.locale),
-      title: post.title,
-      summary: post.summary,
-      tags: post.tags.map((tag) => {
-        return {
-          url: `/tags/${tag}`,
-          text: tag,
-        };
-      }),
-      images: post.images || [],
-      readingTime: post.readingTime?.text || "",
-      author: {
-        name: post.authors?.[0],
-      },
-    };
-  });
-
   return (
     <>
       <div className="container-wide w-full">
@@ -153,19 +126,44 @@ export default function ListLayout({
         {!filteredBlogPosts.length ? (
           <p>No posts found.</p>
         ) : (
-          <LandingBlogList
-            display="list"
-            variant="primary"
-            withBackground={false}
-          >
-            {formattedPosts.map((post) => (
-              <LandingBlogPost
-                key={post.slug}
-                post={post}
-                imagePosition="right"
-              />
+          <div className="divide-y divide-terminal-500/40">
+            {displayPosts.map((post) => (
+              <article key={post.path} className="py-8">
+                <div className="space-y-3">
+                  <div className="flex flex-wrap items-center gap-3 text-sm text-terminal-400">
+                    <time dateTime={post.date}>
+                      {formatDate(post.date, siteConfig.locale)}
+                    </time>
+                    {post.readingTime?.text ? (
+                      <span aria-hidden="true">•</span>
+                    ) : null}
+                    {post.readingTime?.text ? post.readingTime.text : null}
+                  </div>
+
+                  <h2 className="text-2xl font-semibold text-white">
+                    <Link href={`/${post.path}`} className="hover:text-terminal-200">
+                      {post.title}
+                    </Link>
+                  </h2>
+
+                  <p className="text-terminal-300 max-w-3xl">{post.summary}</p>
+
+                  <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-terminal-500">
+                    {post.tags?.map((tag) => (
+                      <Link
+                        key={tag}
+                        href={`/tags/${tag}`}
+                        className="border border-terminal-500/60 px-2 py-1 hover:border-white hover:text-white transition-colors"
+                        aria-label={`View posts tagged ${tag}`}
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </article>
             ))}
-          </LandingBlogList>
+          </div>
         )}
       </div>
 

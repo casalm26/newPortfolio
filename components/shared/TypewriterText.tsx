@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useAnimation } from "./AnimationProvider";
 
 interface TypewriterTextProps {
@@ -31,7 +31,9 @@ export function TypewriterText({
   const [showCursor, setShowCursor] = useState(true);
   const { enableAnimations } = useAnimation();
 
-  const textArray = Array.isArray(text) ? text : [text];
+  const textArray = useMemo(() => {
+    return Array.isArray(text) ? text : [text];
+  }, [text]);
   const currentString = textArray[currentStringIndex];
 
   useEffect(() => {
