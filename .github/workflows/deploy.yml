@@ -16,7 +16,7 @@ on:
           - node
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
   DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
   DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
   DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
