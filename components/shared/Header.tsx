@@ -16,7 +16,6 @@ const Header = ({ className }: { className?: string }) => {
   const navItems = [
     { href: "/", label: "HOME", prefix: "~/" },
     { href: "/projects", label: "PROJECTS", prefix: "./projects" },
-    { href: "/games", label: "GAMES", prefix: "./games" },
     { href: "/cv", label: "CV", prefix: "./cv" },
     { href: "/about", label: "ABOUT", prefix: "./about" },
     { href: "/contact", label: "CONTACT", prefix: "./contact" },

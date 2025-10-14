@@ -21,6 +21,7 @@ interface GameState {
 const GRID_SIZE = 20;
 const INITIAL_SNAKE = [{ x: 10, y: 10 }];
 const INITIAL_DIRECTION = { x: 0, y: -1 };
+const INITIAL_FOOD = { x: 5, y: 5 };
 const HIGH_SCORE_KEY = 'pixelSnakeHighScore';
 
 const getHighScore = (): number => {
@@ -50,8 +51,8 @@ const generateFood = (snake: Position[]): Position => {
 
 export default function PixelSnakeGame() {
   const [gameState, setGameState] = useState<GameState>({
-    snake: INITIAL_SNAKE,
-    food: generateFood(INITIAL_SNAKE),
+    snake: [...INITIAL_SNAKE],
+    food: INITIAL_FOOD,
     direction: INITIAL_DIRECTION,
     gameOver: false,
     score: 0,
@@ -62,10 +63,14 @@ export default function PixelSnakeGame() {
   const gameLoopRef = useRef<NodeJS.Timeout>();
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
-  // Load high score on mount
+  // Prepare client only state
   useEffect(() => {
     const savedHighScore = getHighScore();
-    setGameState(prev => ({ ...prev, highScore: savedHighScore }));
+    setGameState(prev => ({
+      ...prev,
+      highScore: savedHighScore,
+      food: generateFood(prev.snake),
+    }));
   }, []);
 
   const moveSnake = useCallback(() => {
@@ -120,7 +125,7 @@ export default function PixelSnakeGame() {
 
   const startGame = useCallback(() => {
     setGameState(prev => ({
-      snake: INITIAL_SNAKE,
+      snake: [...INITIAL_SNAKE],
       food: generateFood(INITIAL_SNAKE),
       direction: INITIAL_DIRECTION,
       gameOver: false,
@@ -136,7 +141,7 @@ export default function PixelSnakeGame() {
 
   const resetGame = useCallback(() => {
     setGameState(prev => ({
-      snake: INITIAL_SNAKE,
+      snake: [...INITIAL_SNAKE],
       food: generateFood(INITIAL_SNAKE),
       direction: INITIAL_DIRECTION,
       gameOver: false,
