@@ -32,14 +32,6 @@ export const searchLinks: Array<{
     href: "/projects",
   },
   {
-    id: "games",
-    name: "Games",
-    keywords: "games interactive pixel art snake tetris pong coding creative",
-    shortcut: ["g"],
-    section: "Navigation",
-    href: "/games",
-  },
-  {
     id: "cv",
     name: "CV Timeline",
     keywords: "career path resume experience timeline roadmap skills work history",

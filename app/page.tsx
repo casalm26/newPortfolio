@@ -3,6 +3,7 @@ import { PixelArtName } from "@/components/landing";
 import ScrollAnimation, { ParallaxScroll, StaggerAnimation } from "@/components/shared/ScrollAnimation";
 import Link from "next/link";
 import Footer from "@/components/shared/Footer";
+import PixelSnakeGame from "@/components/games/PixelSnakeGame";
 
 export default function Page() {
   const quickAccess = [
@@ -11,12 +12,6 @@ export default function Page() {
       description: "Technical work & case studies",
       href: "/projects",
       prefix: "./projects"
-    },
-    {
-      title: "GAMES",
-      description: "Interactive pixel art experiences",
-      href: "/games",
-      prefix: "./games"
     },
     {
       title: "ARTICLES",
@@ -50,6 +45,31 @@ export default function Page() {
           <h1 className="sr-only">Caspian Almerud - Generalist Developer</h1>
           <PixelArtName className="w-full" aria-hidden="true" />
         </ScrollAnimation>
+      </section>
+
+      {/* Snake Game Section */}
+      <section className="bg-black">
+        <div className="container mx-auto px-4 py-24">
+          <ScrollAnimation animation="slideUp" delay={200}>
+            <div className="max-w-3xl mx-auto text-center mb-10">
+              <div className="font-pixel text-sm text-terminal-400 mb-4">
+                caspian@localhost:~$ ./pixel_snake.exe
+              </div>
+              <h2 className="text-2xl md:text-4xl font-pixel font-bold text-white mb-3">
+                PIXEL SNAKE
+              </h2>
+              <p className="text-terminal-300 text-lg">
+                You can't snake your way out of this one!
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <ScrollAnimation animation="fadeIn" delay={400}>
+            <div className="max-w-4xl mx-auto border border-terminal-400 bg-terminal-900/30 p-6 md:p-10">
+              <PixelSnakeGame />
+            </div>
+          </ScrollAnimation>
+        </div>
       </section>
 
       {/* Introduction Section */}

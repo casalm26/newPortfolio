@@ -1,190 +1,91 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import type { ReactNode } from "react";
+
 import Page from "./page";
 
-// Mock the components
 vi.mock("@/components/shared/Header", () => ({
-  default: () => <div data-testid="header">Header</div>,
+  default: () => <header data-testid="header">Mock Header</header>,
+}));
+
+vi.mock("@/components/shared/Footer", () => ({
+  default: () => <footer data-testid="footer">Mock Footer</footer>,
+}));
+
+vi.mock("@/components/shared/ScrollAnimation", () => ({
+  __esModule: true,
+  default: ({ children }: { children: ReactNode }) => (
+    <div data-testid="scroll-animation">{children}</div>
+  ),
+  ParallaxScroll: ({ children }: { children: ReactNode }) => (
+    <div data-testid="parallax-scroll">{children}</div>
+  ),
+  StaggerAnimation: ({
+    children,
+  }: {
+    children: ReactNode;
+    staggerDelay?: number;
+    animation?: string;
+    className?: string;
+  }) => <div data-testid="stagger-animation">{children}</div>,
 }));
 
 vi.mock("@/components/landing", () => ({
   PixelArtName: ({ className }: { className?: string }) => (
     <div data-testid="pixel-art-name" className={className}>
-      PixelArtName Component
+      Pixel Art Name
     </div>
   ),
 }));
 
-describe("Landing Page", () => {
-  describe("Page Structure", () => {
-    it("should render the main page layout", () => {
-      const { container } = render(<Page />);
+vi.mock("@/components/games/PixelSnakeGame", () => ({
+  default: () => <div data-testid="pixel-snake-game">Snake Game Mock</div>,
+}));
 
-      const main = container.firstChild as HTMLElement;
-      expect(main).toHaveClass("min-h-screen", "bg-black");
-    });
+describe("Home page", () => {
+  const renderPage = () => render(<Page />);
 
-    it("should render Header component", () => {
-      render(<Page />);
+  it("renders the hero section with the pixel art name", () => {
+    const { container } = renderPage();
 
-      expect(screen.getByTestId("header")).toBeInTheDocument();
-    });
-
-    it("should render PixelArtName component", () => {
-      render(<Page />);
-
-      expect(screen.getByTestId("pixel-art-name")).toBeInTheDocument();
-    });
+    const sections = Array.from(container.querySelectorAll("section"));
+    expect(sections[0]).toContainElement(screen.getByTestId("pixel-art-name"));
+    expect(screen.getByText(/Caspian Almerud/i)).toBeInTheDocument();
   });
 
-  describe("Layout and Styling", () => {
-    it("should have proper main section structure", () => {
-      render(<Page />);
+  it("places the snake game right after the hero with the annotation", () => {
+    const { container } = renderPage();
 
-      const section = screen.getByTestId("pixel-art-name").parentElement;
-      expect(section).toHaveClass(
-        "min-h-screen",
-        "flex",
-        "items-center",
-        "justify-center",
-        "bg-black",
-        "px-4",
-        "pt-20",
-      );
-    });
+    const sections = Array.from(container.querySelectorAll("section"));
+    const snakeSection = sections[1];
 
-    it("should apply matrix theme background", () => {
-      const { container } = render(<Page />);
-
-      expect(container.firstChild).toHaveClass("min-h-screen", "bg-black");
-    });
-
-    it("should have proper spacing and layout classes", () => {
-      render(<Page />);
-
-      const section = screen.getByTestId("pixel-art-name").parentElement;
-      expect(section).toHaveClass("px-4", "pt-20");
-    });
+    expect(snakeSection).toHaveTextContent(/PIXEL SNAKE/i);
+    expect(snakeSection).toHaveTextContent("You can't snake your way out of this one!");
+    expect(snakeSection).toContainElement(screen.getByTestId("pixel-snake-game"));
   });
 
-  describe("Component Integration", () => {
-    it("should pass className prop to PixelArtName", () => {
-      render(<Page />);
+  it("shows quick access navigation tiles", () => {
+    renderPage();
 
-      const pixelArtName = screen.getByTestId("pixel-art-name");
-      expect(pixelArtName).toHaveClass("w-full");
+    const quickAccessHeading = screen.getByText(/QUICK ACCESS\//i);
+    const quickAccessSection = quickAccessHeading.closest("section");
+    expect(quickAccessSection).not.toBeNull();
+
+    const headings = within(quickAccessSection as HTMLElement).getAllByRole("heading", {
+      level: 3,
     });
 
-    it("should render components in correct order", () => {
-      const { container } = render(<Page />);
-
-      const children = container.firstChild?.childNodes;
-      expect(children).toHaveLength(2);
-
-      // First child should be Header
-      expect(children?.[0]).toContain(screen.getByTestId("header"));
-
-      // Second child should be the section containing PixelArtName
-      expect(children?.[1]).toContain(screen.getByTestId("pixel-art-name"));
-    });
+    const labels = headings.map((heading) => heading.textContent?.trim());
+    expect(labels).toEqual([
+      "PROJECTS",
+      "ARTICLES",
+      "CV",
+    ]);
   });
 
-  describe("Responsive Design", () => {
-    it("should have mobile-first responsive classes", () => {
-      render(<Page />);
+  it("retains the footer at the bottom of the page", () => {
+    const { container } = renderPage();
 
-      const section = screen.getByTestId("pixel-art-name").parentElement;
-      expect(section).toHaveClass("px-4"); // Mobile padding
-    });
-
-    it("should be full viewport height", () => {
-      render(<Page />);
-
-      const mainContainer = screen.getByTestId("header").parentElement;
-      const section = screen.getByTestId("pixel-art-name").parentElement;
-
-      expect(mainContainer).toHaveClass("min-h-screen");
-      expect(section).toHaveClass("min-h-screen");
-    });
-  });
-
-  describe("Accessibility", () => {
-    it("should have proper semantic structure", () => {
-      render(<Page />);
-
-      // Should have a main container
-      const container = screen.getByTestId("header").parentElement;
-      expect(container).toBeInTheDocument();
-    });
-
-    it("should be keyboard navigable through components", () => {
-      render(<Page />);
-
-      // Components should be present for keyboard navigation
-      expect(screen.getByTestId("header")).toBeInTheDocument();
-      expect(screen.getByTestId("pixel-art-name")).toBeInTheDocument();
-    });
-  });
-
-  describe("Performance Considerations", () => {
-    it("should render without unnecessary re-renders", () => {
-      const { rerender } = render(<Page />);
-
-      const initialPixelArt = screen.getByTestId("pixel-art-name");
-
-      rerender(<Page />);
-
-      const rerenderedPixelArt = screen.getByTestId("pixel-art-name");
-      expect(rerenderedPixelArt).toBeInTheDocument();
-    });
-  });
-
-  describe("Matrix Theme Consistency", () => {
-    it("should maintain black background throughout", () => {
-      const { container } = render(<Page />);
-
-      const mainDiv = container.firstChild as HTMLElement;
-      const section = screen.getByTestId("pixel-art-name")
-        .parentElement as HTMLElement;
-
-      expect(mainDiv).toHaveClass("bg-black");
-      expect(section).toHaveClass("bg-black");
-    });
-
-    it("should have consistent terminal styling", () => {
-      render(<Page />);
-
-      // The page should maintain the matrix theme established in other components
-      const container = screen.getByTestId("header").parentElement;
-      expect(container).toHaveClass("min-h-screen", "bg-black");
-    });
-  });
-
-  describe("Edge Cases", () => {
-    it("should render without crashing", () => {
-      expect(() => render(<Page />)).not.toThrow();
-    });
-
-    it("should handle missing components gracefully", () => {
-      // If components fail to load, page should still render basic structure
-      expect(() => render(<Page />)).not.toThrow();
-    });
-
-    it("should maintain layout integrity with different content sizes", () => {
-      render(<Page />);
-
-      const section = screen.getByTestId("pixel-art-name").parentElement;
-      expect(section).toHaveClass("flex", "items-center", "justify-center");
-    });
-  });
-
-  describe("SEO and Metadata", () => {
-    it("should be suitable for SEO indexing", () => {
-      render(<Page />);
-
-      // Should have content that can be indexed
-      expect(screen.getByTestId("pixel-art-name")).toBeInTheDocument();
-      expect(screen.getByTestId("header")).toBeInTheDocument();
-    });
+    expect(container.lastChild).toContainElement(screen.getByTestId("footer"));
   });
 });
