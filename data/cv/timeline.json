@@ -23,400 +23,173 @@
     "project": {
       "label": "Projects",
       "color": "#0080ff"
+    },
+    "volunteer": {
+      "label": "Volunteering",
+      "color": "#ffbf00"
     }
   },
   "timeline": [
     {
-      "id": "2023-present",
+      "id": "2025-01-full-stack-developer-technigo",
       "type": "work",
       "title": "Full Stack Developer",
-      "company": "Reflect Group",
-      "location": "Uppsala, Uppsala län, Sverige",
-      "startDate": "2022-09",
-      "current": true,
-      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML 5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We worked with Agile methodology through weekly sprint planning, check-ins, demos, and retros. Mob-programming and pair-programming made up a significant part of the course.",
-      "responsibilities": [
-        "Developed full-stack applications using modern JavaScript technologies",
-        "Worked with React, TypeScript, Node.js, and HTML5/CSS",
-        "Participated in Agile development with weekly sprints",
-        "Engaged in mob-programming and pair-programming sessions"
-      ],
-      "skills": ["JavaScript", "React", "Node.js", "Project Management", "TypeScript", "HTML5", "CSS"],
-      "achievements": [
-        "Completed intensive 32-week bootcamp",
-        "Built multiple full-stack projects",
-        "Mastered modern development methodologies"
-      ]
+      "company": "Technigo",
+      "location": "Uppsala, Uppsala l\u00e4n, Sverige",
+      "startDate": "2025-01",
+      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We work with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming make up a significant part of the course.",
+      "endDate": null,
+      "current": true
     },
     {
-      "id": "2022-2023",
-      "type": "work",
-      "title": "Founder",
-      "company": "Don't Panic Consulting AB - Egenfirmatagare",
-      "location": "Sverige",
-      "startDate": "2021-06",
-      "endDate": "2023-06",
-      "description": "As a freelancing generalist, I make use of the ability to learn and adapt to new situations. I pick up things that I need to learn, for my customers. Some of the things that me and my team have been doing in the past years include: Set up a self-hosted Discourse forum, Numerous websites designed and set up, Developed automations for investors, Built and managed databases in Airtable for a variety of use cases, Created a podcast for airtimes.se, Numerous social media campaigns and e-mail server management.",
-      "responsibilities": [
-        "Set up self-hosted Discourse forums and technical infrastructure",
-        "Designed and developed numerous websites for clients",
-        "Built custom automations for investors and businesses",
-        "Created and managed databases in Airtable for various use cases",
-        "Produced podcast content for airtimes.se platform",
-        "Managed social media campaigns and e-mail server infrastructure",
-        "Provided consulting services across multiple technical domains"
-      ],
-      "skills": ["Consulting", "Web Development", "Database Management", "Automation", "Social Media", "Email Marketing"],
-      "achievements": [
-        "Successfully ran independent consulting business",
-        "Delivered projects across multiple technical domains",
-        "Built diverse portfolio of client solutions",
-        "Managed team and client relationships"
-      ]
+      "id": "education-2025-01-yrkesh-gskoleexamen-technigo",
+      "type": "education",
+      "title": "Yrkesh\u00f6gskoleexamen",
+      "institution": "Technigo",
+      "startDate": "2025-01",
+      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We worked with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming made up a significant part of the course. Highlights: JavaScript, TypeScript, React, Node.js, HTML, CSS",
+      "endDate": "2025-10"
     },
     {
-      "id": "2023-product-marketing",
+      "id": "2023-09-product-marketing-specialist-refined",
       "type": "work",
       "title": "Product Marketing Specialist",
       "company": "Refined",
-      "location": "Malmö, Skåne, Sverige",
-      "startDate": "2023-01",
-      "endDate": "2023-04",
-      "description": "Product marketing specialist role focusing on copywriting, SEO, and SaaS marketing strategies.",
-      "responsibilities": [
-        "Developed product marketing strategies for SaaS products",
-        "Created compelling copy for various marketing materials",
-        "Implemented SEO strategies to improve organic visibility",
-        "Analyzed market trends and competitive positioning"
-      ],
-      "skills": ["Copywriting", "SEO", "SaaS Marketing", "Market Analysis"],
-      "achievements": [
-        "Improved organic search visibility",
-        "Created high-converting marketing copy",
-        "Contributed to product positioning strategy"
-      ]
+      "location": "Malm\u00f6, Sk\u00e5ne County, Sweden",
+      "startDate": "2023-09",
+      "description": "Product Marketing Specialist at Refined.",
+      "endDate": "2023-12"
     },
     {
-      "id": "2022-communications-manager",
+      "id": "2022-10-communications-manager-jurio-com",
       "type": "work",
       "title": "Communications Manager",
       "company": "Jurio.com",
       "location": "Copenhagen Metropolitan Area",
-      "startDate": "2022-01",
-      "endDate": "2023-11",
-      "description": "Managed communications strategy and content publication for legal services platform. Responsible for blog content, technical SEO, performance reporting, and PPC campaigns.",
-      "responsibilities": [
-        "Managed the editorial calendar and ensured consistent publication of blog articles",
-        "Oversaw content accountability, including technical SEO and performance reporting to the CMO",
-        "Managed PPC campaigns on Meta, Bing, and Google Ads, primarily focusing on copywriting",
-        "Handled keyword analysis, budget management, and strategy alignment with KPIs",
-        "Led a team of 3-4 new students and implemented email campaigns directly targeted at customers",
-        "Created and implemented email campaigns directly targeted at customers",
-        "Handled customer support and partnerships with relevant influencers and podcasts"
-      ],
-      "skills": ["Google Ads", "SEM", "SEO", "B2C", "PPC", "Meta Business Manager", "B2B"],
-      "achievements": [
-        "Successfully managed editorial calendar with consistent content publication",
-        "Improved technical SEO performance with regular reporting",
-        "Led and mentored team of 3-4 students",
-        "Established strategic partnerships with influencers and podcasts"
-      ]
+      "startDate": "2022-10",
+      "description": "Primary Responsibilities: - Managing the content calendar and ensuring consistent publication of blog articles - Holding overall SEO accountability, including technical SEO and performance, with regular reporting to the CMO - Overseeing PPC campaigns on Meta, Bing, and Google Ads, primarily focusing on copywriting but also including keyword analysis, budget management, and strategy aligned with KPIs - Leading a team of 3-4 law students - Crafting and implementing email campaigns directly targeted at customers - Identifying and executing affiliate partnerships with relevant influencers and podcasts",
+      "endDate": "2023-08"
     },
     {
-      "id": "2020-communications-professional",
+      "id": "2022-02-communication-professional-polynom-investment-ab-publ",
       "type": "work",
       "title": "Communication Professional",
-      "company": "Polynom Investment AB (publ) - Helios",
-      "location": "Malmö, Skåne, Sverige",
-      "startDate": "2022-04",
-      "endDate": "2022-09",
-      "description": "Handled communications and investor relations for investment company. Managed yearly investor meetings, database management, and stakeholder communications.",
-      "responsibilities": [
-        "Co-managed yearly event 'Polynom-dagen' with 220 participants",
-        "Handled communications and marketing for third-party event clients",
-        "Setup and management of databases",
-        "E-signatures and digitized processes for contracts",
-        "Setup and management of websites for investors",
-        "Started an internal podcast for investors",
-        "Starting a client relations team for three voice hearld",
-        "Strategy for finding new investors",
-        "Purchasing of IT hardware and software"
-      ],
-      "skills": ["Newsletters", "Investor Relations", "Customer Support", "Database Management", "Funding", "Event Management"],
-      "achievements": [
-        "Successfully managed investor event with 220+ participants",
-        "Digitized contract processes with e-signatures",
-        "Launched internal investor podcast",
-        "Implemented new database management systems"
-      ]
+      "company": "Polynom Investment AB (publ)",
+      "location": "Malm\u00f6, Sk\u00e5ne, Sverige",
+      "startDate": "2022-02",
+      "description": "Broadly speaking, I worked with communications at Polynom. I was responsible for the contact with our investors, as well as the strategy to acquire new ones. Apart from that, I had some IT-related responsibilities, as well as some light database management. I started out as a consultant in 2020, going full time by February 2022. Some of the things I did and/or was responsible for included: - Co-manage our yearly event \"Polynomdagen\" with 220 participants - Write monthly and bi-weekly newsletters to our part owners - Setup and management of our databases - E-signatures and digitised processes for contracts - Automated onboarding funnels for investors - Starting an internal podcast for our investors - Starting a council for our investors to make their voices heard - Strategy for finding new investors - Purchasing of IT-hardware and software",
+      "endDate": "2022-10"
     },
     {
-      "id": "2019-executive-assistant",
+      "id": "2020-04-founder-don-t-panic-consulting-ab",
       "type": "work",
-      "title": "Executive Assistant",
-      "company": "Risk&Försäkringar AB - Finance",
-      "location": "Malmö, Sverige",
-      "startDate": "2019-03",
-      "endDate": "2021-12",
-      "description": "Provided executive support and helped with various business development tasks. Worked with Svenska Media-kanalen till Sverige soffor till kontoret.",
-      "responsibilities": [
-        "Provided high-level executive support to leadership team",
-        "Managed business development initiatives and client relationships",
-        "Coordinated meetings, travel, and administrative tasks",
-        "Supported strategic projects and special initiatives"
-      ],
-      "skills": ["Executive Support", "Business Development", "Client Relations", "Project Coordination"],
-      "achievements": [
-        "Streamlined executive operations and processes",
-        "Supported successful business development initiatives",
-        "Maintained strong client relationships"
-      ]
+      "title": "Founder",
+      "company": "Don't Panic Consulting AB",
+      "location": "Sverige",
+      "startDate": "2020-04",
+      "description": "As a freelancing generalist, I make use of the ability to learn and adapt to new situations. I pick up things that I need to learn, for my customers. Some of the things that me and my team have been doing in the past years include: - Set up a self-hosted Discourse forum - Numerous websites designed and set up - Various IT-related tasks like hosting solutions and e-mail server management - Podcast Editing for one of the biggest podcasts in Personal Finances in Sweden - Built and managed databases in Airtable for a variety of use cases - Developed the social media channels for RikaTillsammans.se - Helped 4 clients start and distribute their own podcasts - Coaching individuals and teams - Found the best Ice Cream spots in Malm\u00f6 through thorough research - Advised on, bought and assembled an office tech solution for a small company And many more things. The most important thing for me and my team is to keep our calm, and try to solve the problems that arise for our clients.",
+      "endDate": null,
+      "current": true
     },
     {
-      "id": "2019-ungdomscoach",
-      "type": "work",
-      "title": "Ungdomscoach",
-      "company": "Ungfit - Delta",
-      "location": "Malmö, Skåne, Sverige",
-      "startDate": "2019-01",
-      "endDate": "2021-02",
-      "description": "Worked with youth development and coaching programs. Focused on personal development and mentoring.",
-      "responsibilities": [
-        "Provided mentoring and coaching to young people",
-        "Developed personal development programs",
-        "Facilitated group sessions and individual coaching",
-        "Supported youth in goal setting and achievement"
-      ],
-      "skills": ["Youth Development", "Coaching", "Mentoring", "Program Development"],
-      "achievements": [
-        "Successfully mentored numerous young people",
-        "Developed effective youth development programs",
-        "Built strong relationships with program participants"
-      ]
-    },
-    {
-      "id": "2020-project-manager",
+      "id": "2019-12-project-manager-project-fuel",
       "type": "work",
       "title": "Project Manager",
-      "company": "Project FUEL - Digital",
-      "location": "Malmö, Sverige",
+      "company": "Project FUEL",
+      "location": null,
       "startDate": "2019-12",
-      "endDate": "2020-07",
-      "description": "Led project management for digital initiatives. Managed the project #FUELMillion where Project FUEL was going to collect a total of 1 million life lessons in 2020.",
-      "responsibilities": [
-        "Led project management for the #FUELMillion initiative",
-        "Coordinated collection of life lessons and personal stories",
-        "Managed project timeline and deliverables",
-        "Collaborated with cross-functional teams on digital projects"
+      "description": "In this role, I was co-creating the project #FUEL1Million where Project FUEL is going to collect a total of 1 million life lessons in 2020. We collected these life lessons to create educational material for all kinds of learners.",
+      "endDate": "2020-06"
+    },
+    {
+      "id": "2019-09-executive-assistant-rikatillsammans-ab",
+      "type": "work",
+      "title": "Executive Assistant",
+      "company": "RikaTillsammans AB",
+      "location": "Malm\u00f6, Sverige",
+      "startDate": "2019-09",
+      "description": "P\u00e5 RikaTillsammans hj\u00e4lper jag till med lite allt m\u00f6jligt. Det \u00e4r allt ifr\u00e5n att sk\u00f6ta vissa Sociala Medie-kanaler till att bygga soffor till kontoret. Huvudsakligen jobbar jag med podcasten och att skapa inneh\u00e5ll kring den.",
+      "endDate": "2022-03"
+    },
+    {
+      "id": "2019-04-ungdomscoach-ungart",
+      "type": "work",
+      "title": "Ungdomscoach",
+      "company": "UngArt",
+      "location": "Malm\u00f6, Sk\u00e5ne, Sverige",
+      "startDate": "2019-04",
+      "description": "Jobbar med att st\u00f6dja en ton\u00e5rskille med st\u00f6d i handlingsplan fr\u00e5n SOC. Bland annat handlar det om fritidssyssels\u00e4ttning, mentalt st\u00f6d och st\u00f6d f\u00f6r utbildning.",
+      "endDate": "2021-03"
+    },
+    {
+      "id": "2019-leadership-camp",
+      "type": "certification",
+      "title": "Raoul Wallenberg Academy Leadership Camp",
+      "institution": "Wallenberg Academy",
+      "startDate": "2019-01",
+      "endDate": "2019-01",
+      "description": "Intensive leadership development program focused on ethical leadership and social responsibility.",
+      "skills": [
+        "Leadership",
+        "Ethics",
+        "Social Responsibility",
+        "Team Management"
       ],
-      "skills": ["Project Management", "Digital Strategy", "Community Building", "Content Curation"],
       "achievements": [
-        "Successfully managed major digital collection project",
-        "Coordinated community engagement initiatives",
-        "Delivered project milestones on schedule"
+        "Completed prestigious leadership development program",
+        "Developed ethical leadership framework",
+        "Built network of socially conscious leaders"
       ]
     },
     {
-      "id": "2018-co-creator",
+      "id": "2018-09-co-creator-emprogage-ab",
       "type": "work",
       "title": "Co-Creator",
-      "company": "Energipop AB",
-      "location": "Malmö, Sverige",
+      "company": "Emprogage AB",
+      "location": "Malmo, Sweden",
       "startDate": "2018-09",
-      "endDate": "2020-01",
-      "description": "Co-founded and developed creative projects with focus on energy and sustainability themes.",
-      "responsibilities": [
-        "Co-created innovative projects focused on energy themes",
-        "Developed creative content and marketing strategies",
-        "Managed project development from concept to execution",
-        "Collaborated on brand development and positioning"
-      ],
-      "skills": ["Creative Development", "Co-founding", "Energy Sector", "Brand Development"],
-      "achievements": [
-        "Successfully co-founded and launched creative venture",
-        "Developed innovative energy-focused content",
-        "Built sustainable business model"
-      ]
+      "description": "Co-Creator at Emprogage AB.",
+      "endDate": "2020-01"
     },
     {
-      "id": "2019-host",
+      "id": "volunteer-2018-02-ansvarig-utgivare-redaktionen",
+      "type": "volunteer",
+      "title": "Ansvarig utgivare",
+      "company": "Redaktionen",
+      "startDate": "2018-02",
+      "description": "Redaktionen \u00e4r en plattform f\u00f6r unga att uttrycka sig p\u00e5 och sprida sitt inneh\u00e5ll p\u00e5. Vi jobbar med de kanaler som \u00e4r relevanta f\u00f6r unga idag. Jag \u00e4r initiativtagare och skribent, bland annat. https://www.facebook.com/atredaktionen/",
+      "category": "education",
+      "endDate": "2018-05"
+    },
+    {
+      "id": "2018-01-host-ett-samtal",
       "type": "work",
       "title": "Host",
       "company": "Ett Samtal",
-      "location": "Malmö, Sverige", 
+      "location": "Malm\u00f6, Sverige",
       "startDate": "2018-01",
-      "endDate": "2019-01",
-      "description": "Hosted conversations and events. Focused on meaningful dialogue and community building.",
-      "responsibilities": [
-        "Hosted engaging conversations and community events",
-        "Facilitated meaningful dialogues between participants",
-        "Managed event logistics and participant experience",
-        "Created welcoming and inclusive environment for discussions"
-      ],
-      "skills": ["Event Hosting", "Community Building", "Public Speaking", "Facilitation"],
-      "achievements": [
-        "Successfully hosted numerous community conversations",
-        "Built strong local community connections",
-        "Developed reputation as skilled facilitator"
-      ]
+      "description": "\"Ett samtal\" or in English, \"A conversation\", is a podcast that I've started and that I host. I have a couple of reasons to have the project running. I wanted to learn the podcast medium and see what the process of creating a podcast is like. It's also an excuse for me to have thoughtful conversations with people I look up to on topics I want to talk to them about. And most importantly, I think the conversations can create value for individuals listening. The whole show is in Swedish.",
+      "endDate": "2019-06"
     },
     {
-      "id": "2019-internship",
+      "id": "2018-01-internship-on-project-management-simply-draw-it-big",
       "type": "work",
       "title": "Internship on project management",
-      "company": "Simply Drawn 8 Big",
-      "location": "Malmö, Sverige",
-      "startDate": "2018-08",
-      "endDate": "2019-03",
-      "description": "Gained experience in project management through hands-on internship. Involved in management-level projects and learned about Visual Thinking and graphical recording methodologies.",
-      "responsibilities": [
-        "Supported project management activities and planning",
-        "Learned Visual Thinking and graphical recording techniques",
-        "Participated in client meetings and project documentation",
-        "Assisted with project coordination and timeline management"
-      ],
-      "skills": ["Project Management", "Visual Thinking", "Graphical Recording", "Client Relations"],
-      "achievements": [
-        "Completed comprehensive project management internship",
-        "Mastered Visual Thinking methodologies",
-        "Contributed to successful client projects"
-      ]
+      "company": "Simply Draw it Big",
+      "location": "Malm\u00f6, Sverige",
+      "startDate": "2018-01",
+      "description": "I was involved on a management level in a couple of different projects in and around the organisation. One of them was the Visual Viking Academy, a training in visual thinking and graphical recording.",
+      "endDate": "2018-03"
     },
     {
-      "id": "2017-project-manager-fryshusen",
-      "type": "work",
-      "title": "Project manager",
-      "company": "Fryshusen",
-      "location": "Malmö, Sverige",
-      "startDate": "2017-01",
-      "endDate": "2017-04",
-      "description": "Managed projects for cultural and community initiatives. Organized a solo event for a theatre show called 'Djera Vi' that was shown at Malmö City Theatre. Booked a live band, produced a short documentary about the city and made some decorations for the room.",
-      "responsibilities": [
-        "Organized solo events for theatre productions",
-        "Coordinated with Malmö City Theatre for venue and logistics",
-        "Booked live musical performances for events",
-        "Produced documentary content about local community",
-        "Created event decorations and atmospheric design"
-      ],
-      "skills": ["Event Management", "Theatre Production", "Documentary Production", "Creative Direction"],
-      "achievements": [
-        "Successfully produced theatre event at Malmö City Theatre",
-        "Created compelling documentary about local community",
-        "Managed all aspects of event production from booking to decoration"
-      ]
-    },
-    {
-      "id": "2017-assistant-project-manager",
-      "type": "work", 
-      "title": "Assistant Project Manager",
-      "company": "Skånes basketbollförbund",
-      "location": "Malmö, Sverige",
-      "startDate": "2017-01",
-      "endDate": "2017-05",
-      "description": "Assisted with project management for basketball federation initiatives. Had responsibilities regarding finding potential collaborations, send applications for funds as in the start up of a project called 'Hemmaplanen'.",
-      "responsibilities": [
-        "Identified and developed potential collaboration opportunities",
-        "Prepared and submitted funding applications for sports projects",
-        "Supported the startup and development of 'Hemmaplanen' project",
-        "Coordinated with basketball clubs and community organizations",
-        "Assisted with project planning and resource allocation"
-      ],
-      "skills": ["Sports Administration", "Grant Writing", "Partnership Development", "Project Coordination"],
-      "achievements": [
-        "Successfully secured funding for 'Hemmaplanen' project",
-        "Established valuable partnerships within basketball community",
-        "Contributed to successful project launch and implementation"
-      ]
-    },
-    {
-      "id": "2022-technigo-education",
-      "type": "education",
-      "title": "Technigo",
-      "institution": "Technigo - Frontend & Fullstack Web Development",
-      "location": "Remote",
-      "startDate": "2022-09",
-      "endDate": "2023-04",
-      "description": "Intensive full-stack web development bootcamp focusing on modern JavaScript, React, Node.js, and project-based learning.",
-      "details": [
-        "32-week fast-paced remote bootcamp",
-        "Focused on JavaScript (ES6), TypeScript, React, HTML5, CSS",
-        "Server-side programming with Node.js",
-        "Weekly projects covering programming basics to advanced web projects",
-        "Agile methodology with sprint planning, check-ins, demos, and retros",
-        "Mob-programming and pair-programming sessions"
-      ],
-      "skills": ["JavaScript", "TypeScript", "React", "Node.js", "HTML5", "CSS"],
-      "achievements": [
-        "Completed intensive 32-week bootcamp successfully",
-        "Built portfolio of full-stack web applications",
-        "Mastered modern development practices and Agile methodology"
-      ]
-    },
-    {
-      "id": "2017-lunds-universitet",
-      "type": "education", 
-      "title": "Lunds universitet",
-      "institution": "Bachelor's degree, Behavioural Sciences",
-      "location": "Lund, Sverige",
-      "startDate": "2017-01",
-      "endDate": "2020-01",
-      "description": "Bachelor's degree in Behavioral Sciences with focus on understanding human behavior and social dynamics.",
-      "details": [
-        "Comprehensive study of human behavior and psychology",
-        "Research methods and statistical analysis",
-        "Social psychology and group dynamics",
-        "Applied behavioral science in practical contexts"
-      ],
-      "skills": ["Research Methods", "Statistical Analysis", "Psychology", "Behavioral Science"],
-      "achievements": [
-        "Completed Bachelor's degree in Behavioral Sciences",
-        "Developed strong analytical and research skills",
-        "Applied behavioral insights to practical projects"
-      ]
-    },
-    {
-      "id": "2017-linnéuniversitetet",
-      "type": "education",
-      "title": "Linnéuniversitetet", 
-      "institution": "Project Management, Project Management",
-      "location": "Växjö, Sverige",
-      "startDate": "2017-01",
-      "endDate": "2017-01",
-      "description": "Specialized course in project management methodologies and best practices.",
-      "details": [
-        "Comprehensive project management fundamentals",
-        "Project planning, execution, and monitoring techniques",
-        "Risk management and stakeholder communication",
-        "Industry-standard project management tools and methodologies"
-      ],
-      "skills": ["Project Management", "Risk Management", "Stakeholder Management", "Planning"],
-      "achievements": [
-        "Completed specialized project management certification",
-        "Applied project management principles in subsequent roles",
-        "Developed systematic approach to project delivery"
-      ]
-    },
-    {
-      "id": "2015-bladins-gymnasium",
-      "type": "education",
-      "title": "Bladins Gymnasium", 
-      "institution": "Gymnasium, Social Sciences",
-      "location": "Malmö, Sverige",
-      "startDate": "2015-01",
-      "endDate": "2018-01",
-      "description": "Upper secondary education with focus on social sciences, developing foundation in social studies and critical thinking.",
-      "details": [
-        "Comprehensive social sciences curriculum",
-        "Critical thinking and analytical skills development",
-        "Social studies, psychology, and sociology foundations",
-        "Preparation for higher education and social awareness"
-      ],
-      "skills": ["Social Sciences", "Critical Thinking", "Analysis", "Communication"],
-      "achievements": [
-        "Completed gymnasium with focus on social sciences",
-        "Developed strong foundation in social studies",
-        "Prepared for higher education and professional development"
-      ]
+      "id": "volunteer-2018-01-assistant-content-manager-world-values-initiative-sweden",
+      "type": "volunteer",
+      "title": "Assistant Content Manager",
+      "company": "World Values Initiative - Sweden",
+      "startDate": "2018-01",
+      "description": "I'm a part of the team in Lund. My main focus is to develop our digital presence by creating content valuable to the people following us. http://worldvaluesinitiative.se/",
+      "category": "education",
+      "endDate": "2018-11"
     },
     {
       "id": "2018-micro-expressions",
@@ -426,7 +199,12 @@
       "startDate": "2018-01",
       "endDate": "2018-01",
       "description": "Specialized training in micro expressions recognition and analysis for improved communication and understanding.",
-      "skills": ["Psychology", "Communication", "Behavioral Analysis", "Interpersonal Skills"],
+      "skills": [
+        "Psychology",
+        "Communication",
+        "Behavioral Analysis",
+        "Interpersonal Skills"
+      ],
       "achievements": [
         "Mastered micro expressions recognition techniques",
         "Enhanced interpersonal communication abilities",
@@ -435,13 +213,18 @@
     },
     {
       "id": "2018-subtle-expressions",
-      "type": "certification", 
+      "type": "certification",
       "title": "Subtle Expressions, Expert Level",
       "institution": "Paul Ekman Group (PEG)",
       "startDate": "2018-01",
-      "endDate": "2018-01", 
+      "endDate": "2018-01",
       "description": "Advanced certification in subtle expressions analysis, building on micro expressions foundation with expert-level skills.",
-      "skills": ["Advanced Psychology", "Expert Communication", "Behavioral Analysis", "Professional Development"],
+      "skills": [
+        "Advanced Psychology",
+        "Expert Communication",
+        "Behavioral Analysis",
+        "Professional Development"
+      ],
       "achievements": [
         "Achieved expert level in subtle expressions analysis",
         "Advanced communication and interpersonal skills",
@@ -449,18 +232,107 @@
       ]
     },
     {
-      "id": "2019-leadership-camp",
-      "type": "certification",
-      "title": "Raoul Wallenberg Academy Leadership Camp",
-      "institution": "Wallenberg Academy", 
-      "startDate": "2019-01",
-      "endDate": "2019-01",
-      "description": "Intensive leadership development program focused on ethical leadership and social responsibility.",
-      "skills": ["Leadership", "Ethics", "Social Responsibility", "Team Management"],
-      "achievements": [
-        "Completed prestigious leadership development program",
-        "Developed ethical leadership framework",
-        "Built network of socially conscious leaders"
+      "id": "2017-11-host-l-rdomf-rdagen",
+      "type": "work",
+      "title": "Host",
+      "company": "#l\u00e4rdomf\u00f6rdagen",
+      "location": "Malm\u00f6, Sverige",
+      "startDate": "2017-11",
+      "description": "L\u00e4rdom f\u00f6r dagen, roughly translated to \"Learning of today\" is a vlog series that I've been shooting almost every weekday since mid November. On it, I talk for about 5 minutes about something that I've learned the last couple of days. You can find it on Facebook at #l\u00e4rdomf\u00f6rdagen or on Youtube.",
+      "endDate": "2019-05"
+    },
+    {
+      "id": "education-2017-08-bachelor-s-degree-lund-university",
+      "type": "education",
+      "title": "Bachelor's degree",
+      "institution": "Lund University",
+      "startDate": "2017-08",
+      "description": "Bachelor's degree studies at Lund University.",
+      "endDate": "2020-06",
+      "details": ["The program's association as master of finances."]
+    },
+    {
+      "id": "2017-07-project-manager-fryshuset",
+      "type": "work",
+      "title": "Project manager",
+      "company": "Fryshuset",
+      "location": "Malm\u00f6, Sweden",
+      "startDate": "2017-07",
+      "description": "I organised a side event for a theatre show called \"Den e Vi\" that was shown at Malm\u00f6 City Theatre. I booked a live band, produced a short documentary about the city and made some decorations for the room.",
+      "endDate": "2017-10"
+    },
+    {
+      "id": "2017-05-assistant-project-manager-sk-nes-basketbollf-rbund",
+      "type": "work",
+      "title": "Assistant Project Manager",
+      "company": "Sk\u00e5nes basketbollf\u00f6rbund",
+      "location": "Malmo, Sweden",
+      "startDate": "2017-05",
+      "description": "I had responsibilities regarding finding potential collaborations, send applications for funds all in the start up of a project called \"Hemmaplan\". The whole concept was to get young kids to exercise more, with the basketball as a tool.",
+      "endDate": "2017-07"
+    },
+    {
+      "id": "education-2017-01-project-management-i-linn-universitetet",
+      "type": "education",
+      "title": "Project Management I",
+      "institution": "Linn\u00e9universitetet",
+      "startDate": "2017-01",
+      "description": "A basic course in project management.",
+      "endDate": "2017-01"
+    },
+    {
+      "id": "volunteer-2016-08-administrator-what-do-you-need-help-with-today-buddy",
+      "type": "volunteer",
+      "title": "Administrator",
+      "company": "What do you need help with today buddy?",
+      "startDate": "2016-08",
+      "description": "\u201dWhat do you need help with today buddy?\u201d Is a Facebook group with over 40.000 members. The mission is to create a kinder and helping forum online. https://www.facebook.com/groups/whatdoyouneedhelpwithtodaybuddy/",
+      "category": "socialServices",
+      "endDate": null,
+      "current": true
+    },
+    {
+      "id": "2016-07-project-manager-samtalsaktivisterna-malm",
+      "type": "work",
+      "title": "Project Manager",
+      "company": "Samtalsaktivisterna Malm\u00f6",
+      "location": "Malmo, Sweden",
+      "startDate": "2016-07",
+      "description": "Samtalsaktivisterna, or \"The Conversational Activists\" started out as a Reach For Change-funded project. I played a key role in going from just a project to creating an NGO and building the organisation from the ground up. I was hired as a project manager and admin, but quickly was responsible for personel, sales, planning as well as administration and managing projects. http://samtalsaktivisterna.se",
+      "endDate": "2016-12"
+    },
+    {
+      "id": "volunteer-2016-01-styrelseledamot-sveriges-elevk-rer",
+      "type": "volunteer",
+      "title": "Styrelseledamot",
+      "company": "Sveriges Elevk\u00e5rer",
+      "startDate": "2016-01",
+      "description": "Styrelseledamot at Sveriges Elevk\u00e5rer.",
+      "endDate": "2016-06"
+    },
+    {
+      "id": "2015-08-cfo-and-co-founder-hipwheels-uf",
+      "type": "work",
+      "title": "CFO and co-founder",
+      "company": "HipWheels UF",
+      "location": "Malm\u00f6",
+      "startDate": "2015-08",
+      "description": "A friend and I, when doing our last year at Bladins Gymnasium, started a company through Ung F\u00f6retagsamhet as a school work. We sold howerboards/2-wheel segways. We had a turnover of almost 100.000SEK in our first 5 months.",
+      "endDate": "2016-06"
+    },
+    {
+      "id": "education-2013-01-gymnasium-bladins-gymnasium",
+      "type": "education",
+      "title": "Gymnasium",
+      "institution": "Bladins Gymnasium",
+      "startDate": "2013-01",
+      "description": "The whole program and all the material was in English.",
+      "endDate": "2016-01",
+      "details": [
+        "Chairman of the Student union",
+        "Secretary of the student union",
+        "board member of the united student unions of Malm\u00f6",
+        "Initiator and responsible for the Soccer team and the Chess club. I received the honorary \"Bladiner of the year\" my last year for the contributions I made."
       ]
     }
   ]
