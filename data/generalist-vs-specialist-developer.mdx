@@ -22,6 +22,7 @@ But this binary thinking misses the reality of modern software development: the 
 ### What is T-Shaped Expertise?
 
 T-shaped skills combine:
+
 - **Deep expertise** in 1-2 core areas (the vertical stroke)
 - **Broad knowledge** across multiple disciplines (the horizontal stroke)
 - **Connecting ability** between different domains and teams
@@ -55,7 +56,7 @@ const UserProfileFeature = {
   component: UserProfile,
 
   // Backend: API design and implementation
-  api: '/api/users/:id',
+  api: "/api/users/:id",
 
   // Database: Schema design and queries
   schema: UserProfileSchema,
@@ -67,14 +68,15 @@ const UserProfileFeature = {
   auth: JWTMiddleware,
 
   // Analytics: Event tracking
-  events: ['profile_viewed', 'profile_updated'],
+  events: ["profile_viewed", "profile_updated"],
 
   // Performance: Optimization strategies
-  optimization: ImageOptimization
+  optimization: ImageOptimization,
 };
 ```
 
 **Why Generalists Excel:**
+
 - **System Thinking**: Understanding how pieces fit together
 - **Faster Debugging**: Can trace issues across the entire stack
 - **Better Architecture**: Decisions consider all system constraints
@@ -164,6 +166,7 @@ const deploymentConfig = {
 ```
 
 The generalist perspective enabled optimizations that specialists in individual areas might miss:
+
 - **Frontend specialist** might not consider database query implications
 - **Backend specialist** might not optimize for SEO requirements
 - **DevOps specialist** might not understand user experience impact
@@ -179,44 +182,47 @@ Specialists excel in complex, domain-specific challenges:
 const useOptimisticUpdates = <T>(
   data: T[],
   updateFn: (item: T) => Promise<T>,
-  idField: keyof T
+  idField: keyof T,
 ) => {
   const [optimisticData, setOptimisticData] = useState(data);
   const [pendingUpdates, setPendingUpdates] = useState<Set<string>>(new Set());
 
-  const updateItem = useCallback(async (item: T) => {
-    const id = String(item[idField]);
+  const updateItem = useCallback(
+    async (item: T) => {
+      const id = String(item[idField]);
 
-    // Optimistic update
-    setOptimisticData(prev =>
-      prev.map(existing =>
-        String(existing[idField]) === id ? item : existing
-      )
-    );
-
-    setPendingUpdates(prev => new Set([...prev, id]));
-
-    try {
-      const updated = await updateFn(item);
-
-      // Replace optimistic with real data
-      setOptimisticData(prev =>
-        prev.map(existing =>
-          String(existing[idField]) === id ? updated : existing
-        )
+      // Optimistic update
+      setOptimisticData((prev) =>
+        prev.map((existing) =>
+          String(existing[idField]) === id ? item : existing,
+        ),
       );
-    } catch (error) {
-      // Revert optimistic update
-      setOptimisticData(data);
-      throw error;
-    } finally {
-      setPendingUpdates(prev => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
-    }
-  }, [data, updateFn, idField]);
+
+      setPendingUpdates((prev) => new Set([...prev, id]));
+
+      try {
+        const updated = await updateFn(item);
+
+        // Replace optimistic with real data
+        setOptimisticData((prev) =>
+          prev.map((existing) =>
+            String(existing[idField]) === id ? updated : existing,
+          ),
+        );
+      } catch (error) {
+        // Revert optimistic update
+        setOptimisticData(data);
+        throw error;
+      } finally {
+        setPendingUpdates((prev) => {
+          const next = new Set(prev);
+          next.delete(id);
+          return next;
+        });
+      }
+    },
+    [data, updateFn, idField],
+  );
 
   return {
     data: optimisticData,
@@ -276,6 +282,7 @@ ORDER BY cohort_month DESC,
 ```
 
 **Specialist Advantages:**
+
 - **Problem Complexity**: Can solve problems generalists can't
 - **Performance**: Deep optimization knowledge
 - **Architecture**: Expert-level design patterns
@@ -286,51 +293,54 @@ ORDER BY cohort_month DESC,
 ### My Journey: From Generalist to T-Shaped
 
 **Years 1-3: Broad Exploration**
+
 ```typescript
 const skillsProgression = {
-  year1: ['HTML', 'CSS', 'JavaScript', 'jQuery'],
-  year2: ['React', 'Node.js', 'Express', 'MongoDB'],
-  year3: ['TypeScript', 'Next.js', 'PostgreSQL', 'AWS'],
+  year1: ["HTML", "CSS", "JavaScript", "jQuery"],
+  year2: ["React", "Node.js", "Express", "MongoDB"],
+  year3: ["TypeScript", "Next.js", "PostgreSQL", "AWS"],
 };
 ```
 
 **Years 4-6: Finding the Vertical**
+
 ```typescript
 const deepenedExpertise = {
-  primary: 'Full-Stack JavaScript/TypeScript',
-  secondary: 'React/Next.js Ecosystem',
-  supporting: ['Node.js', 'Database Design', 'Cloud Architecture'],
+  primary: "Full-Stack JavaScript/TypeScript",
+  secondary: "React/Next.js Ecosystem",
+  supporting: ["Node.js", "Database Design", "Cloud Architecture"],
 };
 ```
 
 **Years 7+: T-Shaped Professional**
+
 ```typescript
 const tShapedSkills = {
   deep: {
     fullStackJS: {
-      level: 'Expert',
-      technologies: ['React', 'Next.js', 'Node.js', 'TypeScript'],
+      level: "Expert",
+      technologies: ["React", "Next.js", "Node.js", "TypeScript"],
       capabilities: [
-        'Complex state management',
-        'Performance optimization',
-        'Architecture design',
-        'Team leadership'
+        "Complex state management",
+        "Performance optimization",
+        "Architecture design",
+        "Team leadership",
       ],
     },
   },
   broad: {
-    frontend: 'Proficient',
-    backend: 'Proficient',
-    devops: 'Working knowledge',
-    design: 'Working knowledge',
-    business: 'Working knowledge',
-    mobile: 'Familiar',
+    frontend: "Proficient",
+    backend: "Proficient",
+    devops: "Working knowledge",
+    design: "Working knowledge",
+    business: "Working knowledge",
+    mobile: "Familiar",
   },
   connective: [
-    'Technical communication',
-    'Cross-functional collaboration',
-    'System thinking',
-    'Problem decomposition',
+    "Technical communication",
+    "Cross-functional collaboration",
+    "System thinking",
+    "Problem decomposition",
   ],
 };
 ```
@@ -340,58 +350,60 @@ const tShapedSkills = {
 As a T-shaped developer, I can:
 
 **Technical Leadership:**
+
 ```typescript
 // Architect solutions considering all stakeholders
 const featureArchitecture = {
   // Deep expertise: Optimal React patterns
   frontend: {
-    stateManagement: 'Zustand with persistence',
-    dataFetching: 'React Query with optimistic updates',
-    styling: 'Tailwind with design system tokens',
+    stateManagement: "Zustand with persistence",
+    dataFetching: "React Query with optimistic updates",
+    styling: "Tailwind with design system tokens",
   },
 
   // Broad knowledge: Backend implications
   backend: {
-    apiDesign: 'GraphQL for flexible data fetching',
-    caching: 'Redis for session and computed data',
-    security: 'JWT with refresh token rotation',
+    apiDesign: "GraphQL for flexible data fetching",
+    caching: "Redis for session and computed data",
+    security: "JWT with refresh token rotation",
   },
 
   // Systems thinking: End-to-end optimization
   performance: {
-    frontend: 'Code splitting and lazy loading',
-    backend: 'Database query optimization',
-    infrastructure: 'CDN and edge caching',
+    frontend: "Code splitting and lazy loading",
+    backend: "Database query optimization",
+    infrastructure: "CDN and edge caching",
   },
 };
 ```
 
 **Cross-Functional Communication:**
+
 ```typescript
 // Translate between different stakeholders
 const stakeholderCommunication = {
   toDesigners: {
-    language: 'User experience and visual hierarchy',
-    concerns: ['Component reusability', 'Responsive behavior'],
-    collaboration: 'Design system development',
+    language: "User experience and visual hierarchy",
+    concerns: ["Component reusability", "Responsive behavior"],
+    collaboration: "Design system development",
   },
 
   toBackendDevelopers: {
-    language: 'API contracts and data structures',
-    concerns: ['Performance', 'Caching strategies'],
-    collaboration: 'Schema design and optimization',
+    language: "API contracts and data structures",
+    concerns: ["Performance", "Caching strategies"],
+    collaboration: "Schema design and optimization",
   },
 
   toProductManagers: {
-    language: 'Features and user value',
-    concerns: ['Technical feasibility', 'Development timelines'],
-    collaboration: 'Requirement clarification and scoping',
+    language: "Features and user value",
+    concerns: ["Technical feasibility", "Development timelines"],
+    collaboration: "Requirement clarification and scoping",
   },
 
   toBusinessStakeholders: {
-    language: 'ROI and competitive advantage',
-    concerns: ['Technical debt', 'Scalability'],
-    collaboration: 'Strategic technology decisions',
+    language: "ROI and competitive advantage",
+    concerns: ["Technical debt", "Scalability"],
+    collaboration: "Strategic technology decisions",
   },
 };
 ```
@@ -399,83 +411,86 @@ const stakeholderCommunication = {
 ## Career Strategy: Building Your T
 
 ### Phase 1: Explore Broadly (Years 1-2)
+
 **Goal**: Discover your interests and aptitudes
 
 ```typescript
 const explorationStrategy = {
   projects: [
-    'Build a simple website (HTML/CSS/JS)',
-    'Create a React app with API integration',
-    'Try mobile development (React Native/Flutter)',
-    'Experiment with backend (Node.js/Python/Go)',
-    'Deploy something to the cloud (AWS/Vercel/Netlify)',
+    "Build a simple website (HTML/CSS/JS)",
+    "Create a React app with API integration",
+    "Try mobile development (React Native/Flutter)",
+    "Experiment with backend (Node.js/Python/Go)",
+    "Deploy something to the cloud (AWS/Vercel/Netlify)",
   ],
 
   learning: {
-    approach: 'Tutorial hell is okay initially',
-    focus: 'Understanding concepts, not memorizing syntax',
-    depth: 'Get things working, understand basics',
+    approach: "Tutorial hell is okay initially",
+    focus: "Understanding concepts, not memorizing syntax",
+    depth: "Get things working, understand basics",
   },
 
   signals: [
-    'What technologies excite you?',
-    'What problems do you enjoy solving?',
-    'What comes naturally vs requires struggle?',
+    "What technologies excite you?",
+    "What problems do you enjoy solving?",
+    "What comes naturally vs requires struggle?",
   ],
 };
 ```
 
 ### Phase 2: Choose Your Vertical (Years 2-4)
+
 **Goal**: Develop deep expertise in 1-2 core areas
 
 ```typescript
 const specializationStrategy = {
   criteria: {
-    marketDemand: 'Is there consistent job demand?',
-    personalInterest: 'Do you enjoy this daily?',
-    growthPotential: 'Is the technology evolving?',
-    communitySupport: 'Are there learning resources?',
+    marketDemand: "Is there consistent job demand?",
+    personalInterest: "Do you enjoy this daily?",
+    growthPotential: "Is the technology evolving?",
+    communitySupport: "Are there learning resources?",
   },
 
   deepening: {
-    advancedProjects: 'Build complex applications',
-    openSource: 'Contribute to major projects',
-    teaching: 'Write articles, give talks',
-    mentoring: 'Help junior developers',
+    advancedProjects: "Build complex applications",
+    openSource: "Contribute to major projects",
+    teaching: "Write articles, give talks",
+    mentoring: "Help junior developers",
   },
 
   mastery: [
     'Understand the "why" behind best practices',
-    'Can architect solutions from scratch',
-    'Debug complex issues others cannot',
-    'Contribute to technology discussions',
+    "Can architect solutions from scratch",
+    "Debug complex issues others cannot",
+    "Contribute to technology discussions",
   ],
 };
 ```
 
 ### Phase 3: Maintain the Horizontal (Years 4+)
+
 **Goal**: Stay current across the broader ecosystem
 
 ```typescript
 const horizontalStrategy = {
   timeAllocation: {
-    deepSkills: '70% - Maintain and advance expertise',
-    broadSkills: '20% - Stay current with adjacent technologies',
-    newTech: '10% - Experiment with emerging technologies',
+    deepSkills: "70% - Maintain and advance expertise",
+    broadSkills: "20% - Stay current with adjacent technologies",
+    newTech: "10% - Experiment with emerging technologies",
   },
 
   stayingCurrent: {
-    newsletters: ['JavaScript Weekly', 'Node Weekly', 'React Status'],
-    podcasts: ['Syntax', 'Shop Talk Show', 'The Changelog'],
-    conferences: 'Attend 1-2 major conferences annually',
-    networking: 'Active in tech communities and Discord servers',
+    newsletters: ["JavaScript Weekly", "Node Weekly", "React Status"],
+    podcasts: ["Syntax", "Shop Talk Show", "The Changelog"],
+    conferences: "Attend 1-2 major conferences annually",
+    networking: "Active in tech communities and Discord servers",
   },
 
   practicalApplication: [
-    'Side projects using new technologies',
-    'Cross-training with other team members',
-    'Architecture reviews for different domains',
-    'Technical blog writing across multiple topics',
+    "Side projects using new technologies",
+    "Cross-training with other team members",
+    "Architecture reviews for different domains",
+    "Technical blog writing across multiple topics",
   ],
 };
 ```
@@ -483,7 +498,9 @@ const horizontalStrategy = {
 ## Market Dynamics: Generalist vs Specialist Demand
 
 ### Startup Environment: Generalist Paradise
+
 **Early-stage companies (0-50 employees)**
+
 - Need to build fast across multiple domains
 - Value versatility over deep specialization
 - Benefit from reduced communication overhead
@@ -491,19 +508,21 @@ const horizontalStrategy = {
 
 ```typescript
 const startupNeeds = {
-  teamSize: 'Small (2-8 developers)',
-  priorities: ['Speed to market', 'Resource efficiency', 'Flexibility'],
+  teamSize: "Small (2-8 developers)",
+  priorities: ["Speed to market", "Resource efficiency", "Flexibility"],
   challenges: [
-    'Many unknowns and changing requirements',
-    'Limited budget for specialized roles',
-    'Need to validate multiple technical approaches',
+    "Many unknowns and changing requirements",
+    "Limited budget for specialized roles",
+    "Need to validate multiple technical approaches",
   ],
-  idealProfile: 'T-shaped with bias toward broad',
+  idealProfile: "T-shaped with bias toward broad",
 };
 ```
 
 ### Scale-up Environment: T-Shaped Sweet Spot
+
 **Growing companies (50-500 employees)**
+
 - Need both depth and breadth
 - Value cross-functional collaboration
 - Benefit from technical leadership
@@ -511,19 +530,21 @@ const startupNeeds = {
 
 ```typescript
 const scaleUpNeeds = {
-  teamSize: 'Medium (8-40 developers)',
-  priorities: ['Scalable architecture', 'Team productivity', 'Quality'],
+  teamSize: "Medium (8-40 developers)",
+  priorities: ["Scalable architecture", "Team productivity", "Quality"],
   challenges: [
-    'Coordinating across multiple teams',
-    'Maintaining code quality at scale',
-    'Balancing feature velocity with technical debt',
+    "Coordinating across multiple teams",
+    "Maintaining code quality at scale",
+    "Balancing feature velocity with technical debt",
   ],
-  idealProfile: 'Strong T-shaped with clear vertical expertise',
+  idealProfile: "Strong T-shaped with clear vertical expertise",
 };
 ```
 
 ### Enterprise Environment: Specialist Focus
+
 **Large companies (500+ employees)**
+
 - Complex, specialized problem domains
 - Value deep expertise and optimization
 - Benefit from role clarity and specialization
@@ -531,15 +552,15 @@ const scaleUpNeeds = {
 
 ```typescript
 const enterpriseNeeds = {
-  teamSize: 'Large (40+ developers across teams)',
-  priorities: ['Reliability', 'Security', 'Performance', 'Compliance'],
+  teamSize: "Large (40+ developers across teams)",
+  priorities: ["Reliability", "Security", "Performance", "Compliance"],
   challenges: [
-    'Complex legacy systems',
-    'Strict performance requirements',
-    'Regulatory compliance',
-    'Large-scale coordination',
+    "Complex legacy systems",
+    "Strict performance requirements",
+    "Regulatory compliance",
+    "Large-scale coordination",
   ],
-  idealProfile: 'Deep specialist with some collaborative skills',
+  idealProfile: "Deep specialist with some collaborative skills",
 };
 ```
 
@@ -552,30 +573,31 @@ AI tools like GitHub Copilot, ChatGPT, and Claude are reshaping what developers 
 ```typescript
 const aiImpact = {
   automatedTasks: [
-    'Boilerplate code generation',
-    'Simple bug fixes',
-    'Documentation writing',
-    'Test case generation',
+    "Boilerplate code generation",
+    "Simple bug fixes",
+    "Documentation writing",
+    "Test case generation",
   ],
 
   humanValue: [
-    'System architecture decisions',
-    'Business requirement translation',
-    'Complex problem decomposition',
-    'Cross-functional communication',
-    'Creative problem solving',
+    "System architecture decisions",
+    "Business requirement translation",
+    "Complex problem decomposition",
+    "Cross-functional communication",
+    "Creative problem solving",
   ],
 
   emergingSkills: [
-    'Prompt engineering',
-    'AI tool integration',
-    'Human-AI collaboration',
-    'Critical evaluation of AI output',
+    "Prompt engineering",
+    "AI tool integration",
+    "Human-AI collaboration",
+    "Critical evaluation of AI output",
   ],
 };
 ```
 
 **Why T-Shaped Skills Become More Valuable:**
+
 - **Context Understanding**: AI generates code but needs human context
 - **Integration Thinking**: Connecting AI-generated pieces requires system knowledge
 - **Quality Assessment**: Evaluating AI output requires broad knowledge
@@ -587,31 +609,31 @@ const aiImpact = {
 const futureStrategy = {
   focus: {
     technical: [
-      'Architecture and system design',
-      'Complex problem decomposition',
-      'Performance optimization',
-      'Security considerations',
+      "Architecture and system design",
+      "Complex problem decomposition",
+      "Performance optimization",
+      "Security considerations",
     ],
 
     human: [
-      'Requirements gathering and translation',
-      'Stakeholder communication',
-      'Team leadership and mentoring',
-      'Creative problem solving',
+      "Requirements gathering and translation",
+      "Stakeholder communication",
+      "Team leadership and mentoring",
+      "Creative problem solving",
     ],
 
     aiCollaboration: [
-      'Effective prompt engineering',
-      'AI output evaluation and refinement',
-      'Human-AI workflow optimization',
-      'Understanding AI capabilities and limitations',
+      "Effective prompt engineering",
+      "AI output evaluation and refinement",
+      "Human-AI workflow optimization",
+      "Understanding AI capabilities and limitations",
     ],
   },
 
   continuousLearning: {
-    mindset: 'Embrace AI as a powerful tool, not a threat',
-    approach: 'Focus on uniquely human capabilities',
-    adaptation: 'Regularly experiment with new AI tools',
+    mindset: "Embrace AI as a powerful tool, not a threat",
+    approach: "Focus on uniquely human capabilities",
+    adaptation: "Regularly experiment with new AI tools",
   },
 };
 ```
@@ -626,32 +648,33 @@ Ask yourself these key questions:
 const selfAssessment = {
   personality: {
     questions: [
-      'Do you enjoy going deep on complex problems?',
-      'Do you prefer variety or consistency in your work?',
-      'Are you energized by learning new technologies?',
-      'Do you enjoy explaining technical concepts to non-technical people?',
+      "Do you enjoy going deep on complex problems?",
+      "Do you prefer variety or consistency in your work?",
+      "Are you energized by learning new technologies?",
+      "Do you enjoy explaining technical concepts to non-technical people?",
     ],
-    scoring: 'Deep focus → Specialist, Variety → Generalist',
+    scoring: "Deep focus → Specialist, Variety → Generalist",
   },
 
   careerGoals: {
     questions: [
-      'Do you want to be a tech lead or architect?',
-      'Are you interested in starting your own company?',
-      'Do you prefer large companies or startups?',
-      'Is work-life balance or cutting-edge tech more important?',
+      "Do you want to be a tech lead or architect?",
+      "Are you interested in starting your own company?",
+      "Do you prefer large companies or startups?",
+      "Is work-life balance or cutting-edge tech more important?",
     ],
-    scoring: 'Leadership/entrepreneurship → T-shaped, Optimization → Specialist',
+    scoring:
+      "Leadership/entrepreneurship → T-shaped, Optimization → Specialist",
   },
 
   marketContext: {
     questions: [
-      'What does your local job market value?',
-      'What industries are you interested in?',
-      'What companies do you want to work for?',
-      'How important is salary optimization vs job satisfaction?',
+      "What does your local job market value?",
+      "What industries are you interested in?",
+      "What companies do you want to work for?",
+      "How important is salary optimization vs job satisfaction?",
     ],
-    scoring: 'Match strategy to market opportunities',
+    scoring: "Match strategy to market opportunities",
   },
 };
 ```
@@ -662,34 +685,34 @@ const selfAssessment = {
 // 12-month skill development plan template
 const skillPlan = {
   current: {
-    deep: 'Assess current expertise level',
-    broad: 'Map adjacent skills and knowledge gaps',
-    market: 'Research job requirements and trends',
+    deep: "Assess current expertise level",
+    broad: "Map adjacent skills and knowledge gaps",
+    market: "Research job requirements and trends",
   },
 
   quarterly: {
     q1: {
-      deep: 'Advanced patterns in core technology',
-      broad: 'Learn basics of 1-2 adjacent technologies',
-      project: 'Build something that combines multiple skills',
+      deep: "Advanced patterns in core technology",
+      broad: "Learn basics of 1-2 adjacent technologies",
+      project: "Build something that combines multiple skills",
     },
 
     q2: {
-      deep: 'Contribute to open source in expertise area',
-      broad: 'Experiment with emerging technologies',
-      network: 'Attend conferences, join communities',
+      deep: "Contribute to open source in expertise area",
+      broad: "Experiment with emerging technologies",
+      network: "Attend conferences, join communities",
     },
 
     q3: {
-      deep: 'Teach or mentor others in expertise area',
-      broad: 'Build side project in new domain',
-      content: 'Write technical articles or give talks',
+      deep: "Teach or mentor others in expertise area",
+      broad: "Build side project in new domain",
+      content: "Write technical articles or give talks",
     },
 
     q4: {
-      deep: 'Lead a complex project using expertise',
-      broad: 'Assess and plan next year\'s learning',
-      career: 'Update portfolio, LinkedIn, resume',
+      deep: "Lead a complex project using expertise",
+      broad: "Assess and plan next year's learning",
+      career: "Update portfolio, LinkedIn, resume",
     },
   },
 };
@@ -702,6 +725,7 @@ The generalist vs specialist debate misses the point. In our rapidly evolving in
 **My recommendation**: Start broad, find your vertical, then maintain the horizontal. The specifics matter less than the approach—whether your deep expertise is in React, Python, DevOps, or mobile development, complement it with working knowledge across the stack.
 
 The future belongs to developers who can:
+
 - **Think in systems** while executing in specifics
 - **Communicate across disciplines** while maintaining technical depth
 - **Adapt to new technologies** while leveraging proven patterns
@@ -711,4 +735,4 @@ Your career isn't a binary choice between generalist and specialist—it's about
 
 ---
 
-*What's your take on the generalist vs specialist debate? I'd love to hear about your career journey and how you're building your T-shaped skills. Connect with me on [LinkedIn](https://linkedin.com/in/caspian-almerud) or [email](mailto:hello@caspian.dev).*
+_What's your take on the generalist vs specialist debate? I'd love to hear about your career journey and how you're building your T-shaped skills. Connect with me on [LinkedIn](https://linkedin.com/in/caspian-almerud) or [email](mailto:hello@caspian.dev)._

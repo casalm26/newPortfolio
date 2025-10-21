@@ -8,31 +8,43 @@ class SoundManager {
 
   constructor() {
     // Initialize on first user interaction
-    if (typeof window !== 'undefined') {
-      document.addEventListener('click', this.initializeAudio.bind(this), { once: true });
-      document.addEventListener('keydown', this.initializeAudio.bind(this), { once: true });
+    if (typeof window !== "undefined") {
+      document.addEventListener("click", this.initializeAudio.bind(this), {
+        once: true,
+      });
+      document.addEventListener("keydown", this.initializeAudio.bind(this), {
+        once: true,
+      });
     }
   }
 
   private async initializeAudio() {
     try {
-      this.audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext })
+          .webkitAudioContext)();
 
-      if (this.audioContext.state === 'suspended') {
+      if (this.audioContext.state === "suspended") {
         await this.audioContext.resume();
       }
     } catch (error) {
-      console.warn('Audio initialization failed:', error);
+      console.warn("Audio initialization failed:", error);
       this.isEnabled = false;
     }
   }
 
-  private createOscillator(frequency: number, type: OscillatorType = 'square'): OscillatorNode | null {
+  private createOscillator(
+    frequency: number,
+    type: OscillatorType = "square",
+  ): OscillatorNode | null {
     if (!this.audioContext || !this.isEnabled) return null;
 
     const oscillator = this.audioContext.createOscillator();
     oscillator.type = type;
-    oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(
+      frequency,
+      this.audioContext.currentTime,
+    );
 
     return oscillator;
   }
@@ -41,7 +53,10 @@ class SoundManager {
     if (!this.audioContext || !this.isEnabled) return null;
 
     const gainNode = this.audioContext.createGain();
-    gainNode.gain.setValueAtTime(initialVolume * this.masterVolume, this.audioContext.currentTime);
+    gainNode.gain.setValueAtTime(
+      initialVolume * this.masterVolume,
+      this.audioContext.currentTime,
+    );
 
     return gainNode;
   }
@@ -50,7 +65,7 @@ class SoundManager {
   buttonClick() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(800, 'square');
+    const oscillator = this.createOscillator(800, "square");
     const gainNode = this.createGainNode(0.2);
 
     if (!oscillator || !gainNode) return;
@@ -72,7 +87,7 @@ class SoundManager {
   buttonHover() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(600, 'triangle');
+    const oscillator = this.createOscillator(600, "triangle");
     const gainNode = this.createGainNode(0.1);
 
     if (!oscillator || !gainNode) return;
@@ -99,7 +114,7 @@ class SoundManager {
     const frequencies = [523, 659, 784]; // C, E, G
 
     frequencies.forEach((freq, index) => {
-      const oscillator = this.createOscillator(freq, 'square');
+      const oscillator = this.createOscillator(freq, "square");
       const gainNode = this.createGainNode(0.15);
 
       if (!oscillator || !gainNode) return;
@@ -109,7 +124,10 @@ class SoundManager {
 
       const now = this.audioContext!.currentTime + index * 0.1;
       gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.15 * this.masterVolume, now + 0.01);
+      gainNode.gain.linearRampToValueAtTime(
+        0.15 * this.masterVolume,
+        now + 0.01,
+      );
       gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
 
       oscillator.start(now);
@@ -121,7 +139,7 @@ class SoundManager {
   error() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(400, 'sawtooth');
+    const oscillator = this.createOscillator(400, "sawtooth");
     const gainNode = this.createGainNode(0.2);
 
     if (!oscillator || !gainNode) return;
@@ -145,7 +163,7 @@ class SoundManager {
   loading() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(440, 'sine');
+    const oscillator = this.createOscillator(440, "sine");
     const gainNode = this.createGainNode(0.1);
 
     if (!oscillator || !gainNode) return;
@@ -159,7 +177,10 @@ class SoundManager {
     for (let i = 0; i < 4; i++) {
       const pulseStart = now + i * 0.2;
       gainNode.gain.setValueAtTime(0, pulseStart);
-      gainNode.gain.linearRampToValueAtTime(0.1 * this.masterVolume, pulseStart + 0.05);
+      gainNode.gain.linearRampToValueAtTime(
+        0.1 * this.masterVolume,
+        pulseStart + 0.05,
+      );
       gainNode.gain.linearRampToValueAtTime(0, pulseStart + 0.1);
     }
 
@@ -174,7 +195,7 @@ class SoundManager {
     const frequencies = [880, 1108]; // A5, C#6
 
     frequencies.forEach((freq, index) => {
-      const oscillator = this.createOscillator(freq, 'sine');
+      const oscillator = this.createOscillator(freq, "sine");
       const gainNode = this.createGainNode(0.1);
 
       if (!oscillator || !gainNode) return;
@@ -184,7 +205,10 @@ class SoundManager {
 
       const now = this.audioContext!.currentTime + index * 0.1;
       gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.1 * this.masterVolume, now + 0.01);
+      gainNode.gain.linearRampToValueAtTime(
+        0.1 * this.masterVolume,
+        now + 0.01,
+      );
       gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
 
       oscillator.start(now);
@@ -196,7 +220,7 @@ class SoundManager {
   type() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(1200, 'square');
+    const oscillator = this.createOscillator(1200, "square");
     const gainNode = this.createGainNode(0.05);
 
     if (!oscillator || !gainNode) return;
@@ -206,7 +230,10 @@ class SoundManager {
 
     const now = this.audioContext.currentTime;
     gainNode.gain.setValueAtTime(0, now);
-    gainNode.gain.linearRampToValueAtTime(0.05 * this.masterVolume, now + 0.001);
+    gainNode.gain.linearRampToValueAtTime(
+      0.05 * this.masterVolume,
+      now + 0.001,
+    );
     gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
 
     oscillator.start(now);
@@ -217,16 +244,19 @@ class SoundManager {
   pageTransition() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(800, 'triangle');
+    const oscillator = this.createOscillator(800, "triangle");
     const gainNode = this.createGainNode(0.15);
 
     if (!oscillator || !gainNode) return;
 
     // Add a filter for sweeping effect
     const filter = this.audioContext.createBiquadFilter();
-    filter.type = 'lowpass';
+    filter.type = "lowpass";
     filter.frequency.setValueAtTime(2000, this.audioContext.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(100, this.audioContext.currentTime + 0.3);
+    filter.frequency.exponentialRampToValueAtTime(
+      100,
+      this.audioContext.currentTime + 0.3,
+    );
 
     oscillator.connect(filter);
     filter.connect(gainNode);
@@ -248,7 +278,7 @@ class SoundManager {
   snakeEat() {
     if (!this.audioContext || !this.isEnabled) return;
 
-    const oscillator = this.createOscillator(660, 'square');
+    const oscillator = this.createOscillator(660, "square");
     const gainNode = this.createGainNode(0.2);
 
     if (!oscillator || !gainNode) return;
@@ -274,7 +304,7 @@ class SoundManager {
     const frequencies = [440, 415, 392, 370]; // Descending notes
 
     frequencies.forEach((freq, index) => {
-      const oscillator = this.createOscillator(freq, 'square');
+      const oscillator = this.createOscillator(freq, "square");
       const gainNode = this.createGainNode(0.2);
 
       if (!oscillator || !gainNode) return;
@@ -284,7 +314,10 @@ class SoundManager {
 
       const now = this.audioContext!.currentTime + index * 0.15;
       gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.2 * this.masterVolume, now + 0.01);
+      gainNode.gain.linearRampToValueAtTime(
+        0.2 * this.masterVolume,
+        now + 0.01,
+      );
       gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
 
       oscillator.start(now);

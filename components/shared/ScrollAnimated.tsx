@@ -5,7 +5,12 @@ import { useAnimation } from "./AnimationProvider";
 
 interface ScrollAnimatedProps {
   children: React.ReactNode;
-  animation?: "fade-in" | "slide-in-left" | "slide-in-right" | "scale-in" | "pixel-bounce";
+  animation?:
+    | "fade-in"
+    | "slide-in-left"
+    | "slide-in-right"
+    | "scale-in"
+    | "pixel-bounce";
   delay?: number;
   threshold?: number;
   triggerOnce?: boolean;
@@ -18,7 +23,7 @@ export function ScrollAnimated({
   delay = 0,
   threshold = 0.1,
   triggerOnce = true,
-  className = ""
+  className = "",
 }: ScrollAnimatedProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -44,7 +49,7 @@ export function ScrollAnimated({
           setIsVisible(false);
         }
       },
-      { threshold }
+      { threshold },
     );
 
     const currentRef = ref.current;
@@ -81,10 +86,7 @@ export function ScrollAnimated({
   };
 
   return (
-    <div
-      ref={ref}
-      className={`${className} ${getAnimationClass()}`}
-    >
+    <div ref={ref} className={`${className} ${getAnimationClass()}`}>
       {children}
     </div>
   );

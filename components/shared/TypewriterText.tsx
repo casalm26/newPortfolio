@@ -22,7 +22,7 @@ export function TypewriterText({
   cursor = true,
   cursorChar = "|",
   onComplete,
-  className = ""
+  className = "",
 }: TypewriterTextProps) {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,33 +42,36 @@ export function TypewriterText({
       return;
     }
 
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        // Typing
-        if (currentIndex < currentString.length) {
-          setDisplayText(currentString.slice(0, currentIndex + 1));
-          setCurrentIndex(currentIndex + 1);
-        } else {
-          // Finished typing current string
-          if (textArray.length > 1 && loop) {
-            // Wait before starting to delete
-            setTimeout(() => setIsDeleting(true), 1000);
+    const timer = setTimeout(
+      () => {
+        if (!isDeleting) {
+          // Typing
+          if (currentIndex < currentString.length) {
+            setDisplayText(currentString.slice(0, currentIndex + 1));
+            setCurrentIndex(currentIndex + 1);
           } else {
-            onComplete?.();
+            // Finished typing current string
+            if (textArray.length > 1 && loop) {
+              // Wait before starting to delete
+              setTimeout(() => setIsDeleting(true), 1000);
+            } else {
+              onComplete?.();
+            }
+          }
+        } else {
+          // Deleting
+          if (currentIndex > 0) {
+            setDisplayText(currentString.slice(0, currentIndex - 1));
+            setCurrentIndex(currentIndex - 1);
+          } else {
+            // Finished deleting, move to next string
+            setIsDeleting(false);
+            setCurrentStringIndex((prev) => (prev + 1) % textArray.length);
           }
         }
-      } else {
-        // Deleting
-        if (currentIndex > 0) {
-          setDisplayText(currentString.slice(0, currentIndex - 1));
-          setCurrentIndex(currentIndex - 1);
-        } else {
-          // Finished deleting, move to next string
-          setIsDeleting(false);
-          setCurrentStringIndex((prev) => (prev + 1) % textArray.length);
-        }
-      }
-    }, delay + (isDeleting ? speed / 2 : speed));
+      },
+      delay + (isDeleting ? speed / 2 : speed),
+    );
 
     return () => clearTimeout(timer);
   }, [
@@ -81,7 +84,7 @@ export function TypewriterText({
     loop,
     onComplete,
     speed,
-    textArray
+    textArray,
   ]);
 
   // Cursor blinking effect

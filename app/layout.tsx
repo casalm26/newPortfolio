@@ -185,7 +185,10 @@ export default function RootLayout({
 
             <div className="w-full flex flex-col justify-between items-center font-sans">
               <SearchProvider>
-                <main id="main-content" className="w-full flex flex-col items-center mb-auto">
+                <main
+                  id="main-content"
+                  className="w-full flex flex-col items-center mb-auto"
+                >
                   {children}
                 </main>
               </SearchProvider>

@@ -65,7 +65,9 @@ test.describe("Critical User Journeys", () => {
 
     // Check for portfolio-specific content
     await expect(
-      page.getByText("Bridging technical expertise, creative problem-solving, and business strategy."),
+      page.getByText(
+        "Bridging technical expertise, creative problem-solving, and business strategy.",
+      ),
     ).toBeVisible();
   });
 
@@ -122,14 +124,14 @@ test.describe("Critical User Journeys", () => {
     await expect(page).toHaveURL(/.*\/all-articles/);
 
     // Wait for content to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState("networkidle");
 
     // Check if the page has the articles title
     await expect(page.locator("h1")).toContainText(/All Articles|Blog/);
 
     // Test that blog articles are visible - look for any article link or card
     const articleElements = page.locator(
-      'article, .blog-post, [data-testid="blog-post"], a[href*="/"], .post-item'
+      'article, .blog-post, [data-testid="blog-post"], a[href*="/"], .post-item',
     );
     await expect(articleElements.first()).toBeVisible({ timeout: 10000 });
   });
@@ -142,16 +144,19 @@ test.describe("Critical User Journeys", () => {
     await expect(page.locator("h1")).toContainText("CAREER_PATH/");
 
     // Wait for content to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState("networkidle");
 
     // Check for CV timeline content - look for filter buttons and timeline structure
     await expect(
-      page.locator('button').filter({ hasText: /^ALL \(\d+\)$/ }).first(),
+      page
+        .locator("button")
+        .filter({ hasText: /^ALL \(\d+\)$/ })
+        .first(),
     ).toBeVisible({ timeout: 10000 });
 
     // Check for timeline container
     await expect(
-      page.locator('.relative.max-w-4xl.mx-auto, .space-y-0').first(),
+      page.locator(".relative.max-w-4xl.mx-auto, .space-y-0").first(),
     ).toBeVisible();
   });
 

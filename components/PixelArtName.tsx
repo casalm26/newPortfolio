@@ -9,7 +9,10 @@ interface PixelArtNameProps {
   "aria-hidden"?: boolean | "true" | "false";
 }
 
-export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtNameProps) {
+export function PixelArtName({
+  className,
+  "aria-hidden": ariaHidden,
+}: PixelArtNameProps) {
   const fullName = "CASPIAN ALMERUD";
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,10 +27,13 @@ export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtN
     }
 
     if (currentIndex < fullName.length) {
-      const timer = setTimeout(() => {
-        setDisplayedText(fullName.slice(0, currentIndex + 1));
-        setCurrentIndex(currentIndex + 1);
-      }, currentIndex === 0 ? 500 : 150);
+      const timer = setTimeout(
+        () => {
+          setDisplayedText(fullName.slice(0, currentIndex + 1));
+          setCurrentIndex(currentIndex + 1);
+        },
+        currentIndex === 0 ? 500 : 150,
+      );
 
       return () => clearTimeout(timer);
     }
@@ -44,7 +50,12 @@ export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtN
   };
 
   return (
-    <div className={cn("flex flex-col items-center justify-center space-y-4", className)}>
+    <div
+      className={cn(
+        "flex flex-col items-center justify-center space-y-4",
+        className,
+      )}
+    >
       {currentIndex < fullName.length && !animationSkipped && (
         <button
           onClick={skipAnimation}
@@ -78,7 +89,9 @@ export function PixelArtName({ className, "aria-hidden": ariaHidden }: PixelArtN
       </div>
 
       <div className="text-center space-y-4">
-        <p className="font-pixel text-lg md:text-xl text-terminal-300 tracking-wide">$ whoami</p>
+        <p className="font-pixel text-lg md:text-xl text-terminal-300 tracking-wide">
+          $ whoami
+        </p>
         <p className="font-pixel text-sm md:text-base text-terminal-400 tracking-wide">
           generalist_developer@localhost:~$ pwd
         </p>

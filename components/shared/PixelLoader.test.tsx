@@ -79,7 +79,8 @@ describe("PixelLoader", () => {
     });
 
     it("should handle very long text", () => {
-      const longText = "This is a very long loading text that should still be handled properly";
+      const longText =
+        "This is a very long loading text that should still be handled properly";
       render(<PixelLoader text={longText} />);
 
       expect(screen.getByText(longText)).toBeInTheDocument();
@@ -89,10 +90,10 @@ describe("PixelLoader", () => {
       const types = ["dots", "bars", "spinner", "typewriter"] as const;
       const sizes = ["sm", "md", "lg"] as const;
 
-      types.forEach(type => {
-        sizes.forEach(size => {
+      types.forEach((type) => {
+        sizes.forEach((size) => {
           const { unmount } = render(
-            <PixelLoader type={type} size={size} text="Test" />
+            <PixelLoader type={type} size={size} text="Test" />,
           );
 
           // Should not crash

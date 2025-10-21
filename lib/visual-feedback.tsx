@@ -1,38 +1,38 @@
 // Visual feedback system for user interactions
 // Provides consistent visual responses across the application
 
-import { useCallback, useRef } from 'react';
-import { soundManager } from './sounds';
+import { useCallback, useRef } from "react";
+import { soundManager } from "./sounds";
 
 export interface FeedbackOptions {
   sound?: boolean;
   vibration?: boolean;
   visual?: boolean;
-  intensity?: 'subtle' | 'medium' | 'strong';
+  intensity?: "subtle" | "medium" | "strong";
 }
 
 export type FeedbackType =
-  | 'click'
-  | 'hover'
-  | 'success'
-  | 'error'
-  | 'warning'
-  | 'info'
-  | 'loading'
-  | 'complete';
+  | "click"
+  | "hover"
+  | "success"
+  | "error"
+  | "warning"
+  | "info"
+  | "loading"
+  | "complete";
 
 class VisualFeedbackManager {
   private feedbackElement: HTMLElement | null = null;
 
   constructor() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       this.createFeedbackElement();
     }
   }
 
   private createFeedbackElement() {
-    this.feedbackElement = document.createElement('div');
-    this.feedbackElement.id = 'visual-feedback-overlay';
+    this.feedbackElement = document.createElement("div");
+    this.feedbackElement.id = "visual-feedback-overlay";
     this.feedbackElement.style.cssText = `
       position: fixed;
       top: 0;
@@ -47,13 +47,13 @@ class VisualFeedbackManager {
     document.body.appendChild(this.feedbackElement);
   }
 
-  private getIntensityValues(intensity: 'subtle' | 'medium' | 'strong') {
+  private getIntensityValues(intensity: "subtle" | "medium" | "strong") {
     switch (intensity) {
-      case 'subtle':
+      case "subtle":
         return { opacity: 0.1, duration: 100, vibration: 10 };
-      case 'medium':
+      case "medium":
         return { opacity: 0.2, duration: 150, vibration: 20 };
-      case 'strong':
+      case "strong":
         return { opacity: 0.3, duration: 200, vibration: 50 };
       default:
         return { opacity: 0.2, duration: 150, vibration: 20 };
@@ -62,22 +62,46 @@ class VisualFeedbackManager {
 
   private getTypeColors(type: FeedbackType): { color: string; shadow: string } {
     switch (type) {
-      case 'success':
-        return { color: 'rgba(34, 197, 94, 0.3)', shadow: '0 0 20px rgba(34, 197, 94, 0.5)' };
-      case 'error':
-        return { color: 'rgba(239, 68, 68, 0.3)', shadow: '0 0 20px rgba(239, 68, 68, 0.5)' };
-      case 'warning':
-        return { color: 'rgba(245, 158, 11, 0.3)', shadow: '0 0 20px rgba(245, 158, 11, 0.5)' };
-      case 'info':
-        return { color: 'rgba(59, 130, 246, 0.3)', shadow: '0 0 20px rgba(59, 130, 246, 0.5)' };
-      case 'loading':
-        return { color: 'rgba(168, 85, 247, 0.3)', shadow: '0 0 20px rgba(168, 85, 247, 0.5)' };
-      case 'complete':
-        return { color: 'rgba(34, 197, 94, 0.3)', shadow: '0 0 20px rgba(34, 197, 94, 0.5)' };
-      case 'hover':
-        return { color: 'rgba(255, 255, 255, 0.1)', shadow: '0 0 10px rgba(255, 255, 255, 0.3)' };
+      case "success":
+        return {
+          color: "rgba(34, 197, 94, 0.3)",
+          shadow: "0 0 20px rgba(34, 197, 94, 0.5)",
+        };
+      case "error":
+        return {
+          color: "rgba(239, 68, 68, 0.3)",
+          shadow: "0 0 20px rgba(239, 68, 68, 0.5)",
+        };
+      case "warning":
+        return {
+          color: "rgba(245, 158, 11, 0.3)",
+          shadow: "0 0 20px rgba(245, 158, 11, 0.5)",
+        };
+      case "info":
+        return {
+          color: "rgba(59, 130, 246, 0.3)",
+          shadow: "0 0 20px rgba(59, 130, 246, 0.5)",
+        };
+      case "loading":
+        return {
+          color: "rgba(168, 85, 247, 0.3)",
+          shadow: "0 0 20px rgba(168, 85, 247, 0.5)",
+        };
+      case "complete":
+        return {
+          color: "rgba(34, 197, 94, 0.3)",
+          shadow: "0 0 20px rgba(34, 197, 94, 0.5)",
+        };
+      case "hover":
+        return {
+          color: "rgba(255, 255, 255, 0.1)",
+          shadow: "0 0 10px rgba(255, 255, 255, 0.3)",
+        };
       default: // click
-        return { color: 'rgba(255, 255, 255, 0.2)', shadow: '0 0 15px rgba(255, 255, 255, 0.4)' };
+        return {
+          color: "rgba(255, 255, 255, 0.2)",
+          shadow: "0 0 15px rgba(255, 255, 255, 0.4)",
+        };
     }
   }
 
@@ -86,38 +110,39 @@ class VisualFeedbackManager {
       sound = true,
       vibration = true,
       visual = true,
-      intensity = 'medium'
+      intensity = "medium",
     } = options;
 
     // Sound feedback
     if (sound) {
       switch (type) {
-        case 'click':
+        case "click":
           soundManager.buttonClick();
           break;
-        case 'hover':
+        case "hover":
           soundManager.buttonHover();
           break;
-        case 'success':
-        case 'complete':
+        case "success":
+        case "complete":
           soundManager.success();
           break;
-        case 'error':
+        case "error":
           soundManager.error();
           break;
-        case 'loading':
+        case "loading":
           soundManager.loading();
           break;
-        case 'info':
-        case 'warning':
+        case "info":
+        case "warning":
           soundManager.notification();
           break;
       }
     }
 
     // Haptic feedback (vibration)
-    if (vibration && 'vibrate' in navigator) {
-      const { vibration: vibrationDuration } = this.getIntensityValues(intensity);
+    if (vibration && "vibrate" in navigator) {
+      const { vibration: vibrationDuration } =
+        this.getIntensityValues(intensity);
       navigator.vibrate(vibrationDuration);
     }
 
@@ -127,7 +152,10 @@ class VisualFeedbackManager {
     }
   }
 
-  private showVisualFeedback(type: FeedbackType, intensity: 'subtle' | 'medium' | 'strong') {
+  private showVisualFeedback(
+    type: FeedbackType,
+    intensity: "subtle" | "medium" | "strong",
+  ) {
     if (!this.feedbackElement) return;
 
     const { opacity, duration } = this.getIntensityValues(intensity);
@@ -147,7 +175,7 @@ class VisualFeedbackManager {
     // Fade out after duration
     const timeoutId = setTimeout(() => {
       if (this.feedbackElement) {
-        this.feedbackElement.style.opacity = '0';
+        this.feedbackElement.style.opacity = "0";
       }
     }, duration);
 
@@ -155,11 +183,12 @@ class VisualFeedbackManager {
   }
 
   // Screen shake effect for strong feedback
-  shake(intensity: 'subtle' | 'medium' | 'strong' = 'medium') {
-    if (typeof window === 'undefined') return;
+  shake(intensity: "subtle" | "medium" | "strong" = "medium") {
+    if (typeof window === "undefined") return;
 
     const { duration } = this.getIntensityValues(intensity);
-    const shakeAmount = intensity === 'subtle' ? 2 : intensity === 'medium' ? 4 : 6;
+    const shakeAmount =
+      intensity === "subtle" ? 2 : intensity === "medium" ? 4 : 6;
 
     const originalTransform = document.body.style.transform;
 
@@ -168,7 +197,7 @@ class VisualFeedbackManager {
       `translateX(-${shakeAmount}px)`,
       `translateX(${shakeAmount}px)`,
       `translateX(-${shakeAmount}px)`,
-      'translateX(0)',
+      "translateX(0)",
     ];
 
     let frameIndex = 0;
@@ -185,7 +214,10 @@ class VisualFeedbackManager {
   }
 
   // Flash effect for important notifications
-  flash(color: string = '#ffffff', intensity: 'subtle' | 'medium' | 'strong' = 'medium') {
+  flash(
+    color: string = "#ffffff",
+    intensity: "subtle" | "medium" | "strong" = "medium",
+  ) {
     if (!this.feedbackElement) return;
 
     const { opacity, duration } = this.getIntensityValues(intensity);
@@ -195,7 +227,7 @@ class VisualFeedbackManager {
 
     setTimeout(() => {
       if (this.feedbackElement) {
-        this.feedbackElement.style.opacity = '0';
+        this.feedbackElement.style.opacity = "0";
       }
     }, duration);
   }
@@ -216,27 +248,57 @@ export const visualFeedbackManager = new VisualFeedbackManager();
 export function useVisualFeedback() {
   const triggerRef = useRef<{ [key: string]: () => void }>({});
 
-  const trigger = useCallback((type: FeedbackType, options?: FeedbackOptions) => {
-    visualFeedbackManager.trigger(type, options);
-  }, []);
+  const trigger = useCallback(
+    (type: FeedbackType, options?: FeedbackOptions) => {
+      visualFeedbackManager.trigger(type, options);
+    },
+    [],
+  );
 
-  const shake = useCallback((intensity?: 'subtle' | 'medium' | 'strong') => {
+  const shake = useCallback((intensity?: "subtle" | "medium" | "strong") => {
     visualFeedbackManager.shake(intensity);
   }, []);
 
-  const flash = useCallback((color?: string, intensity?: 'subtle' | 'medium' | 'strong') => {
-    visualFeedbackManager.flash(color, intensity);
-  }, []);
+  const flash = useCallback(
+    (color?: string, intensity?: "subtle" | "medium" | "strong") => {
+      visualFeedbackManager.flash(color, intensity);
+    },
+    [],
+  );
 
   // Memoized feedback functions
-  const click = useCallback((options?: FeedbackOptions) => trigger('click', options), [trigger]);
-  const hover = useCallback((options?: FeedbackOptions) => trigger('hover', options), [trigger]);
-  const success = useCallback((options?: FeedbackOptions) => trigger('success', options), [trigger]);
-  const error = useCallback((options?: FeedbackOptions) => trigger('error', options), [trigger]);
-  const warning = useCallback((options?: FeedbackOptions) => trigger('warning', options), [trigger]);
-  const info = useCallback((options?: FeedbackOptions) => trigger('info', options), [trigger]);
-  const loading = useCallback((options?: FeedbackOptions) => trigger('loading', options), [trigger]);
-  const complete = useCallback((options?: FeedbackOptions) => trigger('complete', options), [trigger]);
+  const click = useCallback(
+    (options?: FeedbackOptions) => trigger("click", options),
+    [trigger],
+  );
+  const hover = useCallback(
+    (options?: FeedbackOptions) => trigger("hover", options),
+    [trigger],
+  );
+  const success = useCallback(
+    (options?: FeedbackOptions) => trigger("success", options),
+    [trigger],
+  );
+  const error = useCallback(
+    (options?: FeedbackOptions) => trigger("error", options),
+    [trigger],
+  );
+  const warning = useCallback(
+    (options?: FeedbackOptions) => trigger("warning", options),
+    [trigger],
+  );
+  const info = useCallback(
+    (options?: FeedbackOptions) => trigger("info", options),
+    [trigger],
+  );
+  const loading = useCallback(
+    (options?: FeedbackOptions) => trigger("loading", options),
+    [trigger],
+  );
+  const complete = useCallback(
+    (options?: FeedbackOptions) => trigger("complete", options),
+    [trigger],
+  );
 
   return {
     trigger,
@@ -256,8 +318,8 @@ export function useVisualFeedback() {
 // Higher-order component for automatic feedback
 export function withVisualFeedback<P extends Record<string, unknown>>(
   Component: React.ComponentType<P>,
-  feedbackType: FeedbackType = 'click',
-  options?: FeedbackOptions
+  feedbackType: FeedbackType = "click",
+  options?: FeedbackOptions,
 ) {
   return function WrappedComponent(props: P) {
     const feedback = useVisualFeedback();
@@ -270,7 +332,9 @@ export function withVisualFeedback<P extends Record<string, unknown>>(
       <Component
         {...props}
         onClick={handleInteraction}
-        onMouseEnter={feedbackType === 'hover' ? handleInteraction : props.onMouseEnter}
+        onMouseEnter={
+          feedbackType === "hover" ? handleInteraction : props.onMouseEnter
+        }
       />
     );
   };

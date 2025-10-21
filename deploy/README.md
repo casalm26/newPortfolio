@@ -15,12 +15,14 @@ This guide covers deploying your Next.js portfolio application to your own serve
 ## Prerequisites
 
 ### Local Machine
+
 - Node.js 20+
 - Git
 - SSH access to your server
 - rsync (for file synchronization)
 
 ### Server Requirements
+
 - Ubuntu 22.04 LTS (or similar)
 - Minimum 1GB RAM (2GB+ recommended for Node.js)
 - 10GB+ disk space
@@ -30,7 +32,9 @@ This guide covers deploying your Next.js portfolio application to your own serve
 ## Deployment Options
 
 ### Option 1: Static Export (Recommended for Simple Sites)
+
 ✅ **Pros:**
+
 - Maximum performance
 - Minimal server resources
 - Better security (no Node.js runtime)
@@ -38,12 +42,15 @@ This guide covers deploying your Next.js portfolio application to your own serve
 - Simple rollback
 
 ❌ **Cons:**
+
 - No server-side features (API routes, ISR)
 - Requires rebuild for content updates
 - No dynamic routes
 
 ### Option 2: Node.js Server (Full-Featured)
+
 ✅ **Pros:**
+
 - All Next.js features available
 - Incremental Static Regeneration (ISR)
 - API routes support
@@ -51,6 +58,7 @@ This guide covers deploying your Next.js portfolio application to your own serve
 - Dynamic routing
 
 ❌ **Cons:**
+
 - More server resources needed
 - Complex deployment
 - Requires process management (PM2)
@@ -74,6 +82,7 @@ sudo ./setup-server.sh
 ```
 
 The script will prompt you for:
+
 - Your domain name
 - Git repository URL
 - Deployment type (static or Node.js)
@@ -94,6 +103,7 @@ The script will prompt you for:
 ### Method 1: GitHub Actions (CI/CD)
 
 1. **Add GitHub Secrets:**
+
    ```
    DEPLOY_HOST: your-server.com
    DEPLOY_USER: deploy
@@ -105,6 +115,7 @@ The script will prompt you for:
    ```
 
 2. **Generate SSH Key Pair:**
+
    ```bash
    # On your local machine
    ssh-keygen -t ed25519 -f deploy_key -N ""
@@ -125,6 +136,7 @@ The script will prompt you for:
 ### Method 2: Direct Git Push
 
 1. **Setup Bare Repository on Server:**
+
    ```bash
    # On server
    mkdir -p /home/deploy/portfolio.git
@@ -137,6 +149,7 @@ The script will prompt you for:
    ```
 
 2. **Add Remote to Local Repository:**
+
    ```bash
    # On local machine
    git remote add production deploy@your-server.com:/home/deploy/portfolio.git
@@ -150,6 +163,7 @@ The script will prompt you for:
 ### Method 3: Manual Deployment
 
 1. **Use the Deploy Script:**
+
    ```bash
    # On local machine
    cd your-portfolio-directory
@@ -159,6 +173,7 @@ The script will prompt you for:
    ```
 
 2. **Or Deploy Manually:**
+
    ```bash
    # Build locally
    npm run build
@@ -197,6 +212,7 @@ WORDPRESS_API_KEY=your-api-key
 ### 2. Nginx Configuration
 
 Static deployment (`/etc/nginx/sites-available/your-domain`):
+
 ```nginx
 server {
     listen 443 ssl http2;
@@ -218,6 +234,7 @@ server {
 ```
 
 Node.js deployment:
+
 ```nginx
 server {
     listen 443 ssl http2;
@@ -256,12 +273,14 @@ tail -f /var/log/nginx/error.log
 ### 2. Automated Monitoring
 
 The setup script creates basic monitoring at `/usr/local/bin/monitor-portfolio.sh`:
+
 - Runs every 5 minutes via cron
 - Checks HTTP status
 - Monitors disk usage
 - Monitors memory usage
 
 View monitoring logs:
+
 ```bash
 tail -f /var/log/portfolio-monitor.log
 ```
@@ -291,6 +310,7 @@ EOF
 ### Common Issues and Solutions
 
 #### 1. Site Not Loading
+
 ```bash
 # Check if Nginx is running
 sudo systemctl status nginx
@@ -306,6 +326,7 @@ curl http://localhost
 ```
 
 #### 2. 502 Bad Gateway (Node.js)
+
 ```bash
 # Check if app is running
 pm2 list
@@ -318,6 +339,7 @@ pm2 logs --lines 100
 ```
 
 #### 3. SSL Certificate Issues
+
 ```bash
 # Renew certificate manually
 sudo certbot renew --force-renewal
@@ -327,6 +349,7 @@ sudo certbot renew --dry-run
 ```
 
 #### 4. Permission Issues
+
 ```bash
 # Fix ownership
 sudo chown -R deploy:www-data /var/www/portfolio
@@ -334,6 +357,7 @@ sudo chmod -R 755 /var/www/portfolio
 ```
 
 #### 5. Build Failures
+
 ```bash
 # Check Node version
 node --version  # Should be 20+
@@ -364,21 +388,25 @@ sudo nginx -s reload
 ## Security Considerations
 
 1. **Keep Server Updated:**
+
    ```bash
    sudo apt update && sudo apt upgrade
    ```
 
 2. **Configure Fail2ban:**
+
    ```bash
    sudo apt install fail2ban
    sudo systemctl enable fail2ban
    ```
 
 3. **Secure Environment Variables:**
+
    - Never commit `.env` files
    - Use restrictive permissions: `chmod 640 .env.production`
 
 4. **Regular Backups:**
+
    - Automate daily backups
    - Test restore procedures
 
@@ -400,6 +428,7 @@ After successful deployment:
 ## Support
 
 For issues or questions:
+
 - Check deployment logs: `/var/log/portfolio-deploy.log`
 - Review Nginx logs: `/var/log/nginx/error.log`
 - Check PM2 logs: `pm2 logs`

@@ -8,7 +8,6 @@ vi.mock("./AnimationProvider", () => ({
   useAnimation: vi.fn(),
 }));
 
-
 describe("TypewriterText", () => {
   const mockUseAnimation = vi.mocked(useAnimation);
 
@@ -46,9 +45,14 @@ describe("TypewriterText", () => {
         vi.advanceTimersByTime(200);
       });
 
-      expect(screen.getByText((content, element) => {
-        return element?.textContent === "Hell|" || element?.textContent?.startsWith("Hell");
-      })).toBeInTheDocument();
+      expect(
+        screen.getByText((content, element) => {
+          return (
+            element?.textContent === "Hell|" ||
+            element?.textContent?.startsWith("Hell")
+          );
+        }),
+      ).toBeInTheDocument();
     });
 
     it("should show cursor by default", () => {
@@ -91,15 +95,17 @@ describe("TypewriterText", () => {
 
   describe("Styling", () => {
     it("should apply custom className", () => {
-      const { container } = render(<TypewriterText text="Test" className="custom-class" />);
+      const { container } = render(
+        <TypewriterText text="Test" className="custom-class" />,
+      );
 
-      expect(container.querySelector('.custom-class')).toBeInTheDocument();
+      expect(container.querySelector(".custom-class")).toBeInTheDocument();
     });
 
     it("should have pixel font by default", () => {
       const { container } = render(<TypewriterText text="Test" />);
 
-      expect(container.querySelector('.font-pixel')).toBeInTheDocument();
+      expect(container.querySelector(".font-pixel")).toBeInTheDocument();
     });
   });
 

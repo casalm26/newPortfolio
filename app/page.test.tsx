@@ -60,8 +60,12 @@ describe("Home page", () => {
     const snakeSection = sections[1];
 
     expect(snakeSection).toHaveTextContent(/PIXEL SNAKE/i);
-    expect(snakeSection).toHaveTextContent("You can't snake your way out of this one!");
-    expect(snakeSection).toContainElement(screen.getByTestId("pixel-snake-game"));
+    expect(snakeSection).toHaveTextContent(
+      "You can't snake your way out of this one!",
+    );
+    expect(snakeSection).toContainElement(
+      screen.getByTestId("pixel-snake-game"),
+    );
   });
 
   it("shows quick access navigation tiles", () => {
@@ -71,16 +75,15 @@ describe("Home page", () => {
     const quickAccessSection = quickAccessHeading.closest("section");
     expect(quickAccessSection).not.toBeNull();
 
-    const headings = within(quickAccessSection as HTMLElement).getAllByRole("heading", {
-      level: 3,
-    });
+    const headings = within(quickAccessSection as HTMLElement).getAllByRole(
+      "heading",
+      {
+        level: 3,
+      },
+    );
 
     const labels = headings.map((heading) => heading.textContent?.trim());
-    expect(labels).toEqual([
-      "PROJECTS",
-      "ARTICLES",
-      "CV",
-    ]);
+    expect(labels).toEqual(["PROJECTS", "ARTICLES", "CV"]);
   });
 
   it("retains the footer at the bottom of the page", () => {

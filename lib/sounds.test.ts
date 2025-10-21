@@ -4,35 +4,46 @@ import { soundManager, useSound } from "./sounds";
 // Mock Web Audio API
 const mockAudioContext = {
   createOscillator: vi.fn(() => ({
-    type: 'square',
-    frequency: { setValueAtTime: vi.fn(), linearRampToValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() },
+    type: "square",
+    frequency: {
+      setValueAtTime: vi.fn(),
+      linearRampToValueAtTime: vi.fn(),
+      exponentialRampToValueAtTime: vi.fn(),
+    },
     connect: vi.fn(),
     start: vi.fn(),
     stop: vi.fn(),
   })),
   createGain: vi.fn(() => ({
-    gain: { setValueAtTime: vi.fn(), linearRampToValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() },
+    gain: {
+      setValueAtTime: vi.fn(),
+      linearRampToValueAtTime: vi.fn(),
+      exponentialRampToValueAtTime: vi.fn(),
+    },
     connect: vi.fn(),
   })),
   createBiquadFilter: vi.fn(() => ({
-    type: 'lowpass',
-    frequency: { setValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() },
+    type: "lowpass",
+    frequency: {
+      setValueAtTime: vi.fn(),
+      exponentialRampToValueAtTime: vi.fn(),
+    },
     connect: vi.fn(),
   })),
   destination: {},
   currentTime: 0,
-  state: 'running',
+  state: "running",
   resume: vi.fn().mockResolvedValue(undefined),
   close: vi.fn().mockResolvedValue(undefined),
 };
 
 // Mock global AudioContext
-Object.defineProperty(window, 'AudioContext', {
+Object.defineProperty(window, "AudioContext", {
   writable: true,
   value: vi.fn(() => mockAudioContext),
 });
 
-Object.defineProperty(window, 'webkitAudioContext', {
+Object.defineProperty(window, "webkitAudioContext", {
   writable: true,
   value: vi.fn(() => mockAudioContext),
 });
@@ -49,11 +60,11 @@ describe("SoundManager", () => {
   describe("Initialization", () => {
     it("should create sound manager instance", () => {
       expect(soundManager).toBeDefined();
-      expect(typeof soundManager.buttonClick).toBe('function');
+      expect(typeof soundManager.buttonClick).toBe("function");
     });
 
     it("should initialize audio context on user interaction", () => {
-      const clickEvent = new Event('click');
+      const clickEvent = new Event("click");
       document.dispatchEvent(clickEvent);
 
       expect(window.AudioContext).toHaveBeenCalled();
@@ -110,21 +121,21 @@ describe("SoundManager", () => {
   describe("Error Handling", () => {
     it("should handle audio context creation failure", () => {
       const originalAudioContext = window.AudioContext;
-      Object.defineProperty(window, 'AudioContext', {
+      Object.defineProperty(window, "AudioContext", {
         writable: true,
         value: vi.fn(() => {
-          throw new Error('Audio not supported');
+          throw new Error("Audio not supported");
         }),
       });
 
-      const clickEvent = new Event('click');
+      const clickEvent = new Event("click");
       document.dispatchEvent(clickEvent);
 
       // Should not throw and should disable sound
       expect(() => soundManager.buttonClick()).not.toThrow();
 
       // Restore
-      Object.defineProperty(window, 'AudioContext', {
+      Object.defineProperty(window, "AudioContext", {
         writable: true,
         value: originalAudioContext,
       });
@@ -133,10 +144,13 @@ describe("SoundManager", () => {
     it("should not play sounds when disabled", () => {
       soundManager.setEnabled(false);
 
-      const initialCallCount = mockAudioContext.createOscillator.mock.calls.length;
+      const initialCallCount =
+        mockAudioContext.createOscillator.mock.calls.length;
       soundManager.buttonClick();
 
-      expect(mockAudioContext.createOscillator).toHaveBeenCalledTimes(initialCallCount);
+      expect(mockAudioContext.createOscillator).toHaveBeenCalledTimes(
+        initialCallCount,
+      );
     });
   });
 
@@ -151,20 +165,20 @@ describe("useSound Hook", () => {
   it("should return sound functions", () => {
     const sound = useSound();
 
-    expect(typeof sound.playButtonClick).toBe('function');
-    expect(typeof sound.playButtonHover).toBe('function');
-    expect(typeof sound.playSuccess).toBe('function');
-    expect(typeof sound.playError).toBe('function');
-    expect(typeof sound.playLoading).toBe('function');
-    expect(typeof sound.playNotification).toBe('function');
-    expect(typeof sound.playType).toBe('function');
-    expect(typeof sound.playPageTransition).toBe('function');
-    expect(typeof sound.playSnakeEat).toBe('function');
-    expect(typeof sound.playSnakeGameOver).toBe('function');
-    expect(typeof sound.setVolume).toBe('function');
-    expect(typeof sound.getVolume).toBe('function');
-    expect(typeof sound.setEnabled).toBe('function');
-    expect(typeof sound.isEnabled).toBe('function');
+    expect(typeof sound.playButtonClick).toBe("function");
+    expect(typeof sound.playButtonHover).toBe("function");
+    expect(typeof sound.playSuccess).toBe("function");
+    expect(typeof sound.playError).toBe("function");
+    expect(typeof sound.playLoading).toBe("function");
+    expect(typeof sound.playNotification).toBe("function");
+    expect(typeof sound.playType).toBe("function");
+    expect(typeof sound.playPageTransition).toBe("function");
+    expect(typeof sound.playSnakeEat).toBe("function");
+    expect(typeof sound.playSnakeGameOver).toBe("function");
+    expect(typeof sound.setVolume).toBe("function");
+    expect(typeof sound.getVolume).toBe("function");
+    expect(typeof sound.setEnabled).toBe("function");
+    expect(typeof sound.isEnabled).toBe("function");
   });
 
   it("should control volume through hook", () => {

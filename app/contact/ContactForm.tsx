@@ -125,8 +125,15 @@ export default function ContactForm() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="contact-form-heading">
-            <div id="contact-form-heading" className="font-pixel text-xs text-terminal-400 mb-6">
+          <div
+            className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150"
+            role="region"
+            aria-labelledby="contact-form-heading"
+          >
+            <div
+              id="contact-form-heading"
+              className="font-pixel text-xs text-terminal-400 mb-6"
+            >
               &gt; echo "message" &gt; /dev/contact
             </div>
 
@@ -168,7 +175,11 @@ export default function ContactForm() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6" aria-labelledby="contact-form-heading">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+                aria-labelledby="contact-form-heading"
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -191,7 +202,11 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     required
                     aria-required="true"
-                    aria-describedby={focusedField === "name" && typingSound ? "name-status" : undefined}
+                    aria-describedby={
+                      focusedField === "name" && typingSound
+                        ? "name-status"
+                        : undefined
+                    }
                     className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
                       focusedField === "name"
                         ? "border-2 border-green-400 shadow-md shadow-green-400/20"
@@ -200,7 +215,11 @@ export default function ContactForm() {
                     placeholder="Enter your name..."
                   />
                   {typingSound && focusedField === "name" && (
-                    <div id="name-status" className="text-xs text-green-400 font-pixel mt-1" aria-live="polite">
+                    <div
+                      id="name-status"
+                      className="text-xs text-green-400 font-pixel mt-1"
+                      aria-live="polite"
+                    >
                       [KEYLOGGER ACTIVE]
                     </div>
                   )}
@@ -228,7 +247,11 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     required
                     aria-required="true"
-                    aria-describedby={focusedField === "email" && typingSound ? "email-status" : undefined}
+                    aria-describedby={
+                      focusedField === "email" && typingSound
+                        ? "email-status"
+                        : undefined
+                    }
                     className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
                       focusedField === "email"
                         ? "border-2 border-blue-400 shadow-md shadow-blue-400/20"
@@ -237,7 +260,11 @@ export default function ContactForm() {
                     placeholder="your.email@domain.com"
                   />
                   {typingSound && focusedField === "email" && (
-                    <div id="email-status" className="text-xs text-blue-400 font-pixel mt-1" aria-live="polite">
+                    <div
+                      id="email-status"
+                      className="text-xs text-blue-400 font-pixel mt-1"
+                      aria-live="polite"
+                    >
                       [EMAIL VALIDATOR RUNNING]
                     </div>
                   )}
@@ -264,7 +291,9 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     required
                     aria-required="true"
-                    aria-describedby={focusedField === "subject" ? "subject-status" : undefined}
+                    aria-describedby={
+                      focusedField === "subject" ? "subject-status" : undefined
+                    }
                     className={`w-full p-3 bg-black text-white font-mono focus:outline-none transition-all duration-150 ${
                       focusedField === "subject"
                         ? "border-2 border-purple-400 shadow-md shadow-purple-400/20"
@@ -279,7 +308,11 @@ export default function ContactForm() {
                     <option value="other">📋 Other</option>
                   </select>
                   {focusedField === "subject" && (
-                    <div id="subject-status" className="text-xs text-purple-400 font-pixel mt-1" aria-live="polite">
+                    <div
+                      id="subject-status"
+                      className="text-xs text-purple-400 font-pixel mt-1"
+                      aria-live="polite"
+                    >
                       [CATEGORY SELECTOR ACTIVE]
                     </div>
                   )}
@@ -306,7 +339,11 @@ export default function ContactForm() {
                     onBlur={handleBlur}
                     required
                     aria-required="true"
-                    aria-describedby={focusedField === "message" && typingSound ? "message-status" : undefined}
+                    aria-describedby={
+                      focusedField === "message" && typingSound
+                        ? "message-status"
+                        : undefined
+                    }
                     rows={6}
                     className={`w-full p-3 bg-black text-white font-mono focus:outline-none resize-none transition-all duration-150 ${
                       focusedField === "message"
@@ -316,7 +353,11 @@ export default function ContactForm() {
                     placeholder="Type your message here..."
                   />
                   {typingSound && focusedField === "message" && (
-                    <div id="message-status" className="text-xs text-orange-400 font-pixel mt-1" aria-live="polite">
+                    <div
+                      id="message-status"
+                      className="text-xs text-orange-400 font-pixel mt-1"
+                      aria-live="polite"
+                    >
                       [MESSAGE BUFFER: {formData.message.length}/1000 chars]
                     </div>
                   )}
@@ -346,8 +387,15 @@ export default function ContactForm() {
           {/* Contact Information */}
           <div className="space-y-8">
             {/* Direct Contact */}
-            <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="direct-contact-heading">
-              <div id="direct-contact-heading" className="font-pixel text-xs text-terminal-400 mb-4">
+            <div
+              className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150"
+              role="region"
+              aria-labelledby="direct-contact-heading"
+            >
+              <div
+                id="direct-contact-heading"
+                className="font-pixel text-xs text-terminal-400 mb-4"
+              >
                 &gt; cat contact_info.txt
               </div>
               <div className="space-y-4">
@@ -356,7 +404,11 @@ export default function ContactForm() {
                     EMAIL:
                   </div>
                   <div className="font-mono text-white">
-                    <a href="mailto:hello@caspian.dev" className="hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black rounded" aria-label="Send email to hello@caspian.dev">
+                    <a
+                      href="mailto:hello@caspian.dev"
+                      className="hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black rounded"
+                      aria-label="Send email to hello@caspian.dev"
+                    >
                       hello@caspian.dev
                     </a>
                   </div>
@@ -381,8 +433,15 @@ export default function ContactForm() {
             </div>
 
             {/* Social Links */}
-            <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150" role="region" aria-labelledby="social-links-heading">
-              <div id="social-links-heading" className="font-pixel text-xs text-terminal-400 mb-4">
+            <div
+              className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150"
+              role="region"
+              aria-labelledby="social-links-heading"
+            >
+              <div
+                id="social-links-heading"
+                className="font-pixel text-xs text-terminal-400 mb-4"
+              >
                 &gt; ls -la social/
               </div>
               <div className="space-y-3">
@@ -429,15 +488,26 @@ export default function ContactForm() {
                   → twitter.com/caspianalmerud
                 </a>
                 <div className="flex items-center gap-3 font-mono text-terminal-300">
-                  <EmailPixelIcon className="text-terminal-400" size={16} aria-hidden="true" />
+                  <EmailPixelIcon
+                    className="text-terminal-400"
+                    size={16}
+                    aria-hidden="true"
+                  />
                   <span aria-label="Email address">→ hello@caspian.dev</span>
                 </div>
               </div>
             </div>
 
             {/* Location */}
-            <div className="border border-terminal-400 p-6" role="region" aria-labelledby="location-heading">
-              <div id="location-heading" className="font-pixel text-xs text-terminal-400 mb-4">
+            <div
+              className="border border-terminal-400 p-6"
+              role="region"
+              aria-labelledby="location-heading"
+            >
+              <div
+                id="location-heading"
+                className="font-pixel text-xs text-terminal-400 mb-4"
+              >
                 &gt; curl -s ipinfo.io
               </div>
               <div className="space-y-2">
@@ -459,8 +529,15 @@ export default function ContactForm() {
             </div>
 
             {/* PGP Key */}
-            <div className="border border-terminal-400 p-6" role="region" aria-labelledby="pgp-key-heading">
-              <div id="pgp-key-heading" className="font-pixel text-xs text-terminal-400 mb-4">
+            <div
+              className="border border-terminal-400 p-6"
+              role="region"
+              aria-labelledby="pgp-key-heading"
+            >
+              <div
+                id="pgp-key-heading"
+                className="font-pixel text-xs text-terminal-400 mb-4"
+              >
                 &gt; gpg --list-keys
               </div>
               <div className="font-mono text-xs text-terminal-300 space-y-1">

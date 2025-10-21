@@ -27,7 +27,8 @@ const siteConfig = {
     //   posthogProjectApiKey: '', // e.g. 123e4567-e89b-12d3-a456-426614174000
     // },
     googleAnalytics: {
-      googleAnalyticsId: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "G-XXXXXXXXXX", // Replace with actual GA4 ID when available
+      googleAnalyticsId:
+        process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "G-XXXXXXXXXX", // Replace with actual GA4 ID when available
     },
   },
 

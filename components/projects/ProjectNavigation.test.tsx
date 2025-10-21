@@ -63,7 +63,7 @@ describe("ProjectNavigation Component", () => {
       render(<ProjectNavigation currentSlug="project-2" />);
 
       // Should show "2 of 3" for the middle project
-      const counterContainer = screen.getByText("2").closest('.font-pixel');
+      const counterContainer = screen.getByText("2").closest(".font-pixel");
       expect(counterContainer).toHaveTextContent("2 of 3");
     });
   });
@@ -140,12 +140,14 @@ describe("ProjectNavigation Component", () => {
     });
 
     it("should show correct counter based on date order", () => {
-      const { rerender } = render(<ProjectNavigation currentSlug="project-1" />); // Newest project
-      let counterContainer = screen.getByText("1").closest('.font-pixel');
+      const { rerender } = render(
+        <ProjectNavigation currentSlug="project-1" />,
+      ); // Newest project
+      let counterContainer = screen.getByText("1").closest(".font-pixel");
       expect(counterContainer).toHaveTextContent("1 of 3");
 
       rerender(<ProjectNavigation currentSlug="project-3" />); // Oldest project
-      counterContainer = screen.getByText("3").closest('.font-pixel');
+      counterContainer = screen.getByText("3").closest(".font-pixel");
       expect(counterContainer).toHaveTextContent("3 of 3");
     });
   });
@@ -178,7 +180,7 @@ describe("ProjectNavigation Component", () => {
 
       // project-3 is the last (oldest) project, so NEXT should be disabled
       expect(screen.getByText("---")).toBeInTheDocument();
-      const counterContainer = screen.getByText("3").closest('.font-pixel');
+      const counterContainer = screen.getByText("3").closest(".font-pixel");
       expect(counterContainer).toHaveTextContent("3 of 3");
     });
   });
@@ -224,7 +226,7 @@ describe("ProjectNavigation Component", () => {
       render(<ProjectNavigation currentSlug="project-1" />);
 
       // The counter text is split across multiple elements due to animations
-      const counterContainer = screen.getByText("1").closest('.font-pixel');
+      const counterContainer = screen.getByText("1").closest(".font-pixel");
       expect(counterContainer).toBeInTheDocument();
       expect(counterContainer).toHaveTextContent("1 of 3");
     });

@@ -5,7 +5,17 @@ import { cn } from "@/lib/utils";
 
 interface ScrollAnimationProps {
   children: React.ReactNode;
-  animation?: "fadeIn" | "slideUp" | "slideLeft" | "slideRight" | "scaleIn" | "rotateIn" | "pixelGlitch" | "pixelPop" | "matrixFall" | "scanlines";
+  animation?:
+    | "fadeIn"
+    | "slideUp"
+    | "slideLeft"
+    | "slideRight"
+    | "scaleIn"
+    | "rotateIn"
+    | "pixelGlitch"
+    | "pixelPop"
+    | "matrixFall"
+    | "scanlines";
   delay?: number;
   duration?: number;
   threshold?: number;
@@ -17,53 +27,53 @@ const animationClasses = {
   fadeIn: {
     initial: "opacity-0",
     animate: "opacity-100",
-    transition: "transition-opacity"
+    transition: "transition-opacity",
   },
   slideUp: {
     initial: "opacity-0 translate-y-8",
     animate: "opacity-100 translate-y-0",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   slideLeft: {
     initial: "opacity-0 translate-x-8",
     animate: "opacity-100 translate-x-0",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   slideRight: {
     initial: "opacity-0 -translate-x-8",
     animate: "opacity-100 translate-x-0",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   scaleIn: {
     initial: "opacity-0 scale-95",
     animate: "opacity-100 scale-100",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   rotateIn: {
     initial: "opacity-0 rotate-6 scale-95",
     animate: "opacity-100 rotate-0 scale-100",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   pixelGlitch: {
     initial: "opacity-0 translate-x-1 translate-y-1",
     animate: "opacity-100 translate-x-0 translate-y-0",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   pixelPop: {
     initial: "opacity-0 scale-0",
     animate: "opacity-100 scale-100",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   matrixFall: {
     initial: "opacity-0 -translate-y-8 blur-sm",
     animate: "opacity-100 translate-y-0 blur-0",
-    transition: "transition-all"
+    transition: "transition-all",
   },
   scanlines: {
     initial: "opacity-0 scale-y-0",
     animate: "opacity-100 scale-y-100",
-    transition: "transition-all"
-  }
+    transition: "transition-all",
+  },
 };
 
 export default function ScrollAnimation({
@@ -73,7 +83,7 @@ export default function ScrollAnimation({
   duration = 600,
   threshold = 0.1,
   className,
-  once = true
+  once = true,
 }: ScrollAnimationProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -96,8 +106,8 @@ export default function ScrollAnimation({
       },
       {
         threshold,
-        rootMargin: "0px 0px -50px 0px"
-      }
+        rootMargin: "0px 0px -50px 0px",
+      },
     );
 
     observer.observe(element);
@@ -142,13 +152,16 @@ export default function ScrollAnimation({
         durationClass,
         isVisible && animationConfig.animate,
         // Add pixel-perfect rendering for pixel art animations
-        (animation === "pixelGlitch" || animation === "pixelPop" || animation === "scanlines") && "pixel-perfect",
-        className
+        (animation === "pixelGlitch" ||
+          animation === "pixelPop" ||
+          animation === "scanlines") &&
+          "pixel-perfect",
+        className,
       )}
       style={{
         transitionDuration: `${duration}ms`,
         imageRendering: animation.includes("pixel") ? "pixelated" : undefined,
-        ...getPixelEffects()
+        ...getPixelEffects(),
       }}
     >
       {children}
@@ -171,8 +184,8 @@ export function useScrollAnimation(threshold = 0.1) {
       },
       {
         threshold,
-        rootMargin: "0px 0px -50px 0px"
-      }
+        rootMargin: "0px 0px -50px 0px",
+      },
     );
 
     observer.observe(element);
@@ -197,7 +210,7 @@ export function ParallaxScroll({
   children,
   speed = 0.5,
   className,
-  direction = "up"
+  direction = "up",
 }: ParallaxProps) {
   const [offsetY, setOffsetY] = useState(0);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -245,7 +258,7 @@ export function ParallaxScroll({
       <div
         style={{
           transform: getTransform(),
-          willChange: "transform"
+          willChange: "transform",
         }}
       >
         {children}
@@ -257,7 +270,15 @@ export function ParallaxScroll({
 // Stagger animation for lists
 interface StaggerAnimationProps {
   children: React.ReactNode[];
-  animation?: "fadeIn" | "slideUp" | "slideLeft" | "slideRight" | "pixelGlitch" | "pixelPop" | "matrixFall" | "scanlines";
+  animation?:
+    | "fadeIn"
+    | "slideUp"
+    | "slideLeft"
+    | "slideRight"
+    | "pixelGlitch"
+    | "pixelPop"
+    | "matrixFall"
+    | "scanlines";
   staggerDelay?: number;
   initialDelay?: number;
   className?: string;
@@ -268,7 +289,7 @@ export function StaggerAnimation({
   animation = "slideUp",
   staggerDelay = 100,
   initialDelay = 0,
-  className
+  className,
 }: StaggerAnimationProps) {
   return (
     <div className={className}>

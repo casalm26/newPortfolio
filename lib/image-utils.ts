@@ -24,8 +24,8 @@ export function getResponsiveImageProps({
   sizes,
   quality = 75,
 }: ResponsiveImageConfig) {
-  const defaultSizes = sizes ||
-    "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
+  const defaultSizes =
+    sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw";
 
   return {
     src,
@@ -35,7 +35,7 @@ export function getResponsiveImageProps({
     priority,
     sizes: defaultSizes,
     quality,
-    loading: priority ? "eager" as const : "lazy" as const,
+    loading: priority ? ("eager" as const) : ("lazy" as const),
     placeholder: "blur" as const,
     blurDataURL: generateBlurDataURL(width, height),
   };
@@ -44,7 +44,10 @@ export function getResponsiveImageProps({
 /**
  * Generates a base64 blur placeholder for images
  */
-export function generateBlurDataURL(width: number = 200, height: number = 200): string {
+export function generateBlurDataURL(
+  width: number = 200,
+  height: number = 200,
+): string {
   const svg = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -57,7 +60,7 @@ export function generateBlurDataURL(width: number = 200, height: number = 200): 
     </svg>
   `;
 
-  return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
+  return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 
 /**
@@ -93,7 +96,8 @@ export const responsiveSizes = {
   full: "100vw",
   half: "(max-width: 768px) 100vw, 50vw",
   third: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw",
-  quarter: "(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw",
+  quarter:
+    "(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw",
   avatar: "(max-width: 640px) 64px, 128px",
   card: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
 } as const;
@@ -103,7 +107,7 @@ export const responsiveSizes = {
  */
 export function getImageLoadingStrategy(
   isAboveFold: boolean = false,
-  isHeroImage: boolean = false
+  isHeroImage: boolean = false,
 ): { priority: boolean; loading: "eager" | "lazy" } {
   if (isHeroImage || isAboveFold) {
     return { priority: true, loading: "eager" };
@@ -116,10 +120,10 @@ export function getImageLoadingStrategy(
  * Preloads critical images for better performance
  */
 export function preloadImage(src: string, priority: boolean = true): void {
-  if (typeof window !== 'undefined' && priority) {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
+  if (typeof window !== "undefined" && priority) {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "image";
     link.href = src;
     document.head.appendChild(link);
   }
@@ -130,15 +134,15 @@ export function preloadImage(src: string, priority: boolean = true): void {
  */
 export function createIntersectionObserver(
   callback: (entries: IntersectionObserverEntry[]) => void,
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = {},
 ): IntersectionObserver | null {
-  if (typeof window === 'undefined' || !window.IntersectionObserver) {
+  if (typeof window === "undefined" || !window.IntersectionObserver) {
     return null;
   }
 
   const defaultOptions: IntersectionObserverInit = {
     root: null,
-    rootMargin: '50px',
+    rootMargin: "50px",
     threshold: 0.1,
     ...options,
   };

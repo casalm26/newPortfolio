@@ -8,7 +8,10 @@ interface PageTransitionProps {
   className?: string;
 }
 
-export function PageTransition({ children, className = "" }: PageTransitionProps) {
+export function PageTransition({
+  children,
+  className = "",
+}: PageTransitionProps) {
   const { isTransitioning, enableAnimations } = useAnimation();
 
   if (!enableAnimations) {

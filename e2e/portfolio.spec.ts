@@ -112,7 +112,9 @@ test.describe("Pixel Art Portfolio", () => {
 
       // Now check for navigation links in mobile menu - be more specific with selectors
       const homeLink = page.locator('nav.md\\:hidden a:has-text("HOME")');
-      const projectsLink = page.locator('nav.md\\:hidden a:has-text("PROJECTS")');
+      const projectsLink = page.locator(
+        'nav.md\\:hidden a:has-text("PROJECTS")',
+      );
       const cvLink = page.locator('nav.md\\:hidden a:has-text("CV")');
 
       await expect(homeLink).toBeVisible();
@@ -124,7 +126,9 @@ test.describe("Pixel Art Portfolio", () => {
     } else {
       // Test desktop navigation - use more specific selectors
       const homeLink = page.locator('nav.hidden.md\\:flex a:has-text("HOME")');
-      const projectsLink = page.locator('nav.hidden.md\\:flex a:has-text("PROJECTS")');
+      const projectsLink = page.locator(
+        'nav.hidden.md\\:flex a:has-text("PROJECTS")',
+      );
       const cvLink = page.locator('nav.hidden.md\\:flex a:has-text("CV")');
 
       await expect(homeLink).toBeVisible();
@@ -149,7 +153,7 @@ test.describe("Projects Page", () => {
     ).toBeVisible();
 
     // Check filter buttons
-    const allButton = page.getByRole('button', { name: 'ALL (10)' });
+    const allButton = page.getByRole("button", { name: "ALL (10)" });
     await expect(allButton).toBeVisible();
   });
 
@@ -176,13 +180,13 @@ test.describe("Projects Page", () => {
     await expect(firstProject).toBeVisible();
 
     // Get the href to see what project we're clicking
-    const href = await firstProject.getAttribute('href');
-    console.log('First project href:', href);
+    const href = await firstProject.getAttribute("href");
+    console.log("First project href:", href);
 
     // Click on first project and wait for navigation
     await Promise.all([
       page.waitForURL(/\/projects\/[^\/]+$/, { timeout: 10000 }),
-      firstProject.click()
+      firstProject.click(),
     ]);
 
     // Should be on a project detail page
@@ -205,7 +209,9 @@ test.describe("CV Timeline Page", () => {
     ).toBeVisible();
 
     // Check filter buttons
-    const allButton = page.locator('button').filter({ hasText: /^ALL \(\d+\)$/ });
+    const allButton = page
+      .locator("button")
+      .filter({ hasText: /^ALL \(\d+\)$/ });
     await expect(allButton).toBeVisible();
   });
 
@@ -217,7 +223,7 @@ test.describe("CV Timeline Page", () => {
     const timelineItems = page
       .locator('div:has-text("Full Stack Developer")')
       .or(page.locator('div:has-text("Techsago - Helios")'))
-      .or(page.locator('.space-y-0'))
+      .or(page.locator(".space-y-0"))
       .first();
     await expect(timelineItems).toBeVisible({ timeout: 10000 });
   });

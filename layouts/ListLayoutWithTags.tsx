@@ -69,7 +69,7 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 }
 
 function Breadcrumb({ pathname, title }: { pathname: string; title: string }) {
-  const segments = pathname.split('/').filter(Boolean);
+  const segments = pathname.split("/").filter(Boolean);
 
   return (
     <div className="font-pixel text-xs text-terminal-400 mb-4 flex items-center gap-2">
@@ -77,12 +77,16 @@ function Breadcrumb({ pathname, title }: { pathname: string; title: string }) {
         ~/
       </Link>
       {segments.map((segment, index) => {
-        const path = '/' + segments.slice(0, index + 1).join('/');
+        const path = "/" + segments.slice(0, index + 1).join("/");
         const isLast = index === segments.length - 1;
-        const displayName = segment === 'all-articles' ? 'articles' :
-                           segment === 'tags' ? 'tags' :
-                           segment === 'page' ? '' :
-                           decodeURIComponent(segment);
+        const displayName =
+          segment === "all-articles"
+            ? "articles"
+            : segment === "tags"
+              ? "tags"
+              : segment === "page"
+                ? ""
+                : decodeURIComponent(segment);
 
         if (!displayName) return null;
 
@@ -123,12 +127,10 @@ export default function ListLayoutWithTags({
 
     // Filter by search term
     if (searchTerm) {
-      filtered = filtered.filter(post => {
-        const searchFields = [
-          post.title,
-          post.summary,
-          ...(post.tags || [])
-        ].join(' ').toLowerCase();
+      filtered = filtered.filter((post) => {
+        const searchFields = [post.title, post.summary, ...(post.tags || [])]
+          .join(" ")
+          .toLowerCase();
         return searchFields.includes(searchTerm.toLowerCase());
       });
     }
@@ -136,14 +138,18 @@ export default function ListLayoutWithTags({
     // Sort posts
     const sorted = [...filtered];
     switch (sortBy) {
-      case 'title':
+      case "title":
         sorted.sort((a, b) => a.title.localeCompare(b.title));
         break;
-      case 'oldest':
-        sorted.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      case "oldest":
+        sorted.sort(
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+        );
         break;
       default: // newest
-        sorted.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        sorted.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        );
     }
 
     return sorted;
@@ -213,9 +219,7 @@ export default function ListLayoutWithTags({
 
           {/* Sort Options */}
           <div className="flex items-center gap-4">
-            <div className="font-pixel text-xs text-terminal-400">
-              sort by:
-            </div>
+            <div className="font-pixel text-xs text-terminal-400">sort by:</div>
             <div className="flex gap-2">
               {[
                 { key: "date", label: "NEWEST" },
@@ -242,8 +246,7 @@ export default function ListLayoutWithTags({
             <div className="font-pixel text-xs text-terminal-400">
               {displayPosts.length === 0
                 ? `No articles found for "${searchTerm}"`
-                : `Found ${displayPosts.length} article${displayPosts.length === 1 ? '' : 's'} for "${searchTerm}"`
-              }
+                : `Found ${displayPosts.length} article${displayPosts.length === 1 ? "" : "s"} for "${searchTerm}"`}
             </div>
           )}
         </div>
@@ -266,12 +269,17 @@ export default function ListLayoutWithTags({
                       </div>
 
                       <h2 className="text-2xl font-semibold text-white">
-                        <Link href={`/${post.path}`} className="hover:text-terminal-200">
+                        <Link
+                          href={`/${post.path}`}
+                          className="hover:text-terminal-200"
+                        >
                           {post.title}
                         </Link>
                       </h2>
 
-                      <p className="text-terminal-300 max-w-3xl">{post.summary}</p>
+                      <p className="text-terminal-300 max-w-3xl">
+                        {post.summary}
+                      </p>
 
                       <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-terminal-500">
                         {post.tags?.map((tag) => (
@@ -328,46 +336,54 @@ export default function ListLayoutWithTags({
                   <Link
                     href="/all-articles"
                     className={`flex items-center justify-between p-3 border transition-all duration-75 group ${
-                      pathname === '/all-articles'
+                      pathname === "/all-articles"
                         ? "border-white bg-white text-black"
                         : "border-terminal-400 hover:border-white hover:bg-terminal-900"
                     }`}
                   >
-                    <span className={`font-pixel text-xs ${
-                      pathname === '/all-articles'
-                        ? "text-black"
-                        : "text-terminal-300 group-hover:text-white"
-                    }`}>
+                    <span
+                      className={`font-pixel text-xs ${
+                        pathname === "/all-articles"
+                          ? "text-black"
+                          : "text-terminal-300 group-hover:text-white"
+                      }`}
+                    >
                       ALL ARTICLES
                     </span>
-                    <span className={`font-pixel text-xs ${
-                      pathname === '/all-articles'
-                        ? "text-black"
-                        : "text-terminal-500 group-hover:text-terminal-300"
-                    }`}>
+                    <span
+                      className={`font-pixel text-xs ${
+                        pathname === "/all-articles"
+                          ? "text-black"
+                          : "text-terminal-500 group-hover:text-terminal-300"
+                      }`}
+                    >
                       ({posts.length})
                     </span>
                   </Link>
                   <Link
                     href="/tags"
                     className={`flex items-center justify-between p-3 border transition-all duration-75 group ${
-                      pathname === '/tags'
+                      pathname === "/tags"
                         ? "border-white bg-white text-black"
                         : "border-terminal-400 hover:border-white hover:bg-terminal-900"
                     }`}
                   >
-                    <span className={`font-pixel text-xs ${
-                      pathname === '/tags'
-                        ? "text-black"
-                        : "text-terminal-300 group-hover:text-white"
-                    }`}>
+                    <span
+                      className={`font-pixel text-xs ${
+                        pathname === "/tags"
+                          ? "text-black"
+                          : "text-terminal-300 group-hover:text-white"
+                      }`}
+                    >
                       ALL TAGS
                     </span>
-                    <span className={`font-pixel text-xs ${
-                      pathname === '/tags'
-                        ? "text-black"
-                        : "text-terminal-500 group-hover:text-terminal-300"
-                    }`}>
+                    <span
+                      className={`font-pixel text-xs ${
+                        pathname === "/tags"
+                          ? "text-black"
+                          : "text-terminal-500 group-hover:text-terminal-300"
+                      }`}
+                    >
                       ({sortedTags.length})
                     </span>
                   </Link>
@@ -393,18 +409,22 @@ export default function ListLayoutWithTags({
                         }`}
                         aria-label={`View posts tagged ${t}`}
                       >
-                        <span className={`font-pixel text-xs ${
-                          isActive
-                            ? "text-black"
-                            : "text-terminal-300 group-hover:text-white"
-                        }`}>
+                        <span
+                          className={`font-pixel text-xs ${
+                            isActive
+                              ? "text-black"
+                              : "text-terminal-300 group-hover:text-white"
+                          }`}
+                        >
                           {t.toUpperCase()}
                         </span>
-                        <span className={`font-pixel text-xs ${
-                          isActive
-                            ? "text-black"
-                            : "text-terminal-500 group-hover:text-terminal-300"
-                        }`}>
+                        <span
+                          className={`font-pixel text-xs ${
+                            isActive
+                              ? "text-black"
+                              : "text-terminal-500 group-hover:text-terminal-300"
+                          }`}
+                        >
                           ({tagCounts[t]})
                         </span>
                       </Link>
@@ -432,9 +452,9 @@ export default function ListLayoutWithTags({
                       XML
                     </span>
                   </a>
-                  {pathname.includes('/tags/') && (
+                  {pathname.includes("/tags/") && (
                     <a
-                      href={`/tags/${pathname.split('/tags/')[1]}/feed.xml`}
+                      href={`/tags/${pathname.split("/tags/")[1]}/feed.xml`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center justify-between p-3 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-75 group"
@@ -457,22 +477,39 @@ export default function ListLayoutWithTags({
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="font-pixel text-xs text-terminal-300">Total Articles:</span>
-                    <span className="font-pixel text-xs text-white">{posts.length}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-pixel text-xs text-terminal-300">Total Tags:</span>
-                    <span className="font-pixel text-xs text-white">{sortedTags.length}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="font-pixel text-xs text-terminal-300">Last Updated:</span>
+                    <span className="font-pixel text-xs text-terminal-300">
+                      Total Articles:
+                    </span>
                     <span className="font-pixel text-xs text-white">
-                      {posts[0] ? formatDate(posts[0].date, siteConfig.locale) : 'N/A'}
+                      {posts.length}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-pixel text-xs text-terminal-300">RSS Feeds:</span>
-                    <span className="font-pixel text-xs text-white">{Object.keys(tagData as Record<string, number>).length + 1}</span>
+                    <span className="font-pixel text-xs text-terminal-300">
+                      Total Tags:
+                    </span>
+                    <span className="font-pixel text-xs text-white">
+                      {sortedTags.length}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-pixel text-xs text-terminal-300">
+                      Last Updated:
+                    </span>
+                    <span className="font-pixel text-xs text-white">
+                      {posts[0]
+                        ? formatDate(posts[0].date, siteConfig.locale)
+                        : "N/A"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="font-pixel text-xs text-terminal-300">
+                      RSS Feeds:
+                    </span>
+                    <span className="font-pixel text-xs text-white">
+                      {Object.keys(tagData as Record<string, number>).length +
+                        1}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -483,7 +520,8 @@ export default function ListLayoutWithTags({
         {/* Terminal Footer */}
         <div className="mt-12 pt-8 border-t border-terminal-400">
           <div className="font-pixel text-xs text-terminal-400">
-            found {posts.length} articles • last updated {formatDate(new Date().toISOString(), siteConfig.locale)}
+            found {posts.length} articles • last updated{" "}
+            {formatDate(new Date().toISOString(), siteConfig.locale)}
           </div>
         </div>
       </main>

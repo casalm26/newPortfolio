@@ -5,7 +5,9 @@ import Template from "./template";
 // Mock framer-motion
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, ...props }: React.ComponentProps<"div">) => <div {...props}>{children}</div>,
+    div: ({ children, ...props }: React.ComponentProps<"div">) => (
+      <div {...props}>{children}</div>
+    ),
   },
 }));
 
@@ -15,7 +17,7 @@ describe("Template", () => {
       render(
         <Template>
           <div>Test Content</div>
-        </Template>
+        </Template>,
       );
 
       expect(screen.getByText("Test Content")).toBeInTheDocument();
@@ -25,7 +27,7 @@ describe("Template", () => {
       const { container } = render(
         <Template>
           <div data-testid="test-content">Test Content</div>
-        </Template>
+        </Template>,
       );
 
       expect(container.querySelector("div")).toBeInTheDocument();
@@ -36,10 +38,10 @@ describe("Template", () => {
       const { container } = render(
         <Template>
           <div>Test Content</div>
-        </Template>
+        </Template>,
       );
 
-      const motionDiv = container.querySelector('.w-full');
+      const motionDiv = container.querySelector(".w-full");
       expect(motionDiv).toBeInTheDocument();
     });
   });
@@ -49,11 +51,11 @@ describe("Template", () => {
       const { container } = render(
         <Template>
           <div>Test Content</div>
-        </Template>
+        </Template>,
       );
 
       // Check for overlay elements in the structure
-      const overlayElements = container.querySelectorAll('div');
+      const overlayElements = container.querySelectorAll("div");
       expect(overlayElements.length).toBeGreaterThan(1);
     });
 
@@ -69,7 +71,7 @@ describe("Template", () => {
         <Template>
           <div>First Child</div>
           <div>Second Child</div>
-        </Template>
+        </Template>,
       );
 
       expect(screen.getByText("First Child")).toBeInTheDocument();

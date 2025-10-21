@@ -23,11 +23,15 @@ describe("PageTransition", () => {
       render(
         <PageTransition>
           <div data-testid="content">Test Content</div>
-        </PageTransition>
+        </PageTransition>,
       );
 
       const container = screen.getByTestId("content").parentElement;
-      expect(container).toHaveClass("transition-all", "duration-300", "ease-out");
+      expect(container).toHaveClass(
+        "transition-all",
+        "duration-300",
+        "ease-out",
+      );
       expect(container).toHaveClass("opacity-100", "translate-y-0");
     });
 
@@ -42,7 +46,7 @@ describe("PageTransition", () => {
       render(
         <PageTransition>
           <div data-testid="content">Test Content</div>
-        </PageTransition>
+        </PageTransition>,
       );
 
       const container = screen.getByTestId("content").parentElement;
@@ -60,7 +64,7 @@ describe("PageTransition", () => {
       render(
         <PageTransition>
           <div data-testid="content">Test Content</div>
-        </PageTransition>
+        </PageTransition>,
       );
 
       const container = screen.getByTestId("content").parentElement;
@@ -79,7 +83,7 @@ describe("PageTransition", () => {
       render(
         <PageTransition className="custom-class">
           <div data-testid="content">Test Content</div>
-        </PageTransition>
+        </PageTransition>,
       );
 
       const container = screen.getByTestId("content").parentElement;
@@ -114,7 +118,7 @@ describe("PageTransition", () => {
         <PageTransition>
           <div data-testid="child1">Child 1</div>
           <div data-testid="child2">Child 2</div>
-        </PageTransition>
+        </PageTransition>,
       );
 
       expect(screen.getByTestId("child1")).toBeInTheDocument();
@@ -132,7 +136,7 @@ describe("PageTransition", () => {
         render(
           <PageTransition>
             <div>Content</div>
-          </PageTransition>
+          </PageTransition>,
         );
       }).toThrow("Animation provider error");
     });

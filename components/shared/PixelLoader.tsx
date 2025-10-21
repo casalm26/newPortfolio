@@ -13,12 +13,12 @@ export function PixelLoader({
   size = "md",
   type = "dots",
   text = "Loading...",
-  className = ""
+  className = "",
 }: PixelLoaderProps) {
   const sizeClasses = {
     sm: "w-4 h-4",
     md: "w-6 h-6",
-    lg: "w-8 h-8"
+    lg: "w-8 h-8",
   };
 
   const renderDots = () => (
@@ -41,7 +41,7 @@ export function PixelLoader({
           className={`w-1 bg-current animate-pixel-loading border border-current`}
           style={{
             height: `${12 + (i % 3) * 8}px`,
-            animationDelay: `${i * 0.1}s`
+            animationDelay: `${i * 0.1}s`,
           }}
         />
       ))}
@@ -76,7 +76,9 @@ export function PixelLoader({
   };
 
   return (
-    <div className={`flex flex-col items-center space-y-2 text-white ${className}`}>
+    <div
+      className={`flex flex-col items-center space-y-2 text-white ${className}`}
+    >
       {renderLoader()}
       {type !== "typewriter" && (
         <span className="font-pixel text-sm text-gray-400">{text}</span>

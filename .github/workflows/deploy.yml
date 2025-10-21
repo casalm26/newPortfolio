@@ -7,16 +7,16 @@ on:
   workflow_dispatch:
     inputs:
       deployment_type:
-        description: 'Deployment Type'
+        description: "Deployment Type"
         required: true
-        default: 'static'
+        default: "static"
         type: choice
         options:
           - static
           - node
 
 env:
-  NODE_VERSION: '22'
+  NODE_VERSION: "22"
   DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
   DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
   DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
@@ -62,7 +62,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci --production=false

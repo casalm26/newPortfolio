@@ -1,6 +1,7 @@
 # Server Setup Instructions for Portfolio Website
 
 ## Prerequisites
+
 - You have root or sudo access to an Ubuntu server (22.04 LTS recommended)
 - You have a domain name (e.g., yourname.com) pointed to your server's IP address
 - You have the GitHub repository URL for your portfolio project
@@ -45,6 +46,7 @@ The script will ask you several questions. Here's what to enter:
 ## Step 4: Wait for Installation
 
 The script will now automatically:
+
 - Install Node.js, Nginx, and other required software
 - Create a secure user for running the application
 - Set up your firewall
@@ -65,6 +67,7 @@ sudo nano /var/www/portfolio/.env.production
 ```
 
 At minimum, update these values:
+
 ```
 NEXT_PUBLIC_BASE_URL=https://your-actual-domain.com
 ```
@@ -72,6 +75,7 @@ NEXT_PUBLIC_BASE_URL=https://your-actual-domain.com
 Add any other API keys or configuration your site needs.
 
 Save the file:
+
 - Press `Ctrl + X`
 - Press `Y` to confirm
 - Press `Enter` to save
@@ -144,6 +148,7 @@ exit
 ```
 
 Now, from your local computer, you can add this as a remote and deploy:
+
 ```bash
 # On your local computer (not the server)
 git remote add production deploy@your-server.com:portfolio.git
@@ -163,6 +168,7 @@ sudo nano /etc/systemd/system/webhook.service
 ```
 
 Add this content:
+
 ```ini
 [Unit]
 Description=GitHub Webhook
@@ -180,6 +186,7 @@ WantedBy=multi-user.target
 ```
 
 Enable and start the service:
+
 ```bash
 sudo systemctl enable webhook
 sudo systemctl start webhook
@@ -201,6 +208,7 @@ sudo tail -f /var/log/portfolio-monitor.log
 ## Step 10: Regular Maintenance
 
 ### Weekly Tasks
+
 ```bash
 # Check for security updates
 sudo apt update
@@ -215,6 +223,7 @@ sudo tail -f /var/log/nginx/error.log  # For any deployment
 ```
 
 ### Monthly Tasks
+
 ```bash
 # Update all packages
 sudo apt update && sudo apt upgrade -y
@@ -277,6 +286,7 @@ sudo chmod -R 755 /var/www/portfolio
 If something goes wrong:
 
 1. Check the logs:
+
    ```bash
    # Nginx logs
    sudo tail -f /var/log/nginx/error.log
@@ -289,6 +299,7 @@ If something goes wrong:
    ```
 
 2. Test each component:
+
    ```bash
    # Test Nginx configuration
    sudo nginx -t
@@ -318,6 +329,7 @@ If something goes wrong:
 ## Success Checklist
 
 After setup, verify:
+
 - [ ] Website loads at https://your-domain.com
 - [ ] SSL certificate shows as valid (padlock icon in browser)
 - [ ] All pages load correctly

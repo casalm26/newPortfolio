@@ -3,6 +3,7 @@
 **⚠️ IMPORTANT**: These instructions are for servers that already have other websites or applications running. They avoid conflicts with existing services.
 
 ## Prerequisites
+
 - You have sudo access to an Ubuntu server
 - You have a domain/subdomain pointed to your server's IP address
 - You have the GitHub repository URL for your portfolio project
@@ -76,6 +77,7 @@ nano .env.production
 ```
 
 Add these minimum settings:
+
 ```
 NODE_ENV=production
 NEXT_PUBLIC_BASE_URL=https://your-domain.com
@@ -119,6 +121,7 @@ sudo nano /etc/nginx/sites-available/portfolio-yourname
 ```
 
 Add this configuration:
+
 ```nginx
 server {
     listen 80;
@@ -179,6 +182,7 @@ server {
 ```
 
 Enable the site:
+
 ```bash
 # Create symbolic link to enable the site
 sudo ln -s /etc/nginx/sites-available/portfolio-yourname /etc/nginx/sites-enabled/
@@ -193,41 +197,48 @@ sudo nginx -s reload
 ## Step 8: Start the Application
 
 ### Step 8A: For Static Deployment
+
 Nothing to do! Your site is already being served by Nginx.
 
 ### Step 8B: For Node.js Deployment
 
 First, install PM2 if not already installed:
+
 ```bash
 sudo npm install -g pm2
 ```
 
 Create a PM2 configuration:
+
 ```bash
 nano ecosystem.config.js
 ```
 
 Add this content (adjust port if needed):
+
 ```javascript
 module.exports = {
-  apps: [{
-    name: 'portfolio-yourname',
-    script: 'npm',
-    args: 'start',
-    cwd: '/var/www/portfolio-yourname',
-    env: {
-      NODE_ENV: 'production',
-      PORT: 3001  // Change this if port is taken
+  apps: [
+    {
+      name: "portfolio-yourname",
+      script: "npm",
+      args: "start",
+      cwd: "/var/www/portfolio-yourname",
+      env: {
+        NODE_ENV: "production",
+        PORT: 3001, // Change this if port is taken
+      },
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: "1G",
     },
-    instances: 1,
-    autorestart: true,
-    watch: false,
-    max_memory_restart: '1G'
-  }]
+  ],
 };
 ```
 
 Start the application:
+
 ```bash
 # Start with PM2
 pm2 start ecosystem.config.js
@@ -291,11 +302,13 @@ pm2 restart portfolio-yourname
 ### Automated Update Script:
 
 Create an update script:
+
 ```bash
 nano ~/update-portfolio.sh
 ```
 
 Add:
+
 ```bash
 #!/bin/bash
 cd /var/www/portfolio-yourname
@@ -310,6 +323,7 @@ echo "Portfolio updated successfully!"
 ```
 
 Make it executable:
+
 ```bash
 chmod +x ~/update-portfolio.sh
 
@@ -322,6 +336,7 @@ chmod +x ~/update-portfolio.sh
 ### Port Conflicts (Node.js deployment)
 
 If you get "address already in use" error:
+
 ```bash
 # Find what's using the port
 sudo lsof -i :3001

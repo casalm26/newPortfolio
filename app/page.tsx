@@ -1,6 +1,9 @@
 import Header from "@/components/shared/Header";
 import { PixelArtName } from "@/components/PixelArtName";
-import ScrollAnimation, { ParallaxScroll, StaggerAnimation } from "@/components/shared/ScrollAnimation";
+import ScrollAnimation, {
+  ParallaxScroll,
+  StaggerAnimation,
+} from "@/components/shared/ScrollAnimation";
 import Link from "next/link";
 import Footer from "@/components/shared/Footer";
 import PixelSnakeGame from "@/components/games/PixelSnakeGame";
@@ -11,27 +14,27 @@ export default function Page() {
       title: "PROJECTS",
       description: "Technical work & case studies",
       href: "/projects",
-      prefix: "./projects"
+      prefix: "./projects",
     },
     {
       title: "ARTICLES",
       description: "Technical insights & thoughts",
       href: "/all-articles",
-      prefix: "./articles"
+      prefix: "./articles",
     },
     {
       title: "CV",
       description: "Career timeline & experience",
       href: "/cv",
-      prefix: "./cv"
-    }
+      prefix: "./cv",
+    },
   ];
 
   const highlights = [
     "Full-Stack Development",
     "Interactive Game Design",
     "Technical Architecture",
-    "Creative Problem Solving"
+    "Creative Problem Solving",
   ];
 
   return (
@@ -83,10 +86,11 @@ export default function Page() {
               GENERALIST DEVELOPER
             </h2>
             <p className="text-terminal-300 text-lg leading-relaxed mb-8">
-              I bridge technical expertise with creative problem-solving, building everything
-              from scalable web applications to interactive pixel art games. My approach combines
-              deep technical knowledge with a generalist perspective, enabling me to tackle
-              complex challenges across the full development spectrum.
+              I bridge technical expertise with creative problem-solving,
+              building everything from scalable web applications to interactive
+              pixel art games. My approach combines deep technical knowledge
+              with a generalist perspective, enabling me to tackle complex
+              challenges across the full development spectrum.
             </p>
           </div>
         </ScrollAnimation>
@@ -125,8 +129,8 @@ export default function Page() {
               QUICK ACCESS/
             </h2>
             <p className="text-terminal-300 max-w-2xl mx-auto">
-              Navigate to different sections of my work and experience.
-              Each area showcases different aspects of development and creativity.
+              Navigate to different sections of my work and experience. Each
+              area showcases different aspects of development and creativity.
             </p>
           </div>
         </ScrollAnimation>
@@ -188,15 +192,19 @@ export default function Page() {
                       <span className="text-white">$ cat philosophy.txt</span>
                     </div>
                     <div className="pl-4">
-                      "Code is poetry. Every function tells a story,<br />
-                      every architecture solves a puzzle,<br />
+                      "Code is poetry. Every function tells a story,
+                      <br />
+                      every architecture solves a puzzle,
+                      <br />
                       every interface bridges human and machine."
                     </div>
                     <div className="mt-4">
                       <span className="text-green-400">caspian@localhost</span>
                       <span className="text-white">:</span>
                       <span className="text-blue-400">~</span>
-                      <span className="text-white">$ echo "Let's build something amazing together"</span>
+                      <span className="text-white">
+                        $ echo "Let's build something amazing together"
+                      </span>
                     </div>
                     <div className="pl-4 text-white">
                       Let's build something amazing together
@@ -227,8 +235,8 @@ export default function Page() {
               GET IN TOUCH
             </h2>
             <p className="text-terminal-300 mb-8">
-              Ready to collaborate on your next project? Let's discuss how we can
-              build something extraordinary together.
+              Ready to collaborate on your next project? Let's discuss how we
+              can build something extraordinary together.
             </p>
             <Link
               href="/contact"

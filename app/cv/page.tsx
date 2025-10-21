@@ -29,14 +29,17 @@ export default function CVPage() {
         <ScrollAnimated animation="fade-in" delay={200}>
           <div className="mb-12">
             <div className="font-pixel text-sm text-terminal-400 mb-2">
-              <TypewriterText text="caspian@localhost:~$ cat cv.json" speed={40} />
+              <TypewriterText
+                text="caspian@localhost:~$ cat cv.json"
+                speed={40}
+              />
             </div>
             <h1 className="text-4xl md:text-6xl font-pixel font-bold text-white mb-4">
               CAREER_PATH/
             </h1>
             <p className="text-terminal-300 max-w-2xl">
-              Interactive timeline of my professional journey, skills development,
-              and key milestones. Click on nodes to expand details.
+              Interactive timeline of my professional journey, skills
+              development, and key milestones. Click on nodes to expand details.
             </p>
           </div>
         </ScrollAnimated>

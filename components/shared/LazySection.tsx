@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useState,
-  useEffect,
-  useRef,
-  ReactNode,
-  useCallback,
-} from "react";
+import { useState, useEffect, useRef, ReactNode, useCallback } from "react";
 import { createIntersectionObserver } from "@/lib/image-utils";
 
 interface LazySectionProps {
@@ -35,7 +29,9 @@ export function LazySection({
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
-  const [observedElement, setObservedElement] = useState<HTMLElement | null>(null);
+  const [observedElement, setObservedElement] = useState<HTMLElement | null>(
+    null,
+  );
   const observerRef = useRef<IntersectionObserver | null>(null);
   const hasTriggeredRef = useRef(false);
 
@@ -105,7 +101,7 @@ export function LazySection({
         return node;
       });
     },
-    [triggerOnce]
+    [triggerOnce],
   );
 
   return (
@@ -123,12 +119,14 @@ export function useIntersectionObserver(
     rootMargin?: string;
     threshold?: number;
     triggerOnce?: boolean;
-  } = {}
+  } = {},
 ) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasTriggered, setHasTriggered] = useState(false);
   const elementRef = useRef<HTMLElement>(null);
-  const [observedElement, setObservedElement] = useState<HTMLElement | null>(null);
+  const [observedElement, setObservedElement] = useState<HTMLElement | null>(
+    null,
+  );
   const observerRef = useRef<IntersectionObserver | null>(null);
   const hasTriggeredRef = useRef(false);
 
@@ -198,7 +196,7 @@ export function useIntersectionObserver(
         return node;
       });
     },
-    [triggerOnce]
+    [triggerOnce],
   );
 
   return {

@@ -141,7 +141,10 @@ export default function ListLayout({
                   </div>
 
                   <h2 className="text-2xl font-semibold text-white">
-                    <Link href={`/${post.path}`} className="hover:text-terminal-200">
+                    <Link
+                      href={`/${post.path}`}
+                      className="hover:text-terminal-200"
+                    >
                       {post.title}
                     </Link>
                   </h2>

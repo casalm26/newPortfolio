@@ -44,7 +44,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated animation="fade-in">
           <div data-testid="content">Test Content</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(screen.getByTestId("content")).toBeInTheDocument();
@@ -52,13 +52,19 @@ describe("ScrollAnimated", () => {
     });
 
     it("should apply different animation classes", () => {
-      const animations = ["fade-in", "slide-in-left", "slide-in-right", "scale-in", "pixel-bounce"] as const;
+      const animations = [
+        "fade-in",
+        "slide-in-left",
+        "slide-in-right",
+        "scale-in",
+        "pixel-bounce",
+      ] as const;
 
-      animations.forEach(animation => {
+      animations.forEach((animation) => {
         const { unmount } = render(
           <ScrollAnimated animation={animation}>
             <div data-testid={`content-${animation}`}>Test</div>
-          </ScrollAnimated>
+          </ScrollAnimated>,
         );
 
         expect(screen.getByTestId(`content-${animation}`)).toBeInTheDocument();
@@ -77,7 +83,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated>
           <div data-testid="content">Test Content</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       const container = screen.getByTestId("content").parentElement;
@@ -88,7 +94,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated className="custom-class">
           <div data-testid="content">Test Content</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       const container = screen.getByTestId("content").parentElement;
@@ -99,12 +105,12 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated threshold={0.5}>
           <div>Test</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(mockIntersectionObserver).toHaveBeenCalledWith(
         expect.any(Function),
-        { threshold: 0.5 }
+        { threshold: 0.5 },
       );
     });
   });
@@ -121,7 +127,7 @@ describe("ScrollAnimated", () => {
         <ScrollAnimated>
           <div data-testid="child1">Child 1</div>
           <div data-testid="child2">Child 2</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(screen.getByTestId("child1")).toBeInTheDocument();
@@ -132,7 +138,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated delay={0}>
           <div data-testid="content">Test</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(screen.getByTestId("content")).toBeInTheDocument();
@@ -142,7 +148,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated triggerOnce={false}>
           <div data-testid="content">Test</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(mockObserve).toHaveBeenCalled();
@@ -152,13 +158,14 @@ describe("ScrollAnimated", () => {
   describe("error conditions", () => {
     it("should handle IntersectionObserver not being available", () => {
       const originalIO = global.IntersectionObserver;
-      delete (global as unknown as { IntersectionObserver?: unknown }).IntersectionObserver;
+      delete (global as unknown as { IntersectionObserver?: unknown })
+        .IntersectionObserver;
 
       expect(() => {
         render(
           <ScrollAnimated>
             <div>Test</div>
-          </ScrollAnimated>
+          </ScrollAnimated>,
         );
       }).toThrow();
 
@@ -170,7 +177,7 @@ describe("ScrollAnimated", () => {
       render(
         <ScrollAnimated animation="invalid">
           <div data-testid="content">Test</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       expect(screen.getByTestId("content")).toBeInTheDocument();
@@ -180,7 +187,7 @@ describe("ScrollAnimated", () => {
       const { unmount } = render(
         <ScrollAnimated>
           <div>Test</div>
-        </ScrollAnimated>
+        </ScrollAnimated>,
       );
 
       unmount();

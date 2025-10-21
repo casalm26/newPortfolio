@@ -15,12 +15,15 @@ Creating a standout developer portfolio in 2024 requires more than just showcasi
 When conceptualizing my portfolio, I wanted to create something that would immediately differentiate me from the sea of minimalist portfolios. The decision to embrace pixel art and terminal aesthetics came from several key insights:
 
 ### Visual Differentiation
+
 - **Memorable First Impression**: Pixel art stands out in a world of smooth gradients and rounded corners
 - **Nostalgic Appeal**: Appeals to both technical and creative audiences who appreciate retro computing
 - **Intentional Constraints**: Working within pixel art limitations forces creative problem-solving
 
 ### Technical Storytelling
+
 The retro aesthetic isn't just visual—it tells a story about understanding computing fundamentals:
+
 - Terminal-style navigation suggests command-line proficiency
 - Pixel-perfect rendering demonstrates attention to detail
 - Game-like interactions hint at understanding user engagement
@@ -28,13 +31,16 @@ The retro aesthetic isn't just visual—it tells a story about understanding com
 ## Technical Architecture: Performance Meets Aesthetics
 
 ### Next.js 15 Foundation
+
 I chose Next.js 15 for its cutting-edge features:
+
 - **App Router**: Modern routing with server components
 - **Image Optimization**: WebP/AVIF support for pixel art assets
 - **Performance**: SSG for content, SSR for dynamic features
 - **SEO**: Built-in meta tag and OpenGraph optimization
 
 ### Pixel Art Implementation
+
 Creating authentic pixel art on the web required specific technical decisions:
 
 ```css
@@ -54,28 +60,30 @@ Creating authentic pixel art on the web required specific technical decisions:
 ```
 
 ### Color System Design
+
 I developed a custom color palette inspired by classic terminal themes:
 
 ```javascript
 const colorSystem = {
   terminal: {
-    '300': '#a1a1aa', // Secondary text
-    '400': '#71717a', // Borders and dividers
-    '500': '#52525b', // Muted elements
-    '800': '#27272a', // Background variants
-    '900': '#18181b', // Hover states
-  }
+    300: "#a1a1aa", // Secondary text
+    400: "#71717a", // Borders and dividers
+    500: "#52525b", // Muted elements
+    800: "#27272a", // Background variants
+    900: "#18181b", // Hover states
+  },
 };
 ```
 
 ## Interactive Elements: Bringing Pixels to Life
 
 ### Typewriter Animation
+
 The landing page features a custom typewriter effect built with React:
 
 ```typescript
 const useTypewriter = (text: string, speed: number = 50) => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
 
   useEffect(() => {
     let index = 0;
@@ -96,16 +104,18 @@ const useTypewriter = (text: string, speed: number = 50) => {
 ```
 
 ### Pixel Art Buttons
+
 Custom button components maintain the pixel aesthetic while ensuring accessibility:
 
 ```tsx
-const PixelButton = ({ children, variant = 'primary', ...props }) => (
+const PixelButton = ({ children, variant = "primary", ...props }) => (
   <button
     className={`
       font-pixel border-2 transition-all duration-75
-      ${variant === 'primary'
-        ? 'border-white bg-white text-black hover:bg-black hover:text-white'
-        : 'border-terminal-400 bg-transparent text-white hover:bg-white hover:text-black'
+      ${
+        variant === "primary"
+          ? "border-white bg-white text-black hover:bg-black hover:text-white"
+          : "border-terminal-400 bg-transparent text-white hover:bg-white hover:text-black"
       }
     `}
     {...props}
@@ -118,14 +128,18 @@ const PixelButton = ({ children, variant = 'primary', ...props }) => (
 ## Content Strategy: Technical Depth with Personality
 
 ### Project Showcase Strategy
+
 Each project follows a consistent structure:
+
 - **Problem Statement**: Clear business or technical challenge
 - **Solution Architecture**: High-level technical approach
 - **Implementation Details**: Specific technologies and techniques
 - **Results & Impact**: Measurable outcomes and lessons learned
 
 ### Skills Demonstration
+
 Rather than listing technologies, I demonstrate proficiency through:
+
 - **Live Interactions**: Functional components users can interact with
 - **Code Examples**: Actual snippets from project implementations
 - **Problem-Solving Stories**: Real challenges and creative solutions
@@ -133,27 +147,31 @@ Rather than listing technologies, I demonstrate proficiency through:
 ## Performance Optimization: Fast Pixels
 
 ### Image Strategy
+
 - **WebP Format**: All graphics converted to WebP for 30% size reduction
 - **Lazy Loading**: Next.js Image component with proper sizing
 - **Sprite Sheets**: Combined pixel art assets to reduce HTTP requests
 
 ### Bundle Optimization
+
 ```javascript
 // next.config.js
 module.exports = {
   compress: true,
   images: {
-    formats: ['image/webp', 'image/avif'],
+    formats: ["image/webp", "image/avif"],
     deviceSizes: [640, 750, 828, 1080, 1200],
   },
   experimental: {
     optimizeCss: true,
-  }
+  },
 };
 ```
 
 ### Lighthouse Scores
+
 The optimized site achieves:
+
 - **Performance**: 96/100
 - **Accessibility**: 98/100
 - **Best Practices**: 100/100
@@ -162,12 +180,14 @@ The optimized site achieves:
 ## SEO and Discoverability
 
 ### Technical SEO Implementation
+
 - **Structured Data**: JSON-LD schema for projects and articles
 - **Dynamic Sitemaps**: Auto-generated from content and projects
 - **Meta Optimization**: Custom meta tags for each page
 - **OpenGraph**: Rich social media previews
 
 ### Content SEO Strategy
+
 - **Keyword Targeting**: Long-tail keywords for developer portfolio searches
 - **Topic Clusters**: Related content linking for topical authority
 - **Technical Writing**: In-depth articles demonstrating expertise
@@ -175,17 +195,20 @@ The optimized site achieves:
 ## Lessons Learned and Future Enhancements
 
 ### What Worked Well
+
 1. **Differentiation**: The pixel art theme generates significantly more engagement
 2. **Performance**: Modern tooling enables fast load times despite visual complexity
 3. **Accessibility**: Proper ARIA labels and keyboard navigation maintain usability
 4. **SEO Success**: Technical content attracts organic traffic from developers
 
 ### Areas for Improvement
+
 1. **Mobile Optimization**: Some pixel art elements need refinement on small screens
 2. **Animation Performance**: Considerations for users with motion sensitivity
 3. **Content Freshness**: Regular blog updates to maintain SEO momentum
 
 ### Upcoming Features
+
 - **Interactive Games**: Mini-games showcasing creative coding skills
 - **Advanced Search**: AI-powered project recommendation system
 - **Performance Dashboard**: Real-time analytics visualization
@@ -206,4 +229,4 @@ For developers considering a similar approach, remember: your portfolio is your 
 
 ---
 
-*Want to see the code behind this portfolio? Check out the [GitHub repository](https://github.com/caspianalmerud/portfolio) or explore the live version at [caspian.dev](https://caspian.dev).*
+_Want to see the code behind this portfolio? Check out the [GitHub repository](https://github.com/caspianalmerud/portfolio) or explore the live version at [caspian.dev](https://caspian.dev)._

@@ -170,18 +170,22 @@ Update your business information in:
 To enable Google Analytics tracking:
 
 1. **Create a GA4 Property:**
+
    - Go to [Google Analytics](https://analytics.google.com/)
    - Create a new GA4 property for your website
    - Copy your Measurement ID (format: `G-XXXXXXXXX`)
 
 2. **Configure Environment Variables:**
+
    - Copy `.env.example` to `.env.local`
    - Replace `G-XXXXXXXXXX` with your actual GA4 Measurement ID
+
    ```bash
    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=G-YOUR-ACTUAL-ID
    ```
 
 3. **Privacy Compliance:**
+
    - The analytics implementation respects user privacy
    - Update your privacy policy to mention Google Analytics usage
    - Consider implementing cookie consent if required by your jurisdiction

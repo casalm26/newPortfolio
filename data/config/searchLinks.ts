@@ -26,7 +26,8 @@ export const searchLinks: Array<{
   {
     id: "projects",
     name: "Projects",
-    keywords: "portfolio work development technical creative business case studies",
+    keywords:
+      "portfolio work development technical creative business case studies",
     shortcut: ["p"],
     section: "Navigation",
     href: "/projects",
@@ -34,7 +35,8 @@ export const searchLinks: Array<{
   {
     id: "cv",
     name: "CV Timeline",
-    keywords: "career path resume experience timeline roadmap skills work history",
+    keywords:
+      "career path resume experience timeline roadmap skills work history",
     shortcut: ["c"],
     section: "Navigation",
     href: "/cv",

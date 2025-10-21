@@ -14,7 +14,9 @@ function TestComponent() {
   return (
     <div>
       <span data-testid="transitioning">{isTransitioning.toString()}</span>
-      <span data-testid="animations-enabled">{enableAnimations.toString()}</span>
+      <span data-testid="animations-enabled">
+        {enableAnimations.toString()}
+      </span>
     </div>
   );
 }
@@ -54,17 +56,19 @@ describe("AnimationProvider", () => {
       render(
         <AnimationProvider>
           <TestComponent />
-        </AnimationProvider>
+        </AnimationProvider>,
       );
 
-      expect(screen.getByTestId("animations-enabled")).toHaveTextContent("true");
+      expect(screen.getByTestId("animations-enabled")).toHaveTextContent(
+        "true",
+      );
     });
 
     it("should handle pathway changes with transitions", async () => {
       const { rerender } = render(
         <AnimationProvider>
           <TestComponent />
-        </AnimationProvider>
+        </AnimationProvider>,
       );
 
       // Change pathname to trigger transition
@@ -72,7 +76,7 @@ describe("AnimationProvider", () => {
       rerender(
         <AnimationProvider>
           <TestComponent />
-        </AnimationProvider>
+        </AnimationProvider>,
       );
 
       // Should be transitioning immediately after pathname change
@@ -105,16 +109,20 @@ describe("AnimationProvider", () => {
       render(
         <AnimationProvider>
           <TestComponent />
-        </AnimationProvider>
+        </AnimationProvider>,
       );
 
-      expect(screen.getByTestId("animations-enabled")).toHaveTextContent("false");
+      expect(screen.getByTestId("animations-enabled")).toHaveTextContent(
+        "false",
+      );
     });
   });
 
   describe("edge cases", () => {
     it("should throw error when used outside provider", () => {
-      const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+      const consoleError = vi
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
 
       expect(() => {
         render(<TestComponent />);
@@ -127,18 +135,30 @@ describe("AnimationProvider", () => {
       const { rerender } = render(
         <AnimationProvider>
           <TestComponent />
-        </AnimationProvider>
+        </AnimationProvider>,
       );
 
       // Rapid pathname changes
       mockUsePathname.mockReturnValue("/page1");
-      rerender(<AnimationProvider><TestComponent /></AnimationProvider>);
+      rerender(
+        <AnimationProvider>
+          <TestComponent />
+        </AnimationProvider>,
+      );
 
       mockUsePathname.mockReturnValue("/page2");
-      rerender(<AnimationProvider><TestComponent /></AnimationProvider>);
+      rerender(
+        <AnimationProvider>
+          <TestComponent />
+        </AnimationProvider>,
+      );
 
       mockUsePathname.mockReturnValue("/page3");
-      rerender(<AnimationProvider><TestComponent /></AnimationProvider>);
+      rerender(
+        <AnimationProvider>
+          <TestComponent />
+        </AnimationProvider>,
+      );
 
       expect(screen.getByTestId("transitioning")).toHaveTextContent("true");
     });
@@ -151,13 +171,15 @@ describe("AnimationProvider", () => {
       delete (window as unknown as { matchMedia?: unknown }).matchMedia;
 
       // Add a console.error spy to suppress the error in test output
-      const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+      const consoleSpy = vi
+        .spyOn(console, "error")
+        .mockImplementation(() => {});
 
       expect(() => {
         render(
           <AnimationProvider>
             <TestComponent />
-          </AnimationProvider>
+          </AnimationProvider>,
         );
       }).toThrow();
 

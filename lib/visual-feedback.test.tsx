@@ -1,10 +1,14 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { visualFeedbackManager, useVisualFeedback, withVisualFeedback } from "./visual-feedback";
+import {
+  visualFeedbackManager,
+  useVisualFeedback,
+  withVisualFeedback,
+} from "./visual-feedback";
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 
 // Mock sound manager
-vi.mock('./sounds', () => ({
+vi.mock("./sounds", () => ({
   soundManager: {
     buttonClick: vi.fn(),
     buttonHover: vi.fn(),
@@ -16,7 +20,7 @@ vi.mock('./sounds', () => ({
 }));
 
 // Mock navigator.vibrate
-Object.defineProperty(navigator, 'vibrate', {
+Object.defineProperty(navigator, "vibrate", {
   writable: true,
   value: vi.fn(),
 });
@@ -25,7 +29,7 @@ describe("VisualFeedbackManager", () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Clean up any existing feedback elements
-    const existing = document.getElementById('visual-feedback-overlay');
+    const existing = document.getElementById("visual-feedback-overlay");
     if (existing) {
       existing.remove();
     }
@@ -38,95 +42,103 @@ describe("VisualFeedbackManager", () => {
   describe("Initialization", () => {
     it("should create feedback overlay element", () => {
       // Trigger initialization
-      visualFeedbackManager.trigger('click');
+      visualFeedbackManager.trigger("click");
 
-      const overlay = document.getElementById('visual-feedback-overlay');
+      const overlay = document.getElementById("visual-feedback-overlay");
       expect(overlay).toBeInTheDocument();
-      expect(overlay).toHaveStyle({ position: 'fixed' });
+      expect(overlay).toHaveStyle({ position: "fixed" });
     });
 
     it("should not crash in server environment", () => {
-      expect(() => visualFeedbackManager.trigger('click')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("click")).not.toThrow();
     });
   });
 
   describe("Feedback Types", () => {
     it("should handle click feedback", () => {
-      expect(() => visualFeedbackManager.trigger('click')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("click")).not.toThrow();
     });
 
     it("should handle hover feedback", () => {
-      expect(() => visualFeedbackManager.trigger('hover')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("hover")).not.toThrow();
     });
 
     it("should handle success feedback", () => {
-      expect(() => visualFeedbackManager.trigger('success')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("success")).not.toThrow();
     });
 
     it("should handle error feedback", () => {
-      expect(() => visualFeedbackManager.trigger('error')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("error")).not.toThrow();
     });
 
     it("should handle warning feedback", () => {
-      expect(() => visualFeedbackManager.trigger('warning')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("warning")).not.toThrow();
     });
 
     it("should handle info feedback", () => {
-      expect(() => visualFeedbackManager.trigger('info')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("info")).not.toThrow();
     });
 
     it("should handle loading feedback", () => {
-      expect(() => visualFeedbackManager.trigger('loading')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("loading")).not.toThrow();
     });
 
     it("should handle complete feedback", () => {
-      expect(() => visualFeedbackManager.trigger('complete')).not.toThrow();
+      expect(() => visualFeedbackManager.trigger("complete")).not.toThrow();
     });
   });
 
   describe("Feedback Options", () => {
     it("should disable sound when sound option is false", () => {
-      visualFeedbackManager.trigger('click', { sound: false });
+      visualFeedbackManager.trigger("click", { sound: false });
       // Should not crash and should still work without sound
       expect(true).toBe(true);
     });
 
     it("should disable vibration when vibration option is false", () => {
-      visualFeedbackManager.trigger('click', { vibration: false });
+      visualFeedbackManager.trigger("click", { vibration: false });
       expect(navigator.vibrate).not.toHaveBeenCalled();
     });
 
     it("should disable visual when visual option is false", () => {
-      visualFeedbackManager.trigger('click', { visual: false });
-      const overlay = document.getElementById('visual-feedback-overlay');
+      visualFeedbackManager.trigger("click", { visual: false });
+      const overlay = document.getElementById("visual-feedback-overlay");
       // Should not update overlay styles
       expect(true).toBe(true);
     });
 
     it("should handle different intensity levels", () => {
-      expect(() => visualFeedbackManager.trigger('click', { intensity: 'subtle' })).not.toThrow();
-      expect(() => visualFeedbackManager.trigger('click', { intensity: 'medium' })).not.toThrow();
-      expect(() => visualFeedbackManager.trigger('click', { intensity: 'strong' })).not.toThrow();
+      expect(() =>
+        visualFeedbackManager.trigger("click", { intensity: "subtle" }),
+      ).not.toThrow();
+      expect(() =>
+        visualFeedbackManager.trigger("click", { intensity: "medium" }),
+      ).not.toThrow();
+      expect(() =>
+        visualFeedbackManager.trigger("click", { intensity: "strong" }),
+      ).not.toThrow();
     });
   });
 
   describe("Special Effects", () => {
     it("should handle shake effect", () => {
       expect(() => visualFeedbackManager.shake()).not.toThrow();
-      expect(() => visualFeedbackManager.shake('subtle')).not.toThrow();
-      expect(() => visualFeedbackManager.shake('strong')).not.toThrow();
+      expect(() => visualFeedbackManager.shake("subtle")).not.toThrow();
+      expect(() => visualFeedbackManager.shake("strong")).not.toThrow();
     });
 
     it("should handle flash effect", () => {
       expect(() => visualFeedbackManager.flash()).not.toThrow();
-      expect(() => visualFeedbackManager.flash('#ff0000')).not.toThrow();
-      expect(() => visualFeedbackManager.flash('#00ff00', 'strong')).not.toThrow();
+      expect(() => visualFeedbackManager.flash("#ff0000")).not.toThrow();
+      expect(() =>
+        visualFeedbackManager.flash("#00ff00", "strong"),
+      ).not.toThrow();
     });
   });
 
   describe("Cleanup", () => {
     it("should handle destroy gracefully", () => {
-      visualFeedbackManager.trigger('click');
+      visualFeedbackManager.trigger("click");
       expect(() => visualFeedbackManager.destroy()).not.toThrow();
     });
   });
@@ -187,7 +199,12 @@ describe("useVisualFeedback Hook", () => {
 });
 
 describe("withVisualFeedback HOC", () => {
-  const TestButton = ({ onClick, onMouseEnter, children, ...props }: React.ComponentProps<"button">) => (
+  const TestButton = ({
+    onClick,
+    onMouseEnter,
+    children,
+    ...props
+  }: React.ComponentProps<"button">) => (
     <button onClick={onClick} onMouseEnter={onMouseEnter} {...props}>
       {children}
     </button>
@@ -201,17 +218,19 @@ describe("withVisualFeedback HOC", () => {
   });
 
   it("should handle click feedback", () => {
-    const WrappedButton = withVisualFeedback(TestButton, 'click');
+    const WrappedButton = withVisualFeedback(TestButton, "click");
     render(<WrappedButton>Click Me</WrappedButton>);
 
     expect(() => fireEvent.click(screen.getByText("Click Me"))).not.toThrow();
   });
 
   it("should handle hover feedback", () => {
-    const WrappedButton = withVisualFeedback(TestButton, 'hover');
+    const WrappedButton = withVisualFeedback(TestButton, "hover");
     render(<WrappedButton>Hover Me</WrappedButton>);
 
-    expect(() => fireEvent.mouseEnter(screen.getByText("Hover Me"))).not.toThrow();
+    expect(() =>
+      fireEvent.mouseEnter(screen.getByText("Hover Me")),
+    ).not.toThrow();
   });
 
   it("should pass through props", () => {
