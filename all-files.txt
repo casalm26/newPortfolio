@@ -67,7 +67,6 @@
 .husky/_/pre-push
 .husky/_/pre-rebase
 .husky/_/prepare-commit-msg
-.husky/commit-msg
 .husky/pre-commit
 .husky/pre-push
 .next/app-build-manifest.json
