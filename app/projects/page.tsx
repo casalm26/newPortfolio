@@ -207,13 +207,13 @@ export default function ProjectsPage() {
   }, [sortedProjects, filterType, techFilter, searchTerm]);
 
   const projectTypes = ["Technical", "Creative", "Business"];
-  const allSkills = useMemo(() => {
-    const skills = new Set();
+  const allSkills = useMemo<string[]>(() => {
+    const skills = new Set<string>();
     allProjects.forEach((project) => {
       project.skills?.forEach((skill) => skills.add(skill));
       project.tools?.forEach((tool) => skills.add(tool));
     });
-    return Array.from(skills).sort();
+    return Array.from(skills).sort((a, b) => a.localeCompare(b));
   }, []);
 
   const updateFilter = (key: string, value: string | null) => {
