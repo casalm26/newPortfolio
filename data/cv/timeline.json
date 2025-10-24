@@ -31,23 +31,24 @@
   },
   "timeline": [
     {
-      "id": "2025-01-full-stack-developer-technigo",
+      "id": "2020-04-founder-don-t-panic-consulting-ab",
       "type": "work",
-      "title": "Full Stack Developer",
-      "company": "Technigo",
-      "location": "Uppsala, Uppsala l\u00e4n, Sverige",
-      "startDate": "2025-01",
-      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We work with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming make up a significant part of the course.",
+      "title": "Founder",
+      "company": "Don't Panic Consulting AB",
+      "location": "Sverige",
+      "startDate": "2020-04",
+      "description": "As a freelancing generalist, I make use of the ability to learn and adapt to new situations. I pick up things that I need to learn, for my customers. Some of the things that me and my team have been doing in the past years include: - Set up a self-hosted Discourse forum - Numerous websites designed and set up - Various IT-related tasks like hosting solutions and e-mail server management - Podcast Editing for one of the biggest podcasts in Personal Finances in Sweden - Built and managed databases in Airtable for a variety of use cases - Developed the social media channels for RikaTillsammans.se - Helped 4 clients start and distribute their own podcasts - Coaching individuals and teams - Found the best Ice Cream spots in Malm\u00f6 through thorough research - Advised on, bought and assembled an office tech solution for a small company And many more things. The most important thing for me and my team is to keep our calm, and try to solve the problems that arise for our clients.",
       "endDate": null,
       "current": true
     },
     {
-      "id": "education-2025-01-yrkesh-gskoleexamen-technigo",
+      "id": "2025-01-full-stack-developer-technigo",
       "type": "education",
-      "title": "Yrkesh\u00f6gskoleexamen",
-      "institution": "Technigo",
+      "title": "Full Stack Developer",
+      "company": "Technigo",
+      "location": "Uppsala, Sweden",
       "startDate": "2025-01",
-      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We worked with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming made up a significant part of the course. Highlights: JavaScript, TypeScript, React, Node.js, HTML, CSS",
+      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We work with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming make up a significant part of the course.",
       "endDate": "2025-10"
     },
     {
@@ -79,17 +80,6 @@
       "startDate": "2022-02",
       "description": "Broadly speaking, I worked with communications at Polynom. I was responsible for the contact with our investors, as well as the strategy to acquire new ones. Apart from that, I had some IT-related responsibilities, as well as some light database management. I started out as a consultant in 2020, going full time by February 2022. Some of the things I did and/or was responsible for included: - Co-manage our yearly event \"Polynomdagen\" with 220 participants - Write monthly and bi-weekly newsletters to our part owners - Setup and management of our databases - E-signatures and digitised processes for contracts - Automated onboarding funnels for investors - Starting an internal podcast for our investors - Starting a council for our investors to make their voices heard - Strategy for finding new investors - Purchasing of IT-hardware and software",
       "endDate": "2022-10"
-    },
-    {
-      "id": "2020-04-founder-don-t-panic-consulting-ab",
-      "type": "work",
-      "title": "Founder",
-      "company": "Don't Panic Consulting AB",
-      "location": "Sverige",
-      "startDate": "2020-04",
-      "description": "As a freelancing generalist, I make use of the ability to learn and adapt to new situations. I pick up things that I need to learn, for my customers. Some of the things that me and my team have been doing in the past years include: - Set up a self-hosted Discourse forum - Numerous websites designed and set up - Various IT-related tasks like hosting solutions and e-mail server management - Podcast Editing for one of the biggest podcasts in Personal Finances in Sweden - Built and managed databases in Airtable for a variety of use cases - Developed the social media channels for RikaTillsammans.se - Helped 4 clients start and distribute their own podcasts - Coaching individuals and teams - Found the best Ice Cream spots in Malm\u00f6 through thorough research - Advised on, bought and assembled an office tech solution for a small company And many more things. The most important thing for me and my team is to keep our calm, and try to solve the problems that arise for our clients.",
-      "endDate": null,
-      "current": true
     },
     {
       "id": "2019-12-project-manager-project-fuel",

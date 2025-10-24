@@ -8,7 +8,6 @@ import { formatDate } from "@/lib/utils";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import { PageTransition } from "@/components/shared/PageTransition";
 import { ScrollAnimated } from "@/components/shared/ScrollAnimated";
 import { TypewriterText } from "@/components/shared/TypewriterText";
 
