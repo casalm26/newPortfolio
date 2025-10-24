@@ -45,13 +45,21 @@ vi.mock("vitest", async () => {
   };
 });
 
-// Import the module after mocking
-const { setupTestEnvironment, teardownTestEnvironment } = await import(
-  "./setup"
-);
+let setupTestEnvironment: typeof import("./setup").setupTestEnvironment;
+let teardownTestEnvironment: typeof import("./setup").teardownTestEnvironment;
+
+async function ensureSetupModule() {
+  if (setupTestEnvironment && teardownTestEnvironment) {
+    return;
+  }
+  const setupModule = await import("./setup");
+  setupTestEnvironment = setupModule.setupTestEnvironment;
+  teardownTestEnvironment = setupModule.teardownTestEnvironment;
+}
 
 describe("Integration Test Setup", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    await ensureSetupModule();
     vi.clearAllMocks();
     // Reset environment variables
     delete process.env.DATABASE_URL;
@@ -102,7 +110,9 @@ describe("Integration Test Setup", () => {
 
       // Restore original NODE_ENV
       if (originalNodeEnv !== undefined) {
-        process.env.NODE_ENV = originalNodeEnv;
+        (process.env as Record<string, string>).NODE_ENV = originalNodeEnv;
+      } else {
+        delete (process.env as Record<string, string | undefined>).NODE_ENV;
       }
 
       // The test should not throw even if NODE_ENV is read-only
@@ -252,7 +262,11 @@ describe("Integration Test Setup", () => {
       } finally {
         // Restore original NODE_ENV
         if (originalNodeEnv !== undefined) {
-          process.env.NODE_ENV = originalNodeEnv;
+          if (originalNodeEnv !== undefined) {
+            (process.env as Record<string, string>).NODE_ENV = originalNodeEnv;
+          } else {
+            delete (process.env as Record<string, string | undefined>).NODE_ENV;
+          }
         }
         consoleSpy.mockRestore();
       }

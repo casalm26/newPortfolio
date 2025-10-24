@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Caspian Almerud - Generalist Developer</title>
+      <link>https://caspian.dev</link>
+      <description>Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.</description>
+      <language>en-us</language>
+      <managingEditor>hello@caspian.dev (Caspian Almerud)</managingEditor>
+      <webMaster>hello@caspian.dev (Caspian Almerud)</webMaster>
+      <lastBuildDate>Fri, 22 Mar 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://caspian.dev/tags/scalability/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://caspian.dev/modern-full-stack-architecture</guid>
+    <title>Modern Full-Stack Architecture: From Monolith to Microservices</title>
+    <link>https://caspian.dev/modern-full-stack-architecture</link>
+    <description>A comprehensive guide to designing scalable full-stack applications, covering architecture patterns, technology choices, and real-world implementation strategies.</description>
+    <pubDate>Fri, 22 Mar 2024 00:00:00 GMT</pubDate>
+    <author>hello@caspian.dev (Caspian Almerud)</author>
+    <category>architecture</category><category>microservices</category><category>full-stack</category><category>devops</category><category>scalability</category>
+  </item>
+
+    </channel>
+  </rss>

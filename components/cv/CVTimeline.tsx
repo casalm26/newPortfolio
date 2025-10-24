@@ -77,7 +77,10 @@ function TimelineNode({
   };
 
   return (
-    <ScrollAnimation variant="slideInFromLeft" delay={position * 0.1}>
+    <ScrollAnimation
+      animation={isLeft ? "slideRight" : "slideLeft"}
+      delay={position * 0.1}
+    >
       <div
         className={cn(
           "flex items-center mb-8",

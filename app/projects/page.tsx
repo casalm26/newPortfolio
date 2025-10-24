@@ -6,7 +6,7 @@ import Header from "@/components/shared/Header";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { PageTransition } from "@/components/shared/PageTransition";
 import { ScrollAnimated } from "@/components/shared/ScrollAnimated";
@@ -37,6 +37,20 @@ function HighlightText({
         ),
       )}
     </>
+  );
+}
+
+export default function ProjectsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-black text-terminal-400 flex items-center justify-center font-pixel text-sm">
+          Loading projects...
+        </div>
+      }
+    >
+      <ProjectsPageContent />
+    </Suspense>
   );
 }
 
@@ -112,7 +126,7 @@ function ProjectCard({
   );
 }
 
-export default function ProjectsPage() {
+function ProjectsPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");

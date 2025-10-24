@@ -1,0 +1,24 @@
+
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+      <title>Caspian Almerud - Generalist Developer</title>
+      <link>https://caspian.dev</link>
+      <description>Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.</description>
+      <language>en-us</language>
+      <managingEditor>hello@caspian.dev (Caspian Almerud)</managingEditor>
+      <webMaster>hello@caspian.dev (Caspian Almerud)</webMaster>
+      <lastBuildDate>Fri, 29 Mar 2024 00:00:00 GMT</lastBuildDate>
+      <atom:link href="https://caspian.dev/tags/developer/feed.xml" rel="self" type="application/rss+xml"/>
+      
+  <item>
+    <guid>https://caspian.dev/generalist-vs-specialist-developer</guid>
+    <title>The Generalist vs Specialist Developer: Why I Choose the T-Shape</title>
+    <link>https://caspian.dev/generalist-vs-specialist-developer</link>
+    <description>Exploring the career paths of generalist vs specialist developers, the benefits of T-shaped skills, and why being a technical generalist might be your competitive advantage.</description>
+    <pubDate>Fri, 29 Mar 2024 00:00:00 GMT</pubDate>
+    <author>hello@caspian.dev (Caspian Almerud)</author>
+    <category>career</category><category>developer</category><category>skills</category><category>generalist</category><category>specialist</category><category>growth</category>
+  </item>
+
+    </channel>
+  </rss>

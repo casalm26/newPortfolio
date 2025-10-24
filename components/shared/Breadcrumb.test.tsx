@@ -189,7 +189,7 @@ describe("Breadcrumb Component", () => {
 
   describe("Error handling", () => {
     it("should handle usePathname returning null", () => {
-      mockUsePathname.mockReturnValue(null as string | null);
+      mockUsePathname.mockReturnValue(null as unknown as string);
       const { container } = render(<Breadcrumb />);
       expect(container.firstChild).toBeNull();
     });

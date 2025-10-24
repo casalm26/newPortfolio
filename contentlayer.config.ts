@@ -176,9 +176,19 @@ export const Project = defineDocumentType(() => ({
   },
 }));
 
+export const TimelineData = defineDocumentType(() => ({
+  name: "TimelineData",
+  filePathPattern: "cv/timeline.json",
+  contentType: "data",
+  fields: {
+    categories: { type: "json", required: true },
+    timeline: { type: "json", required: true },
+  },
+}));
+
 export default makeSource({
   contentDirPath: "data",
-  documentTypes: [Blog, Authors, Project],
+  documentTypes: [Blog, Authors, Project, TimelineData],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
