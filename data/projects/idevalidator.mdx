@@ -1,0 +1,56 @@
+---
+title: "IdeaEvaluator MVP"
+date: "2024-11-20"
+projectType: "Technical"
+category: "Product Discovery"
+summary: "Two-repo monorepo delivering AI-assisted idea validation with a Fastify backend, Vite/Tailwind frontend, and Airtable telemetry integrations."
+tags: ["AI", "Fastify", "React", "Airtable", "Monorepo"]
+duration: "Internship Sprint"
+role: "Product Engineer"
+skills:
+  [
+    "TypeScript",
+    "React",
+    "Tailwind CSS",
+    "Fastify",
+    "Prompt Engineering",
+    "Airtable API",
+    "Netlify",
+    "Render",
+  ]
+tools: ["Vite", "Fastify", "OpenAI", "Airtable", "Netlify", "Render", "Vitest"]
+links:
+  live: "https://ideaevaluator.netlify.app/"
+---
+
+## Project Overview
+
+IdeValidator helps founders stress-test early product ideas through multi-lens AI evaluations. The repo is structured as a npm workspaces monorepo containing a Vite + React frontend and a Fastify backend. Each analysis runs five cognitive "lenses" in parallel—Feasibility, Market Fit, Differentiation, Business Model, Visionary—and synthesises findings into actionable advice.
+
+Sed me an e-mail if you want to try the system out.
+
+## Key Features
+
+- Guided idea submission flow with validation, character budgeting, and keyboard shortcuts to trigger analysis.
+- Results dashboard presenting per-lens rationale, pros/cons, and a composite gauge along with export/save actions.
+- Airtable-backed telemetry capturing lens timing, token usage, and feature flags without storing raw ideas.
+- Nimbus AI research integration that surfaces relevant reports to contextualise each evaluation.
+
+## Technical Highlights
+
+- Frontend built with Vite, TypeScript, Tailwind, and context hooks for auth/session management.
+- Backend Fastify service exposing `/analyze`, logging with Pino, and delivering OpenAPI documentation from the monorepo.
+- Prompt schemas enforce deterministic JSON output, enabling strong typing across frontend and backend.
+- Airtable automation scripts (`scripts/createAirtableSchema.ts`, `scripts/seedAirtableLogins.ts`) bootstrap operations with reproducible infrastructure.
+
+## Results
+
+- Achieved sub-2-minute end-to-end evaluations across five lenses while maintaining P95 backend latency under 10 seconds.
+- Content and telemetry separation ensures GDPR alignment: only metadata hits Airtable while ideas remain transient.
+- Modular design and REQ-st trace comments keep future features traceable and auditable.
+
+## Next Steps
+
+- Layer in collaborative workspaces so multiple founders can iterate on the same idea history.
+- Ship Vitest coverage for lens utilities and integrate Playwright smoke tests before production.
+- Extend Nimbus research with live funding data and case studies for industry-specific insight.

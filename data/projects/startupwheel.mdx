@@ -1,0 +1,49 @@
+---
+title: "StartupWheel Automation Pipeline"
+date: "2024-10-05"
+projectType: "Technical"
+category: "Automation"
+summary: "Python agent stack that scrapes research, generates PRDs/design specs, and assembles Airtable schemas for startup validation workflows."
+tags: ["Python", "Automation", "Agents", "OpenAI", "Airtable"]
+duration: "4 weeks"
+role: "Automation Engineer"
+skills:
+  [
+    "Python",
+    "Playwright",
+    "Prompt Engineering",
+    "Data Pipelines",
+    "Airtable API",
+    "CLI Tooling",
+  ]
+tools: ["Python", "Playwright", "OpenAI", "Airtable", "Black", "isort"]
+---
+
+## Project Overview
+
+StartupWheel orchestrates a sequence of agents that transform scraped market intel into production-ready artefacts. The pipeline automates research collection, product requirement drafting, design specs, Airtable schemas, and execution backlogs—letting teams spin up idea validation projects in minutes.
+
+## Key Features
+
+- `run_pipeline.py` executes the end-to-end workflow: scrape → merge brief → generate PRD, design spec, schema, and task backlog.
+- Playwright-powered scraper logs into IdeaBrowser, captures curated opportunity feeds, and normalises text/JSON outputs for downstream agents.
+- PM pipeline agent enforces strict JSON schemas for PRD, design, and tasks to guarantee structured hand-offs.
+- Airtable schema generator converts PRD + design into table/field definitions ready for Meta API provisioning.
+
+## Technical Highlights
+
+- Modular agent architecture with reusable helpers, each script callable independently or via orchestrator.
+- Strong guardrails around OpenAI responses to ensure deterministic structure; failures trigger retries with tightened prompts.
+- Artifacts stored under timestamped directories with zipped bundles for sharing.
+- Command-line ergonomics (click/argparse) plus environment-based configuration for secrets and API keys.
+
+## Results
+
+- Reduced manual research-to-deliverable workflow from multiple hours to an automated run of ~8 minutes.
+- Generated consistent PRD/design/task outputs that teams imported directly into Notion and Jira.
+- Airtable schema automation eliminated copy/paste errors and accelerated ops setup.
+
+## Next Steps
+
+- Expand scraper coverage beyond IdeaBrowser to include industry-specific RSS feeds.
+- Expand on the output from the agentic system to better fit the needs of producing the software.
