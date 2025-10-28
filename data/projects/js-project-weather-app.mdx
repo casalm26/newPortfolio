@@ -1,0 +1,36 @@
+---
+title: "TypeScript Weather Dashboard"
+date: "2025-03-17"
+projectType: "Learning"
+category: "Frontend"
+summary: "Weather dashboard written in TypeScript that fetches real-time data and renders forecast cards."
+tags: ["TypeScript", "Weather", "API"]
+duration: "1 week"
+role: "Student Developer"
+skills: ["TypeScript", "API Integration", "Data Visualization"]
+tools: ["TypeScript", "Vite", "Tailwind CSS", "OpenWeather"]
+links:
+  github: "https://github.com/casalm26/js-project-weather-app"
+---
+
+## Project Overview
+
+This dashboard provides current conditions and multi-day forecasts sourced from a public weather API. TypeScript types guard the fetch pipeline and ensure UI components only render when data is valid.
+
+## Tech Stack
+
+- TypeScript with strict mode enabled for type-safe fetch handling
+- Vite build tooling with environment variable support
+- Tailwind CSS for rapid UI composition and responsive design
+
+## Key Work
+
+- Modeled API responses with TypeScript interfaces and guards to avoid runtime errors
+- Added geolocation support and manual city search with debounced requests
+- Created reusable cards for current conditions, hourly breakdown, and multi-day outlooks
+
+## Next Steps
+
+- Introduce charts for temperature trends using Recharts or Chart.js
+- Cache results with IndexedDB for offline access
+- Add unit tests around utility functions that calculate sunrise/sunset and heat index

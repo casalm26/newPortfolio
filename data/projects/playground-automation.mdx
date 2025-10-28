@@ -1,0 +1,43 @@
+---
+title: "Content Automation Platform"
+date: "2025-08-09"
+projectType: "Technical"
+category: "Automation"
+summary: "Docker-orchestrated marketing automation stack with n8n workflows, FastAPI services, and AI-powered content generation."
+tags: ["Automation", "FastAPI", "n8n", "Docker"]
+duration: "Ongoing"
+role: "Architect & Developer"
+skills:
+  [
+    "FastAPI",
+    "Async Python",
+    "n8n",
+    "OpenAI Integration",
+    "Infrastructure as Code",
+  ]
+tools: ["Python", "Docker", "Docker Compose", "Redis", "PostgreSQL", "Caddy"]
+links:
+  github: "https://github.com/casalm26/playground-automation"
+---
+
+## Project Overview
+
+This monorepo packages a production-style automation platform for marketing operations. n8n handles the workflow orchestration while a FastAPI microservice generates and schedules AI-authored campaigns that publish to multiple social platforms.
+
+## Tech Stack
+
+- Docker Compose environment with Caddy, n8n, PostgreSQL, Redis, and FastAPI services
+- AI content generation via OpenAI with configurable prompts and tone controls
+- Prometheus metrics and health checks exposed for each service
+
+## Key Work
+
+- Authored automated deployment scripts that validate server prerequisites and stand up the full stack
+- Designed reusable n8n workflows for campaign generation, approval routing, and scheduled publishing
+- Implemented FastAPI endpoints covering campaign creation, analytics aggregation, and webhook handling
+
+## Next Steps
+
+- Add SSO and fine-grained access control for larger teams
+- Layer in budget pacing and performance anomaly alerts using time-series data
+- Build a lightweight React admin to visualise workflows and campaign performance in one place

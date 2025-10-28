@@ -1,0 +1,38 @@
+---
+title: "SchoolOS"
+date: "2025-09-26"
+projectType: "Technical"
+category: "EdTech"
+summary: "Full-stack grading and operations platform for trade schools featuring Vite client and Express/Node services."
+tags: ["EdTech", "React", "Node.js", "MongoDB"]
+duration: "In progress"
+role: "Lead Developer"
+skills:
+  ["React", "TypeScript", "Express", "MongoDB", "Monorepo Tooling", "Testing"]
+tools:
+  ["Vite", "Zustand", "Tailwind CSS", "Express", "MongoDB", "Jest", "Vitest"]
+links:
+  github: "https://github.com/casalm26/schoolOS"
+---
+
+## Project Overview
+
+SchoolOS is an end-to-end system designed to help trade schools track coursework, grades, and student progress. The monorepo hosts a Vite-powered client, an Express API, worker utilities, and shared packages for types and UI.
+
+## Tech Stack
+
+- React + TypeScript frontend with component-driven architecture and Zustand state
+- Express backend with MongoDB persistence, seeding scripts, and validation layers
+- Shared tooling for linting, formatting, testing, and npm script orchestration via concurrently
+
+## Key Work
+
+- Established a monorepo structure with shared ESLint config, scripts, and CI scaffolding
+- Implemented grading workflows across client and server, including seeding and fixtures
+- Created developer documentation in `AGENTS.md` to onboard contributors quickly
+
+## Next Steps
+
+- Deploy the platform with Docker Compose and managed MongoDB services
+- Add role-based permissions and audit logs for administrative oversight
+- Build automated regression tests covering grade submissions and reporting exports

@@ -1,0 +1,36 @@
+---
+title: "API Integration Playground"
+date: "2025-05-26"
+projectType: "Learning"
+category: "Frontend"
+summary: "SPA exercise that consumes multiple public APIs, normalizes data, and renders responsive cards with vanilla JavaScript."
+tags: ["JavaScript", "API", "Fetch"]
+duration: "1 week"
+role: "Student Developer"
+skills: ["REST API Consumption", "Data Normalization", "State Management"]
+tools: ["JavaScript", "HTML5", "CSS3", "Vite"]
+links:
+  github: "https://github.com/casalm26/js-project-api"
+---
+
+## Project Overview
+
+This project explores how to query public APIs, transform responses, and surface the results inside a responsive card layout. Error handling, loading states, and pagination patterns were the core focus areas.
+
+## Tech Stack
+
+- ES modules with Vite for hot-reload development
+- Fetch API wrapped in a utility layer for retries and timeouts
+- CSS grid system and utility classes for adaptive layouts
+
+## Key Work
+
+- Normalized heterogeneous API responses into a consistent view model before rendering
+- Added skeleton loaders and toast messaging to communicate network status to users
+- Abstracted request logic into a reusable `apiClient` helper to keep views declarative
+
+## Next Steps
+
+- Introduce filtering and sorting controls to exercise derived state
+- Replace the vanilla state handling with a lightweight store such as Zustand
+- Add Vitest coverage for the data transformation helpers

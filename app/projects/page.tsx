@@ -219,7 +219,15 @@ function ProjectsPageContent() {
     return filtered;
   }, [sortedProjects, filterType, techFilter, searchTerm]);
 
-  const projectTypes = ["Technical", "Creative", "Business"];
+  const projectTypes = useMemo(() => {
+    const types = new Set<string>();
+    allProjects.forEach((project) => {
+      if (project.projectType) {
+        types.add(project.projectType);
+      }
+    });
+    return Array.from(types).sort((a, b) => a.localeCompare(b));
+  }, []);
   const allSkills = useMemo<string[]>(() => {
     const skills = new Set<string>();
     allProjects.forEach((project) => {
