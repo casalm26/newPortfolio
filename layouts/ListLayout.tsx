@@ -141,25 +141,15 @@ export default function ListLayout({
                   </div>
 
                   <h2 className="text-2xl font-semibold text-white">
-                    <Link href={`/${post.path}`} className="hover:text-terminal-200">
+                    <Link
+                      href={`/${post.path}`}
+                      className="hover:text-terminal-200"
+                    >
                       {post.title}
                     </Link>
                   </h2>
 
                   <p className="text-terminal-300 max-w-3xl">{post.summary}</p>
-
-                  <div className="flex flex-wrap gap-2 text-xs uppercase tracking-wide text-terminal-500">
-                    {post.tags?.map((tag) => (
-                      <Link
-                        key={tag}
-                        href={`/tags/${tag}`}
-                        className="border border-terminal-500/60 px-2 py-1 hover:border-white hover:text-white transition-colors"
-                        aria-label={`View posts tagged ${tag}`}
-                      >
-                        {tag}
-                      </Link>
-                    ))}
-                  </div>
                 </div>
               </article>
             ))}
