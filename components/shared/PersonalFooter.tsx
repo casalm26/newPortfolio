@@ -14,10 +14,6 @@ const PersonalFooter = ({ className = "" }: { className?: string }) => {
       { href: "/cv", label: "CV Timeline" },
       { href: "/contact", label: "Contact" },
     ],
-    legal: [
-      { href: "/privacy", label: "Privacy" },
-      { href: "/terms", label: "Terms" },
-    ],
   };
 
   return (
@@ -77,7 +73,7 @@ const PersonalFooter = ({ className = "" }: { className?: string }) => {
             <div className="space-y-2">
               <div className="font-pixel text-xs text-terminal-300">
                 <span className="text-terminal-500">email:</span>{" "}
-                hello@caspian.dev
+                caspian@houseofcaspian.com
               </div>
               <div className="font-pixel text-xs text-terminal-300">
                 <span className="text-terminal-500">timezone:</span> UTC+0
@@ -95,18 +91,6 @@ const PersonalFooter = ({ className = "" }: { className?: string }) => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="font-pixel text-xs text-terminal-500">
               © {currentYear} Caspian Almerud. All rights reserved.
-            </div>
-
-            <div className="flex items-center space-x-4">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="font-pixel text-xs text-terminal-500 hover:text-terminal-300 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
             </div>
 
             <div className="font-pixel text-xs text-terminal-500">

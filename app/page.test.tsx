@@ -38,10 +38,6 @@ vi.mock("@/components/PixelArtName", () => ({
   ),
 }));
 
-vi.mock("@/components/games/PixelSnakeGame", () => ({
-  default: () => <div data-testid="pixel-snake-game">Snake Game Mock</div>,
-}));
-
 describe("Home page", () => {
   const renderPage = () => render(<Page />);
 
@@ -53,17 +49,6 @@ describe("Home page", () => {
     expect(screen.getByText(/Caspian Almerud/i)).toBeInTheDocument();
   });
 
-  it("places the snake game right after the hero with the annotation", () => {
-    const { container } = renderPage();
-
-    const sections = Array.from(container.querySelectorAll("section"));
-    const snakeSection = sections[1];
-
-    expect(snakeSection).toHaveTextContent(/PIXEL SNAKE/i);
-    expect(snakeSection).toHaveTextContent("You can't snake your way out of this one!");
-    expect(snakeSection).toContainElement(screen.getByTestId("pixel-snake-game"));
-  });
-
   it("shows quick access navigation tiles", () => {
     renderPage();
 
@@ -71,16 +56,15 @@ describe("Home page", () => {
     const quickAccessSection = quickAccessHeading.closest("section");
     expect(quickAccessSection).not.toBeNull();
 
-    const headings = within(quickAccessSection as HTMLElement).getAllByRole("heading", {
-      level: 3,
-    });
+    const headings = within(quickAccessSection as HTMLElement).getAllByRole(
+      "heading",
+      {
+        level: 3,
+      },
+    );
 
     const labels = headings.map((heading) => heading.textContent?.trim());
-    expect(labels).toEqual([
-      "PROJECTS",
-      "ARTICLES",
-      "CV",
-    ]);
+    expect(labels).toEqual(["PROJECTS", "CV"]);
   });
 
   it("retains the footer at the bottom of the page", () => {

@@ -17,25 +17,25 @@ interface SocialLink {
 
 const socialLinks: SocialLink[] = [
   {
-    href: "https://github.com/caspianalmerud",
+    href: "https://github.com/casalm26",
     label: "GitHub",
     icon: GitHubPixelIcon,
     color: "hover:text-gray-400",
   },
   {
-    href: "https://linkedin.com/in/caspian-almerud",
+    href: "https://linkedin.com/in/caspianalmerud",
     label: "LinkedIn",
     icon: LinkedInPixelIcon,
     color: "hover:text-blue-400",
   },
   {
-    href: "https://twitter.com/caspianalmerud",
+    href: "https://twitter.com/almerudcaspian",
     label: "X (Twitter)",
     icon: TwitterPixelIcon,
     color: "hover:text-cyan-400",
   },
   {
-    href: "mailto:hello@caspian.dev",
+    href: "mailto:caspian@houseofcaspian.com",
     label: "Email",
     icon: EmailPixelIcon,
     color: "hover:text-green-400",

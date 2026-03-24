@@ -123,12 +123,12 @@ export default function RootLayout({
               description:
                 "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.",
               url: "https://caspian.dev",
-              email: "hello@caspian.dev",
+              email: "caspian@houseofcaspian.com",
               image: "https://caspian.dev/static/images/avatar.png",
               sameAs: [
-                "https://github.com/caspianalmerud",
-                "https://linkedin.com/in/caspian-almerud",
-                "https://twitter.com/caspianalmerud",
+                "https://github.com/casalm26",
+                "https://linkedin.com/in/caspianalmerud",
+                "https://twitter.com/almerudcaspian",
               ],
               knowsAbout: [
                 "Full-Stack Development",

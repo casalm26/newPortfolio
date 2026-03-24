@@ -124,28 +124,6 @@ export default function PostLayout({
           More articles &rarr;
         </Link>
       </div>
-
-      {tags && (
-        <div className="pt-4">
-          <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-4">
-            Tags
-          </h2>
-          <div className="flex flex-wrap">
-            {tags.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
-          </div>
-          <a
-            href="/tags"
-            className="inline-block mt-2 text-xs capitalize font-medium text-primary-500 hover:text-primary-700 dark:hover:text-primary-400"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            All tags
-            <ExternalLinkIcon className="ml-1 inline-block w-3 h-3" />
-          </a>
-        </div>
-      )}
     </>
   );
 
