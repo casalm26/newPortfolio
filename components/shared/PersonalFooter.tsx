@@ -9,7 +9,6 @@ const PersonalFooter = ({ className = "" }: { className?: string }) => {
   const footerLinks = {
     quick: [
       { href: "/", label: "Home" },
-      { href: "/about", label: "About" },
       { href: "/projects", label: "Projects" },
       { href: "/cv", label: "CV Timeline" },
       { href: "/contact", label: "Contact" },

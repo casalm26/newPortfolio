@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "npm run appinfo && cross-env PORT=6006 NODE_OPTIONS='--no-warnings' next dev",
-    "build": "npm run appinfo && next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
+    "build": "npm run appinfo && next build",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
-    "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts",
+    "lint": "next lint --fix --dir app --dir components --dir lib",
     "pretty": "prettier --write .",
     "appinfo": "node ./scripts/generateAppInfo.mjs",
     "test": "vitest run",
