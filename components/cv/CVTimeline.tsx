@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import timelineData from "@/data/cv/timeline.json";
 import { motion, AnimatePresence } from "framer-motion";
 import { useVisualFeedback } from "@/lib/visual-feedback";
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 
-interface TimelineItem {
+export interface TimelineItem {
   id: string;
   type:
     | "work"
@@ -38,11 +37,22 @@ interface TimelineItem {
   links?: Record<string, string>;
 }
 
+export interface TimelineCategory {
+  label: string;
+  color: string;
+}
+
+interface CVTimelineProps {
+  items: TimelineItem[];
+  categories: Record<string, TimelineCategory>;
+}
+
 interface TimelineNodeProps {
   item: TimelineItem;
   isExpanded: boolean;
   onToggle: () => void;
   position: number;
+  totalItems: number;
 }
 
 function TimelineNode({
@@ -50,6 +60,7 @@ function TimelineNode({
   isExpanded,
   onToggle,
   position,
+  totalItems,
 }: TimelineNodeProps) {
   const isLeft = position % 2 === 0;
   const feedback = useVisualFeedback();
@@ -141,7 +152,7 @@ function TimelineNode({
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 className="mt-4 space-y-3"
               >
-                {item.responsibilities && (
+                {item.responsibilities && item.responsibilities.length > 0 && (
                   <div>
                     <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
                       Key Responsibilities
@@ -163,7 +174,7 @@ function TimelineNode({
                   </div>
                 )}
 
-                {item.achievements && (
+                {item.achievements && item.achievements.length > 0 && (
                   <div>
                     <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
                       Achievements
@@ -182,7 +193,7 @@ function TimelineNode({
                   </div>
                 )}
 
-                {item.details && (
+                {item.details && item.details.length > 0 && (
                   <div>
                     <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
                       Details
@@ -201,7 +212,7 @@ function TimelineNode({
                   </div>
                 )}
 
-                {item.skills && (
+                {item.skills && item.skills.length > 0 && (
                   <div>
                     <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
                       Skills
@@ -219,7 +230,7 @@ function TimelineNode({
                   </div>
                 )}
 
-                {item.links && (
+                {item.links && Object.keys(item.links).length > 0 && (
                   <div>
                     <h4 className="font-pixel text-xs text-terminal-400 uppercase mb-2">
                       Links
@@ -273,7 +284,7 @@ function TimelineNode({
           >
             {getIcon()}
           </motion.div>
-          {position < timelineData.timeline.length - 1 && (
+          {position < totalItems - 1 && (
             <motion.div
               className="w-0.5 h-8 bg-terminal-400 mt-2"
               initial={{ height: 0 }}
@@ -290,12 +301,12 @@ function TimelineNode({
   );
 }
 
-export function CVTimeline() {
+export function CVTimeline({ items, categories }: CVTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<string>("all");
   const feedback = useVisualFeedback();
 
-  const filteredItems = timelineData.timeline.filter(
+  const filteredItems = items.filter(
     (item) => filter === "all" || item.type === filter,
   );
 
@@ -311,9 +322,7 @@ export function CVTimeline() {
     });
   };
 
-  const availableTypes = Array.from(
-    new Set(timelineData.timeline.map((item) => item.type)),
-  );
+  const availableTypes = Array.from(new Set(items.map((item) => item.type)));
 
   return (
     <div className="space-y-8">
@@ -338,13 +347,11 @@ export function CVTimeline() {
                 : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px]",
             )}
           >
-            ALL ({timelineData.timeline.length})
+            ALL ({items.length})
           </motion.button>
           {availableTypes.map((type) => {
-            const count = timelineData.timeline.filter(
-              (item) => item.type === type,
-            ).length;
-            const category = timelineData.categories[type];
+            const count = items.filter((item) => item.type === type).length;
+            const category = categories[type];
             return (
               <motion.button
                 key={type}
@@ -362,7 +369,7 @@ export function CVTimeline() {
                     : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px]",
                 )}
               >
-                {category.label.toUpperCase()} ({count})
+                {category?.label?.toUpperCase() ?? type.toUpperCase()} ({count})
               </motion.button>
             );
           })}
@@ -387,10 +394,11 @@ export function CVTimeline() {
             {filteredItems.map((item, index) => (
               <TimelineNode
                 key={item.id}
-                item={item as TimelineItem}
+                item={item}
                 isExpanded={expandedItems.has(item.id)}
                 onToggle={() => toggleExpanded(item.id)}
                 position={index}
+                totalItems={filteredItems.length}
               />
             ))}
           </motion.div>
@@ -402,10 +410,7 @@ export function CVTimeline() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="text-center">
             <div className="font-pixel text-2xl text-white">
-              {
-                timelineData.timeline.filter((item) => item.type === "work")
-                  .length
-              }
+              {items.filter((item) => item.type === "work").length}
             </div>
             <div className="font-pixel text-xs text-terminal-400">
               WORK EXPERIENCE
@@ -413,29 +418,19 @@ export function CVTimeline() {
           </div>
           <div className="text-center">
             <div className="font-pixel text-2xl text-white">
-              {
-                timelineData.timeline.filter((item) => item.type === "skill")
-                  .length
-              }
+              {items.filter((item) => item.type === "skill").length}
             </div>
             <div className="font-pixel text-xs text-terminal-400">SKILLS</div>
           </div>
           <div className="text-center">
             <div className="font-pixel text-2xl text-white">
-              {
-                timelineData.timeline.filter((item) => item.type === "project")
-                  .length
-              }
+              {items.filter((item) => item.type === "project").length}
             </div>
             <div className="font-pixel text-xs text-terminal-400">PROJECTS</div>
           </div>
           <div className="text-center">
             <div className="font-pixel text-2xl text-white">
-              {
-                timelineData.timeline.filter(
-                  (item) => item.type === "certification",
-                ).length
-              }
+              {items.filter((item) => item.type === "certification").length}
             </div>
             <div className="font-pixel text-xs text-terminal-400">
               CERTIFICATIONS

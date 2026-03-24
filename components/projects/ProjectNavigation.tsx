@@ -1,21 +1,30 @@
 "use client";
 
 import Link from "next/link";
-import { allProjects } from "contentlayer/generated";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useVisualFeedback } from "@/lib/visual-feedback";
 
-interface ProjectNavigationProps {
-  currentSlug: string;
+interface ProjectSummary {
+  slug: string;
+  title: string;
+  publishedAt: string;
 }
 
-export function ProjectNavigation({ currentSlug }: ProjectNavigationProps) {
+interface ProjectNavigationProps {
+  currentSlug: string;
+  projects: ProjectSummary[];
+}
+
+export function ProjectNavigation({
+  currentSlug,
+  projects,
+}: ProjectNavigationProps) {
   const feedback = useVisualFeedback();
 
-  // Sort projects by date (newest first) to maintain consistent order
-  const sortedProjects = allProjects.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  const sortedProjects = [...projects].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
   const currentIndex = sortedProjects.findIndex(

@@ -1,4 +1,3 @@
-import { allProjects } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
@@ -6,38 +5,54 @@ import ProjectNavigation from "@/components/projects/ProjectNavigation";
 import Link from "next/link";
 import { MDXContent } from "@/components/shared/MDXContent";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { getAllProjects, getProjectBySlug, serialize } from "@/lib/cms/queries";
+import { serialize as serializeMDX } from "next-mdx-remote/serialize";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return allProjects.map((project) => ({
+  const projects = await getAllProjects();
+  return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const project = allProjects.find((project) => project.slug === slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     return {};
   }
 
   return {
-    title: project.title,
-    description: project.summary,
+    title: project.seoTitle || project.title,
+    description: project.seoDescription || project.summary,
   };
 }
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = allProjects.find((project) => project.slug === slug);
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
+
+  const allProjects = await getAllProjects();
+  const projectSlugs = serialize(
+    allProjects.map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      publishedAt: p.publishedAt,
+    })),
+  );
+
+  const mdxSource = await serializeMDX(project.content || "");
+
+  const links = (project.links || {}) as Record<string, string>;
 
   return (
     <div className="min-h-screen bg-black">
@@ -87,11 +102,11 @@ export default async function ProjectPage({ params }: Props) {
           </p>
 
           {/* Project Links */}
-          {project.links && (
+          {links && (
             <div className="flex flex-wrap gap-3 mb-6">
-              {project.links.live && (
+              {links.live && (
                 <a
-                  href={project.links.live}
+                  href={links.live}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center font-pixel text-xs px-4 py-2 border border-white bg-white text-black hover:bg-transparent hover:text-white transition-colors"
@@ -100,9 +115,9 @@ export default async function ProjectPage({ params }: Props) {
                   LIVE DEMO
                 </a>
               )}
-              {project.links.github && (
+              {links.github && (
                 <a
-                  href={project.links.github}
+                  href={links.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
@@ -111,9 +126,9 @@ export default async function ProjectPage({ params }: Props) {
                   SOURCE CODE
                 </a>
               )}
-              {project.links.demo && (
+              {links.demo && (
                 <a
-                  href={project.links.demo}
+                  href={links.demo}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center font-pixel text-xs px-4 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white transition-colors"
@@ -173,7 +188,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Project Content */}
         <article className="prose prose-invert prose-lg max-w-none">
-          <MDXContent source={project.body.code} />
+          <MDXContent source={mdxSource} />
         </article>
 
         {/* Navigation Footer */}
@@ -188,7 +203,10 @@ export default async function ProjectPage({ params }: Props) {
             </Link>
 
             {/* Project Navigation */}
-            <ProjectNavigation currentSlug={project.slug} />
+            <ProjectNavigation
+              currentSlug={project.slug}
+              projects={projectSlugs}
+            />
           </div>
         </footer>
       </main>

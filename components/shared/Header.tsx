@@ -14,6 +14,8 @@ const Header = ({ className }: { className?: string }) => {
   const navItems = [
     { href: "/", label: "HOME", prefix: "~/" },
     { href: "/projects", label: "PROJECTS", prefix: "./projects" },
+    { href: "/blog", label: "BLOG", prefix: "./blog" },
+    { href: "/videos", label: "VIDEOS", prefix: "./videos" },
     { href: "/cv", label: "CV", prefix: "./cv" },
     { href: "/contact", label: "CONTACT", prefix: "./contact" },
   ];

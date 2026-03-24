@@ -1,18 +1,15 @@
 "use client";
 
-import { useMDXComponent } from "next-contentlayer2/hooks";
-import * as jsxRuntime from "react/jsx-runtime";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 interface MDXContentProps {
-  source: string;
+  source: MDXRemoteSerializeResult;
 }
 
 export function MDXContent({ source }: MDXContentProps) {
-  const Component = useMDXComponent(source, { _jsx_runtime: jsxRuntime });
-
   return (
     <div className="mdx-content">
-      <Component />
+      <MDXRemote {...source} />
     </div>
   );
 }

@@ -1,19 +1,5 @@
 import { defineConfig } from "vitest/config";
 import path from "path";
-import fs from "fs";
-
-const contentlayerGeneratedDir = path.resolve(
-  __dirname,
-  "./.contentlayer/generated",
-);
-const contentlayerMockFile = path.resolve(
-  __dirname,
-  "./test/mocks/contentlayer-generated",
-);
-
-const contentlayerAlias = fs.existsSync(contentlayerGeneratedDir)
-  ? contentlayerGeneratedDir
-  : contentlayerMockFile;
 
 export default defineConfig({
   test: {
@@ -28,7 +14,6 @@ export default defineConfig({
         "node_modules/",
         "dist/",
         ".next/",
-        ".contentlayer/",
         "**/*.test.ts",
         "**/*.spec.ts",
         "**/*.test.tsx",
@@ -37,14 +22,12 @@ export default defineConfig({
         "scripts/generateAppInfo.mjs",
         "next.config.js",
         "tailwind.config.js",
-        "contentlayer.config.ts",
       ],
     },
   },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./"),
-      "contentlayer/generated": contentlayerAlias,
     },
   },
 });
