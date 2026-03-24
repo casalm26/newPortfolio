@@ -3,7 +3,7 @@
 import {
   GitHubPixelIcon,
   LinkedInPixelIcon,
-  TwitterPixelIcon,
+  XPixelIcon,
   EmailPixelIcon,
 } from "@/components/icons/PixelSocialIcons";
 import { useVisualFeedback } from "@/lib/visual-feedback";
@@ -29,9 +29,9 @@ const socialLinks: SocialLink[] = [
     color: "hover:text-blue-400",
   },
   {
-    href: "https://twitter.com/almerudcaspian",
-    label: "X (Twitter)",
-    icon: TwitterPixelIcon,
+    href: "https://x.com/almerudcaspian",
+    label: "X",
+    icon: XPixelIcon,
     color: "hover:text-cyan-400",
   },
   {

@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/shared/Breadcrumb";
 import {
   GitHubPixelIcon,
   LinkedInPixelIcon,
-  TwitterPixelIcon,
+  XPixelIcon,
   EmailPixelIcon,
 } from "@/components/icons/PixelSocialIcons";
 import { PageTransition } from "@/components/shared/PageTransition";
@@ -153,18 +153,18 @@ export default function ContactForm() {
                   → linkedin.com/in/caspianalmerud
                 </a>
                 <a
-                  href="https://twitter.com/almerudcaspian"
+                  href="https://x.com/almerudcaspian"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Follow Caspian on Twitter (opens in new tab)"
+                  aria-label="Follow Caspian on X (opens in new tab)"
                   className="flex items-center gap-3 font-mono text-terminal-300 hover:text-white transition-colors group focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black rounded p-1 -m-1"
                 >
-                  <TwitterPixelIcon
+                  <XPixelIcon
                     className="text-terminal-400 group-hover:text-blue-400 transition-colors"
                     size={16}
                     aria-hidden="true"
                   />
-                  → twitter.com/almerudcaspian
+                  → x.com/almerudcaspian
                 </a>
                 <div className="flex items-center gap-3 font-mono text-terminal-300">
                   <EmailPixelIcon

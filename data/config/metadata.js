@@ -7,7 +7,7 @@ const metadata = {
   businessName: "Caspian Almerud",
   siteUrl: "https://caspian.dev",
   siteRepo: "https://github.com/casalm26/newPortfolio",
-  socialBanner: "/api/og",
+  socialBanner: "/static/images/social-banner.png",
   supportEmail: "caspian@houseofcaspian.com",
   email: "caspian@houseofcaspian.com",
   twitter: "@almerudcaspian",

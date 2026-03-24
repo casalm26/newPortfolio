@@ -1,12 +1,10 @@
 import { Source_Sans_3, Oswald } from "next/font/google";
 import { siteConfig } from "@/data/config/site.settings";
-import { ThemeProviders } from "./theme-providers";
 import { Metadata } from "next";
 
 import { colors } from "@/data/config/colors.js";
 
 import "@/css/globals.css";
-import { SearchProvider } from "@/components/shared/SearchProvider";
 import { AnalyticsWrapper } from "@/components/shared/Analytics";
 import { AnimationProvider } from "@/components/shared/AnimationProvider";
 
@@ -45,15 +43,11 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: "./",
     siteName: siteConfig.title,
-    images: [siteConfig.socialBanner],
     locale: "en_US",
     type: "website",
   },
   alternates: {
     canonical: "./",
-    types: {
-      "application/rss+xml": `${siteConfig.siteUrl}/feed.xml`,
-    },
   },
   robots: {
     index: true,
@@ -69,7 +63,6 @@ export const metadata: Metadata = {
   twitter: {
     title: siteConfig.title,
     card: "summary_large_image",
-    images: [siteConfig.socialBanner],
   },
 };
 
@@ -81,8 +74,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.language}
-      className={`${baseFont.variable} ${displayFont.variable} scroll-smooth`}
-      suppressHydrationWarning
+      className={`${baseFont.variable} ${displayFont.variable} scroll-smooth dark`}
     >
       <head>
         <style>
@@ -99,17 +91,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
 
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: light)"
-          content="#fff"
-        />
-        <meta
-          name="theme-color"
-          media="(prefers-color-scheme: dark)"
-          content="#000"
-        />
-        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <meta name="theme-color" content="#000" />
 
         {/* Structured Data */}
         <script
@@ -121,26 +103,24 @@ export default function RootLayout({
               name: "Caspian Almerud",
               jobTitle: "Generalist Developer",
               description:
-                "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, blockchain, AI/ML, interactive art, and business strategy.",
+                "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, AI tools, marketing, and business strategy.",
               url: "https://caspian.dev",
               email: "caspian@houseofcaspian.com",
               image: "https://caspian.dev/static/images/avatar.png",
               sameAs: [
                 "https://github.com/casalm26",
                 "https://linkedin.com/in/caspianalmerud",
-                "https://twitter.com/almerudcaspian",
+                "https://x.com/almerudcaspian",
               ],
               knowsAbout: [
                 "Full-Stack Development",
                 "React",
                 "Next.js",
                 "TypeScript",
-                "Blockchain Development",
-                "Artificial Intelligence",
-                "Machine Learning",
-                "Interactive Art",
+                "AI Tools",
                 "Business Strategy",
                 "Product Management",
+                "Marketing",
               ],
               worksFor: {
                 "@type": "Organization",
@@ -152,30 +132,26 @@ export default function RootLayout({
       </head>
 
       <body className="flex flex-col bg-black text-white antialiased min-h-screen">
-        <ThemeProviders>
-          <AnimationProvider>
-            <AnalyticsWrapper />
+        <AnimationProvider>
+          <AnalyticsWrapper />
 
-            {/* Skip links for accessibility */}
-            <a
-              href="#main-content"
-              className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 z-50 font-pixel text-sm border-2 border-black"
+          {/* Skip links for accessibility */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-black px-4 py-2 z-50 font-pixel text-sm border-2 border-black"
+          >
+            SKIP TO MAIN CONTENT
+          </a>
+
+          <div className="w-full flex flex-col justify-between items-center font-sans">
+            <main
+              id="main-content"
+              className="w-full flex flex-col items-center mb-auto"
             >
-              SKIP TO MAIN CONTENT
-            </a>
-
-            <div className="w-full flex flex-col justify-between items-center font-sans">
-              <SearchProvider>
-                <main
-                  id="main-content"
-                  className="w-full flex flex-col items-center mb-auto"
-                >
-                  {children}
-                </main>
-              </SearchProvider>
-            </div>
-          </AnimationProvider>
-        </ThemeProviders>
+              {children}
+            </main>
+          </div>
+        </AnimationProvider>
       </body>
     </html>
   );

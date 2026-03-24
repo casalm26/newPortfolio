@@ -63,7 +63,7 @@ export const LinkedInPixelIcon = ({ className = "", size = 24 }: IconProps) => (
   </svg>
 );
 
-export const TwitterPixelIcon = ({ className = "", size = 24 }: IconProps) => (
+export const XPixelIcon = ({ className = "", size = 24 }: IconProps) => (
   <svg
     width={size}
     height={size}
@@ -71,19 +71,25 @@ export const TwitterPixelIcon = ({ className = "", size = 24 }: IconProps) => (
     className={`pixel-perfect ${className}`}
     style={{ imageRendering: "pixelated" }}
     role="img"
-    aria-label="X (Twitter)"
+    aria-label="X"
   >
-    <rect x="6" y="4" width="2" height="2" fill="currentColor" />
-    <rect x="4" y="6" width="2" height="2" fill="currentColor" />
-    <rect x="8" y="6" width="6" height="2" fill="currentColor" />
+    {/* Top-left to center diagonal */}
+    <rect x="4" y="4" width="2" height="2" fill="currentColor" />
+    <rect x="6" y="6" width="2" height="2" fill="currentColor" />
+    <rect x="8" y="8" width="2" height="2" fill="currentColor" />
+    <rect x="10" y="10" width="4" height="4" fill="currentColor" />
+    {/* Top-right to center diagonal */}
+    <rect x="18" y="4" width="2" height="2" fill="currentColor" />
     <rect x="16" y="6" width="2" height="2" fill="currentColor" />
-    <rect x="2" y="8" width="2" height="2" fill="currentColor" />
-    <rect x="6" y="8" width="12" height="2" fill="currentColor" />
-    <rect x="20" y="8" width="2" height="2" fill="currentColor" />
-    <rect x="4" y="10" width="16" height="2" fill="currentColor" />
-    <rect x="6" y="12" width="12" height="2" fill="currentColor" />
-    <rect x="8" y="14" width="8" height="2" fill="currentColor" />
-    <rect x="10" y="16" width="4" height="2" fill="currentColor" />
+    <rect x="14" y="8" width="2" height="2" fill="currentColor" />
+    {/* Bottom-left from center diagonal */}
+    <rect x="8" y="14" width="2" height="2" fill="currentColor" />
+    <rect x="6" y="16" width="2" height="2" fill="currentColor" />
+    <rect x="4" y="18" width="2" height="2" fill="currentColor" />
+    {/* Bottom-right from center diagonal */}
+    <rect x="14" y="14" width="2" height="2" fill="currentColor" />
+    <rect x="16" y="16" width="2" height="2" fill="currentColor" />
+    <rect x="18" y="18" width="2" height="2" fill="currentColor" />
   </svg>
 );
 

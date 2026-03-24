@@ -75,9 +75,7 @@ describe("Contact Page", () => {
       expect(
         screen.getByRole("link", { name: /linkedin/i }),
       ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /twitter/i }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("link", { name: /x\b/i })).toBeInTheDocument();
     });
 
     it("should have proper external link attributes", () => {

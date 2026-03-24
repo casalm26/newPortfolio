@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import ThemeSwitch from "@/components/shared/ThemeSwitch";
-import SearchButton from "@/components/search/SearchButton";
 import SocialLinks from "@/components/shared/SocialLinks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,7 +15,6 @@ const Header = ({ className }: { className?: string }) => {
     { href: "/", label: "HOME", prefix: "~/" },
     { href: "/projects", label: "PROJECTS", prefix: "./projects" },
     { href: "/cv", label: "CV", prefix: "./cv" },
-    { href: "/about", label: "ABOUT", prefix: "./about" },
     { href: "/contact", label: "CONTACT", prefix: "./contact" },
   ];
 
@@ -66,12 +63,9 @@ const Header = ({ className }: { className?: string }) => {
             ))}
           </nav>
 
-          {/* Utility buttons */}
+          {/* Social links */}
           <div className="hidden md:flex items-center space-x-4">
             <SocialLinks variant="header" size={18} />
-            <div className="w-px h-6 bg-terminal-400"></div>
-            <SearchButton />
-            <ThemeSwitch />
           </div>
 
           {/* Mobile menu button */}
@@ -107,10 +101,6 @@ const Header = ({ className }: { className?: string }) => {
               ))}
               <div className="flex flex-col space-y-4 mt-4 pt-4 border-t border-terminal-400">
                 <SocialLinks variant="inline" showLabels={true} size={16} />
-                <div className="flex items-center space-x-2">
-                  <SearchButton />
-                  <ThemeSwitch />
-                </div>
               </div>
             </div>
           </nav>

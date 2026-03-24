@@ -29,44 +29,12 @@ test.describe("Critical User Journeys", () => {
         page.locator('nav.hidden.md\\:flex a[href="/cv"]'),
       ).toBeVisible();
       await expect(
-        page.locator('nav.hidden.md\\:flex a[href="/about"]'),
-      ).toBeVisible();
-      await expect(
         page.locator('nav.hidden.md\\:flex a[href="/contact"]'),
       ).toBeVisible();
     } else {
       // Mobile - just check that mobile menu button exists
       await expect(page.getByRole("button", { name: /menu/i })).toBeVisible();
     }
-  });
-
-  test("should navigate to About page", async ({ page }) => {
-    await page.goto("/");
-
-    // Check if we're on mobile viewport
-    const viewportSize = page.viewportSize();
-    const isMobile = viewportSize && viewportSize.width < 768;
-
-    if (isMobile) {
-      // Open mobile menu first
-      const menuButton = page.locator('button[aria-label*="menu"]');
-      await menuButton.click();
-
-      // Wait for mobile menu to be visible and click the About link in mobile nav
-      await page.click('nav.md\\:hidden a[href="/about"]');
-    } else {
-      // Navigate to About page via desktop navigation
-      await page.click('nav.hidden.md\\:flex a[href="/about"]');
-    }
-
-    // Verify About page content
-    await expect(page.locator("h1")).toBeVisible();
-    await expect(page.locator("h1")).toContainText("GENERALIST.DEV");
-
-    // Check for portfolio-specific content
-    await expect(
-      page.getByText("Bridging technical expertise, creative problem-solving, and business strategy."),
-    ).toBeVisible();
   });
 
   test("should navigate to Projects page", async ({ page }) => {
@@ -86,52 +54,6 @@ test.describe("Critical User Journeys", () => {
     // Verify Contact page loads
     await expect(page.locator("h1")).toBeVisible();
     await expect(page.locator("h1")).toContainText("CONTACT.EXE");
-
-    // Test form exists
-    await expect(page.locator("form")).toBeVisible();
-    await expect(page.locator('input[name="name"]')).toBeVisible();
-    await expect(page.locator('input[name="email"]')).toBeVisible();
-    await expect(page.locator('select[name="subject"]')).toBeVisible();
-    await expect(page.locator('textarea[name="message"]')).toBeVisible();
-  });
-
-  test("should handle contact form validation", async ({ page }) => {
-    await page.goto("/contact");
-
-    // Try to submit empty form
-    const submitButton = page.locator('button[type="submit"]');
-    await submitButton.click();
-
-    // Verify HTML5 validation prevents submission
-    const nameInput = page.locator('input[name="name"]');
-    const emailInput = page.locator('input[name="email"]');
-    const subjectInput = page.locator('select[name="subject"]');
-    const messageInput = page.locator('textarea[name="message"]');
-
-    // Check that required fields exist
-    await expect(nameInput).toBeVisible();
-    await expect(emailInput).toBeVisible();
-    await expect(subjectInput).toBeVisible();
-    await expect(messageInput).toBeVisible();
-  });
-
-  test("should navigate to blog articles", async ({ page }) => {
-    await page.goto("/all-articles");
-
-    // Verify articles page loads
-    await expect(page).toHaveURL(/.*\/all-articles/);
-
-    // Wait for content to load
-    await page.waitForLoadState('networkidle');
-
-    // Check if the page has the articles title
-    await expect(page.locator("h1")).toContainText(/All Articles|Blog/);
-
-    // Test that blog articles are visible - look for any article link or card
-    const articleElements = page.locator(
-      'article, .blog-post, [data-testid="blog-post"], a[href*="/"], .post-item'
-    );
-    await expect(articleElements.first()).toBeVisible({ timeout: 10000 });
   });
 
   test("should navigate to CV page", async ({ page }) => {
@@ -142,16 +64,19 @@ test.describe("Critical User Journeys", () => {
     await expect(page.locator("h1")).toContainText("CAREER_PATH/");
 
     // Wait for content to load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState("networkidle");
 
     // Check for CV timeline content - look for filter buttons and timeline structure
     await expect(
-      page.locator('button').filter({ hasText: /^ALL \(\d+\)$/ }).first(),
+      page
+        .locator("button")
+        .filter({ hasText: /^ALL \(\d+\)$/ })
+        .first(),
     ).toBeVisible({ timeout: 10000 });
 
     // Check for timeline container
     await expect(
-      page.locator('.relative.max-w-4xl.mx-auto, .space-y-0').first(),
+      page.locator(".relative.max-w-4xl.mx-auto, .space-y-0").first(),
     ).toBeVisible();
   });
 
