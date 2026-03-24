@@ -6,6 +6,21 @@
 @import "./pixel-art.css";
 
 @layer base {
+  :root,
+  :before,
+  :after {
+    --primary-lighter: #667f68;
+    --primary-light: #436447;
+    --primary-main: #2e5834;
+    --primary-dark: #2b5230;
+    --primary-darker: #042a0c;
+    --secondary-lighter: #d9ae8a;
+    --secondary-light: #c38b5a;
+    --secondary-main: #bc7736;
+    --secondary-dark: #9a5b19;
+    --secondary-darker: #783f00;
+  }
+
   * {
     border-color: hsl(var(--border));
   }

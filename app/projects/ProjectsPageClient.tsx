@@ -254,7 +254,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
       </ScrollAnimated>
 
       <main className="container mx-auto px-4 pt-24 pb-12">
-        {/* Terminal Header */}
         <ScrollAnimated animation="fade-in" delay={200}>
           <div className="mb-12">
             <div className="font-pixel text-sm text-terminal-400 mb-2">
@@ -274,10 +273,8 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
           </div>
         </ScrollAnimated>
 
-        {/* Search and Filters */}
         <ScrollAnimated animation="slide-in-left" delay={400}>
           <div className="mb-8 space-y-6">
-            {/* Search Bar */}
             <div>
               <div className="font-pixel text-xs text-terminal-400 mb-3">
                 search projects:
@@ -301,7 +298,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
               </div>
             </div>
 
-            {/* Project Type Filter */}
             <div>
               <div className="font-pixel text-xs text-terminal-400 mb-3">
                 filter by type:
@@ -341,7 +337,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
               </div>
             </div>
 
-            {/* Technology Filter */}
             <div>
               <div className="font-pixel text-xs text-terminal-400 mb-3">
                 filter by technology:
@@ -378,7 +373,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
               </div>
             </div>
 
-            {/* Sort Options */}
             <div>
               <div className="font-pixel text-xs text-terminal-400 mb-3">
                 sort by:
@@ -409,7 +403,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
               </div>
             </div>
 
-            {/* Active Filters Display */}
             {(filterType || techFilter || searchTerm) && (
               <div>
                 <div className="font-pixel text-xs text-terminal-400 mb-3">
@@ -455,7 +448,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
           </div>
         </ScrollAnimated>
 
-        {/* Results Counter */}
         <div className="mb-6">
           <div className="font-pixel text-xs text-terminal-400">
             {filteredProjects.length === 0 && searchTerm
@@ -466,7 +458,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
           </div>
         </div>
 
-        {/* Projects Grid */}
         {filteredProjects.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project) => (
@@ -496,7 +487,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
           </div>
         )}
 
-        {/* Terminal Footer */}
         <ScrollAnimated animation="fade-in">
           <div className="mt-12 pt-8 border-t border-terminal-400">
             <div className="font-pixel text-xs text-terminal-400">

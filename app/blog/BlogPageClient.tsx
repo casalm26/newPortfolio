@@ -108,7 +108,6 @@ function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
           </div>
         </ScrollAnimated>
 
-        {/* Search */}
         <ScrollAnimated animation="slide-in-left" delay={400}>
           <div className="mb-8 space-y-6">
             <div className="relative">
@@ -129,7 +128,6 @@ function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
               )}
             </div>
 
-            {/* Tags */}
             {allTags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 <button
@@ -162,7 +160,6 @@ function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
           </div>
         </ScrollAnimated>
 
-        {/* Results */}
         <div className="mb-6">
           <div className="font-pixel text-xs text-terminal-400">
             {filteredPosts.length === 0
@@ -171,7 +168,6 @@ function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
           </div>
         </div>
 
-        {/* Post List */}
         <div className="space-y-6">
           {filteredPosts.map((post) => (
             <ScrollAnimated key={post.slug} animation="fade-in">

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
 import { BlogPost } from "@/lib/models";
 import { authenticateCMS } from "@/lib/cms/auth";
+import { generateSlug } from "@/lib/utils";
+import { applySEODefaults } from "@/lib/cms/crud-helpers";
 
 export async function GET(request: NextRequest) {
   const authError = authenticateCMS(request);
@@ -44,15 +46,8 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
 
-  if (!body.slug) {
-    body.slug = body.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-  }
-
-  if (!body.seoTitle) body.seoTitle = body.title;
-  if (!body.seoDescription) body.seoDescription = body.summary;
+  if (!body.slug) body.slug = generateSlug(body.title);
+  applySEODefaults(body);
 
   const post = await BlogPost.create(body);
   return NextResponse.json(post, { status: 201 });

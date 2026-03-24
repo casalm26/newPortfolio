@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
 import { Video } from "@/lib/models";
 import { authenticateCMS } from "@/lib/cms/auth";
+import { generateSlug } from "@/lib/utils";
+import { applySEODefaults } from "@/lib/cms/crud-helpers";
 
 export async function GET(request: NextRequest) {
   const authError = authenticateCMS(request);
@@ -42,19 +44,13 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
 
-  if (!body.slug) {
-    body.slug = body.title
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-  }
+  if (!body.slug) body.slug = generateSlug(body.title);
 
   if (!body.thumbnail && body.youtubeId) {
     body.thumbnail = `https://img.youtube.com/vi/${body.youtubeId}/maxresdefault.jpg`;
   }
 
-  if (!body.seoTitle) body.seoTitle = body.title;
-  if (!body.seoDescription) body.seoDescription = body.description;
+  applySEODefaults(body, "description");
 
   const video = await Video.create(body);
   return NextResponse.json(video, { status: 201 });
