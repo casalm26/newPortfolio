@@ -53,7 +53,10 @@ describe("Contact Page", () => {
         link.textContent?.includes("SEND EMAIL"),
       );
       expect(ctaLink).toBeDefined();
-      expect(ctaLink).toHaveAttribute("href", "mailto:hello@caspian.dev");
+      expect(ctaLink).toHaveAttribute(
+        "href",
+        "mailto:caspian@houseofcaspian.com",
+      );
     });
 
     it("should render contact information sections", () => {

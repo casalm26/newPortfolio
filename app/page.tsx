@@ -16,12 +16,6 @@ export default function Page() {
       prefix: "./projects",
     },
     {
-      title: "ARTICLES",
-      description: "Technical insights & thoughts",
-      href: "/all-articles",
-      prefix: "./articles",
-    },
-    {
       title: "CV",
       description: "Career timeline & experience",
       href: "/cv",
@@ -31,7 +25,7 @@ export default function Page() {
 
   const highlights = [
     "Full-Stack Development",
-    "Interactive Game Design",
+    "Marketing & Growth",
     "Technical Architecture",
     "Creative Problem Solving",
   ];

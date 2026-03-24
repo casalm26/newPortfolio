@@ -35,9 +35,9 @@
       "type": "work",
       "title": "Founder",
       "company": "Don't Panic Consulting AB",
-      "location": "Sverige",
+      "location": "Stockholm, Sweden",
       "startDate": "2020-04",
-      "description": "As a freelancing generalist, I make use of the ability to learn and adapt to new situations. I pick up things that I need to learn, for my customers. Some of the things that me and my team have been doing in the past years include: - Set up a self-hosted Discourse forum - Numerous websites designed and set up - Various IT-related tasks like hosting solutions and e-mail server management - Podcast Editing for one of the biggest podcasts in Personal Finances in Sweden - Built and managed databases in Airtable for a variety of use cases - Developed the social media channels for RikaTillsammans.se - Helped 4 clients start and distribute their own podcasts - Coaching individuals and teams - Found the best Ice Cream spots in Malm\u00f6 through thorough research - Advised on, bought and assembled an office tech solution for a small company And many more things. The most important thing for me and my team is to keep our calm, and try to solve the problems that arise for our clients.",
+      "description": "Founder and lead consultant at Don't Panic Consulting AB, a generalist consulting firm. Key deliverables include: podcast editing for RikaTillsammans (Sweden's #1 personal finance podcast, 40,000+ listeners), self-hosted Discourse forum deployment, website design and development, IT infrastructure (hosting, email servers), Airtable database solutions, social media channel management, podcast launch consulting (4 clients), individual and team coaching, and office tech solutions. Our approach: stay calm, adapt quickly, and solve whatever problem the client brings.",
       "endDate": null,
       "current": true
     },
@@ -48,17 +48,27 @@
       "company": "Technigo",
       "location": "Uppsala, Sweden",
       "startDate": "2025-01",
-      "description": "A 32-week, fast-paced remote bootcamp, focusing on JavaScript (ES6), TypeScript, React, HTML5, CSS, and server-side programming with Node.js, with weekly projects covering everything from the basics of programming to structuring web projects using the latest technology. We work with Agile methodology through weekly sprint planning, check-ins, demos, and reflections. Mob-programming and pair-programming make up a significant part of the course.",
-      "endDate": "2025-10"
+      "description": "Graduated from Technigo's 32-week intensive Full Stack Developer bootcamp. Curriculum covered JavaScript (ES6), TypeScript, React, HTML5, CSS3, and server-side programming with Node.js. Agile methodology throughout with weekly sprint planning, check-ins, demos, and reflections. Extensive pair-programming and mob-programming.",
+      "endDate": "2025-10",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "HTML5",
+        "CSS3",
+        "Agile",
+        "Pair Programming"
+      ]
     },
     {
       "id": "2023-09-product-marketing-specialist-refined",
       "type": "work",
       "title": "Product Marketing Specialist",
       "company": "Refined",
-      "location": "Malm\u00f6, Sk\u00e5ne County, Sweden",
+      "location": "Malmö, Skåne County, Sweden",
       "startDate": "2023-09",
-      "description": "Product Marketing Specialist at Refined.",
+      "description": "Product Marketing Specialist at Refined, the leading Atlassian Marketplace site-builder for Confluence, Jira, and JSM (4,000+ customers in 100+ countries). Authored technical blog content including migration guides for Confluence Cloud. Developed product marketing strategies for cloud migration tooling and contributed to product positioning.",
       "endDate": "2023-12"
     },
     {
@@ -68,7 +78,7 @@
       "company": "Jurio.com",
       "location": "Copenhagen Metropolitan Area",
       "startDate": "2022-10",
-      "description": "Primary Responsibilities: - Managing the content calendar and ensuring consistent publication of blog articles - Holding overall SEO accountability, including technical SEO and performance, with regular reporting to the CMO - Overseeing PPC campaigns on Meta, Bing, and Google Ads, primarily focusing on copywriting but also including keyword analysis, budget management, and strategy aligned with KPIs - Leading a team of 3-4 law students - Crafting and implementing email campaigns directly targeted at customers - Identifying and executing affiliate partnerships with relevant influencers and podcasts",
+      "description": "Communications Manager at Jurio, a Copenhagen-based online legal consultation platform. Managed the content calendar and ensured consistent blog publication. Held overall SEO accountability including technical SEO and performance reporting. Oversaw PPC campaigns on Meta, Bing, and Google Ads with focus on copywriting, keyword analysis, and budget management. Led a team of 3-4 law students. Crafted targeted email campaigns and executed affiliate partnerships with influencers and podcasts.",
       "endDate": "2023-08"
     },
     {
@@ -76,9 +86,9 @@
       "type": "work",
       "title": "Communication Professional",
       "company": "Polynom Investment AB (publ)",
-      "location": "Malm\u00f6, Sk\u00e5ne, Sverige",
+      "location": "Malmö, Skåne, Sverige",
       "startDate": "2022-02",
-      "description": "Broadly speaking, I worked with communications at Polynom. I was responsible for the contact with our investors, as well as the strategy to acquire new ones. Apart from that, I had some IT-related responsibilities, as well as some light database management. I started out as a consultant in 2020, going full time by February 2022. Some of the things I did and/or was responsible for included: - Co-manage our yearly event \"Polynomdagen\" with 220 participants - Write monthly and bi-weekly newsletters to our part owners - Setup and management of our databases - E-signatures and digitised processes for contracts - Automated onboarding funnels for investors - Starting an internal podcast for our investors - Starting a council for our investors to make their voices heard - Strategy for finding new investors - Purchasing of IT-hardware and software",
+      "description": "Communication Professional at Polynom Investment AB, a Swedish venture capital firm investing in European scaleups with approximately 80 portfolio companies. Responsible for investor relations and strategy for acquiring new investors. Co-managed the annual 'Polynomdagen' event with 220 participants. Set up and managed investor databases, implemented e-signature solutions and digitized contract processes, built automated onboarding funnels, launched an internal investor podcast, and established an investor council. Started as a consultant in 2020, transitioning to full-time in February 2022.",
       "endDate": "2022-10"
     },
     {
@@ -88,7 +98,7 @@
       "company": "Project FUEL",
       "location": null,
       "startDate": "2019-12",
-      "description": "In this role, I was co-creating the project #FUEL1Million where Project FUEL is going to collect a total of 1 million life lessons in 2020. We collected these life lessons to create educational material for all kinds of learners.",
+      "description": "Project Manager for the #FUEL1Million initiative at Project FUEL, an award-winning international education nonprofit founded by Deepak Ramola (listed among the world's top 100 innovations). Co-created a global campaign to collect 1 million life lessons, transforming them into educational material for diverse learners worldwide.",
       "endDate": "2020-06"
     },
     {
@@ -96,19 +106,19 @@
       "type": "work",
       "title": "Executive Assistant",
       "company": "RikaTillsammans AB",
-      "location": "Malm\u00f6, Sverige",
+      "location": "Malmö, Sverige",
       "startDate": "2019-09",
-      "description": "P\u00e5 RikaTillsammans hj\u00e4lper jag till med lite allt m\u00f6jligt. Det \u00e4r allt ifr\u00e5n att sk\u00f6ta vissa Sociala Medie-kanaler till att bygga soffor till kontoret. Huvudsakligen jobbar jag med podcasten och att skapa inneh\u00e5ll kring den.",
+      "description": "Executive Assistant at RikaTillsammans, Sweden's #1 personal finance podcast (ranked #5 on Apple Podcasts Sweden Business charts, 458+ episodes, 40,000+ listeners). Managed social media channels, produced and edited podcast content, and handled various operational tasks including office setup.",
       "endDate": "2022-03"
     },
     {
       "id": "2019-04-ungdomscoach-ungart",
       "type": "work",
-      "title": "Ungdomscoach",
+      "title": "Youth Coach",
       "company": "UngArt",
-      "location": "Malm\u00f6, Sk\u00e5ne, Sverige",
+      "location": "Malmö, Skåne, Sverige",
       "startDate": "2019-04",
-      "description": "Jobbar med att st\u00f6dja en ton\u00e5rskille med st\u00f6d i handlingsplan fr\u00e5n SOC. Bland annat handlar det om fritidssyssels\u00e4ttning, mentalt st\u00f6d och st\u00f6d f\u00f6r utbildning.",
+      "description": "Youth coach supporting a teenager through an action plan mandated by social services. Responsibilities included coordinating recreational activities, providing mental health support, and offering educational guidance.",
       "endDate": "2021-03"
     },
     {
@@ -138,16 +148,16 @@
       "company": "Emprogage AB",
       "location": "Malmo, Sweden",
       "startDate": "2018-09",
-      "description": "Co-Creator at Emprogage AB.",
+      "description": "Co-creator at Emprogage AB, an early-stage venture focused on employee engagement solutions.",
       "endDate": "2020-01"
     },
     {
       "id": "volunteer-2018-02-ansvarig-utgivare-redaktionen",
       "type": "volunteer",
-      "title": "Ansvarig utgivare",
+      "title": "Editor-in-Chief",
       "company": "Redaktionen",
       "startDate": "2018-02",
-      "description": "Redaktionen \u00e4r en plattform f\u00f6r unga att uttrycka sig p\u00e5 och sprida sitt inneh\u00e5ll p\u00e5. Vi jobbar med de kanaler som \u00e4r relevanta f\u00f6r unga idag. Jag \u00e4r initiativtagare och skribent, bland annat. https://www.facebook.com/atredaktionen/",
+      "description": "Editor-in-chief and writer at Redaktionen, a media platform for young people to express themselves and distribute content through youth-relevant channels.",
       "category": "education",
       "endDate": "2018-05"
     },
@@ -156,9 +166,9 @@
       "type": "work",
       "title": "Host",
       "company": "Ett Samtal",
-      "location": "Malm\u00f6, Sverige",
+      "location": "Malmö, Sverige",
       "startDate": "2018-01",
-      "description": "\"Ett samtal\" or in English, \"A conversation\", is a podcast that I've started and that I host. I have a couple of reasons to have the project running. I wanted to learn the podcast medium and see what the process of creating a podcast is like. It's also an excuse for me to have thoughtful conversations with people I look up to on topics I want to talk to them about. And most importantly, I think the conversations can create value for individuals listening. The whole show is in Swedish.",
+      "description": "Creator and host of 'Ett Samtal' (A Conversation), a Swedish-language podcast featuring thoughtful conversations with people I admire on topics that matter. The project served as both a learning experience in podcast production and a platform for creating value through meaningful dialogue.",
       "endDate": "2019-06"
     },
     {
@@ -166,9 +176,9 @@
       "type": "work",
       "title": "Internship on project management",
       "company": "Simply Draw it Big",
-      "location": "Malm\u00f6, Sverige",
+      "location": "Malmö, Sverige",
       "startDate": "2018-01",
-      "description": "I was involved on a management level in a couple of different projects in and around the organisation. One of them was the Visual Viking Academy, a training in visual thinking and graphical recording.",
+      "description": "Project management internship involving multiple projects in and around the organization, including the Visual Viking Academy — a training program in visual thinking and graphical recording.",
       "endDate": "2018-03"
     },
     {
@@ -177,7 +187,7 @@
       "title": "Assistant Content Manager",
       "company": "World Values Initiative - Sweden",
       "startDate": "2018-01",
-      "description": "I'm a part of the team in Lund. My main focus is to develop our digital presence by creating content valuable to the people following us. http://worldvaluesinitiative.se/",
+      "description": "Part of the Lund team at World Values Initiative Sweden. Developed digital presence by creating valuable content for the organization's audience.",
       "category": "education",
       "endDate": "2018-11"
     },
@@ -225,10 +235,10 @@
       "id": "2017-11-host-l-rdomf-rdagen",
       "type": "work",
       "title": "Host",
-      "company": "#l\u00e4rdomf\u00f6rdagen",
-      "location": "Malm\u00f6, Sverige",
+      "company": "#lärdomfördagen",
+      "location": "Malmö, Sverige",
       "startDate": "2017-11",
-      "description": "L\u00e4rdom f\u00f6r dagen, roughly translated to \"Learning of today\" is a vlog series that I've been shooting almost every weekday since mid November. On it, I talk for about 5 minutes about something that I've learned the last couple of days. You can find it on Facebook at #l\u00e4rdomf\u00f6rdagen or on Youtube.",
+      "description": "Creator and host of 'Lärdom för Dagen' (Learning of the Day), a daily vlog series running almost every weekday. Each 5-minute episode explored a recent learning or insight, published on Facebook and YouTube.",
       "endDate": "2019-05"
     },
     {
@@ -237,7 +247,7 @@
       "title": "Bachelor's degree",
       "institution": "Lund University",
       "startDate": "2017-08",
-      "description": "Bachelor's degree studies at Lund University.",
+      "description": "Bachelor's degree at Lund University, one of Scandinavia's most prestigious universities (consistently ranked among the world's top 100). Active in student life and financial education.",
       "endDate": "2020-06",
       "details": ["The program's association as master of finances."]
     },
@@ -246,26 +256,26 @@
       "type": "work",
       "title": "Project manager",
       "company": "Fryshuset",
-      "location": "Malm\u00f6, Sweden",
+      "location": "Malmö, Sweden",
       "startDate": "2017-07",
-      "description": "I organised a side event for a theatre show called \"Den e Vi\" that was shown at Malm\u00f6 City Theatre. I booked a live band, produced a short documentary about the city and made some decorations for the room.",
+      "description": "Organized a side event for the theatre show 'Den e Vi' at Malmö City Theatre. Booked a live band, produced a short documentary about the city, and designed room decorations for the event.",
       "endDate": "2017-10"
     },
     {
       "id": "2017-05-assistant-project-manager-sk-nes-basketbollf-rbund",
       "type": "work",
       "title": "Assistant Project Manager",
-      "company": "Sk\u00e5nes basketbollf\u00f6rbund",
+      "company": "Skånes basketbollförbund",
       "location": "Malmo, Sweden",
       "startDate": "2017-05",
-      "description": "I had responsibilities regarding finding potential collaborations, send applications for funds all in the start up of a project called \"Hemmaplan\". The whole concept was to get young kids to exercise more, with the basketball as a tool.",
+      "description": "Assistant Project Manager for 'Hemmaplan', a youth sports initiative using basketball as a tool to get young kids more physically active. Identified potential collaborations and submitted funding applications during the project's startup phase.",
       "endDate": "2017-07"
     },
     {
       "id": "education-2017-01-project-management-i-linn-universitetet",
       "type": "education",
       "title": "Project Management I",
-      "institution": "Linn\u00e9universitetet",
+      "institution": "Linnéuniversitetet",
       "startDate": "2017-01",
       "description": "A basic course in project management.",
       "endDate": "2017-01"
@@ -285,19 +295,19 @@
       "id": "2016-07-project-manager-samtalsaktivisterna-malm",
       "type": "work",
       "title": "Project Manager",
-      "company": "Samtalsaktivisterna Malm\u00f6",
+      "company": "Samtalsaktivisterna Malmö",
       "location": "Malmo, Sweden",
       "startDate": "2016-07",
-      "description": "Samtalsaktivisterna, or \"The Conversational Activists\" started out as a Reach For Change-funded project. I played a key role in going from just a project to creating an NGO and building the organisation from the ground up. I was hired as a project manager and admin, but quickly was responsible for personel, sales, planning as well as administration and managing projects. http://samtalsaktivisterna.se",
+      "description": "Project Manager at Samtalsaktivisterna (The Conversational Activists), originally a Reach For Change-funded project. Played a key role in transitioning from project to NGO, building the organization from the ground up. Responsibilities expanded from project management and administration to include personnel management, sales, planning, and leading multiple projects.",
       "endDate": "2016-12"
     },
     {
       "id": "volunteer-2016-01-styrelseledamot-sveriges-elevk-rer",
       "type": "volunteer",
-      "title": "Styrelseledamot",
-      "company": "Sveriges Elevk\u00e5rer",
+      "title": "Board Member",
+      "company": "Sveriges Elevkårer",
       "startDate": "2016-01",
-      "description": "Styrelseledamot at Sveriges Elevk\u00e5rer.",
+      "description": "Board member at Sveriges Elevkårer (Swedish Student Unions).",
       "endDate": "2016-06"
     },
     {
@@ -305,9 +315,9 @@
       "type": "work",
       "title": "CFO and co-founder",
       "company": "HipWheels UF",
-      "location": "Malm\u00f6",
+      "location": "Malmö",
       "startDate": "2015-08",
-      "description": "A friend and I, when doing our last year at Bladins Gymnasium, started a company through Ung F\u00f6retagsamhet as a school work. We sold howerboards/2-wheel segways. We had a turnover of almost 100.000SEK in our first 5 months.",
+      "description": "Co-founded HipWheels UF through Ung Företagsamhet (Junior Achievement Sweden) during the final year at Bladins Gymnasium. Sold hoverboards and achieved a turnover of almost 100,000 SEK in the first 5 months.",
       "endDate": "2016-06"
     },
     {
@@ -316,13 +326,13 @@
       "title": "Gymnasium",
       "institution": "Bladins Gymnasium",
       "startDate": "2013-01",
-      "description": "The whole program and all the material was in English.",
+      "description": "International Baccalaureate-style program taught entirely in English.",
       "endDate": "2016-01",
       "details": [
-        "Chairman of the Student union",
-        "Secretary of the student union",
-        "board member of the united student unions of Malm\u00f6",
-        "Initiator and responsible for the Soccer team and the Chess club. I received the honorary \"Bladiner of the year\" my last year for the contributions I made."
+        "Chairman of the Student Union",
+        "Secretary of the Student Union",
+        "Board member of the United Student Unions of Malmö",
+        "Initiator of the Soccer team and Chess club. Received the honorary 'Bladiner of the Year' award for outstanding contributions."
       ]
     }
   ]

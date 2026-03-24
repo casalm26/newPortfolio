@@ -52,13 +52,13 @@ export default function ContactForm() {
                 within 24 hours.
               </p>
               <a
-                href="mailto:hello@caspian.dev"
+                href="mailto:caspian@houseofcaspian.com"
                 className="inline-block w-full p-4 border-2 border-white bg-white text-black font-pixel text-sm text-center transition-all duration-150 hover:bg-transparent hover:text-white hover:shadow-lg hover:shadow-white/20 hover:border-green-400 active:scale-95"
               >
                 SEND EMAIL →
               </a>
               <div className="font-mono text-xs text-terminal-500 text-center">
-                hello@caspian.dev
+                caspian@houseofcaspian.com
               </div>
             </div>
           </div>
@@ -84,11 +84,11 @@ export default function ContactForm() {
                   </div>
                   <div className="font-mono text-white">
                     <a
-                      href="mailto:hello@caspian.dev"
+                      href="mailto:caspian@houseofcaspian.com"
                       className="hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black rounded"
-                      aria-label="Send email to hello@caspian.dev"
+                      aria-label="Send email to caspian@houseofcaspian.com"
                     >
-                      hello@caspian.dev
+                      caspian@houseofcaspian.com
                     </a>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ContactForm() {
               </div>
               <div className="space-y-3">
                 <a
-                  href="https://github.com/caspianalmerud"
+                  href="https://github.com/casalm26"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visit Caspian's GitHub profile (opens in new tab)"
@@ -136,10 +136,10 @@ export default function ContactForm() {
                     size={16}
                     aria-hidden="true"
                   />
-                  → github.com/caspianalmerud
+                  → github.com/casalm26
                 </a>
                 <a
-                  href="https://linkedin.com/in/caspian-almerud"
+                  href="https://linkedin.com/in/caspianalmerud"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Connect with Caspian on LinkedIn (opens in new tab)"
@@ -150,10 +150,10 @@ export default function ContactForm() {
                     size={16}
                     aria-hidden="true"
                   />
-                  → linkedin.com/in/caspian-almerud
+                  → linkedin.com/in/caspianalmerud
                 </a>
                 <a
-                  href="https://twitter.com/caspianalmerud"
+                  href="https://twitter.com/almerudcaspian"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Follow Caspian on Twitter (opens in new tab)"
@@ -164,7 +164,7 @@ export default function ContactForm() {
                     size={16}
                     aria-hidden="true"
                   />
-                  → twitter.com/caspianalmerud
+                  → twitter.com/almerudcaspian
                 </a>
                 <div className="flex items-center gap-3 font-mono text-terminal-300">
                   <EmailPixelIcon
@@ -172,7 +172,9 @@ export default function ContactForm() {
                     size={16}
                     aria-hidden="true"
                   />
-                  <span aria-label="Email address">→ hello@caspian.dev</span>
+                  <span aria-label="Email address">
+                    → caspian@houseofcaspian.com
+                  </span>
                 </div>
               </div>
             </div>

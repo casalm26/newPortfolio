@@ -73,7 +73,7 @@ const PersonalFooter = ({ className = "" }: { className?: string }) => {
             <div className="space-y-2">
               <div className="font-pixel text-xs text-terminal-300">
                 <span className="text-terminal-500">email:</span>{" "}
-                hello@caspian.dev
+                caspian@houseofcaspian.com
               </div>
               <div className="font-pixel text-xs text-terminal-300">
                 <span className="text-terminal-500">timezone:</span> UTC+0

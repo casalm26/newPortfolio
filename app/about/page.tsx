@@ -205,7 +205,7 @@ export default function About() {
                       ├── DevOps (Docker, CI/CD)
                     </div>
                     <div className="text-terminal-300">
-                      ├── AI-tools (Codex, Lovable, Factory, Cursor)
+                      ├── AI-tools (Claude Code, Lovable, Cursor, v0)
                     </div>
                     <div className="text-terminal-300">
                       └── No-Code (Airtable, Zapier, Notion, Supabase)
@@ -280,13 +280,13 @@ export default function About() {
                   <div className="flex items-center justify-between">
                     <span className="text-white">Current Focus:</span>
                     <span className="text-terminal-300">
-                      AI × Creative Technology × Web3
+                      AI × Full-Stack Development × Creative Technology
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-white">Next Learning:</span>
                     <span className="text-terminal-300">
-                      Rust, WebAssembly, Edge Computing
+                      Systems Design, Cloud Architecture
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
@@ -349,19 +349,19 @@ export default function About() {
                       <div className="font-mono text-sm">
                         <span className="text-terminal-400">Email:</span>
                         <span className="text-terminal-300 ml-2">
-                          hello@caspian.dev
+                          caspian@houseofcaspian.com
                         </span>
                       </div>
                       <div className="font-mono text-sm">
                         <span className="text-terminal-400">LinkedIn:</span>
                         <span className="text-terminal-300 ml-2">
-                          /in/caspian-almerud
+                          /in/caspianalmerud
                         </span>
                       </div>
                       <div className="font-mono text-sm">
                         <span className="text-terminal-400">GitHub:</span>
                         <span className="text-terminal-300 ml-2">
-                          /caspianalmerud
+                          /casalm26
                         </span>
                       </div>
                     </div>

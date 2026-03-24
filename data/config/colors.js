@@ -1,4 +1,4 @@
-/* Configure colors for the Tree Partner Solutions theme */
+/* Caspian.dev terminal theme */
 const colors = {
   primary: {
     lighter: "#667f68",
