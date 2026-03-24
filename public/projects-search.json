@@ -110,6 +110,64 @@
     }
   },
   {
+    "title": "VQM Stock Advisory Platform",
+    "date": "2025-09-15T00:00:00.000Z",
+    "tags": ["WordPress", "Bootstrap", "Finance", "Marketing Site"],
+    "summary": "Six-week Technigo internship project delivering a custom WordPress build for VQM with a streamlined subscription funnel, responsive storytelling, and integrations for Stripe + KIT.",
+    "projectType": "Technical",
+    "category": "Finance Marketing",
+    "duration": "6 weeks",
+    "role": "Front-End Developer (Intern)",
+    "skills": [
+      "WordPress Theming",
+      "PHP",
+      "Bootstrap 5",
+      "Gutenberg Blocks",
+      "Performance Optimization",
+      "SEO Implementation"
+    ],
+    "tools": [
+      "WordPress",
+      "Bootstrap",
+      "Typekit",
+      "Yoast SEO",
+      "Google Tag Manager"
+    ],
+    "links": null,
+    "type": "Project",
+    "readingTime": {
+      "text": "2 min read",
+      "minutes": 1.84,
+      "time": 110400,
+      "words": 368
+    },
+    "slug": "vqm",
+    "path": "projects/vqm",
+    "filePath": "projects/vqm.mdx",
+    "toc": [
+      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
+      { "value": "Key Features", "url": "#key-features", "depth": 2 },
+      {
+        "value": "Technical Highlights",
+        "url": "#technical-highlights",
+        "depth": 2
+      },
+      { "value": "Results", "url": "#results", "depth": 2 },
+      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "VQM Stock Advisory Platform",
+      "description": "Six-week Technigo internship project delivering a custom WordPress build for VQM with a streamlined subscription funnel, responsive storytelling, and integrations for Stripe + KIT.",
+      "dateCreated": "2025-09-15T00:00:00.000Z",
+      "dateModified": "2025-09-15T00:00:00.000Z",
+      "author": { "@type": "Person", "name": "Caspian Almerud" },
+      "keywords": ["WordPress", "Bootstrap", "Finance", "Marketing Site"],
+      "url": "https://caspian.dev/projects/vqm"
+    }
+  },
+  {
     "title": "Next.js Business Boilerplate",
     "date": "2025-09-03T00:00:00.000Z",
     "tags": ["Next.js", "TypeScript", "Tailwind", "Contentlayer"],
@@ -321,46 +379,6 @@
     }
   },
   {
-    "title": "Unit Testing Challenge",
-    "date": "2025-05-27T00:00:00.000Z",
-    "tags": ["Testing", "Jest", "TDD"],
-    "summary": "Workshop repo challenging developers to make a broken suite of JavaScript unit tests pass.",
-    "projectType": "Learning",
-    "category": "Testing",
-    "duration": "3 days",
-    "role": "Student Developer",
-    "skills": ["Test-Driven Development", "Debugging", "JavaScript"],
-    "tools": ["Jest", "Node.js", "npm", "ESLint"],
-    "links": { "github": "https://github.com/casalm26/unit-tests" },
-    "type": "Project",
-    "readingTime": {
-      "text": "1 min read",
-      "minutes": 0.705,
-      "time": 42300,
-      "words": 141
-    },
-    "slug": "unit-tests",
-    "path": "projects/unit-tests",
-    "filePath": "projects/unit-tests.mdx",
-    "toc": [
-      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
-      { "value": "Tech Stack", "url": "#tech-stack", "depth": 2 },
-      { "value": "Key Work", "url": "#key-work", "depth": 2 },
-      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
-    ],
-    "structuredData": {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "Unit Testing Challenge",
-      "description": "Workshop repo challenging developers to make a broken suite of JavaScript unit tests pass.",
-      "dateCreated": "2025-05-27T00:00:00.000Z",
-      "dateModified": "2025-05-27T00:00:00.000Z",
-      "author": { "@type": "Person", "name": "Caspian Almerud" },
-      "keywords": ["Testing", "Jest", "TDD"],
-      "url": "https://caspian.dev/projects/unit-tests"
-    }
-  },
-  {
     "title": "API Integration Playground",
     "date": "2025-05-26T00:00:00.000Z",
     "tags": ["JavaScript", "API", "Fetch"],
@@ -415,13 +433,16 @@
     "role": "Student Developer",
     "skills": ["State Management", "DOM Manipulation", "Persistence"],
     "tools": ["JavaScript", "HTML5", "CSS3", "LocalStorage"],
-    "links": { "github": "https://github.com/casalm26/js-project-todo" },
+    "links": {
+      "github": "https://github.com/casalm26/js-project-todo",
+      "live": "https://caspiandoes.netlify.app/"
+    },
     "type": "Project",
     "readingTime": {
       "text": "1 min read",
-      "minutes": 0.665,
-      "time": 39900,
-      "words": 133
+      "minutes": 0.795,
+      "time": 47700,
+      "words": 159
     },
     "slug": "js-project-todo",
     "path": "projects/js-project-todo",
@@ -533,10 +554,11 @@
     "category": "Frontend",
     "duration": "1 week",
     "role": "Student Developer",
-    "skills": ["React State", "Optimistic UI", "Form Handling", "Pagination"],
+    "skills": ["React State", "Form Handling", "Pagination"],
     "tools": ["React", "Vite", "npm", "Styled Components"],
     "links": {
-      "github": "https://github.com/casalm26/js-project-happy-thoughts"
+      "github": "https://github.com/casalm26/js-project-happy-thoughts",
+      "live": "https://friendlytwitter.netlify.app/"
     },
     "type": "Project",
     "readingTime": {
@@ -604,53 +626,6 @@
       "author": { "@type": "Person", "name": "Caspian Almerud" },
       "keywords": ["HTML", "CSS", "JavaScript"],
       "url": "https://caspian.dev/projects/js-project-portfolio"
-    }
-  },
-  {
-    "title": "Spring 2025 Live Sessions",
-    "date": "2025-03-27T00:00:00.000Z",
-    "tags": ["Workshops", "JavaScript", "CSS", "TypeScript"],
-    "summary": "Repository of live coding session materials covering DOM tricks, responsive CSS, and TypeScript fundamentals.",
-    "projectType": "Learning",
-    "category": "Workshops",
-    "duration": "Spring 2025 season",
-    "role": "Facilitator",
-    "skills": [
-      "Live Coding",
-      "Educational Content",
-      "Responsive Design",
-      "TypeScript"
-    ],
-    "tools": ["JavaScript", "TypeScript", "CSS", "Vite"],
-    "links": {
-      "github": "https://github.com/casalm26/spring-2025-live-sessions"
-    },
-    "type": "Project",
-    "readingTime": {
-      "text": "1 min read",
-      "minutes": 0.68,
-      "time": 40800,
-      "words": 136
-    },
-    "slug": "spring-2025-live-sessions",
-    "path": "projects/spring-2025-live-sessions",
-    "filePath": "projects/spring-2025-live-sessions.mdx",
-    "toc": [
-      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
-      { "value": "Tech Stack", "url": "#tech-stack", "depth": 2 },
-      { "value": "Key Work", "url": "#key-work", "depth": 2 },
-      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
-    ],
-    "structuredData": {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "Spring 2025 Live Sessions",
-      "description": "Repository of live coding session materials covering DOM tricks, responsive CSS, and TypeScript fundamentals.",
-      "dateCreated": "2025-03-27T00:00:00.000Z",
-      "dateModified": "2025-03-27T00:00:00.000Z",
-      "author": { "@type": "Person", "name": "Caspian Almerud" },
-      "keywords": ["Workshops", "JavaScript", "CSS", "TypeScript"],
-      "url": "https://caspian.dev/projects/spring-2025-live-sessions"
     }
   },
   {
@@ -824,46 +799,6 @@
     }
   },
   {
-    "title": "Week 2 Practice Collection",
-    "date": "2025-02-04T00:00:00.000Z",
-    "tags": ["HTML", "CSS", "Practice"],
-    "summary": "Collection of early bootcamp exercises exploring semantic HTML, responsive CSS, and layout problem solving.",
-    "projectType": "Learning",
-    "category": "Bootcamp",
-    "duration": "1 week",
-    "role": "Student Developer",
-    "skills": ["Flexbox", "Grid", "Typography", "Accessibility"],
-    "tools": ["HTML5", "CSS3", "VS Code"],
-    "links": { "github": "https://github.com/casalm26/week-2-practices" },
-    "type": "Project",
-    "readingTime": {
-      "text": "1 min read",
-      "minutes": 0.67,
-      "time": 40200,
-      "words": 134
-    },
-    "slug": "week-2-practices",
-    "path": "projects/week-2-practices",
-    "filePath": "projects/week-2-practices.mdx",
-    "toc": [
-      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
-      { "value": "Tech Stack", "url": "#tech-stack", "depth": 2 },
-      { "value": "Key Work", "url": "#key-work", "depth": 2 },
-      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
-    ],
-    "structuredData": {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      "name": "Week 2 Practice Collection",
-      "description": "Collection of early bootcamp exercises exploring semantic HTML, responsive CSS, and layout problem solving.",
-      "dateCreated": "2025-02-04T00:00:00.000Z",
-      "dateModified": "2025-02-04T00:00:00.000Z",
-      "author": { "@type": "Person", "name": "Caspian Almerud" },
-      "keywords": ["HTML", "CSS", "Practice"],
-      "url": "https://caspian.dev/projects/week-2-practices"
-    }
-  },
-  {
     "title": "Buzzfeed-Style Quiz Planning",
     "date": "2025-01-29T00:00:00.000Z",
     "tags": ["Planning", "Quiz", "JavaScript"],
@@ -901,6 +836,119 @@
       "author": { "@type": "Person", "name": "Caspian Almerud" },
       "keywords": ["Planning", "Quiz", "JavaScript"],
       "url": "https://caspian.dev/projects/project-buzzfeed"
+    }
+  },
+  {
+    "title": "IdeaEvaluator MVP",
+    "date": "2024-11-20T00:00:00.000Z",
+    "tags": ["AI", "Fastify", "React", "Airtable", "Monorepo"],
+    "summary": "Monorepo delivering AI-assisted idea validation with a Fastify backend, Vite/Tailwind frontend, and Airtable telemetry integrations.",
+    "projectType": "Technical",
+    "category": "Product Discovery",
+    "duration": "Internship Sprint",
+    "role": "Product Engineer",
+    "skills": [
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Fastify",
+      "Prompt Engineering",
+      "Airtable API",
+      "Netlify",
+      "Render"
+    ],
+    "tools": [
+      "Vite",
+      "Fastify",
+      "OpenAI",
+      "Airtable",
+      "Netlify",
+      "Render",
+      "Vitest"
+    ],
+    "links": { "live": "https://ideaevaluator.netlify.app/" },
+    "type": "Project",
+    "readingTime": {
+      "text": "2 min read",
+      "minutes": 1.375,
+      "time": 82500,
+      "words": 275
+    },
+    "slug": "idevalidator",
+    "path": "projects/idevalidator",
+    "filePath": "projects/idevalidator.mdx",
+    "toc": [
+      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
+      { "value": "Key Features", "url": "#key-features", "depth": 2 },
+      {
+        "value": "Technical Highlights",
+        "url": "#technical-highlights",
+        "depth": 2
+      },
+      { "value": "Results", "url": "#results", "depth": 2 },
+      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "IdeaEvaluator MVP",
+      "description": "Monorepo delivering AI-assisted idea validation with a Fastify backend, Vite/Tailwind frontend, and Airtable telemetry integrations.",
+      "dateCreated": "2024-11-20T00:00:00.000Z",
+      "dateModified": "2024-11-20T00:00:00.000Z",
+      "author": { "@type": "Person", "name": "Caspian Almerud" },
+      "keywords": ["AI", "Fastify", "React", "Airtable", "Monorepo"],
+      "url": "https://caspian.dev/projects/idevalidator"
+    }
+  },
+  {
+    "title": "StartupWheel Automation Pipeline",
+    "date": "2024-10-05T00:00:00.000Z",
+    "tags": ["Python", "Automation", "Agents", "OpenAI", "Airtable"],
+    "summary": "Python agent stack that scrapes research, generates PRDs/design specs, and assembles Airtable schemas for startup validation workflows.",
+    "projectType": "Technical",
+    "category": "Automation",
+    "duration": "4 weeks",
+    "role": "Automation Engineer",
+    "skills": [
+      "Python",
+      "Playwright",
+      "Prompt Engineering",
+      "Data Pipelines",
+      "Airtable API",
+      "CLI Tooling"
+    ],
+    "tools": ["Python", "Playwright", "OpenAI", "Airtable", "Black", "isort"],
+    "type": "Project",
+    "readingTime": {
+      "text": "2 min read",
+      "minutes": 1.205,
+      "time": 72300,
+      "words": 241
+    },
+    "slug": "startupwheel",
+    "path": "projects/startupwheel",
+    "filePath": "projects/startupwheel.mdx",
+    "toc": [
+      { "value": "Project Overview", "url": "#project-overview", "depth": 2 },
+      { "value": "Key Features", "url": "#key-features", "depth": 2 },
+      {
+        "value": "Technical Highlights",
+        "url": "#technical-highlights",
+        "depth": 2
+      },
+      { "value": "Results", "url": "#results", "depth": 2 },
+      { "value": "Next Steps", "url": "#next-steps", "depth": 2 }
+    ],
+    "structuredData": {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      "name": "StartupWheel Automation Pipeline",
+      "description": "Python agent stack that scrapes research, generates PRDs/design specs, and assembles Airtable schemas for startup validation workflows.",
+      "dateCreated": "2024-10-05T00:00:00.000Z",
+      "dateModified": "2024-10-05T00:00:00.000Z",
+      "author": { "@type": "Person", "name": "Caspian Almerud" },
+      "keywords": ["Python", "Automation", "Agents", "OpenAI", "Airtable"],
+      "url": "https://caspian.dev/projects/startupwheel"
     }
   },
   {
