@@ -1,0 +1,43 @@
+import mongoose, { Schema, Document, Model } from "mongoose";
+
+export interface IBlogPost extends Document {
+  title: string;
+  slug: string;
+  content: string;
+  summary: string;
+  tags: string[];
+  category: string;
+  coverImage?: string;
+  author: string;
+  draft: boolean;
+  publishedAt: Date;
+  updatedAt: Date;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords: string[];
+}
+
+const BlogPostSchema = new Schema<IBlogPost>(
+  {
+    title: { type: String, required: true },
+    slug: { type: String, required: true, unique: true, index: true },
+    content: { type: String, required: true },
+    summary: { type: String, required: true },
+    tags: { type: [String], default: [] },
+    category: { type: String, default: "" },
+    coverImage: { type: String },
+    author: { type: String, default: "Caspian Almerud" },
+    draft: { type: Boolean, default: false },
+    publishedAt: { type: Date, default: Date.now },
+    seoTitle: { type: String, default: "" },
+    seoDescription: { type: String, default: "" },
+    seoKeywords: { type: [String], default: [] },
+  },
+  {
+    timestamps: true,
+  },
+);
+
+export const BlogPost: Model<IBlogPost> =
+  mongoose.models.BlogPost ||
+  mongoose.model<IBlogPost>("BlogPost", BlogPostSchema);
