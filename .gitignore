@@ -51,7 +51,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# contentlayer
+# contentlayer (legacy, can be removed)
 .contentlayer/
 
 # search index
