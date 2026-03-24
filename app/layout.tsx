@@ -2,8 +2,6 @@ import { Source_Sans_3, Oswald } from "next/font/google";
 import { siteConfig } from "@/data/config/site.settings";
 import { Metadata } from "next";
 
-import { colors } from "@/data/config/colors.js";
-
 import "@/css/globals.css";
 import { AnalyticsWrapper } from "@/components/shared/Analytics";
 import { AnimationProvider } from "@/components/shared/AnimationProvider";
@@ -19,16 +17,6 @@ const baseFont = Source_Sans_3({
   display: "swap",
   variable: "--font-space-default",
   weight: ["400", "600"],
-});
-
-const globalColors = colors;
-const style: string[] = [];
-
-Object.keys(globalColors).map((variant) => {
-  return Object.keys(globalColors[variant]).map((color) => {
-    const value = globalColors[variant][color];
-    style.push(`--${variant}-${color}: ${value}`);
-  });
 });
 
 export const metadata: Metadata = {
@@ -77,14 +65,6 @@ export default function RootLayout({
       className={`${baseFont.variable} ${displayFont.variable} scroll-smooth dark`}
     >
       <head>
-        <style>
-          {`
-          :root, :before, :after {
-            ${style.join(";")}
-          }
-        `}
-        </style>
-
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

@@ -97,7 +97,6 @@ function VideosPageContent({ videos }: { videos: VideoData[] }) {
           </div>
         </ScrollAnimated>
 
-        {/* Search + Tags */}
         <ScrollAnimated animation="slide-in-left" delay={400}>
           <div className="mb-8 space-y-6">
             <div className="relative">
@@ -158,7 +157,6 @@ function VideosPageContent({ videos }: { videos: VideoData[] }) {
           </div>
         </div>
 
-        {/* Video Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredVideos.map((video) => (
             <ScrollAnimated key={video.slug} animation="fade-in">
@@ -166,7 +164,6 @@ function VideosPageContent({ videos }: { videos: VideoData[] }) {
                 href={`/videos/${video.slug}`}
                 className="block border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-150 group overflow-hidden"
               >
-                {/* Thumbnail */}
                 <div className="relative aspect-video bg-terminal-900">
                   {video.thumbnail ? (
                     <Image

@@ -5,7 +5,13 @@ import ProjectNavigation from "@/components/projects/ProjectNavigation";
 import Link from "next/link";
 import { MDXContent } from "@/components/shared/MDXContent";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
-import { getAllProjects, getProjectBySlug, serialize } from "@/lib/cms/queries";
+import {
+  getAllProjects,
+  getProjectBySlug,
+  getProjectNavigation,
+  serialize,
+} from "@/lib/cms/queries";
+
 import { serialize as serializeMDX } from "next-mdx-remote/serialize";
 
 interface Props {
@@ -41,14 +47,7 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
-  const allProjects = await getAllProjects();
-  const projectSlugs = serialize(
-    allProjects.map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      publishedAt: p.publishedAt,
-    })),
-  );
+  const projectSlugs = serialize(await getProjectNavigation());
 
   const mdxSource = await serializeMDX(project.content || "");
 

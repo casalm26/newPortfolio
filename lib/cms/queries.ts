@@ -43,6 +43,16 @@ export async function getVideoBySlug(slug: string): Promise<IVideo | null> {
   return Video.findOne({ slug }).lean();
 }
 
+export async function getProjectNavigation(): Promise<
+  Pick<IProject, "slug" | "title" | "publishedAt">[]
+> {
+  await connectDB();
+  return Project.find({ draft: false })
+    .select("slug title publishedAt")
+    .sort({ publishedAt: -1 })
+    .lean();
+}
+
 // ── Timeline ──
 
 export async function getTimelineEntries(): Promise<ITimelineEntry[]> {
