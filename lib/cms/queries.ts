@@ -1,6 +1,21 @@
+import { Types } from "mongoose";
 import { connectDB } from "@/lib/db/connection";
 import { BlogPost, Project, Video, TimelineEntry } from "@/lib/models";
 import type { IBlogPost, IProject, IVideo, ITimelineEntry } from "@/lib/models";
+
+/**
+ * Recursively converts Mongoose Document types to their JSON-serialized
+ * equivalents: ObjectId → string, Date → string, and strips Document methods.
+ */
+export type Serialized<T> = T extends Types.ObjectId
+  ? string
+  : T extends Date
+    ? string
+    : T extends (infer U)[]
+      ? Serialized<U>[]
+      : T extends Record<string, unknown>
+        ? { [K in keyof T]: Serialized<T[K]> }
+        : T;
 
 // ── Projects ──
 
@@ -62,6 +77,6 @@ export async function getTimelineEntries(): Promise<ITimelineEntry[]> {
 
 // ── Serialization helper ──
 
-export function serialize<T, R = T>(doc: T): R {
+export function serialize<T>(doc: T): Serialized<T> {
   return JSON.parse(JSON.stringify(doc));
 }
