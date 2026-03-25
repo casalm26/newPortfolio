@@ -25,6 +25,7 @@ export interface ITimelineEntryFields {
   credentialId: string;
   links: Record<string, string>;
   order: number;
+  updatedAt: Date;
 }
 
 /** Full Mongoose document type — only used internally by Mongoose */
