@@ -19,14 +19,15 @@ if (!global.mongooseCache) {
   global.mongooseCache = cached;
 }
 
-export async function connectDB(): Promise<typeof mongoose> {
+export async function connectDB(): Promise<typeof mongoose | null> {
   if (cached.conn) {
     return cached.conn;
   }
 
   const uri = process.env.MONGODB_URI;
   if (!uri) {
-    throw new Error("MONGODB_URI environment variable is not defined");
+    console.warn("MONGODB_URI not set – skipping database connection");
+    return null;
   }
 
   if (!cached.promise) {

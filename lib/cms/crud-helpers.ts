@@ -22,7 +22,12 @@ export function createSlugRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { slug } = await params;
 
     const doc = await model.findOne({ slug }).lean();
@@ -40,7 +45,12 @@ export function createSlugRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { slug } = await params;
     const body = await request.json();
 
@@ -65,7 +75,12 @@ export function createSlugRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { slug } = await params;
 
     const doc = await model.findOneAndDelete({ slug }).lean();
@@ -93,7 +108,12 @@ export function createIdRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { id } = await params;
 
     const doc = await model.findOne({ entryId: id }).lean();
@@ -111,7 +131,12 @@ export function createIdRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { id } = await params;
     const body = await request.json();
 
@@ -136,7 +161,12 @@ export function createIdRouteHandlers(
     const authError = authenticateCMS(request);
     if (authError) return authError;
 
-    await connectDB();
+    const db = await connectDB();
+    if (!db)
+      return NextResponse.json(
+        { error: "Database not configured" },
+        { status: 503 },
+      );
     const { id } = await params;
 
     const doc = await model.findOneAndDelete({ entryId: id }).lean();

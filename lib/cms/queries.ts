@@ -23,46 +23,53 @@ export type Serialized<T> = T extends Types.ObjectId
 export async function getAllProjects(
   includeDrafts = false,
 ): Promise<IProject[]> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return [];
   const filter = includeDrafts ? {} : { draft: false };
   return Project.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
 export async function getProjectBySlug(slug: string): Promise<IProject | null> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return null;
   return Project.findOne({ slug }).lean();
 }
 
 // ── Blog Posts ──
 
 export async function getAllPosts(includeDrafts = false): Promise<IBlogPost[]> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return [];
   const filter = includeDrafts ? {} : { draft: false };
   return BlogPost.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
 export async function getPostBySlug(slug: string): Promise<IBlogPost | null> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return null;
   return BlogPost.findOne({ slug }).lean();
 }
 
 // ── Videos ──
 
 export async function getAllVideos(includeDrafts = false): Promise<IVideo[]> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return [];
   const filter = includeDrafts ? {} : { draft: false };
   return Video.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
 export async function getVideoBySlug(slug: string): Promise<IVideo | null> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return null;
   return Video.findOne({ slug }).lean();
 }
 
 export async function getProjectNavigation(): Promise<
   Pick<IProject, "slug" | "title" | "publishedAt">[]
 > {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return [];
   return Project.find({ draft: false })
     .select("slug title publishedAt")
     .sort({ publishedAt: -1 })
@@ -72,7 +79,8 @@ export async function getProjectNavigation(): Promise<
 // ── Timeline ──
 
 export async function getTimelineEntries(): Promise<ITimelineEntry[]> {
-  await connectDB();
+  const db = await connectDB();
+  if (!db) return [];
   return TimelineEntry.find({}).sort({ order: 1, startDate: -1 }).lean();
 }
 

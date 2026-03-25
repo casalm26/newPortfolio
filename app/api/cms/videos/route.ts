@@ -9,7 +9,12 @@ export async function GET(request: NextRequest) {
   const authError = authenticateCMS(request);
   if (authError) return authError;
 
-  await connectDB();
+  const db = await connectDB();
+  if (!db)
+    return NextResponse.json(
+      { error: "Database not configured" },
+      { status: 503 },
+    );
 
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get("page") || "1");
@@ -40,7 +45,12 @@ export async function POST(request: NextRequest) {
   const authError = authenticateCMS(request);
   if (authError) return authError;
 
-  await connectDB();
+  const db = await connectDB();
+  if (!db)
+    return NextResponse.json(
+      { error: "Database not configured" },
+      { status: 503 },
+    );
 
   const body = await request.json();
 
