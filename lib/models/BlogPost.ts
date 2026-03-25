@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-export interface IBlogPost extends Document {
+/** Plain data fields — used by .lean() results and serialized props */
+export interface IBlogPostFields {
+  _id: string;
   title: string;
   slug: string;
   content: string;
@@ -16,6 +18,9 @@ export interface IBlogPost extends Document {
   seoDescription: string;
   seoKeywords: string[];
 }
+
+/** Full Mongoose document type — only used internally by Mongoose */
+export interface IBlogPost extends Omit<IBlogPostFields, "_id">, Document {}
 
 const BlogPostSchema = new Schema<IBlogPost>(
   {
