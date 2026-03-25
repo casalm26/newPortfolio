@@ -2,10 +2,9 @@ import { notFound } from "next/navigation";
 import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import Link from "next/link";
-import { MDXContent } from "@/components/shared/MDXContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "@/lib/cms/queries";
-import { serialize } from "next-mdx-remote/serialize";
 import { formatDate } from "@/lib/utils";
 
 interface Props {
@@ -36,7 +35,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   if (!post) notFound();
 
-  const mdxSource = await serialize(post.content || "");
+  const mdxContent = post.content || "";
 
   return (
     <div className="min-h-screen bg-black">
@@ -101,7 +100,7 @@ export default async function BlogPostPage({ params }: Props) {
         </header>
 
         <article className="prose prose-invert prose-lg max-w-none">
-          <MDXContent source={mdxSource} />
+          <MDXRemote source={mdxContent} />
         </article>
 
         <footer className="mt-16 pt-8 border-t border-terminal-400">

@@ -3,7 +3,7 @@ import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import ProjectNavigation from "@/components/projects/ProjectNavigation";
 import Link from "next/link";
-import { MDXContent } from "@/components/shared/MDXContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import {
   getAllProjects,
@@ -11,8 +11,6 @@ import {
   getProjectNavigation,
   serialize,
 } from "@/lib/cms/queries";
-
-import { serialize as serializeMDX } from "next-mdx-remote/serialize";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -49,7 +47,7 @@ export default async function ProjectPage({ params }: Props) {
 
   const projectSlugs = serialize(await getProjectNavigation());
 
-  const mdxSource = await serializeMDX(project.content || "");
+  const mdxContent = project.content || "";
 
   const links = (project.links || {}) as Record<string, string>;
 
@@ -187,7 +185,7 @@ export default async function ProjectPage({ params }: Props) {
 
         {/* Project Content */}
         <article className="prose prose-invert prose-lg max-w-none">
-          <MDXContent source={mdxSource} />
+          <MDXRemote source={mdxContent} />
         </article>
 
         {/* Navigation Footer */}
