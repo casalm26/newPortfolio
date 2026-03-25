@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-export interface ITimelineEntry extends Document {
+/** Plain data fields — used by .lean() results and serialized props */
+export interface ITimelineEntryFields {
+  _id: string;
   entryId: string;
   type: string;
   title: string;
@@ -24,6 +26,9 @@ export interface ITimelineEntry extends Document {
   links: Record<string, string>;
   order: number;
 }
+
+/** Full Mongoose document type — only used internally by Mongoose */
+export interface ITimelineEntry extends Omit<ITimelineEntryFields, "_id">, Document {}
 
 const TimelineEntrySchema = new Schema<ITimelineEntry>(
   {

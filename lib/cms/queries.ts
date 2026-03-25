@@ -1,50 +1,77 @@
 import { connectDB } from "@/lib/db/connection";
 import { BlogPost, Project, Video, TimelineEntry } from "@/lib/models";
-import type { IBlogPost, IProject, IVideo, ITimelineEntry } from "@/lib/models";
+import type {
+  IBlogPostFields,
+  IProjectFields,
+  IVideoFields,
+  ITimelineEntryFields,
+} from "@/lib/models";
+
+/**
+ * Maps Date fields to string — matches what JSON.parse(JSON.stringify()) does.
+ * Since *Fields interfaces already use string for _id, only Date needs mapping.
+ */
+export type Serialized<T> = T extends Date
+  ? string
+  : T extends (infer U)[]
+    ? Serialized<U>[]
+    : T extends Record<string, unknown>
+      ? { [K in keyof T]: Serialized<T[K]> }
+      : T;
 
 // ── Projects ──
 
 export async function getAllProjects(
   includeDrafts = false,
-): Promise<IProject[]> {
+): Promise<IProjectFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
   return Project.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
-export async function getProjectBySlug(slug: string): Promise<IProject | null> {
+export async function getProjectBySlug(
+  slug: string,
+): Promise<IProjectFields | null> {
   await connectDB();
   return Project.findOne({ slug }).lean();
 }
 
 // ── Blog Posts ──
 
-export async function getAllPosts(includeDrafts = false): Promise<IBlogPost[]> {
+export async function getAllPosts(
+  includeDrafts = false,
+): Promise<IBlogPostFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
   return BlogPost.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
-export async function getPostBySlug(slug: string): Promise<IBlogPost | null> {
+export async function getPostBySlug(
+  slug: string,
+): Promise<IBlogPostFields | null> {
   await connectDB();
   return BlogPost.findOne({ slug }).lean();
 }
 
 // ── Videos ──
 
-export async function getAllVideos(includeDrafts = false): Promise<IVideo[]> {
+export async function getAllVideos(
+  includeDrafts = false,
+): Promise<IVideoFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
   return Video.find(filter).sort({ publishedAt: -1 }).lean();
 }
 
-export async function getVideoBySlug(slug: string): Promise<IVideo | null> {
+export async function getVideoBySlug(
+  slug: string,
+): Promise<IVideoFields | null> {
   await connectDB();
   return Video.findOne({ slug }).lean();
 }
 
 export async function getProjectNavigation(): Promise<
-  Pick<IProject, "slug" | "title" | "publishedAt">[]
+  Pick<IProjectFields, "slug" | "title" | "publishedAt">[]
 > {
   await connectDB();
   return Project.find({ draft: false })
@@ -55,13 +82,13 @@ export async function getProjectNavigation(): Promise<
 
 // ── Timeline ──
 
-export async function getTimelineEntries(): Promise<ITimelineEntry[]> {
+export async function getTimelineEntries(): Promise<ITimelineEntryFields[]> {
   await connectDB();
   return TimelineEntry.find({}).sort({ order: 1, startDate: -1 }).lean();
 }
 
 // ── Serialization helper ──
 
-export function serialize<T>(doc: T): T {
+export function serialize<T>(doc: T): Serialized<T> {
   return JSON.parse(JSON.stringify(doc));
 }
