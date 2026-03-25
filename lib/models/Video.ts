@@ -1,8 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-/** Plain data fields — used by .lean() results and serialized props */
-export interface IVideoFields {
-  _id: string;
+export interface IVideo extends Document {
   title: string;
   slug: string;
   youtubeId: string;
@@ -19,9 +17,6 @@ export interface IVideoFields {
   seoDescription: string;
   updatedAt: Date;
 }
-
-/** Full Mongoose document type — only used internally by Mongoose */
-export interface IVideo extends Omit<IVideoFields, "_id">, Document {}
 
 const VideoSchema = new Schema<IVideo>(
   {

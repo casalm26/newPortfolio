@@ -1,13 +1,8 @@
 import type { Serialized } from "@/lib/cms/queries";
-import type {
-  IBlogPostFields,
-  IProjectFields,
-  IVideoFields,
-  ITimelineEntryFields,
-} from "@/lib/models";
+import type { IBlogPost, IProject, IVideo, ITimelineEntry } from "@/lib/models";
 
-/** Serialized types for client components (Date → string) */
-export type BlogPostData = Serialized<IBlogPostFields>;
-export type ProjectData = Serialized<IProjectFields>;
-export type VideoData = Serialized<IVideoFields>;
-export type TimelineEntryData = Serialized<ITimelineEntryFields>;
+/** Serialized types for client components (ObjectId/Date → string, Document methods stripped) */
+export type BlogPostData = Serialized<IBlogPost>;
+export type ProjectData = Serialized<IProject>;
+export type VideoData = Serialized<IVideo>;
+export type TimelineEntryData = Serialized<ITimelineEntry>;

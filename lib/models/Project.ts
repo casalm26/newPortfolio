@@ -1,8 +1,6 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-/** Plain data fields — used by .lean() results and serialized props */
-export interface IProjectFields {
-  _id: string;
+export interface IProject extends Document {
   title: string;
   slug: string;
   content: string;
@@ -21,9 +19,6 @@ export interface IProjectFields {
   seoTitle: string;
   seoDescription: string;
 }
-
-/** Full Mongoose document type — only used internally by Mongoose */
-export interface IProject extends Omit<IProjectFields, "_id">, Document {}
 
 const ProjectSchema = new Schema<IProject>(
   {
