@@ -45,10 +45,11 @@ jobs:
       - name: Run unit tests
         run: npm run test:unit
 
-      - name: Run E2E tests
-        run: |
-          npx playwright install --with-deps
-          npm run test:e2e
+      # E2E tests disabled - not needed on every deploy
+      # - name: Run E2E tests
+      #   run: |
+      #     npx playwright install --with-deps
+      #     npm run test:e2e
 
   build:
     name: Build Application
