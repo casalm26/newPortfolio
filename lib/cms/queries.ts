@@ -26,14 +26,16 @@ export async function getAllProjects(
 ): Promise<IProjectFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
-  return Project.find(filter).sort({ publishedAt: -1 }).lean();
+  return Project.find(filter)
+    .sort({ publishedAt: -1 })
+    .lean() as unknown as IProjectFields[];
 }
 
 export async function getProjectBySlug(
   slug: string,
 ): Promise<IProjectFields | null> {
   await connectDB();
-  return Project.findOne({ slug }).lean();
+  return Project.findOne({ slug }).lean() as unknown as IProjectFields | null;
 }
 
 // ── Blog Posts ──
@@ -43,14 +45,16 @@ export async function getAllPosts(
 ): Promise<IBlogPostFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
-  return BlogPost.find(filter).sort({ publishedAt: -1 }).lean();
+  return BlogPost.find(filter)
+    .sort({ publishedAt: -1 })
+    .lean() as unknown as IBlogPostFields[];
 }
 
 export async function getPostBySlug(
   slug: string,
 ): Promise<IBlogPostFields | null> {
   await connectDB();
-  return BlogPost.findOne({ slug }).lean();
+  return BlogPost.findOne({ slug }).lean() as unknown as IBlogPostFields | null;
 }
 
 // ── Videos ──
@@ -60,14 +64,16 @@ export async function getAllVideos(
 ): Promise<IVideoFields[]> {
   await connectDB();
   const filter = includeDrafts ? {} : { draft: false };
-  return Video.find(filter).sort({ publishedAt: -1 }).lean();
+  return Video.find(filter)
+    .sort({ publishedAt: -1 })
+    .lean() as unknown as IVideoFields[];
 }
 
 export async function getVideoBySlug(
   slug: string,
 ): Promise<IVideoFields | null> {
   await connectDB();
-  return Video.findOne({ slug }).lean();
+  return Video.findOne({ slug }).lean() as unknown as IVideoFields | null;
 }
 
 export async function getProjectNavigation(): Promise<
@@ -77,14 +83,19 @@ export async function getProjectNavigation(): Promise<
   return Project.find({ draft: false })
     .select("slug title publishedAt")
     .sort({ publishedAt: -1 })
-    .lean();
+    .lean() as unknown as Pick<
+    IProjectFields,
+    "slug" | "title" | "publishedAt"
+  >[];
 }
 
 // ── Timeline ──
 
 export async function getTimelineEntries(): Promise<ITimelineEntryFields[]> {
   await connectDB();
-  return TimelineEntry.find({}).sort({ order: 1, startDate: -1 }).lean();
+  return TimelineEntry.find({})
+    .sort({ order: 1, startDate: -1 })
+    .lean() as unknown as ITimelineEntryFields[];
 }
 
 // ── Serialization helper ──

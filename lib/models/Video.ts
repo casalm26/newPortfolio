@@ -17,6 +17,7 @@ export interface IVideoFields {
   draft: boolean;
   seoTitle: string;
   seoDescription: string;
+  updatedAt: Date;
 }
 
 /** Full Mongoose document type — only used internally by Mongoose */
