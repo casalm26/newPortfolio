@@ -62,6 +62,6 @@ export async function getTimelineEntries(): Promise<ITimelineEntry[]> {
 
 // ── Serialization helper ──
 
-export function serialize<T>(doc: T): T {
+export function serialize<T, R = T>(doc: T): R {
   return JSON.parse(JSON.stringify(doc));
 }

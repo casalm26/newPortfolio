@@ -1,4 +1,5 @@
 import { getAllPosts, serialize } from "@/lib/cms/queries";
+import type { BlogPostData } from "@/lib/cms/types";
 import { BlogPageClient } from "./BlogPageClient";
 
 export const metadata = {
@@ -8,5 +9,5 @@ export const metadata = {
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
-  return <BlogPageClient posts={serialize(posts)} />;
+  return <BlogPageClient posts={serialize<typeof posts, BlogPostData[]>(posts)} />;
 }

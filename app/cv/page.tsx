@@ -28,8 +28,8 @@ export const metadata = {
 
 export default async function CVPage() {
   const entries = await getTimelineEntries();
-  const items: TimelineItem[] = serialize(entries).map(
-    (e: Record<string, unknown>) => ({
+  const items: TimelineItem[] = serialize<typeof entries, Record<string, unknown>[]>(entries).map(
+    (e) => ({
       id: e.entryId as string,
       type: e.type as TimelineItem["type"],
       title: e.title as string,

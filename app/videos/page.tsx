@@ -1,4 +1,5 @@
 import { getAllVideos, serialize } from "@/lib/cms/queries";
+import type { VideoData } from "@/lib/cms/types";
 import { VideosPageClient } from "./VideosPageClient";
 
 export const metadata = {
@@ -8,5 +9,5 @@ export const metadata = {
 
 export default async function VideosPage() {
   const videos = await getAllVideos();
-  return <VideosPageClient videos={serialize(videos)} />;
+  return <VideosPageClient videos={serialize<typeof videos, VideoData[]>(videos)} />;
 }
