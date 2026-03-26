@@ -4,7 +4,7 @@ import Breadcrumb from "@/components/shared/Breadcrumb";
 import ProjectNavigation from "@/components/projects/ProjectNavigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github } from "@/components/icons/Icons";
 import {
   getAllProjects,
   getProjectBySlug,

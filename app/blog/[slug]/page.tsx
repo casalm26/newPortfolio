@@ -3,7 +3,7 @@ import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons/Icons";
 import { getAllPosts, getPostBySlug } from "@/lib/cms/queries";
 import { formatDate } from "@/lib/utils";
 

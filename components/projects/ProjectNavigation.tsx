@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "@/components/icons/Icons";
 import { motion } from "framer-motion";
 import { useVisualFeedback } from "@/lib/visual-feedback";
 

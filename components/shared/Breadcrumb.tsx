@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home } from "@/components/icons/Icons";
 
 interface BreadcrumbItem {
   label: string;

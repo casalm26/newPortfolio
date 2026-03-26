@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "@/components/icons/Icons";
 import { getAllVideos, getVideoBySlug } from "@/lib/cms/queries";
 import { formatDate } from "@/lib/utils";
 

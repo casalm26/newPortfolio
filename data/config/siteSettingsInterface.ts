@@ -1,5 +1,3 @@
-import { AnalyticsConfig } from "@shipixen/pliny/analytics";
-
 export interface SiteMetadata {
   title: string;
   description: string;
@@ -26,5 +24,4 @@ export interface SiteMetadata {
 
 export interface SiteConfig extends SiteMetadata {
   disableAnalytics: boolean;
-  analytics?: AnalyticsConfig | undefined;
 }

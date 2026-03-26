@@ -5,11 +5,8 @@ const { colors: customColors } = require("./data/config/colors");
 /** @type {import("tailwindcss").Config } */
 module.exports = {
   content: [
-    "./node_modules/@shipixen/pliny/**/*.js",
     "./app/**/*.{js,ts,jsx,tsx,css,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,css,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,css,mdx}",
-    "./layouts/**/*.{js,ts,jsx,tsx,css,mdx}",
     "./data/**/*.mdx",
   ],
   darkMode: ["class"],
@@ -294,9 +291,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };

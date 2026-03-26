@@ -4,7 +4,7 @@ import { useState } from "react";
 import SocialLinks from "@/components/shared/SocialLinks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X } from "@/components/icons/Icons";
 import { cn } from "@/lib/utils";
 
 const Header = ({ className }: { className?: string }) => {
