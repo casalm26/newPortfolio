@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
-import { authenticateCMS } from "@/lib/cms/auth";
 import type { Model } from "mongoose";
 
 interface SlugRouteParams {
@@ -19,9 +18,6 @@ export function createSlugRouteHandlers(
   resourceName: string,
 ) {
   async function GET(request: NextRequest, { params }: SlugRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { slug } = await params;
 
@@ -37,9 +33,6 @@ export function createSlugRouteHandlers(
   }
 
   async function PUT(request: NextRequest, { params }: SlugRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { slug } = await params;
     const body = await request.json();
@@ -62,9 +55,6 @@ export function createSlugRouteHandlers(
   }
 
   async function DELETE(request: NextRequest, { params }: SlugRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { slug } = await params;
 
@@ -90,9 +80,6 @@ export function createIdRouteHandlers(
   resourceName: string,
 ) {
   async function GET(request: NextRequest, { params }: IdRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { id } = await params;
 
@@ -108,9 +95,6 @@ export function createIdRouteHandlers(
   }
 
   async function PUT(request: NextRequest, { params }: IdRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { id } = await params;
     const body = await request.json();
@@ -133,9 +117,6 @@ export function createIdRouteHandlers(
   }
 
   async function DELETE(request: NextRequest, { params }: IdRouteParams) {
-    const authError = authenticateCMS(request);
-    if (authError) return authError;
-
     await connectDB();
     const { id } = await params;
 
