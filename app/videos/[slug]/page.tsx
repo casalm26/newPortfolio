@@ -11,8 +11,12 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const videos = await getAllVideos();
-  return videos.map((video) => ({ slug: video.slug }));
+  try {
+    const videos = await getAllVideos();
+    return videos.map((video) => ({ slug: video.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props) {

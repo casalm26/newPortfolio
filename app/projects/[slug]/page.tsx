@@ -17,10 +17,14 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const projects = await getAllProjects();
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+  try {
+    const projects = await getAllProjects();
+    return projects.map((project) => ({
+      slug: project.slug,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props) {
