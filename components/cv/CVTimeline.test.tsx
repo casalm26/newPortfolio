@@ -32,14 +32,6 @@ const mockCategories: Record<string, TimelineCategory> = {
   education: { label: "Education", color: "#8000ff" },
 };
 
-// Mock visual feedback
-vi.mock("@/lib/visual-feedback", () => ({
-  useVisualFeedback: () => ({
-    hover: vi.fn(),
-    click: vi.fn(),
-  }),
-}));
-
 // Mock framer-motion
 vi.mock("framer-motion", () => ({
   motion: {
