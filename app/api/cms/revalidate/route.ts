@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { authenticateCMS } from "@/lib/cms/auth";
 
 export async function POST(request: NextRequest) {
-  const authError = authenticateCMS(request);
-  if (authError) return authError;
-
   const body = await request.json();
   const paths: string[] = body.paths;
 
