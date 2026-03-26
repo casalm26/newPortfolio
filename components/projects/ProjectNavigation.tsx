@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "@/components/icons/Icons";
 import { motion } from "framer-motion";
-import { useVisualFeedback } from "@/lib/visual-feedback";
-
 interface ProjectSummary {
   slug: string;
   title: string;
@@ -20,8 +18,6 @@ export function ProjectNavigation({
   currentSlug,
   projects,
 }: ProjectNavigationProps) {
-  const feedback = useVisualFeedback();
-
   const sortedProjects = [...projects].sort(
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
@@ -55,8 +51,6 @@ export function ProjectNavigation({
         >
           <Link
             href={`/projects/${previousProject.slug}`}
-            onClick={() => feedback.click()}
-            onMouseEnter={() => feedback.hover()}
             className="group flex items-center font-pixel text-xs px-3 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-150"
           >
             <motion.div
@@ -112,8 +106,6 @@ export function ProjectNavigation({
         >
           <Link
             href={`/projects/${nextProject.slug}`}
-            onClick={() => feedback.click()}
-            onMouseEnter={() => feedback.hover()}
             className="group flex items-center font-pixel text-xs px-3 py-2 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all duration-150"
           >
             <div className="flex flex-col text-right">

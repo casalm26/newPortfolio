@@ -16,10 +16,28 @@ export default function Page() {
       prefix: "./projects",
     },
     {
+      title: "BLOG",
+      description: "Articles & thoughts",
+      href: "/blog",
+      prefix: "./blog",
+    },
+    {
+      title: "VIDEOS",
+      description: "Video content & tutorials",
+      href: "/videos",
+      prefix: "./videos",
+    },
+    {
       title: "CV",
       description: "Career timeline & experience",
       href: "/cv",
       prefix: "./cv",
+    },
+    {
+      title: "CONTACT",
+      description: "Get in touch",
+      href: "/contact",
+      prefix: "./contact",
     },
   ];
 
@@ -103,7 +121,7 @@ export default function Page() {
           </div>
         </ScrollAnimation>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
           <StaggerAnimation
             staggerDelay={200}
             animation="slideUp"

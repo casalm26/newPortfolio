@@ -64,7 +64,7 @@ describe("Home page", () => {
     );
 
     const labels = headings.map((heading) => heading.textContent?.trim());
-    expect(labels).toEqual(["PROJECTS", "CV"]);
+    expect(labels).toEqual(["PROJECTS", "BLOG", "VIDEOS", "CV", "CONTACT"]);
   });
 
   it("retains the footer at the bottom of the page", () => {

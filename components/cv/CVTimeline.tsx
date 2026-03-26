@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { useVisualFeedback } from "@/lib/visual-feedback";
 import ScrollAnimation from "@/components/shared/ScrollAnimation";
 
 export interface TimelineItem {
@@ -63,8 +62,6 @@ function TimelineNode({
   totalItems,
 }: TimelineNodeProps) {
   const isLeft = position % 2 === 0;
-  const feedback = useVisualFeedback();
-  const silentFeedback = { sound: false, vibration: false };
 
   const getIcon = () => {
     switch (item.type) {
@@ -109,9 +106,7 @@ function TimelineNode({
           )}
           onClick={() => {
             onToggle();
-            feedback.click(silentFeedback);
           }}
-          onMouseEnter={() => feedback.hover(silentFeedback)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -244,8 +239,6 @@ function TimelineNode({
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          onClick={() => feedback.click(silentFeedback)}
-                          onMouseEnter={() => feedback.hover(silentFeedback)}
                           className="font-pixel text-xs px-2 py-1 border border-terminal-400 text-terminal-300 hover:border-white hover:text-white hover:shadow-[2px_2px_0px_#ffffff] transition-all duration-150"
                         >
                           {key.toUpperCase()}
@@ -274,9 +267,7 @@ function TimelineNode({
             )}
             onClick={() => {
               onToggle();
-              feedback.click(silentFeedback);
             }}
-            onMouseEnter={() => feedback.hover(silentFeedback)}
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
             animate={isExpanded ? { rotate: [0, 10, -10, 0] } : {}}
@@ -304,7 +295,6 @@ function TimelineNode({
 export function CVTimeline({ items, categories }: CVTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<string>("all");
-  const feedback = useVisualFeedback();
 
   const filteredItems = items.filter(
     (item) => filter === "all" || item.type === filter,
@@ -335,9 +325,7 @@ export function CVTimeline({ items, categories }: CVTimelineProps) {
           <motion.button
             onClick={() => {
               setFilter("all");
-              feedback.click();
             }}
-            onMouseEnter={() => feedback.hover()}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className={cn(
@@ -357,9 +345,7 @@ export function CVTimeline({ items, categories }: CVTimelineProps) {
                 key={type}
                 onClick={() => {
                   setFilter(type);
-                  feedback.click();
                 }}
-                onMouseEnter={() => feedback.hover()}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={cn(

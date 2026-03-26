@@ -94,18 +94,10 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <div className="font-pixel text-xs text-terminal-500 mb-1">
-                    RESPONSE_TIME:
+                    LOCATION:
                   </div>
                   <div className="font-mono text-terminal-300">
-                    &lt; 24 hours
-                  </div>
-                </div>
-                <div>
-                  <div className="font-pixel text-xs text-terminal-500 mb-1">
-                    AVAILABILITY:
-                  </div>
-                  <div className="font-mono text-terminal-300">
-                    Mon-Fri, 9AM-6PM UTC
+                    Stockholm, Sweden
                   </div>
                 </div>
               </div>
@@ -175,36 +167,6 @@ export default function ContactForm() {
                   <span aria-label="Email address">
                     → caspian@houseofcaspian.com
                   </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Location */}
-            <div
-              className="border border-terminal-400 p-6"
-              role="region"
-              aria-labelledby="location-heading"
-            >
-              <div
-                id="location-heading"
-                className="font-pixel text-xs text-terminal-400 mb-4"
-              >
-                &gt; curl -s ipinfo.io
-              </div>
-              <div className="space-y-2">
-                <div className="font-mono text-sm">
-                  <span className="text-terminal-500">"timezone":</span>
-                  <span className="text-terminal-300 ml-2">"UTC+0"</span>
-                </div>
-                <div className="font-mono text-sm">
-                  <span className="text-terminal-500">"region":</span>
-                  <span className="text-terminal-300 ml-2">
-                    "Remote Global"
-                  </span>
-                </div>
-                <div className="font-mono text-sm">
-                  <span className="text-terminal-500">"status":</span>
-                  <span className="text-green-400 ml-2">"online"</span>
                 </div>
               </div>
             </div>
