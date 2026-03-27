@@ -62,8 +62,7 @@ describe("Contact Page", () => {
     it("should render contact information sections", () => {
       render(<Contact />);
 
-      expect(screen.getByText("< 24 hours")).toBeInTheDocument();
-      expect(screen.getByText("Mon-Fri, 9AM-6PM UTC")).toBeInTheDocument();
+      expect(screen.getByText("Stockholm, Sweden")).toBeInTheDocument();
     });
   });
 

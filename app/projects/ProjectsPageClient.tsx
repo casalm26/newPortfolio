@@ -64,10 +64,10 @@ function ProjectCard({
   searchTerm: string;
 }) {
   return (
-    <ScrollAnimated animation="fade-in">
+    <ScrollAnimated animation="fade-in" className="h-full">
       <Link
         href={`/projects/${project.slug}`}
-        className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 group card-pixel-interactive hover:transform hover:-translate-y-1"
+        className="block h-full p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 hover:shadow-lg hover:shadow-white/10 transition-all duration-150 group card-pixel-interactive hover:transform hover:-translate-y-1"
       >
         <div className="flex flex-col space-y-3">
           <div className="flex items-center justify-between">

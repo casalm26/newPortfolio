@@ -2,7 +2,6 @@
 // Provides consistent visual responses across the application
 
 import { useCallback, useRef } from "react";
-import { soundManager } from "./sounds";
 
 export interface FeedbackOptions {
   sound?: boolean;
@@ -121,32 +120,6 @@ class VisualFeedbackManager {
       visual = true,
       intensity = "medium",
     } = options;
-
-    // Sound feedback
-    if (sound) {
-      switch (type) {
-        case "click":
-          soundManager.buttonClick();
-          break;
-        case "hover":
-          soundManager.buttonHover();
-          break;
-        case "success":
-        case "complete":
-          soundManager.success();
-          break;
-        case "error":
-          soundManager.error();
-          break;
-        case "loading":
-          soundManager.loading();
-          break;
-        case "info":
-        case "warning":
-          soundManager.notification();
-          break;
-      }
-    }
 
     // Haptic feedback (vibration)
     if (vibration && "vibrate" in navigator) {

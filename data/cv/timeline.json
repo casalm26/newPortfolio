@@ -31,6 +31,18 @@
   },
   "timeline": [
     {
+      "id": "2025-12-seo-specialist-developer-emax-media",
+      "type": "work",
+      "title": "SEO Specialist & Developer",
+      "company": "EMAX Media",
+      "location": "Stockholm, Sweden",
+      "startDate": "2025-12",
+      "description": "SEO specialist and developer at EMAX Media, a Stockholm-based digital marketing agency specializing in SEO, SEM, and Paid Social advertising.",
+      "endDate": null,
+      "current": true,
+      "skills": ["SEO", "SEM", "Web Development", "Paid Social"]
+    },
+    {
       "id": "2020-04-founder-don-t-panic-consulting-ab",
       "type": "work",
       "title": "Founder",

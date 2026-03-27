@@ -53,7 +53,7 @@ const Header = ({ className }: { className?: string }) => {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "font-pixel text-xs px-3 py-2 border transition-all duration-150 hover:transform hover:scale-105 active:scale-95",
+                  "font-pixel text-xs px-3 py-2 border transition-all duration-150",
                   isActive(item.href)
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
@@ -75,7 +75,7 @@ const Header = ({ className }: { className?: string }) => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
-            className="md:hidden font-pixel px-3 py-2 bg-transparent text-white border border-terminal-400 hover:bg-white hover:text-black transition-all duration-150 hover:scale-105 active:scale-95"
+            className="md:hidden font-pixel px-3 py-2 bg-transparent text-white border border-terminal-400 hover:bg-white hover:text-black transition-all duration-150"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
