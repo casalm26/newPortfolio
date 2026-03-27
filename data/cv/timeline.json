@@ -31,16 +31,36 @@
   },
   "timeline": [
     {
-      "id": "2025-12-seo-specialist-developer-emax-media",
+      "id": "2025-12-seo-consultant-developer-emax-media",
       "type": "work",
-      "title": "SEO Specialist & Developer",
+      "title": "SEO Consultant & Developer",
       "company": "EMAX Media",
       "location": "Stockholm, Sweden",
       "startDate": "2025-12",
-      "description": "SEO specialist and developer at EMAX Media, a Stockholm-based digital marketing agency specializing in SEO, SEM, and Paid Social advertising.",
+      "description": "SEO consultant and developer at EMAX Media, a Stockholm-based digital marketing agency delivering results-driven strategies in SEO, SEM, paid social, and web development. Combining technical development skills with search engine optimization expertise to build performant, search-friendly digital experiences for clients.",
       "endDate": null,
       "current": true,
-      "skills": ["SEO", "SEM", "Web Development", "Paid Social"]
+      "responsibilities": [
+        "Technical SEO audits and implementation for client websites",
+        "Web development and performance optimization",
+        "Search engine marketing (SEM) campaign management",
+        "Paid social advertising strategy and execution",
+        "Building and maintaining client-facing web properties",
+        "Data-driven reporting and analytics for SEO/SEM performance"
+      ],
+      "skills": [
+        "SEO",
+        "Technical SEO",
+        "SEM",
+        "Google Ads",
+        "Paid Social",
+        "Web Development",
+        "Analytics",
+        "Performance Optimization"
+      ],
+      "links": {
+        "EMAX Media": "https://emaxmedia.se"
+      }
     },
     {
       "id": "2020-04-founder-don-t-panic-consulting-ab",

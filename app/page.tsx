@@ -11,33 +11,48 @@ export default function Page() {
   const quickAccess = [
     {
       title: "PROJECTS",
-      description: "Technical work & case studies",
+      description:
+        "Technical work & case studies showcasing full-stack development, creative coding, and real-world problem solving.",
       href: "/projects",
       prefix: "./projects",
+      icon: "🚀",
+      stat: "Case Studies",
     },
     {
       title: "BLOG",
-      description: "Articles & thoughts",
+      description:
+        "Articles on web development, marketing, tech architecture, and lessons learned building products.",
       href: "/blog",
       prefix: "./blog",
+      icon: "📝",
+      stat: "Articles",
     },
     {
       title: "VIDEOS",
-      description: "Video content & tutorials",
+      description:
+        "Video content covering tutorials, walkthroughs, and deep dives into development topics.",
       href: "/videos",
       prefix: "./videos",
+      icon: "🎬",
+      stat: "Videos",
     },
     {
       title: "CV",
-      description: "Career timeline & experience",
+      description:
+        "Interactive career timeline — work experience, education, certifications, and skills development.",
       href: "/cv",
       prefix: "./cv",
+      icon: "💼",
+      stat: "Timeline",
     },
     {
       title: "CONTACT",
-      description: "Get in touch",
+      description:
+        "Ready to collaborate? Reach out via email or connect on social platforms.",
       href: "/contact",
       prefix: "./contact",
+      icon: "📬",
+      stat: "Let's Talk",
     },
   ];
 
@@ -121,9 +136,9 @@ export default function Page() {
           </div>
         </ScrollAnimation>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           <StaggerAnimation
-            staggerDelay={200}
+            staggerDelay={150}
             animation="slideUp"
             className="contents"
           >
@@ -131,21 +146,36 @@ export default function Page() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block p-6 border border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-300 group"
+                className="block p-6 border-2 border-terminal-400 hover:border-white hover:bg-terminal-900 transition-all duration-300 group relative overflow-hidden"
               >
-                <div className="mb-4">
-                  <div className="font-pixel text-xs text-terminal-400 mb-2">
-                    {item.prefix}
+                {/* Top bar accent */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-terminal-400 group-hover:bg-white transition-colors" />
+
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <div className="font-pixel text-xs text-terminal-500 mb-2">
+                      {item.prefix}
+                    </div>
+                    <h3 className="font-pixel text-xl font-bold text-white group-hover:text-white">
+                      {item.title}
+                    </h3>
                   </div>
-                  <h3 className="font-pixel text-lg font-bold text-white group-hover:text-terminal-200">
-                    {item.title}
-                  </h3>
+                  <div className="text-2xl opacity-60 group-hover:opacity-100 transition-opacity">
+                    {item.icon}
+                  </div>
                 </div>
-                <p className="text-terminal-300 text-sm group-hover:text-white transition-colors">
+
+                <p className="text-terminal-300 text-sm leading-relaxed mb-6 group-hover:text-terminal-200 transition-colors">
                   {item.description}
                 </p>
-                <div className="mt-4 font-pixel text-xs text-terminal-500 group-hover:text-terminal-300 transition-colors">
-                  cd {item.prefix} →
+
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="font-pixel text-xs text-terminal-400 border border-terminal-400 px-2 py-1 group-hover:border-white group-hover:text-white transition-colors">
+                    {item.stat}
+                  </span>
+                  <span className="font-pixel text-xs text-terminal-500 group-hover:text-white transition-colors">
+                    cd {item.prefix} →
+                  </span>
                 </div>
               </Link>
             ))}
@@ -226,7 +256,7 @@ export default function Page() {
             </p>
             <Link
               href="/contact"
-              className="inline-block font-pixel text-sm px-8 py-4 border-2 border-white bg-white text-black hover:bg-black hover:text-white transition-all duration-300"
+              className="inline-block font-pixel text-sm px-8 py-4 border-2 border-white bg-white text-black font-bold hover:bg-black hover:text-white transition-all duration-300"
             >
               SEND MESSAGE
             </Link>

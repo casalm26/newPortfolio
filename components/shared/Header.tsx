@@ -53,13 +53,22 @@ const Header = ({ className }: { className?: string }) => {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "font-pixel text-xs px-3 py-2 border transition-all duration-150",
+                  "font-pixel text-xs px-3 py-2 border transition-all duration-150 group/nav",
                   isActive(item.href)
-                    ? "bg-white text-black border-white"
-                    : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
+                    ? "bg-white text-black font-bold border-white"
+                    : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black hover:font-bold",
                 )}
               >
-                <span className="mr-1 text-terminal-400">{item.prefix}</span>
+                <span
+                  className={cn(
+                    "mr-1 transition-colors",
+                    isActive(item.href)
+                      ? "text-black/60"
+                      : "text-terminal-400 group-hover/nav:text-black/60",
+                  )}
+                >
+                  {item.prefix}
+                </span>
                 {item.label}
               </Link>
             ))}
@@ -91,13 +100,22 @@ const Header = ({ className }: { className?: string }) => {
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "font-pixel text-sm px-4 py-3 border transition-all duration-75 w-full text-left",
+                    "font-pixel text-sm px-4 py-3 border transition-all duration-75 w-full text-left group/nav",
                     isActive(item.href)
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
+                      ? "bg-white text-black font-bold border-white"
+                      : "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black hover:font-bold",
                   )}
                 >
-                  <span className="mr-2 text-terminal-400">{item.prefix}</span>
+                  <span
+                    className={cn(
+                      "mr-2 transition-colors",
+                      isActive(item.href)
+                        ? "text-black/60"
+                        : "text-terminal-400 group-hover/nav:text-black/60",
+                    )}
+                  >
+                    {item.prefix}
+                  </span>
                   {item.label}
                 </Link>
               ))}
