@@ -19,7 +19,7 @@ export default function PixelButton({
 
   const variantClasses = {
     primary:
-      "bg-white text-black border-white hover:bg-transparent hover:text-white",
+      "bg-white text-black font-bold border-white hover:bg-transparent hover:text-white",
     secondary:
       "bg-transparent text-white border-terminal-400 hover:bg-white hover:text-black",
     outline:

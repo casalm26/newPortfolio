@@ -181,7 +181,7 @@ function BlogPageContent({
                   className={cn(
                     "font-pixel text-xs px-3 py-2 border transition-colors",
                     !tagFilter
-                      ? "border-white bg-white text-black"
+                      ? "border-white bg-white text-black font-bold"
                       : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
                   )}
                 >
@@ -194,7 +194,7 @@ function BlogPageContent({
                     className={cn(
                       "font-pixel text-xs px-3 py-2 border transition-colors",
                       tagFilter === tag
-                        ? "border-white bg-white text-black"
+                        ? "border-white bg-white text-black font-bold"
                         : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
                     )}
                   >

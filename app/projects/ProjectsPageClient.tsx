@@ -308,7 +308,7 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
                   className={cn(
                     "btn-pixel-3d font-pixel text-xs px-3 py-2",
                     !filterType || filterType === "all"
-                      ? "border-white bg-white text-black"
+                      ? "border-white bg-white text-black font-bold"
                       : "border-terminal-400 text-terminal-300",
                   )}
                 >
@@ -326,7 +326,7 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
                       className={cn(
                         "btn-pixel-3d font-pixel text-xs px-3 py-2",
                         isActive
-                          ? "border-white bg-white text-black"
+                          ? "border-white bg-white text-black font-bold"
                           : "border-terminal-400 text-terminal-300",
                       )}
                     >
@@ -347,7 +347,7 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
                   className={cn(
                     "font-pixel text-xs px-3 py-2 border transition-colors",
                     !techFilter
-                      ? "border-white bg-white text-black"
+                      ? "border-white bg-white text-black font-bold"
                       : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
                   )}
                 >
@@ -362,7 +362,7 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
                       className={cn(
                         "btn-pixel-3d font-pixel text-xs px-3 py-2",
                         isActive
-                          ? "border-white bg-white text-black"
+                          ? "border-white bg-white text-black font-bold"
                           : "border-terminal-400 text-terminal-300",
                       )}
                     >
@@ -392,7 +392,7 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
                       className={cn(
                         "btn-pixel-3d font-pixel text-xs px-3 py-2",
                         isActive
-                          ? "border-white bg-white text-black"
+                          ? "border-white bg-white text-black font-bold"
                           : "border-terminal-400 text-terminal-300",
                       )}
                     >
