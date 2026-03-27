@@ -186,11 +186,15 @@ class VisualFeedbackManager {
     const interval = setInterval(() => {
       if (frameIndex >= shakeFrames.length) {
         clearInterval(interval);
-        document.body.style.transform = originalTransform;
+        if (typeof document !== "undefined") {
+          document.body.style.transform = originalTransform;
+        }
         return;
       }
 
-      document.body.style.transform = shakeFrames[frameIndex];
+      if (typeof document !== "undefined") {
+        document.body.style.transform = shakeFrames[frameIndex];
+      }
       frameIndex++;
     }, duration / shakeFrames.length);
   }
