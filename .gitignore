@@ -60,6 +60,9 @@ public/search.json
 # app info
 public/appInfo.js
 
+# Claude Code worktrees
+.claude/worktrees/
+
 # IDE
 .vscode/
 .idea/
