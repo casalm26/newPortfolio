@@ -2,6 +2,7 @@
 
 import Header from "@/components/shared/Header";
 import Breadcrumb from "@/components/shared/Breadcrumb";
+import Image from "@/components/shared/Image";
 import {
   GitHubPixelIcon,
   LinkedInPixelIcon,
@@ -41,24 +42,40 @@ export default function ContactForm() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Mailto CTA */}
-          <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150 flex flex-col justify-center">
-            <div className="font-pixel text-xs text-terminal-400 mb-6">
-              &gt; echo "message" &gt; /dev/contact
+          {/* Profile Image + Mailto CTA */}
+          <div className="space-y-8">
+            <div className="border border-terminal-400 overflow-hidden">
+              <div className="font-pixel text-xs text-terminal-400 px-4 py-2 border-b border-terminal-400">
+                &gt; cat ~/portrait.webp
+              </div>
+              <div className="relative w-full h-[300px]">
+                <Image
+                  src="/static/images/caspian.webp"
+                  alt="Caspian Almerud"
+                  fill
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
             </div>
-            <div className="space-y-6">
-              <p className="text-terminal-300 text-sm leading-relaxed">
-                Ready to collaborate? Send me a message and I'll get back to you
-                within 24 hours.
-              </p>
-              <a
-                href="mailto:caspian@houseofcaspian.com"
-                className="inline-block w-full p-4 border-2 border-white bg-white text-black font-pixel text-sm text-center transition-all duration-150 hover:bg-transparent hover:text-white hover:shadow-lg hover:shadow-white/20 hover:border-green-400 active:scale-95"
-              >
-                SEND EMAIL →
-              </a>
-              <div className="font-mono text-xs text-terminal-500 text-center">
-                caspian@houseofcaspian.com
+            <div className="border border-terminal-400 p-6 hover:border-white hover:shadow-lg hover:shadow-white/5 transition-all duration-150 flex flex-col justify-center">
+              <div className="font-pixel text-xs text-terminal-400 mb-6">
+                &gt; echo "message" &gt; /dev/contact
+              </div>
+              <div className="space-y-6">
+                <p className="text-terminal-300 text-sm leading-relaxed">
+                  Ready to collaborate? Send me a message and I'll get back to
+                  you within 24 hours.
+                </p>
+                <a
+                  href="mailto:caspian@houseofcaspian.com"
+                  className="inline-block w-full p-4 border-2 border-white bg-white text-black font-pixel text-sm text-center transition-all duration-150 hover:bg-transparent hover:text-white hover:shadow-lg hover:shadow-white/20 hover:border-green-400 active:scale-95"
+                >
+                  SEND EMAIL →
+                </a>
+                <div className="font-mono text-xs text-terminal-500 text-center">
+                  caspian@houseofcaspian.com
+                </div>
               </div>
             </div>
           </div>
