@@ -12,9 +12,10 @@ import { TypewriterText } from "@/components/shared/TypewriterText";
 
 interface BlogPageClientProps {
   posts: BlogPostData[];
+  featuredPosts: BlogPostData[];
 }
 
-export function BlogPageClient({ posts }: BlogPageClientProps) {
+export function BlogPageClient({ posts, featuredPosts }: BlogPageClientProps) {
   return (
     <Suspense
       fallback={
@@ -23,12 +24,18 @@ export function BlogPageClient({ posts }: BlogPageClientProps) {
         </div>
       }
     >
-      <BlogPageContent posts={posts} />
+      <BlogPageContent posts={posts} featuredPosts={featuredPosts} />
     </Suspense>
   );
 }
 
-function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
+function BlogPageContent({
+  posts,
+  featuredPosts,
+}: {
+  posts: BlogPostData[];
+  featuredPosts: BlogPostData[];
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
@@ -107,6 +114,45 @@ function BlogPageContent({ posts }: { posts: BlogPostData[] }) {
             </p>
           </div>
         </ScrollAnimated>
+
+        {featuredPosts.length > 0 && (
+          <ScrollAnimated animation="slide-in-left" delay={300}>
+            <div className="mb-12">
+              <div className="font-pixel text-xs text-terminal-400 mb-4">
+                {">"} HIGHLIGHTS
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                {featuredPosts.map((post, i) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className={cn(
+                      "block p-6 border-2 border-terminal-300 hover:border-white hover:bg-terminal-900 transition-all duration-150 group",
+                      i === 0 && featuredPosts.length > 1 && "md:col-span-2",
+                    )}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="font-pixel text-xs text-terminal-500">
+                        {formatDate(new Date(post.publishedAt))}
+                      </span>
+                      {post.category && (
+                        <span className="font-pixel text-xs px-2 py-1 border border-terminal-500 text-terminal-400">
+                          {post.category}
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="text-lg md:text-xl font-bold text-white group-hover:text-terminal-200 transition-colors mb-2">
+                      {post.title}
+                    </h2>
+                    <p className="text-terminal-300 text-sm leading-relaxed line-clamp-2">
+                      {post.summary}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </ScrollAnimated>
+        )}
 
         <ScrollAnimated animation="slide-in-left" delay={400}>
           <div className="mb-8 space-y-6">

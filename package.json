@@ -22,6 +22,7 @@
     "test:e2e:report": "playwright show-report",
     "test:e2e:docker": "BASE_URL=http://app:3000 playwright test",
     "test:all": "npm run test && npm run test:e2e",
+    "seed:medium": "node scripts/seed-medium.mjs",
     "prepare": "husky"
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "@types/react-dom": "^19.1.5",
     "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.1",
+    "fast-xml-parser": "^5.5.9",
     "codemirror": "^6.0.2",
     "framer-motion": "^12.15.0",
     "mongoose": "^9.3.2",
@@ -42,7 +44,8 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss": "^3.4.16"
+    "tailwindcss": "^3.4.16",
+    "turndown": "^7.2.2"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
@@ -50,6 +53,7 @@
     "@testing-library/react": "^16.3.0",
     "@types/node": "^25.5.0",
     "@types/react": "^19.1.6",
+    "@types/turndown": "^5.0.6",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
     "@typescript-eslint/parser": "^8.33.0",
     "autoprefixer": "^10.4.20",
