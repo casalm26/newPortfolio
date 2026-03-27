@@ -26,7 +26,7 @@ export function AdminSidebar() {
           ADMIN CMS
         </Link>
         <div className="mt-1 font-pixel text-xs text-terminal-500">
-          caspian.dev
+          caspianalmerud.se
         </div>
       </div>
 

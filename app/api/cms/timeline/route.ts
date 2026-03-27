@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
 import { TimelineEntry } from "@/lib/models";
+import { revalidateSitemap } from "@/lib/cms/crud-helpers";
 
 export async function GET(request: NextRequest) {
   await connectDB();
@@ -28,5 +29,6 @@ export async function POST(request: NextRequest) {
   }
 
   const entry = await TimelineEntry.create(body);
+  revalidateSitemap();
   return NextResponse.json(entry, { status: 201 });
 }

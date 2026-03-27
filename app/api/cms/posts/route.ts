@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db/connection";
 import { BlogPost } from "@/lib/models";
 import { generateSlug } from "@/lib/utils";
-import { applySEODefaults } from "@/lib/cms/crud-helpers";
+import { applySEODefaults, revalidateSitemap } from "@/lib/cms/crud-helpers";
 
 export async function GET(request: NextRequest) {
   await connectDB();
@@ -43,5 +43,6 @@ export async function POST(request: NextRequest) {
   applySEODefaults(body);
 
   const post = await BlogPost.create(body);
+  revalidateSitemap();
   return NextResponse.json(post, { status: 201 });
 }

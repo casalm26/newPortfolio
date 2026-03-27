@@ -2,10 +2,10 @@ const metadata = {
   title: "Caspian Almerud - Generalist Developer",
   description:
     "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, AI tools, marketing, and business strategy.",
-  domain: "caspian.dev",
+  domain: "www.caspianalmerud.se",
   logoTitle: "CASPIAN.DEV",
   businessName: "Caspian Almerud",
-  siteUrl: "https://caspian.dev",
+  siteUrl: "https://www.caspianalmerud.se",
   siteRepo: "https://github.com/casalm26/newPortfolio",
   socialBanner: "/static/images/social-banner.png",
   supportEmail: "caspian@houseofcaspian.com",

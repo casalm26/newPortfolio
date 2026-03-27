@@ -40,7 +40,7 @@ export default function LoginPage() {
         <div className="mb-6">
           <h1 className="font-pixel text-sm text-white">ADMIN CMS</h1>
           <p className="mt-1 font-pixel text-xs text-terminal-500">
-            caspian.dev content management
+            caspianalmerud.se content management
           </p>
         </div>
 

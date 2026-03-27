@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { connectDB } from "@/lib/db/connection";
 import type { Model } from "mongoose";
+
+/**
+ * Revalidates the sitemap so it reflects the latest content.
+ * Call after any CMS create/update/delete operation.
+ */
+export function revalidateSitemap() {
+  revalidatePath("/sitemap.xml");
+}
 
 interface SlugRouteParams {
   params: Promise<{ slug: string }>;
@@ -51,6 +60,7 @@ export function createSlugRouteHandlers(
       );
     }
 
+    revalidateSitemap();
     return NextResponse.json(doc);
   }
 
@@ -66,6 +76,7 @@ export function createSlugRouteHandlers(
       );
     }
 
+    revalidateSitemap();
     return NextResponse.json({ message: `${resourceName} deleted` });
   }
 
@@ -113,6 +124,7 @@ export function createIdRouteHandlers(
       );
     }
 
+    revalidateSitemap();
     return NextResponse.json(doc);
   }
 
@@ -128,6 +140,7 @@ export function createIdRouteHandlers(
       );
     }
 
+    revalidateSitemap();
     return NextResponse.json({ message: `${resourceName} deleted` });
   }
 

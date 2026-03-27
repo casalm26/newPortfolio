@@ -84,9 +84,9 @@ export default function RootLayout({
               jobTitle: "Generalist Developer",
               description:
                 "Generalist developer bridging technical expertise with creative problem-solving. Full-stack development, AI tools, marketing, and business strategy.",
-              url: "https://caspian.dev",
+              url: "https://www.caspianalmerud.se",
               email: "caspian@houseofcaspian.com",
-              image: "https://caspian.dev/static/images/avatar.png",
+              image: "https://www.caspianalmerud.se/static/images/avatar.png",
               sameAs: [
                 "https://github.com/casalm26",
                 "https://linkedin.com/in/caspianalmerud",

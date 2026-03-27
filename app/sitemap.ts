@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { getAllProjects, getAllPosts, getAllVideos } from "@/lib/cms/queries";
 import { siteConfig } from "@/data/config/site.settings";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = siteConfig.siteUrl;
