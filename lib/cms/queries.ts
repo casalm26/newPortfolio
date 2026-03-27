@@ -53,6 +53,14 @@ export async function getAllPosts(
     .lean() as unknown as IBlogPostFields[];
 }
 
+export async function getFeaturedPosts(): Promise<IBlogPostFields[]> {
+  if (!isDBAvailable()) return [];
+  await connectDB();
+  return BlogPost.find({ featured: true, draft: false })
+    .sort({ featuredOrder: 1, publishedAt: -1 })
+    .lean() as unknown as IBlogPostFields[];
+}
+
 export async function getPostBySlug(
   slug: string,
 ): Promise<IBlogPostFields | null> {

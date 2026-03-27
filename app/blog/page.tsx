@@ -1,4 +1,4 @@
-import { getAllPosts, serialize } from "@/lib/cms/queries";
+import { getAllPosts, getFeaturedPosts, serialize } from "@/lib/cms/queries";
 import { BlogPageClient } from "./BlogPageClient";
 
 export const metadata = {
@@ -7,6 +7,14 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await getAllPosts();
-  return <BlogPageClient posts={serialize(posts)} />;
+  const [posts, featuredPosts] = await Promise.all([
+    getAllPosts(),
+    getFeaturedPosts(),
+  ]);
+  return (
+    <BlogPageClient
+      posts={serialize(posts)}
+      featuredPosts={serialize(featuredPosts)}
+    />
+  );
 }

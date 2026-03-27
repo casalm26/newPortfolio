@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { ArrowLeft } from "@/components/icons/Icons";
 import { getAllPosts, getPostBySlug } from "@/lib/cms/queries";
 import { formatDate } from "@/lib/utils";
+import { metadata as siteMetadata } from "@/data/config/metadata";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -41,8 +42,36 @@ export default async function BlogPostPage({ params }: Props) {
 
   const mdxContent = post.content || "";
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.seoDescription || post.summary,
+    author: {
+      "@type": "Person",
+      name: post.author,
+      url: siteMetadata.siteUrl,
+    },
+    datePublished: new Date(post.publishedAt).toISOString(),
+    dateModified: new Date(post.updatedAt).toISOString(),
+    publisher: {
+      "@type": "Person",
+      name: siteMetadata.author,
+      url: siteMetadata.siteUrl,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteMetadata.siteUrl}/blog/${post.slug}`,
+    },
+    ...(post.coverImage ? { image: post.coverImage } : {}),
+  };
+
   return (
     <div className="min-h-screen bg-black">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       <main className="container mx-auto px-4 pt-24 pb-12 max-w-4xl">

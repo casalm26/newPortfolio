@@ -11,6 +11,8 @@ export interface IBlogPostFields {
   category: string;
   coverImage?: string;
   author: string;
+  featured: boolean;
+  featuredOrder: number;
   draft: boolean;
   publishedAt: Date;
   updatedAt: Date;
@@ -32,6 +34,8 @@ const BlogPostSchema = new Schema<IBlogPost>(
     category: { type: String, default: "" },
     coverImage: { type: String },
     author: { type: String, default: "Caspian Almerud" },
+    featured: { type: Boolean, default: false },
+    featuredOrder: { type: Number, default: 0 },
     draft: { type: Boolean, default: false },
     publishedAt: { type: Date, default: Date.now },
     seoTitle: { type: String, default: "" },
