@@ -26,6 +26,8 @@ export function mapToBlogPost(post: ParsedMediumPost): BlogPostInput {
     category: "",
     ...(coverImage ? { coverImage } : {}),
     author: post.author,
+    featured: false,
+    featuredOrder: 0,
     draft: false,
     publishedAt: post.publishedAt,
     seoTitle: post.title,
