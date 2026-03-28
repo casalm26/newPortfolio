@@ -339,42 +339,6 @@ function ProjectsPageContent({ projects }: { projects: ProjectData[] }) {
 
             <div>
               <div className="font-pixel text-xs text-terminal-400 mb-3">
-                filter by technology:
-              </div>
-              <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto">
-                <button
-                  onClick={() => updateFilter("tech", null)}
-                  className={cn(
-                    "font-pixel text-xs px-3 py-2 border transition-colors",
-                    !techFilter
-                      ? "border-white bg-white text-black font-bold"
-                      : "border-terminal-400 text-terminal-300 hover:border-white hover:text-white",
-                  )}
-                >
-                  ALL TECH
-                </button>
-                {allSkills.slice(0, 10).map((skill) => {
-                  const isActive = techFilter === skill;
-                  return (
-                    <button
-                      key={skill}
-                      onClick={() => updateFilter("tech", skill)}
-                      className={cn(
-                        "btn-pixel-3d font-pixel text-xs px-3 py-2",
-                        isActive
-                          ? "border-white bg-white text-black font-bold"
-                          : "border-terminal-400 text-terminal-300",
-                      )}
-                    >
-                      {skill}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div>
-              <div className="font-pixel text-xs text-terminal-400 mb-3">
                 sort by:
               </div>
               <div className="flex flex-wrap gap-2">

@@ -1,7 +1,6 @@
 import Header from "@/components/shared/Header";
 import { PixelArtName } from "@/components/PixelArtName";
 import ScrollAnimation, {
-  ParallaxScroll,
   StaggerAnimation,
 } from "@/components/shared/ScrollAnimation";
 import Link from "next/link";
@@ -11,48 +10,31 @@ export default function Page() {
   const quickAccess = [
     {
       title: "PROJECTS",
-      description:
-        "Technical work & case studies showcasing full-stack development, creative coding, and real-world problem solving.",
+      description: "Projects & case studies.",
       href: "/projects",
       prefix: "./projects",
-      icon: "🚀",
       stat: "Case Studies",
     },
     {
       title: "BLOG",
-      description:
-        "Articles on web development, marketing, tech architecture, and lessons learned building products.",
+      description: "Mostly rants and thoughts on life. ",
       href: "/blog",
       prefix: "./blog",
-      icon: "📝",
       stat: "Articles",
     },
     {
       title: "VIDEOS",
-      description:
-        "Video content covering tutorials, walkthroughs, and deep dives into development topics.",
+      description: "Hobby-philosophical vlogs.",
       href: "/videos",
       prefix: "./videos",
-      icon: "🎬",
       stat: "Videos",
     },
     {
       title: "CV",
-      description:
-        "Interactive career timeline — work experience, education, certifications, and skills development.",
+      description: "My career timeline.",
       href: "/cv",
       prefix: "./cv",
-      icon: "💼",
       stat: "Timeline",
-    },
-    {
-      title: "CONTACT",
-      description:
-        "Ready to collaborate? Reach out via email or connect on social platforms.",
-      href: "/contact",
-      prefix: "./contact",
-      icon: "📬",
-      stat: "Let's Talk",
     },
   ];
 
@@ -160,9 +142,6 @@ export default function Page() {
                       {item.title}
                     </h3>
                   </div>
-                  <div className="text-2xl opacity-60 group-hover:opacity-100 transition-opacity">
-                    {item.icon}
-                  </div>
                 </div>
 
                 <p className="text-terminal-300 text-sm leading-relaxed mb-6 group-hover:text-terminal-200 transition-colors">
@@ -181,63 +160,6 @@ export default function Page() {
             ))}
           </StaggerAnimation>
         </div>
-      </section>
-
-      {/* Parallax Terminal Section */}
-      <section className="py-24 overflow-hidden">
-        <ParallaxScroll speed={0.3} className="relative">
-          <div className="container mx-auto px-4">
-            <ScrollAnimation animation="fadeIn" delay={300}>
-              <div className="max-w-4xl mx-auto">
-                <div className="bg-terminal-900 border border-terminal-400 p-8 font-mono text-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    <div className="ml-4 font-pixel text-xs text-terminal-400">
-                      terminal.app
-                    </div>
-                  </div>
-                  <div className="space-y-2 text-terminal-300">
-                    <div>
-                      <span className="text-green-400">caspian@localhost</span>
-                      <span className="text-white">:</span>
-                      <span className="text-blue-400">~</span>
-                      <span className="text-white">$ cat philosophy.txt</span>
-                    </div>
-                    <div className="pl-4">
-                      "Code is poetry. Every function tells a story,
-                      <br />
-                      every architecture solves a puzzle,
-                      <br />
-                      every interface bridges human and machine."
-                    </div>
-                    <div className="mt-4">
-                      <span className="text-green-400">caspian@localhost</span>
-                      <span className="text-white">:</span>
-                      <span className="text-blue-400">~</span>
-                      <span className="text-white">
-                        $ echo "Let's build something amazing together"
-                      </span>
-                    </div>
-                    <div className="pl-4 text-white">
-                      Let's build something amazing together
-                    </div>
-                    <div className="flex items-center mt-4">
-                      <span className="text-green-400">caspian@localhost</span>
-                      <span className="text-white">:</span>
-                      <span className="text-blue-400">~</span>
-                      <span className="text-white">$ </span>
-                      <div className="w-2 h-4 bg-white ml-1 animate-pulse"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </ParallaxScroll>
       </section>
 
       {/* Contact CTA */}
