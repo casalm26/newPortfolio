@@ -32,6 +32,9 @@ export default function ProjectsListPage() {
   const { showToast } = useToast();
   const [projects, setProjects] = useState<Project[]>([]);
   const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<
+    "all" | "published" | "draft"
+  >("all");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -42,8 +45,10 @@ export default function ProjectsListPage() {
     if (!apiKey) return;
     setLoading(true);
     try {
+      const draftParam =
+        statusFilter === "all" ? "" : `&draft=${statusFilter === "draft"}`;
       const data = await cmsApiFetch<ProjectsResponse>(
-        `/projects?page=${page}&limit=50&draft=true`,
+        `/projects?page=${page}&limit=50${draftParam}`,
         apiKey,
       );
       setProjects(data.projects);
@@ -53,7 +58,7 @@ export default function ProjectsListPage() {
     } finally {
       setLoading(false);
     }
-  }, [apiKey, page, showToast]);
+  }, [apiKey, page, statusFilter, showToast]);
 
   useEffect(() => {
     fetchProjects();
@@ -107,12 +112,26 @@ export default function ProjectsListPage() {
         </Link>
       </div>
 
-      <div className="mb-4">
-        <SearchInput
-          value={search}
-          onChange={setSearch}
-          placeholder="Search projects..."
-        />
+      <div className="mb-4 flex gap-3">
+        <div className="flex-1">
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Search projects..."
+          />
+        </div>
+        <select
+          value={statusFilter}
+          onChange={(e) => {
+            setStatusFilter(e.target.value as "all" | "published" | "draft");
+            setPage(1);
+          }}
+          className="border border-terminal-600 bg-black px-3 py-2 font-pixel text-xs text-terminal-400 focus:border-white focus:outline-none"
+        >
+          <option value="all">All</option>
+          <option value="published">Published</option>
+          <option value="draft">Drafts</option>
+        </select>
       </div>
 
       {loading ? (

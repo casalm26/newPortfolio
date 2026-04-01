@@ -32,6 +32,9 @@ export default function PostsListPage() {
   const { showToast } = useToast();
   const [posts, setPosts] = useState<Post[]>([]);
   const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState<
+    "all" | "published" | "draft"
+  >("all");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -42,8 +45,10 @@ export default function PostsListPage() {
     if (!apiKey) return;
     setLoading(true);
     try {
+      const draftParam =
+        statusFilter === "all" ? "" : `&draft=${statusFilter === "draft"}`;
       const data = await cmsApiFetch<PostsResponse>(
-        `/posts?page=${page}&limit=20&draft=true`,
+        `/posts?page=${page}&limit=20${draftParam}`,
         apiKey,
       );
       setPosts(data.posts);
@@ -53,7 +58,7 @@ export default function PostsListPage() {
     } finally {
       setLoading(false);
     }
-  }, [apiKey, page, showToast]);
+  }, [apiKey, page, statusFilter, showToast]);
 
   useEffect(() => {
     fetchPosts();
@@ -107,12 +112,26 @@ export default function PostsListPage() {
         </Link>
       </div>
 
-      <div className="mb-4">
-        <SearchInput
-          value={search}
-          onChange={setSearch}
-          placeholder="Search posts..."
-        />
+      <div className="mb-4 flex gap-3">
+        <div className="flex-1">
+          <SearchInput
+            value={search}
+            onChange={setSearch}
+            placeholder="Search posts..."
+          />
+        </div>
+        <select
+          value={statusFilter}
+          onChange={(e) => {
+            setStatusFilter(e.target.value as "all" | "published" | "draft");
+            setPage(1);
+          }}
+          className="border border-terminal-600 bg-black px-3 py-2 font-pixel text-xs text-terminal-400 focus:border-white focus:outline-none"
+        >
+          <option value="all">All</option>
+          <option value="published">Published</option>
+          <option value="draft">Drafts</option>
+        </select>
       </div>
 
       {loading ? (
